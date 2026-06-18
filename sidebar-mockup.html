@@ -8,290 +8,73 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #000; }
-
-    .shell {
-      display: flex;
-      height: 100vh;
-    }
+    .shell { display: flex; height: 100vh; }
 
     /* ── Sidebar ── */
-    .sidebar {
-      width: 210px;
-      min-width: 210px;
-      background: #0d0d0d;
-      display: flex;
-      flex-direction: column;
-      border-right: 0.5px solid #1f1f1f;
-      overflow-y: auto;
-    }
-
-    .sidebar-logo {
-      padding: 18px 16px 14px;
-      border-bottom: 0.5px solid #1f1f1f;
-    }
-
-    .logo-mark {
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.5px;
-    }
-
-    .logo-sub {
-      font-size: 9px;
-      color: #555;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 2px;
-    }
-
-    .sidebar-section {
-      padding: 14px 0 4px;
-    }
-
-    .sidebar-label {
-      font-size: 9px;
-      font-weight: 600;
-      color: #444;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      padding: 0 16px 6px;
-    }
-
-    .sidebar-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 16px;
-      font-size: 13px;
-      color: #888;
-      cursor: pointer;
-      border-left: 2px solid transparent;
-      transition: color 0.1s, background 0.1s;
-      white-space: nowrap;
-    }
-
+    .sidebar { width: 210px; min-width: 210px; background: #0d0d0d; display: flex; flex-direction: column; border-right: 0.5px solid #1f1f1f; overflow-y: auto; }
+    .sidebar-logo { padding: 18px 16px 14px; border-bottom: 0.5px solid #1f1f1f; }
+    .logo-mark { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+    .logo-sub { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+    .sidebar-section { padding: 14px 0 4px; }
+    .sidebar-label { font-size: 9px; font-weight: 600; color: #444; letter-spacing: 1.2px; text-transform: uppercase; padding: 0 16px 6px; }
+    .sidebar-item { display: flex; align-items: center; gap: 9px; padding: 8px 16px; font-size: 13px; color: #888; cursor: pointer; border-left: 2px solid transparent; transition: color 0.1s, background 0.1s; white-space: nowrap; }
     .sidebar-item:hover { color: #ddd; background: #161616; }
     .sidebar-item.active { color: #fff; background: #1c1c1c; border-left-color: #fff; }
     .sidebar-item i { font-size: 16px; flex-shrink: 0; }
 
     /* ── Main area ── */
-    .main-area {
-      flex: 1;
-      background: #111;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .topbar {
-      height: 46px;
-      min-height: 46px;
-      background: #0d0d0d;
-      border-bottom: 0.5px solid #1f1f1f;
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      gap: 6px;
-    }
-
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: #555;
-    }
-
+    .main-area { flex: 1; background: #111; display: flex; flex-direction: column; overflow: hidden; }
+    .topbar { height: 46px; min-height: 46px; background: #0d0d0d; border-bottom: 0.5px solid #1f1f1f; display: flex; align-items: center; padding: 0 24px; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
     .breadcrumb .sep { color: #333; }
     .breadcrumb .bc-link { color: #666; cursor: pointer; }
     .breadcrumb .bc-link:hover { color: #aaa; }
     .breadcrumb .current { color: #ccc; }
 
-    /* ── Content area ── */
-    .content-area {
-      flex: 1;
-      display: flex;
-      overflow: hidden;
-    }
+    /* ── Layout helpers ── */
+    .content-area { flex: 1; display: flex; overflow: hidden; }
+    .page-full { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
-    /* ── Config internal nav ── */
-    .config-nav {
-      width: 190px;
-      min-width: 190px;
-      background: #0f0f0f;
-      border-right: 0.5px solid #1f1f1f;
-      overflow-y: auto;
-      padding: 14px 0;
-    }
+    /* ── Internal nav (reused across pages) ── */
+    .int-nav { width: 190px; min-width: 190px; background: #0f0f0f; border-right: 0.5px solid #1f1f1f; overflow-y: auto; padding: 14px 0; }
+    .int-nav-label { font-size: 9px; font-weight: 600; color: #3a3a3a; letter-spacing: 1.2px; text-transform: uppercase; padding: 10px 16px 4px; }
+    .int-nav-label:first-child { padding-top: 0; }
+    .int-nav-item { padding: 7px 16px; font-size: 13px; color: #666; cursor: pointer; border-left: 2px solid transparent; transition: color 0.1s, background 0.1s; }
+    .int-nav-item:hover { color: #bbb; background: #161616; }
+    .int-nav-item.active { color: #fff; background: #1c1c1c; border-left-color: #fff; }
 
-    .config-group-label {
-      font-size: 9px;
-      font-weight: 600;
-      color: #3a3a3a;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      padding: 10px 16px 4px;
-    }
-
-    .config-group-label:first-child { padding-top: 0; }
-
-    .config-item {
-      padding: 7px 16px;
-      font-size: 13px;
-      color: #666;
-      cursor: pointer;
-      border-left: 2px solid transparent;
-      transition: color 0.1s, background 0.1s;
-    }
-
-    .config-item:hover { color: #bbb; background: #161616; }
-    .config-item.active { color: #fff; background: #1c1c1c; border-left-color: #fff; }
-
-    /* ── Config content panel ── */
-    .config-content {
-      flex: 1;
-      padding: 22px 28px;
-      overflow-y: auto;
-    }
-
-    .page-title {
-      font-size: 17px;
-      font-weight: 500;
-      color: #eee;
-      margin-bottom: 18px;
-    }
+    /* ── Content panel ── */
+    .config-content { flex: 1; padding: 22px 28px; overflow-y: auto; }
+    .page-title { font-size: 17px; font-weight: 500; color: #eee; margin-bottom: 18px; }
 
     /* ── Tabs ── */
-    .tabs {
-      display: flex;
-      gap: 0;
-      border-bottom: 0.5px solid #222;
-      margin-bottom: 22px;
-      overflow-x: auto;
-    }
-
+    .tabs { display: flex; border-bottom: 0.5px solid #222; margin-bottom: 22px; overflow-x: auto; }
     .tabs::-webkit-scrollbar { height: 0; }
-
-    .tab {
-      padding: 8px 16px;
-      font-size: 12.5px;
-      color: #666;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -0.5px;
-      white-space: nowrap;
-      transition: color 0.1s;
-      flex-shrink: 0;
-    }
-
+    .tab { padding: 8px 16px; font-size: 12.5px; color: #666; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -0.5px; white-space: nowrap; transition: color 0.1s; flex-shrink: 0; }
     .tab:hover { color: #bbb; }
     .tab.active { color: #fff; border-bottom-color: #fff; }
 
-    /* ── Form fields ── */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .field-label {
-      font-size: 11px;
-      color: #555;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .field-input {
-      height: 34px;
-      background: #1a1a1a;
-      border: 0.5px solid #2a2a2a;
-      border-radius: 6px;
-      color: #ccc;
-      font-size: 13px;
-      padding: 0 10px;
-      font-family: inherit;
-      transition: border-color 0.15s;
-    }
-
+    /* ── Form ── */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .field-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+    .field-input { height: 34px; background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 6px; color: #ccc; font-size: 13px; padding: 0 10px; font-family: inherit; }
     .field-input:focus { outline: none; border-color: #555; }
-
-    .field-textarea {
-      min-height: 72px;
-      background: #1a1a1a;
-      border: 0.5px solid #2a2a2a;
-      border-radius: 6px;
-      color: #ccc;
-      font-size: 13px;
-      padding: 8px 10px;
-      font-family: inherit;
-      resize: vertical;
-      transition: border-color 0.15s;
-    }
-
+    .field-textarea { min-height: 72px; background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 6px; color: #ccc; font-size: 13px; padding: 8px 10px; font-family: inherit; resize: vertical; }
     .field-textarea:focus { outline: none; border-color: #555; }
 
-    /* ── Footer ── */
-    .footer-bar {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 12px 28px;
-      border-top: 0.5px solid #1a1a1a;
-      background: #0d0d0d;
-      gap: 10px;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 6px;
-      padding: 7px 20px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 0.1s;
-    }
-
+    /* ── Footer bar ── */
+    .footer-bar { display: flex; justify-content: flex-end; align-items: center; padding: 12px 28px; border-top: 0.5px solid #1a1a1a; background: #0d0d0d; gap: 10px; }
+    .btn { border: none; border-radius: 6px; padding: 7px 20px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; transition: background 0.1s; }
     .btn-primary { background: #fff; color: #000; }
     .btn-primary:hover { background: #e8e8e8; }
-
-    .btn-secondary {
-      background: transparent;
-      color: #666;
-      border: 0.5px solid #2a2a2a;
-    }
-
+    .btn-secondary { background: transparent; color: #666; border: 0.5px solid #2a2a2a; }
     .btn-secondary:hover { color: #bbb; border-color: #444; }
 
     /* ── Dashboard ── */
-    .page-dashboard {
-      padding: 22px 28px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    .dash-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .dash-card {
-      background: #1a1a1a;
-      border: 0.5px solid #252525;
-      border-radius: 8px;
-      padding: 16px;
-    }
-
+    .page-dashboard { padding: 22px 28px; overflow-y: auto; flex: 1; }
+    .dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+    .dash-card { background: #1a1a1a; border: 0.5px solid #252525; border-radius: 8px; padding: 16px; }
     .dash-card .label { font-size: 11px; color: #555; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
     .dash-card .value { font-size: 22px; font-weight: 500; color: #eee; }
     .dash-card .change { font-size: 11px; margin-top: 6px; }
@@ -299,29 +82,65 @@
     .dash-card .change.down { color: #c66; }
     .dash-card .change.neutral { color: #555; }
 
-    /* ── Empty state ── */
-    .empty-page {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-      color: #333;
-    }
+    /* ── Branding nested nav ── */
+    .branding-layout { display: flex; height: 100%; }
+    .branding-nav { width: 155px; min-width: 155px; border-right: 0.5px solid #1f1f1f; overflow-y: auto; padding: 14px 0; }
+    .branding-grp { font-size: 9px; font-weight: 600; color: #3a3a3a; letter-spacing: 1.2px; text-transform: uppercase; padding: 10px 14px 4px; }
+    .branding-grp:first-child { padding-top: 0; }
+    .branding-itm { padding: 6px 14px; font-size: 12.5px; color: #666; cursor: pointer; border-left: 2px solid transparent; }
+    .branding-itm:hover { color: #bbb; background: #161616; }
+    .branding-itm.active { color: #fff; background: #1c1c1c; border-left-color: #fff; }
+    .branding-body { flex: 1; padding: 20px 24px; overflow-y: auto; }
 
-    .empty-page i { font-size: 36px; }
+    /* ── Usuários list ── */
+    .usuarios-wrap { flex: 1; padding: 22px 28px; overflow-y: auto; }
+    .list-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .list-filters { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .filter-input { height: 32px; background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 6px; color: #ccc; font-size: 12px; padding: 0 10px; font-family: inherit; }
+    .filter-input::placeholder { color: #444; }
+    .filter-input:focus { outline: none; border-color: #444; }
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th { font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px; text-align: left; border-bottom: 0.5px solid #1f1f1f; font-weight: 600; }
+    .data-table td { font-size: 13px; color: #777; padding: 10px 12px; border-bottom: 0.5px solid #191919; }
+    .data-table tr:hover td { background: #161616; color: #ccc; cursor: pointer; }
+    .badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+    .badge-green { background: #0f2a1a; color: #4a9; border: 0.5px solid #1a4a2a; }
+    .badge-yellow { background: #2a2210; color: #a87; border: 0.5px solid #4a3a10; }
+    .badge-red { background: #2a1010; color: #c66; border: 0.5px solid #4a1a1a; }
+
+    /* ── User profile ── */
+    .profile-header { padding: 16px 28px 12px; border-bottom: 0.5px solid #1f1f1f; background: #0e0e0e; }
+    .profile-name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 3px; }
+    .profile-name { font-size: 15px; font-weight: 600; color: #eee; }
+    .profile-meta { font-size: 11.5px; color: #555; margin-bottom: 12px; }
+    .profile-meta span { margin-right: 14px; }
+    .balance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1f1f1f; border-radius: 6px; overflow: hidden; margin-bottom: 1px; }
+    .balance-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1f1f1f; border-radius: 6px; overflow: hidden; }
+    .bal-cell { background: #141414; padding: 9px 14px; }
+    .bal-label { font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+    .bal-value { font-size: 14px; font-weight: 500; color: #bbb; }
+    .profile-tabs-row { display: flex; align-items: stretch; background: #0d0d0d; border-bottom: 0.5px solid #1f1f1f; }
+    .ptabs-scroll { display: flex; overflow-x: auto; flex: 1; }
+    .ptabs-scroll::-webkit-scrollbar { height: 0; }
+    .ptab { padding: 10px 13px; font-size: 12px; color: #555; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; flex-shrink: 0; transition: color 0.1s; }
+    .ptab:hover { color: #bbb; }
+    .ptab.active { color: #fff; border-bottom-color: #fff; }
+    .scroll-arrow { background: none; border: none; color: #444; cursor: pointer; padding: 0 8px; font-size: 14px; }
+    .scroll-arrow:hover { color: #aaa; }
+    .profile-body { flex: 1; padding: 20px 28px; overflow-y: auto; }
+
+    /* ── Empty state ── */
+    .empty-page { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
+    .empty-page i { font-size: 36px; color: #333; }
     .empty-page span { font-size: 13px; color: #444; }
 
-    /* ── Utility: hidden ── */
     .hidden { display: none !important; }
   </style>
 </head>
 <body>
-
 <div class="shell">
 
-  <!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
   <nav class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-mark">BPX</div>
@@ -330,57 +149,33 @@
 
     <div class="sidebar-section">
       <div class="sidebar-label">Principal</div>
-      <div class="sidebar-item" data-section="dashboard" onclick="navigate(this)">
-        <i class="ti ti-layout-dashboard"></i> Dashboard
-      </div>
-      <div class="sidebar-item" data-section="operacao" onclick="navigate(this)">
-        <i class="ti ti-activity"></i> Operação
-      </div>
-      <div class="sidebar-item" data-section="financeiro" onclick="navigate(this)">
-        <i class="ti ti-cash"></i> Financeiro
-      </div>
+      <div class="sidebar-item" data-section="dashboard" onclick="navigate(this)"><i class="ti ti-layout-dashboard"></i> Dashboard</div>
+      <div class="sidebar-item" data-section="operacao" onclick="navigate(this)"><i class="ti ti-activity"></i> Operação</div>
+      <div class="sidebar-item" data-section="financeiro" onclick="navigate(this)"><i class="ti ti-cash"></i> Financeiro</div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Produto</div>
-      <div class="sidebar-item" data-section="cassino" onclick="navigate(this)">
-        <i class="ti ti-device-gamepad-2"></i> Cassino
-      </div>
-      <div class="sidebar-item" data-section="esportes" onclick="navigate(this)">
-        <i class="ti ti-trophy"></i> Esportes
-      </div>
-      <div class="sidebar-item" data-section="promocoes" onclick="navigate(this)">
-        <i class="ti ti-gift"></i> Promoções
-      </div>
-      <div class="sidebar-item" data-section="comunicacao" onclick="navigate(this)">
-        <i class="ti ti-message-2"></i> Comunicação
-      </div>
-      <div class="sidebar-item" data-section="conteudo" onclick="navigate(this)">
-        <i class="ti ti-file-text"></i> Conteúdo
-      </div>
+      <div class="sidebar-item" data-section="cassino" onclick="navigate(this)"><i class="ti ti-device-gamepad-2"></i> Cassino</div>
+      <div class="sidebar-item" data-section="esportes" onclick="navigate(this)"><i class="ti ti-trophy"></i> Esportes</div>
+      <div class="sidebar-item" data-section="promocoes" onclick="navigate(this)"><i class="ti ti-gift"></i> Promoções</div>
+      <div class="sidebar-item" data-section="comunicacao" onclick="navigate(this)"><i class="ti ti-message-2"></i> Comunicação</div>
+      <div class="sidebar-item" data-section="conteudo" onclick="navigate(this)"><i class="ti ti-file-text"></i> Conteúdo</div>
+      <div class="sidebar-item" data-section="sistema-compliance" onclick="navigate(this)"><i class="ti ti-shield-check"></i> Sistema & Compliance</div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Gestão</div>
-      <div class="sidebar-item" data-section="usuarios" onclick="navigate(this)">
-        <i class="ti ti-users"></i> Usuários
-      </div>
-      <div class="sidebar-item" data-section="relatorios" onclick="navigate(this)">
-        <i class="ti ti-chart-bar"></i> Relatórios
-      </div>
-      <div class="sidebar-item" data-section="monitoramento" onclick="navigate(this)">
-        <i class="ti ti-radar"></i> Monitoramento
-      </div>
-      <div class="sidebar-item active" data-section="configuracoes" onclick="navigate(this)">
-        <i class="ti ti-settings"></i> Configurações
-      </div>
+      <div class="sidebar-item" data-section="usuarios" onclick="navigate(this)"><i class="ti ti-users"></i> Usuários</div>
+      <div class="sidebar-item" data-section="relatorios" onclick="navigate(this)"><i class="ti ti-chart-bar"></i> Relatórios</div>
+      <div class="sidebar-item" data-section="monitoramento" onclick="navigate(this)"><i class="ti ti-radar"></i> Monitoramento</div>
+      <div class="sidebar-item active" data-section="configuracoes" onclick="navigate(this)"><i class="ti ti-settings"></i> Configurações</div>
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+  <!-- ═══════════════ MAIN ═══════════════ -->
   <div class="main-area">
 
-    <!-- Topbar / Breadcrumb -->
     <div class="topbar">
       <div class="breadcrumb" id="breadcrumb">
         <i class="ti ti-home" style="font-size:13px"></i>
@@ -389,37 +184,32 @@
       </div>
     </div>
 
-    <!-- ── CONFIGURAÇÕES (default visible) ── -->
+    <!-- ══ CONFIGURAÇÕES ══ -->
     <div class="content-area" id="pageConfig">
-
-      <nav class="config-nav">
-        <div class="config-group-label">Plataforma</div>
-        <div class="config-item active" data-config="plataforma" onclick="selectConfig(this)">Plataforma</div>
-        <div class="config-item" data-config="branding" onclick="selectConfig(this)">Branding</div>
-        <div class="config-item" data-config="seo" onclick="selectConfig(this)">SEO</div>
-        <div class="config-item" data-config="social" onclick="selectConfig(this)">Social</div>
-        <div class="config-item" data-config="cms" onclick="selectConfig(this)">CMS</div>
-
-        <div class="config-group-label">Financeiro</div>
-        <div class="config-item" data-config="financial" onclick="selectConfig(this)">Financeiro</div>
-        <div class="config-item" data-config="gateway" onclick="selectConfig(this)">Gateway</div>
-        <div class="config-item" data-config="pld" onclick="selectConfig(this)">PLD</div>
-
-        <div class="config-group-label">Comunicação</div>
-        <div class="config-item" data-config="chat" onclick="selectConfig(this)">Chat</div>
-        <div class="config-item" data-config="anuncios" onclick="selectConfig(this)">Anúncios</div>
-        <div class="config-item" data-config="mensagem" onclick="selectConfig(this)">Mensagem</div>
-        <div class="config-item" data-config="notificacoes" onclick="selectConfig(this)">Notificações</div>
-        <div class="config-item" data-config="buscas" onclick="selectConfig(this)">Buscas</div>
-
-        <div class="config-group-label">Sistema</div>
-        <div class="config-item" data-config="analytics" onclick="selectConfig(this)">Analytics</div>
-        <div class="config-item" data-config="seguranca" onclick="selectConfig(this)">Segurança</div>
-        <div class="config-item" data-config="arquivo" onclick="selectConfig(this)">Arquivo</div>
-        <div class="config-item" data-config="afiliado" onclick="selectConfig(this)">Afiliado</div>
-        <div class="config-item" data-config="geolocalizacao" onclick="selectConfig(this)">Geolocalização</div>
+      <nav class="int-nav" id="configNav">
+        <div class="int-nav-label">Plataforma</div>
+        <div class="int-nav-item active" data-config="plataforma" onclick="selectConfig(this)">Plataforma</div>
+        <div class="int-nav-item" data-config="branding" onclick="selectConfig(this)">Branding</div>
+        <div class="int-nav-item" data-config="seo" onclick="selectConfig(this)">SEO</div>
+        <div class="int-nav-item" data-config="social" onclick="selectConfig(this)">Social</div>
+        <div class="int-nav-item" data-config="cms" onclick="selectConfig(this)">CMS</div>
+        <div class="int-nav-label">Financeiro</div>
+        <div class="int-nav-item" data-config="financial" onclick="selectConfig(this)">Financeiro</div>
+        <div class="int-nav-item" data-config="gateway" onclick="selectConfig(this)">Gateway</div>
+        <div class="int-nav-item" data-config="pld" onclick="selectConfig(this)">PLD</div>
+        <div class="int-nav-label">Comunicação</div>
+        <div class="int-nav-item" data-config="chat" onclick="selectConfig(this)">Chat</div>
+        <div class="int-nav-item" data-config="anuncios" onclick="selectConfig(this)">Anúncios</div>
+        <div class="int-nav-item" data-config="mensagem" onclick="selectConfig(this)">Mensagem</div>
+        <div class="int-nav-item" data-config="notificacoes" onclick="selectConfig(this)">Notificações</div>
+        <div class="int-nav-item" data-config="buscas" onclick="selectConfig(this)">Buscas</div>
+        <div class="int-nav-label">Sistema</div>
+        <div class="int-nav-item" data-config="analytics" onclick="selectConfig(this)">Analytics</div>
+        <div class="int-nav-item" data-config="seguranca" onclick="selectConfig(this)">Segurança</div>
+        <div class="int-nav-item" data-config="arquivo" onclick="selectConfig(this)">Arquivo</div>
+        <div class="int-nav-item" data-config="afiliado" onclick="selectConfig(this)">Afiliado</div>
+        <div class="int-nav-item" data-config="geolocalizacao" onclick="selectConfig(this)">Geolocalização</div>
       </nav>
-
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
         <div class="config-content" id="configContent">
           <div class="page-title" id="configTitle">Plataforma</div>
@@ -433,48 +223,212 @@
       </div>
     </div>
 
-    <!-- ── DASHBOARD ── -->
+    <!-- ══ DASHBOARD ══ -->
     <div class="hidden" id="pageDashboard">
       <div class="page-dashboard">
         <div class="page-title">Dashboard</div>
         <div class="dash-grid">
-          <div class="dash-card">
-            <div class="label">Depósitos hoje</div>
-            <div class="value">R$ 142.380</div>
-            <div class="change up">↑ +12% vs ontem</div>
-          </div>
-          <div class="dash-card">
-            <div class="label">Saques pendentes</div>
-            <div class="value">38</div>
-            <div class="change down">↑ +5 na última hora</div>
-          </div>
-          <div class="dash-card">
-            <div class="label">Usuários online</div>
-            <div class="value">2.847</div>
-            <div class="change neutral">Agora</div>
-          </div>
+          <div class="dash-card"><div class="label">Depósitos hoje</div><div class="value">R$ 142.380</div><div class="change up">↑ +12% vs ontem</div></div>
+          <div class="dash-card"><div class="label">Saques pendentes</div><div class="value">38</div><div class="change down">↑ +5 na última hora</div></div>
+          <div class="dash-card"><div class="label">Usuários online</div><div class="value">2.847</div><div class="change neutral">Agora</div></div>
         </div>
         <div class="dash-grid">
-          <div class="dash-card">
-            <div class="label">Apostas em aberto</div>
-            <div class="value">1.203</div>
-            <div class="change neutral">Esportivo</div>
-          </div>
-          <div class="dash-card">
-            <div class="label">GGR esportivo</div>
-            <div class="value">R$ 28.910</div>
-            <div class="change up">↑ +8% este mês</div>
-          </div>
-          <div class="dash-card">
-            <div class="label">GGR cassino</div>
-            <div class="value">R$ 61.445</div>
-            <div class="change up">↑ +3% este mês</div>
-          </div>
+          <div class="dash-card"><div class="label">Apostas em aberto</div><div class="value">1.203</div><div class="change neutral">Esportivo</div></div>
+          <div class="dash-card"><div class="label">GGR esportivo</div><div class="value">R$ 28.910</div><div class="change up">↑ +8% este mês</div></div>
+          <div class="dash-card"><div class="label">GGR cassino</div><div class="value">R$ 61.445</div><div class="change up">↑ +3% este mês</div></div>
         </div>
       </div>
     </div>
 
-    <!-- ── EMPTY (outros módulos) ── -->
+    <!-- ══ ESPORTES ══ -->
+    <div class="content-area hidden" id="pageEsportes">
+      <nav class="int-nav">
+        <div class="int-nav-label">Configuração</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this, 'esportesTitle')">Esportes</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Categorias</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Torneios</div>
+        <div class="int-nav-label">Eventos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Eventos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Competidores</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Populares</div>
+        <div class="int-nav-label">Mercados</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Mercados</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Grupos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Favoritos</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+        <div class="config-content">
+          <div class="page-title" id="esportesTitle">Esportes</div>
+          <p style="color:#444; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PROMOÇÕES ══ -->
+    <div class="content-area hidden" id="pagePromocoes">
+      <nav class="int-nav">
+        <div class="int-nav-item active" onclick="selectGenericNav(this, 'promocoesTitle')">Bônus</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'promocoesTitle')">Regras de afiliado</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'promocoesTitle')">Regras de uso</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'promocoesTitle')">Acionamentos</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+        <div class="config-content">
+          <div class="page-title" id="promocoesTitle">Bônus</div>
+          <p style="color:#444; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ RELATÓRIOS ══ -->
+    <div class="page-full hidden" id="pageRelatorios">
+      <div class="config-content">
+        <div class="page-title">Relatórios</div>
+        <div class="tabs" style="margin-top:16px;">
+          <div class="tab active" onclick="switchTab(this)">Dashboard</div>
+          <div class="tab" onclick="switchTab(this)">Cassino</div>
+          <div class="tab" onclick="switchTab(this)">Esportivo</div>
+          <div class="tab" onclick="switchTab(this)">Resumo</div>
+        </div>
+        <p style="color:#444; font-size:13px">Em construção.</p>
+      </div>
+    </div>
+
+    <!-- ══ MONITORAMENTO ══ -->
+    <div class="content-area hidden" id="pageMonitoramento">
+      <nav class="int-nav">
+        <div class="int-nav-item active" onclick="selectGenericNav(this, 'monitorTitle')">API</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Métricas</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Status</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Logs</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Propriedades</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+        <div class="config-content">
+          <div class="page-title" id="monitorTitle">API</div>
+          <p style="color:#444; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ USUÁRIOS ══ -->
+    <div class="page-full hidden" id="pageUsuarios">
+
+      <!-- Lista -->
+      <div id="usuariosList" class="page-full">
+        <div class="usuarios-wrap">
+          <div class="list-top">
+            <div class="page-title">Apostadores</div>
+            <button class="btn btn-primary" style="font-size:12px; padding:6px 14px;">+ Novo</button>
+          </div>
+          <div class="list-filters">
+            <input class="filter-input" placeholder="Buscar por nome, CPF ou e-mail…" style="width:260px">
+            <input class="filter-input" placeholder="Status" style="width:110px">
+            <button class="btn btn-secondary" style="font-size:12px; padding:5px 14px; height:32px;">Filtrar</button>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Nome</th><th>CPF</th><th>E-mail</th><th>Cadastro</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr onclick="openProfile('ISLEY DAVID LOPEZ GIRALDO','isley.giraldo@twinfo.io','708.758.834-60','17/01/2024','Verificado')">
+                <td>ISLEY DAVID LOPEZ GIRALDO</td><td>708.758.834-60</td><td>isley.giraldo@twinfo.io</td><td>17/01/2024</td><td><span class="badge badge-green">Verificado</span></td>
+              </tr>
+              <tr onclick="openProfile('MARIA SILVA SANTOS','maria.santos@email.com','123.456.789-00','05/03/2024','Verificado')">
+                <td>MARIA SILVA SANTOS</td><td>123.456.789-00</td><td>maria.santos@email.com</td><td>05/03/2024</td><td><span class="badge badge-green">Verificado</span></td>
+              </tr>
+              <tr onclick="openProfile('CARLOS EDUARDO MELO','carlos.melo@gmail.com','987.654.321-00','22/04/2024','Pendente')">
+                <td>CARLOS EDUARDO MELO</td><td>987.654.321-00</td><td>carlos.melo@gmail.com</td><td>22/04/2024</td><td><span class="badge badge-yellow">Pendente</span></td>
+              </tr>
+              <tr onclick="openProfile('ANA PAULA FERREIRA','ana.ferreira@outlook.com','456.123.789-00','10/06/2024','Bloqueado')">
+                <td>ANA PAULA FERREIRA</td><td>456.123.789-00</td><td>ana.ferreira@outlook.com</td><td>10/06/2024</td><td><span class="badge badge-red">Bloqueado</span></td>
+              </tr>
+              <tr onclick="openProfile('ROBERTO TEIXEIRA LIMA','roberto.lima@hotmail.com','321.654.987-00','14/06/2025','Verificado')">
+                <td>ROBERTO TEIXEIRA LIMA</td><td>321.654.987-00</td><td>roberto.lima@hotmail.com</td><td>14/06/2025</td><td><span class="badge badge-green">Verificado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Perfil do apostador -->
+      <div id="usuarioProfile" class="page-full hidden">
+        <div class="profile-header">
+          <div class="profile-name-row">
+            <div class="profile-name" id="profileName">-</div>
+            <span class="badge badge-green" id="profileBadge">Verificado</span>
+          </div>
+          <div class="profile-meta">
+            <span id="profileEmail">-</span>
+            <span>CPF: <span id="profileCPF">-</span></span>
+            <span>Cadastro: <span id="profileCadastro">-</span></span>
+            <span>✅ Verificado</span>
+          </div>
+          <div class="balance-grid">
+            <div class="bal-cell"><div class="bal-label">Saldo disponível</div><div class="bal-value">R$ 0,00</div></div>
+            <div class="bal-cell"><div class="bal-label">Depósito pend.</div><div class="bal-value">R$ 0,00</div></div>
+            <div class="bal-cell"><div class="bal-label">Saque pendente</div><div class="bal-value">R$ 0,00</div></div>
+          </div>
+          <div class="balance-grid" style="margin-top:1px; margin-bottom:6px;">
+            <div class="bal-cell"><div class="bal-label">Saldo bônus esp.</div><div class="bal-value">R$ 0,00</div></div>
+            <div class="bal-cell"><div class="bal-label">Saldo free bet</div><div class="bal-value">R$ 0,00</div></div>
+            <div class="bal-cell"><div class="bal-label">Saldo bônus cassino</div><div class="bal-value">R$ 0,00</div></div>
+          </div>
+          <div class="balance-grid-2">
+            <div class="bal-cell"><div class="bal-label">Total depositado</div><div class="bal-value">R$ 0,00</div></div>
+            <div class="bal-cell"><div class="bal-label">Total sacado</div><div class="bal-value">R$ 0,00</div></div>
+          </div>
+        </div>
+        <div class="profile-tabs-row">
+          <button class="scroll-arrow" onclick="scrollPTabs(-140)">‹</button>
+          <div class="ptabs-scroll" id="ptabsScroll">
+            <div class="ptab active" onclick="switchPTab(this)">Dados</div>
+            <div class="ptab" onclick="switchPTab(this)">Bloqueios</div>
+            <div class="ptab" onclick="switchPTab(this)">Transações</div>
+            <div class="ptab" onclick="switchPTab(this)">Bônus</div>
+            <div class="ptab" onclick="switchPTab(this)">Apostas</div>
+            <div class="ptab" onclick="switchPTab(this)">Cassino</div>
+            <div class="ptab" onclick="switchPTab(this)">Palpites</div>
+            <div class="ptab" onclick="switchPTab(this)">Notificações</div>
+            <div class="ptab" onclick="switchPTab(this)">Mensagem Privada</div>
+            <div class="ptab" onclick="switchPTab(this)">KYC</div>
+            <div class="ptab" onclick="switchPTab(this)">Autorizações</div>
+            <div class="ptab" onclick="switchPTab(this)">Grupos</div>
+            <div class="ptab" onclick="switchPTab(this)">Afiliados</div>
+            <div class="ptab" onclick="switchPTab(this)">Limites</div>
+            <div class="ptab" onclick="switchPTab(this)">Logins</div>
+          </div>
+          <button class="scroll-arrow" onclick="scrollPTabs(140)">›</button>
+        </div>
+        <div class="profile-body" id="profileBody">
+          <p style="color:#444; font-size:13px">Em construção — aba: Dados</p>
+        </div>
+        <div class="footer-bar">
+          <button class="btn btn-secondary" onclick="backToList()">Voltar</button>
+          <button class="btn btn-secondary">Impersonar</button>
+          <button class="btn btn-primary">Editar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SISTEMA & COMPLIANCE ══ -->
+    <div class="content-area hidden" id="pageSistemaCompliance">
+      <nav class="int-nav">
+        <div class="int-nav-item active" onclick="selectGenericNav(this, 'scTitle')">Contratos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'scTitle')">Exportações</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this, 'scTitle')">Auditoria</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+        <div class="config-content">
+          <div class="page-title" id="scTitle">Contratos</div>
+          <p style="color:#444; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ EMPTY ══ -->
     <div class="empty-page hidden" id="pageEmpty">
       <i class="ti ti-layout-sidebar"></i>
       <span id="emptyLabel">Página em construção</span>
@@ -484,159 +438,252 @@
 </div>
 
 <script>
-  // ── Config page definitions ──────────────────────────────────────────────
+  const ALL_PAGES = ['pageConfig','pageDashboard','pageEsportes','pagePromocoes',
+                     'pageRelatorios','pageMonitoramento','pageUsuarios',
+                     'pageSistemaCompliance','pageEmpty'];
+
   const CONFIG_PAGES = {
-    plataforma:     { title: 'Plataforma',     tabs: ['Informações','URL','Provedores','Permissões','Preferências','Código','SIGAP'] },
-    branding:       { title: 'Branding',       tabs: ['Logotipo','Banners','Slides','Elementos','Estilos','Cabeçalho','Front','Menu','Pop up','Rodapé'] },
-    seo:            { title: 'SEO',            tabs: ['Informações','Sitemap','Código'] },
-    social:         { title: 'Social',         tabs: [] },
-    cms:            { title: 'CMS',            tabs: [] },
-    financial:      { title: 'Financeiro',     tabs: ['Saque','Depósito','Apostas','Cassino','Palpite'] },
-    gateway:        { title: 'Gateway',        tabs: [] },
-    pld:            { title: 'PLD',            tabs: [] },
-    chat:           { title: 'Chat',           tabs: [] },
-    anuncios:       { title: 'Anúncios',       tabs: [] },
-    mensagem:       { title: 'Mensagem',       tabs: [] },
-    notificacoes:   { title: 'Notificações',   tabs: ['Ao depositar','Ao sacar','Ao ganhar apostas','Ao ganhar palpite'] },
-    buscas:         { title: 'Buscas',         tabs: [] },
-    analytics:      { title: 'Analytics',      tabs: [] },
-    seguranca:      { title: 'Segurança',      tabs: ['Login','Cadastro','GSE','KYC'] },
-    arquivo:        { title: 'Arquivo',        tabs: [] },
-    afiliado:       { title: 'Afiliado',       tabs: [] },
+    plataforma:     { title: 'Plataforma',   tabs: ['Informações','URL','Provedores','Permissões','Preferências','Código','SIGAP'] },
+    branding:       { title: 'Branding',     tabs: null },
+    seo:            { title: 'SEO',          tabs: ['Informações','Sitemap','Código'] },
+    social:         { title: 'Social',       tabs: [] },
+    cms:            { title: 'CMS',          tabs: [] },
+    financial:      { title: 'Financeiro',   tabs: ['Saque','Depósito','Apostas','Cassino','Palpite'] },
+    gateway:        { title: 'Gateway',      tabs: [] },
+    pld:            { title: 'PLD',          tabs: [] },
+    chat:           { title: 'Chat',         tabs: [] },
+    anuncios:       { title: 'Anúncios',     tabs: [] },
+    mensagem:       { title: 'Mensagem',     tabs: [] },
+    notificacoes:   { title: 'Notificações', tabs: ['Ao depositar','Ao sacar','Ao ganhar apostas','Ao ganhar palpite'] },
+    buscas:         { title: 'Buscas',       tabs: [] },
+    analytics:      { title: 'Analytics',    tabs: [] },
+    seguranca:      { title: 'Segurança',    tabs: ['Login','Cadastro','GSE','KYC'] },
+    arquivo:        { title: 'Arquivo',      tabs: [] },
+    afiliado:       { title: 'Afiliado',     tabs: [] },
     geolocalizacao: { title: 'Geolocalização', tabs: [] },
   };
 
-  // Default form fields rendered per config item
   const DEFAULT_FIELDS = {
     plataforma: [
       { label: 'Nome da plataforma', value: 'Pix365', col: 1 },
-      { label: 'Título',             value: 'Pix365 — Apostas Online', col: 1 },
-      { label: 'CNPJ',               value: '00.000.000/0001-00', col: 1 },
-      { label: 'Telefone',           value: '+55 (11) 99999-0000', col: 1 },
-      { label: 'Fuso horário',       value: 'America/Sao_Paulo', col: 1 },
-      { label: 'Status',             value: 'Ativo', col: 1 },
+      { label: 'Título', value: 'Pix365 — Apostas Online', col: 1 },
+      { label: 'CNPJ', value: '00.000.000/0001-00', col: 1 },
+      { label: 'Telefone', value: '+55 (11) 99999-0000', col: 1 },
+      { label: 'Fuso horário', value: 'America/Sao_Paulo', col: 1 },
+      { label: 'Status', value: 'Ativo', col: 1 },
     ],
     seo: [
-      { label: 'Nome',         value: 'Pix365', col: 1 },
+      { label: 'Nome', value: 'Pix365', col: 1 },
       { label: 'Palavras-chave', value: 'apostas, cassino, esportes', col: 1 },
-      { label: 'Descrição',    value: '', col: 2, type: 'textarea' },
+      { label: 'Descrição', value: '', col: 2, type: 'textarea' },
     ],
     seguranca: [
-      { label: 'Autenticação por',  value: 'CPF', col: 1 },
-      { label: 'MFA',               value: 'Desativado', col: 1 },
-      { label: 'Fingerprint',       value: 'Ativado', col: 1 },
+      { label: 'Autenticação por', value: 'CPF', col: 1 },
+      { label: 'MFA', value: 'Desativado', col: 1 },
+      { label: 'Fingerprint', value: 'Ativado', col: 1 },
       { label: 'Política de cookies', value: 'Ativado', col: 1 },
     ],
     financial: [
       { label: 'Limite mínimo de saque', value: 'R$ 20,00', col: 1 },
-      { label: 'Máx. sem aprovação',     value: 'R$ 500,00', col: 1 },
-      { label: 'Máx. com aprovação',     value: 'R$ 10.000,00', col: 1 },
-      { label: 'Máx. diário',            value: 'R$ 50.000,00', col: 1 },
+      { label: 'Máx. sem aprovação', value: 'R$ 500,00', col: 1 },
+      { label: 'Máx. com aprovação', value: 'R$ 10.000,00', col: 1 },
+      { label: 'Máx. diário', value: 'R$ 50.000,00', col: 1 },
     ],
   };
 
-  // ── Navigation ─────────────────────────────────────────────────────────────
+  const BRANDING_GROUPS = [
+    { group: 'Galeria',    items: ['Logotipo','Banners','Slides','Elementos'] },
+    { group: 'Aparência',  items: ['Estilos','Cabeçalho'] },
+    { group: 'Código',     items: ['Front','Menu Principal','Pop up','Rodapé','Palpite','CTA'] },
+  ];
+
+  // ── Navigation ──────────────────────────────────────────────────────────────
   function navigate(el) {
     document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
+    ALL_PAGES.forEach(id => document.getElementById(id).classList.add('hidden'));
 
     const section = el.dataset.section;
+    const label = el.textContent.trim();
 
-    // hide all pages
-    document.getElementById('pageConfig').classList.add('hidden');
-    document.getElementById('pageDashboard').classList.add('hidden');
-    document.getElementById('pageEmpty').classList.add('hidden');
+    const pageMap = {
+      configuracoes:      'pageConfig',
+      dashboard:          'pageDashboard',
+      esportes:           'pageEsportes',
+      promocoes:          'pagePromocoes',
+      relatorios:         'pageRelatorios',
+      monitoramento:      'pageMonitoramento',
+      usuarios:           'pageUsuarios',
+      'sistema-compliance': 'pageSistemaCompliance',
+    };
 
-    if (section === 'configuracoes') {
-      document.getElementById('pageConfig').classList.remove('hidden');
-      setBreadcrumb('Configurações');
-    } else if (section === 'dashboard') {
-      document.getElementById('pageDashboard').classList.remove('hidden');
-      setBreadcrumb('Dashboard');
+    if (pageMap[section]) {
+      document.getElementById(pageMap[section]).classList.remove('hidden');
     } else {
-      const label = el.textContent.trim();
       document.getElementById('emptyLabel').textContent = label;
       document.getElementById('pageEmpty').classList.remove('hidden');
-      setBreadcrumb(label);
     }
+
+    if (section === 'usuarios') {
+      showUsersList(false);
+    }
+
+    setBreadcrumb(label);
   }
 
-  function setBreadcrumb(current, parent) {
+  function setBreadcrumb(current, parent, parentSection) {
     const bc = document.getElementById('breadcrumb');
     if (parent) {
-      bc.innerHTML = `<i class="ti ti-home" style="font-size:13px"></i><span class="sep">›</span><span class="bc-link" onclick="navigate(document.querySelector('[data-section=configuracoes]'))">${parent}</span><span class="sep">›</span><span class="current">${current}</span>`;
+      bc.innerHTML = `<i class="ti ti-home" style="font-size:13px"></i><span class="sep">›</span><span class="bc-link" onclick="navigate(document.querySelector('[data-section=${parentSection}]'))">${parent}</span><span class="sep">›</span><span class="current">${current}</span>`;
     } else {
       bc.innerHTML = `<i class="ti ti-home" style="font-size:13px"></i><span class="sep">›</span><span class="current">${current}</span>`;
     }
   }
 
-  // ── Config internal nav ────────────────────────────────────────────────────
+  // ── Configurações ────────────────────────────────────────────────────────────
   function selectConfig(el) {
-    document.querySelectorAll('.config-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('#configNav .int-nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
-
     const key = el.dataset.config;
     const cfg = CONFIG_PAGES[key];
+    setBreadcrumb(cfg.title, 'Configurações', 'configuracoes');
 
-    document.getElementById('configTitle').textContent = cfg.title;
-    renderTabs(cfg.tabs);
-    renderBody(key);
-    setBreadcrumb(cfg.title, 'Configurações');
+    const cc = document.getElementById('configContent');
+    const titleEl = document.getElementById('configTitle');
+    const tabsEl = document.getElementById('configTabs');
+    const bodyEl = document.getElementById('configBody');
+
+    if (key === 'branding') {
+      cc.style.padding = '0';
+      titleEl.classList.add('hidden');
+      tabsEl.classList.add('hidden');
+      bodyEl.innerHTML = renderBranding();
+    } else {
+      cc.style.padding = '';
+      titleEl.classList.remove('hidden');
+      tabsEl.classList.remove('hidden');
+      titleEl.textContent = cfg.title;
+      renderTabs(cfg.tabs, tabsEl);
+      renderFields(key, bodyEl, cfg.title);
+    }
   }
 
-  function renderTabs(tabs) {
-    const el = document.getElementById('configTabs');
-    if (!tabs || tabs.length === 0) {
-      el.innerHTML = '';
-      return;
-    }
+  function renderTabs(tabs, el) {
+    if (!tabs || tabs.length === 0) { el.innerHTML = ''; return; }
     el.innerHTML = tabs.map((t, i) =>
       `<div class="tab${i === 0 ? ' active' : ''}" onclick="switchTab(this)">${t}</div>`
     ).join('');
   }
 
-  function renderBody(key) {
+  function renderFields(key, el, title) {
     const fields = DEFAULT_FIELDS[key] || [];
-    const el = document.getElementById('configBody');
     if (fields.length === 0) {
-      el.innerHTML = `<p style="color:#444; font-size:13px; margin-top:8px">Configurações de ${CONFIG_PAGES[key].title} — em construção.</p>`;
+      el.innerHTML = `<p style="color:#444; font-size:13px; margin-top:8px">Configurações de ${title} — em construção.</p>`;
       return;
     }
     const cols = fields.map(f => {
       if (f.type === 'textarea') {
-        return `<div class="form-field" style="grid-column:span ${f.col}">
-          <div class="field-label">${f.label}</div>
-          <textarea class="field-textarea">${f.value}</textarea>
-        </div>`;
+        return `<div class="form-field" style="grid-column:span ${f.col}"><div class="field-label">${f.label}</div><textarea class="field-textarea">${f.value}</textarea></div>`;
       }
-      return `<div class="form-field" style="grid-column:span ${f.col}">
-        <div class="field-label">${f.label}</div>
-        <input class="field-input" type="text" value="${f.value}">
-      </div>`;
+      return `<div class="form-field" style="grid-column:span ${f.col}"><div class="field-label">${f.label}</div><input class="field-input" type="text" value="${f.value}"></div>`;
     }).join('');
     el.innerHTML = `<div class="form-grid">${cols}</div>`;
   }
 
+  function renderBranding() {
+    const navHtml = BRANDING_GROUPS.map((grp, gi) =>
+      `<div class="branding-grp">${grp.group}</div>` +
+      grp.items.map((item, ii) =>
+        `<div class="branding-itm${gi === 0 && ii === 0 ? ' active' : ''}" onclick="selectBrandingItem(this)">${item}</div>`
+      ).join('')
+    ).join('');
+    return `<div class="branding-layout">
+      <nav class="branding-nav">${navHtml}</nav>
+      <div class="branding-body">
+        <div class="page-title" id="brandingTitle">Logotipo</div>
+        <div class="form-grid" id="brandingBody">
+          <div class="form-field"><div class="field-label">Logo padrão</div><input class="field-input" value="/assets/logo.svg"></div>
+          <div class="form-field"><div class="field-label">Logo escura</div><input class="field-input" value="/assets/logo-dark.svg"></div>
+          <div class="form-field"><div class="field-label">Logo clara</div><input class="field-input" value="/assets/logo-light.svg"></div>
+          <div class="form-field"><div class="field-label">Logo Mobile</div><input class="field-input" value="/assets/logo-mobile.svg"></div>
+          <div class="form-field"><div class="field-label">Favicon</div><input class="field-input" value="/assets/favicon.ico"></div>
+          <div class="form-field"><div class="field-label">Escudo Default</div><input class="field-input" value="/assets/shield.svg"></div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function selectBrandingItem(el) {
+    document.querySelectorAll('.branding-itm').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    const name = el.textContent;
+    document.getElementById('brandingTitle').textContent = name;
+    document.getElementById('brandingBody').innerHTML = `<p style="color:#444; font-size:13px; grid-column:span 2">Configurações de ${name} — em construção.</p>`;
+  }
+
+  // ── Generic internal nav ─────────────────────────────────────────────────────
+  function selectGenericNav(el, titleId) {
+    el.closest('.int-nav').querySelectorAll('.int-nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById(titleId).textContent = el.textContent.trim();
+  }
+
+  // ── Tabs ─────────────────────────────────────────────────────────────────────
   function switchTab(el) {
     el.closest('.tabs').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
   }
 
+  // ── Profile tabs ─────────────────────────────────────────────────────────────
+  function switchPTab(el) {
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('profileBody').innerHTML =
+      `<p style="color:#444; font-size:13px">Em construção — aba: ${el.textContent.trim()}</p>`;
+  }
+
+  function scrollPTabs(delta) {
+    document.getElementById('ptabsScroll').scrollBy({ left: delta, behavior: 'smooth' });
+  }
+
+  // ── Usuários ─────────────────────────────────────────────────────────────────
+  function showUsersList(updateBC) {
+    document.getElementById('usuariosList').classList.remove('hidden');
+    document.getElementById('usuarioProfile').classList.add('hidden');
+    if (updateBC !== false) setBreadcrumb('Usuários');
+  }
+
+  function openProfile(name, email, cpf, cadastro, status) {
+    document.getElementById('usuariosList').classList.add('hidden');
+    document.getElementById('usuarioProfile').classList.remove('hidden');
+    document.getElementById('profileName').textContent = name;
+    document.getElementById('profileEmail').textContent = email;
+    document.getElementById('profileCPF').textContent = cpf;
+    document.getElementById('profileCadastro').textContent = cadastro;
+
+    const badge = document.getElementById('profileBadge');
+    badge.textContent = status;
+    badge.className = 'badge ' + (status === 'Verificado' ? 'badge-green' : status === 'Pendente' ? 'badge-yellow' : 'badge-red');
+
+    document.querySelectorAll('.ptab').forEach((t, i) => t.classList.toggle('active', i === 0));
+    document.getElementById('profileBody').innerHTML = `<p style="color:#444; font-size:13px">Em construção — aba: Dados</p>`;
+    setBreadcrumb(name, 'Usuários', 'usuarios');
+  }
+
+  function backToList() { showUsersList(); }
+
+  // ── Save ─────────────────────────────────────────────────────────────────────
   function handleSave() {
     const btn = document.getElementById('btnSave');
     btn.textContent = 'Salvo ✓';
     btn.style.background = '#2a7a2a';
     btn.style.color = '#fff';
-    setTimeout(() => {
-      btn.textContent = 'Salvar';
-      btn.style.background = '';
-      btn.style.color = '';
-    }, 1800);
+    setTimeout(() => { btn.textContent = 'Salvar'; btn.style.background = ''; btn.style.color = ''; }, 1800);
   }
 
-  // ── Init ───────────────────────────────────────────────────────────────────
+  // ── Init ─────────────────────────────────────────────────────────────────────
   (function init() {
-    selectConfig(document.querySelector('.config-item[data-config="plataforma"]'));
+    selectConfig(document.querySelector('.int-nav-item[data-config="plataforma"]'));
   })();
 </script>
 </body>
