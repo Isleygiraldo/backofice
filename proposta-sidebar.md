@@ -1,36 +1,45 @@
 # Proposta de Sidebar — Backoffice Pix365
 
-> Documento de design e comportamento da navegação principal do backoffice.
-> Versão: 1.0 — Junho 2026
+> Documento de solução da navegação principal do backoffice.
+> Versão: 2.0 — Junho 2026
+> Relaciona cada decisão/apontamento dos documentos de spec ao que foi implementado no mockup.
 
 ---
 
-## 1. Visão Geral
+## Fontes consultadas
 
-A sidebar é o eixo de navegação do backoffice. Ela deve refletir os **módulos principais** do sistema — sem expor sub-itens diretamente — e se adaptar ao tamanho de tela do operador sem perder funcionalidade.
-
-### Princípios
-
-- **Clareza** — cada item representa um módulo distinto, sem ambiguidade
-- **Hierarquia única** — a sidebar navega entre módulos; a navegação interna organiza sub-páginas
-- **Presença constante** — visível em todos os breakpoints, mesmo que de forma reduzida
+| Documento | Conteúdo |
+|-----------|----------|
+| `decisao-configuracoes-pagina-dedicada.md` | Decisão de separar Configurações em área própria |
+| `responsividade-sidebar.md` | Comportamento em cada breakpoint |
+| `navegacao-backoffice-pix365-sidebar-atualizada.md` | Estrutura de módulos e padrões de navegação |
 
 ---
 
-## 2. Estrutura de Itens
+## 1. Estrutura da Sidebar Principal
 
-### 2.1 Grupos e itens
+### De → Para
+
+| Apontamento | Implementado |
+|-------------|-------------|
+| Sidebar com 9 seções principais + Configurações | ✅ 3 grupos (Principal, Produto, Gestão) com 12 itens |
+| Configurações não deve expandir submenu dentro da sidebar | ✅ Nenhum item abre dropdown — navegação interna acontece na página |
+| `"Configurações"` no **rodapé da sidebar**, separado por linha divisória | ✅ `.sidebar-bottom` com `margin-top: auto` + `.sidebar-divider` (`height: 0.5px; background: #1f1f1f`) |
+| Labels de seção em maiúsculas (PRINCIPAL, PRODUTO, GESTÃO) | ✅ `.sidebar-label` — `9px / uppercase / #444` |
+| Logo com marca e sub-texto no topo | ✅ `.sidebar-logo` — `BPX` (18px bold) + `PIX365 · BACKOFFICE` (9px uppercase #555) |
+
+### Estrutura implementada
 
 ```
 BPX
-Pix365 · Backoffice
-
-── PRINCIPAL ──────────────────
+PIX365 · BACKOFFICE
+──────────────────────
+PRINCIPAL
   Dashboard
   Operação
   Financeiro
 
-── PRODUTO ────────────────────
+PRODUTO
   Cassino
   Esportes
   Promoções
@@ -38,165 +47,38 @@ Pix365 · Backoffice
   Conteúdo
   Sistema & Compliance
 
-── GESTÃO ─────────────────────
+GESTÃO
   Usuários
   Relatórios
   Monitoramento
-  Configurações
-```
-
-### 2.2 Regras de estrutura
-
-- Máximo de **3 grupos** com label de seção
-- Cada grupo agrupa itens por natureza: operacional, produto e gestão
-- Nenhum item da sidebar abre um submenu dentro dela — a navegação secundária acontece dentro da página
-- **Configurações fica no rodapé da sidebar**, separado dos demais grupos por uma linha divisória
-- Clicar em Configurações **troca o layout inteiro** — a sidebar principal é substituída por uma sidebar dedicada de Configurações
-
----
-
-## 3. Visual
-
-### 3.1 Dimensões e cores
-
-| Elemento              | Valor                        |
-|-----------------------|------------------------------|
-| Largura (desktop)     | `210px`                      |
-| Largura (tablet)      | `56px` — ícones apenas       |
-| Background            | `#0d0d0d`                    |
-| Borda direita         | `0.5px solid #1f1f1f`        |
-| Item inativo          | `color: #888`                |
-| Item hover            | `color: #ddd; bg: #161616`   |
-| Item ativo            | `color: #fff; bg: #1c1c1c; border-left: 2px solid #fff` |
-| Label de grupo        | `9px / uppercase / #444`     |
-| Ícone                 | Tabler Icons, `16px` desktop / `18px` tablet |
-
-### 3.2 Logo
-
-```
-┌─────────────────────┐
-│  BPX                │  ← 18px bold, branco
-│  PIX365 · BACKOFFICE│  ← 9px uppercase, #555
-└─────────────────────┘
+──────────────────────
+  Configurações         ← rodapé, separado
 ```
 
 ---
 
-## 4. Responsividade
+## 2. Configurações — Sidebar Dedicada
 
-### 4.1 Breakpoints
+### De → Para
 
-| Breakpoint  | Largura       | Comportamento da sidebar          |
-|-------------|---------------|-----------------------------------|
-| Desktop     | > 1024px      | 210px expandida — ícone + label   |
-| Tablet      | 769 – 1024px  | 56px — ícones com tooltip no hover |
-| Mobile      | ≤ 768px       | Drawer off-screen, abre por hambúrguer |
-| Mobile XS   | ≤ 480px       | Igual mobile                      |
+| Apontamento (`decisao-configuracoes-pagina-dedicada.md`) | Implementado |
+|----------------------------------------------------------|-------------|
+| Ao clicar em Configurações → **troca o layout inteiro**, não abre inline | ✅ `navigate()` oculta `#sidebar` e exibe `#sidebarConfig` |
+| Página de Configurações tem **sua própria sidebar completa** | ✅ `<nav id="sidebarConfig">` usa as mesmas classes CSS da sidebar principal |
+| Logo padronizada (igual à sidebar principal) | ✅ `.sidebar-logo` com `BPX` + `PIX365 · BACKOFFICE` no topo do `#sidebarConfig` |
+| Botão `← Backoffice` no topo da sidebar de Configurações | ✅ `.sidebar-back` com `onclick="exitConfig()"` — posicionado após a logo |
+| Clicar em `← Backoffice` → volta ao backoffice no estado anterior | ✅ `exitConfig()` oculta `#sidebarConfig`, exibe `#sidebar`, navega para Dashboard |
+| Sidebar de Configurações segue o **mesmo padrão responsivo** | ✅ Herda todas as regras CSS de `.sidebar` (tablet 56px, drawer mobile) |
+| 19 itens organizados em 4 grupos | ✅ PLATAFORMA (5), FINANCEIRO (3), COMUNICAÇÃO (5), SISTEMA (5) |
 
-### 4.2 Desktop (> 1024px)
-
-- Sidebar fixa à esquerda, sempre visível
-- Ícone + label em cada item
-- Labels de grupo visíveis
-
-### 4.3 Tablet (769 – 1024px)
-
-- Sidebar colapsa automaticamente para `56px`
-- Labels e grupos ocultados
-- Ícones centralizados, `18px`
-- Tooltip com o nome do item aparece no hover (posicionado à direita do ícone)
-- Transição suave: `transition: width 0.2s ease`
+### Estrutura da sidebar de Configurações implementada
 
 ```
-┌────┐
-│ ⊞  │  ← Dashboard (tooltip ao hover)
-│ ⚡ │  ← Operação
-│ 💰 │  ← Financeiro
-│    │
-│ 🎰 │  ← Cassino
-│ 🏆 │  ← Esportes
-│ 🎁 │  ← Promoções
-│    │
-│ 👥 │  ← Usuários
-│ 📊 │  ← Relatórios
-│ 📡 │  ← Monitoramento
-│ ⚙️  │  ← Configurações
-└────┘
-```
-
-### 4.4 Mobile (≤ 768px)
-
-- Sidebar sai da tela (`left: -210px`, `position: fixed`)
-- Topbar exibe botão hambúrguer estilizado no canto esquerdo
-- Pull-tab lateral (`14px`) fixado verticalmente no centro da borda esquerda — sempre visível quando o drawer está fechado, indica que há navegação disponível
-- Ao abrir: sidebar desliza da esquerda com overlay escuro (`rgba(0,0,0,0.65)`) por baixo
-- Dentro do drawer: labels completos restaurados (não fica icon-only)
-- Fechar: clicar no overlay ou navegar para qualquer página
-
-**Topbar mobile:**
-
-```
-┌────────────────────────────────────────┐
-│  [≡ Menu]   🏠 › Configurações         │
-└────────────────────────────────────────┘
-```
-
-**Pull-tab (estado fechado):**
-
-```
-│▸│  ← aba fina na borda esquerda, 14px × 44px
-```
-
-### 4.5 Navegação interna no mobile
-
-Páginas com `int-nav` lateral (Configurações, Esportes, Monitoramento, etc.) adaptam a navegação interna para **tabs horizontais scrolláveis** no topo do conteúdo:
-
-```
-┌──────────────────────────────────────────────────┐
-│  Plataforma · Branding · SEO · Social · CMS · …  │  ← scroll horizontal
-├──────────────────────────────────────────────────┤
-│  Conteúdo da sub-página ativa                    │
-└──────────────────────────────────────────────────┘
-```
-
-- Labels de grupo ocultados nas tabs horizontais — apenas os itens aparecem
-- Item ativo: `border-bottom: 2px solid #fff`
-
-### 4.6 Adaptações adicionais no mobile
-
-| Elemento           | Comportamento mobile                          |
-|--------------------|-----------------------------------------------|
-| Formulários        | Grid passa de 2 colunas para **1 coluna**     |
-| Dashboard cards    | 2 colunas (abaixo de 480px: 1 coluna)         |
-| Tabelas            | Wrapper com **scroll horizontal**             |
-| Botão Salvar       | Fixo no rodapé em todos os tamanhos           |
-| Breadcrumb         | Mantido no topbar em todos os breakpoints     |
-
----
-
-## 5. Comportamento da Navegação
-
-### 5.1 Seleção de item
-
-- Clicar em um item da sidebar: marca como `.active`, exibe a página correspondente, atualiza o breadcrumb
-- Apenas um item pode estar ativo por vez
-- No mobile: fecha o drawer automaticamente após navegar
-
-### 5.2 Configurações — troca de layout
-
-Configurações é tratado como uma **área separada** do backoffice, não como mais uma página:
-
-- Fica no **rodapé da sidebar principal**, separado por linha divisória
-- Ao clicar, a sidebar principal é **substituída** por uma sidebar dedicada de Configurações
-- A sidebar de Configurações segue o **mesmo padrão visual e responsivo** da principal
-- No topo da sidebar de Configurações: botão `← Backoffice` que retorna ao backoffice e abre o Dashboard
-- Ao retornar, a sidebar principal volta a ser exibida normalmente
-
-**Estrutura da sidebar de Configurações:**
-
-```
+BPX
+PIX365 · BACKOFFICE
+─────────────────────
 ← Backoffice
-─────────────────
+─────────────────────
 PLATAFORMA
   Plataforma
   Branding
@@ -224,49 +106,91 @@ SISTEMA
   Geolocalização
 ```
 
-### 5.2 Breadcrumb
+---
 
-- Exibido no topbar em todas as páginas
-- Formato: `🏠 › [Seção] › [Sub-seção] › [Item atual]`
-- O item atual não é clicável; os anteriores são links de retorno
-- Obrigatório em páginas de detalhe (ex.: perfil de apostador)
+## 3. Responsividade
 
-### 5.3 Tooltip no tablet
+### De → Para
 
-- Aparece apenas no hover, posicionado à direita do ícone (`left: 62px`)
-- Background `#252525`, borda `0.5px solid #333`, `border-radius: 5px`
-- Exibe o nome completo do item
-- `z-index: 200` para sobrepor o conteúdo à direita
+| Apontamento (`responsividade-sidebar.md`) | Implementado |
+|-------------------------------------------|-------------|
+| Desktop > 1024px: 210px, ícone + label | ✅ `.sidebar { width: 210px }` — estado padrão |
+| Tablet 769–1024px: colapsa para **56px ícones** automaticamente | ✅ `@media (max-width: 1024px) { .sidebar { width: 56px } }` |
+| Tablet: labels e grupos ocultos | ✅ `.sidebar-label { opacity: 0; height: 0 }` + `.item-label { display: none }` |
+| Tablet: tooltip com nome do item no hover | ✅ `.sidebar-item::after { content: attr(data-label) }` — aparece `opacity: 1` no hover |
+| Tablet: transição suave `width 0.2s ease` | ✅ `.sidebar { transition: width 0.2s ease, min-width 0.2s ease }` |
+| Mobile ≤768px: sidebar vira **drawer off-screen** | ✅ `position: fixed; left: -210px; transition: left 0.22s ease` |
+| Mobile: **botão hambúrguer** visível no topbar | ✅ `.hamburger { display: flex }` no breakpoint mobile — estilizado com `background: #1a1a1a; border-radius: 6px` |
+| Mobile: **pull-tab lateral** indicando que há sidebar | ✅ `.sidebar-pushtab` — 14px × 44px fixado na borda esquerda, com `›` |
+| Mobile: drawer fecha ao navegar | ✅ `closeSidebar()` chamado ao final de `navigate()` e `selectConfigSidebar()` |
+| Mobile: dentro do drawer, labels **restaurados** (não fica icon-only) | ✅ `.sidebar .item-label { display: inline }` + overrides de padding/gap |
+| Mobile: overlay escuro ao abrir o drawer | ✅ `.sidebar-overlay { background: rgba(0,0,0,0.65) }` — fecha ao clicar |
+| Mobile: `int-nav` lateral vira **tabs horizontais scrolláveis** | ✅ `@media (max-width: 768px) { .int-nav { display: flex; flex-direction: row; overflow-x: auto } }` |
+| Mobile: labels dos grupos ocultos nas tabs | ✅ `.int-nav-label { display: none }` no breakpoint mobile |
+| Mobile: item ativo nas tabs — `border-bottom` em vez de `border-left` | ✅ `.int-nav-item.active { border-bottom-color: #fff; border-left-color: transparent }` |
+| Mobile: formulários em **coluna única** | ✅ `.form-grid { grid-template-columns: 1fr }` |
+| Mobile: Dashboard **2 colunas** | ✅ `.dash-grid { grid-template-columns: 1fr 1fr }` |
+| Mobile XS ≤480px: Dashboard **1 coluna** | ✅ `@media (max-width: 480px) { .dash-grid { grid-template-columns: 1fr } }` |
+| Botão Salvar fixo no rodapé em todos os tamanhos | ✅ `.footer-bar` no fim do flex container da página — sempre visível |
+| Breadcrumb no topbar em todos os breakpoints | ✅ `.topbar` presente em todos os breakpoints; breadcrumb atualiza via `setBreadcrumb()` |
 
 ---
 
-## 6. Tecnologia de Referência
+## 4. Padrões de Navegação Interna
 
-- Ícones: **Tabler Icons** (webfont via CDN)
-- Fonte: `-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`
-- Nenhuma dependência de framework JS — HTML + CSS + JS vanilla
-- Mockup interativo disponível em: `sidebar-mockup.html`
+### De → Para
+
+| Apontamento (`navegacao-backoffice-pix365-sidebar-atualizada.md`) | Implementado |
+|-------------------------------------------------------------------|-------------|
+| Configurações → página centralizadora com nav interna | ✅ Substituída por sidebar própria (decisão atualizada) |
+| Branding → nav lateral interna própria (caso especial) | ✅ `.branding-layout` com `.branding-nav` lateral e `.branding-body` |
+| Branding mobile → nav horizontal scrollável | ✅ `@media (max-width: 768px) { .branding-nav { display: flex; flex-direction: row } }` |
+| Perfil apostador → **15 tabs scrolláveis** com setas | ✅ `.ptabs-scroll` com `overflow-x: auto` + `.scroll-arrow` (`‹` `›`) |
+| Breadcrumb obrigatório em páginas de detalhe | ✅ `setBreadcrumb(nome, pai, secao)` — gera link clicável para o pai |
+| Listas com filtros + scroll horizontal em tabelas | ✅ `.list-filters` + `.table-wrap { overflow-x: auto }` |
+| Tabs horizontais para sub-páginas | ✅ `.tabs` + `.tab` — max 7, ativo com `border-bottom: 2px solid #fff` |
+| Módulos sem sub-páginas → `.empty-page` | ✅ `#pageEmpty` exibido para seções sem página mapeada |
 
 ---
 
-## 7. Critérios de Aceite
+## 5. Visual — Tokens Implementados
 
-- [ ] Sidebar exibe os itens dos 3 grupos + Configurações no rodapé separado por linha divisória
-- [ ] Configurações troca o layout completo para a sidebar dedicada (não expande inline)
-- [ ] Sidebar de Configurações exibe botão `← Backoffice` no topo
-- [ ] Clicar em `← Backoffice` retorna ao backoffice principal e abre o Dashboard
+| Elemento | Valor |
+|----------|-------|
+| Sidebar width desktop | `210px` |
+| Sidebar width tablet | `56px` |
+| Sidebar background | `#0d0d0d` |
+| Sidebar borda direita | `0.5px solid #1f1f1f` |
+| Item cor inativa | `#888` |
+| Item hover | `color: #ddd; background: #161616` |
+| Item ativo | `color: #fff; background: #1c1c1c; border-left: 2px solid #fff` |
+| Label de grupo | `9px / 600 / uppercase / #444 / letter-spacing: 1.2px` |
+| Logo mark | `18px / 700 / #fff / letter-spacing: -0.5px` |
+| Logo sub | `9px / uppercase / #555 / letter-spacing: 1px` |
+| Ícones | Tabler Icons webfont — `16px` desktop, `18px` tablet |
+| Topbar height | `46px` |
+| Topbar background | `#0d0d0d` |
+
+---
+
+## 6. Critérios de Aceite
+
+- [ ] Sidebar exibe 3 grupos + Configurações no rodapé separado por linha divisória
+- [ ] Configurações **troca o layout completo** para a sidebar dedicada (não expande inline)
+- [ ] Sidebar de Configurações tem logo `BPX / PIX365 · BACKOFFICE` no topo
+- [ ] Sidebar de Configurações tem botão `← Backoffice` abaixo da logo
+- [ ] Clicar em `← Backoffice` retorna ao backoffice e abre o Dashboard
 - [ ] Em desktop (> 1024px): sidebar com 210px, ícone + label visíveis
-- [ ] Em tablet (769–1024px): sidebar colapsa para 56px automaticamente, tooltip funcional no hover
-- [ ] Em mobile (≤ 768px): sidebar se torna drawer, hambúrguer visível no topbar, pull-tab lateral visível quando fechado
-- [ ] Drawer abre e fecha com transição suave (`left 0.22s ease`)
-- [ ] Overlay fecha o drawer ao ser clicado
-- [ ] Navegar fecha o drawer automaticamente no mobile
-- [ ] Dentro do drawer, labels são restaurados (não permanece icon-only)
-- [ ] `int-nav` lateral vira tabs horizontais scrolláveis no mobile com `display: flex`
-- [ ] Item ativo é visualmente identificado em todos os breakpoints
-- [ ] Breadcrumb atualiza corretamente a cada navegação
-- [ ] Botão Salvar mantém posição fixa no rodapé em todos os tamanhos
+- [ ] Em tablet (769–1024px): sidebar colapsa para 56px automaticamente, tooltip no hover
+- [ ] Em mobile (≤ 768px): hambúrguer visível no topbar, pull-tab lateral visível, drawer funcional
+- [ ] Sidebar de Configurações segue o mesmo comportamento responsivo da principal
+- [ ] `int-nav` lateral vira tabs horizontais no mobile com `display: flex`
+- [ ] Branding mantém nav lateral própria (desktop/tablet); vira horizontal no mobile
+- [ ] Perfil apostador com 15 tabs scrolláveis e setas de navegação
+- [ ] Breadcrumb atualiza corretamente em todas as navegações
+- [ ] Botão Salvar fixo no rodapé em todos os breakpoints
 
 ---
 
-*Proposta gerada em 18/06/2026 — Backoffice Pix365 (Orion)*
+*Documento gerado em 18/06/2026 — Backoffice Pix365 (Orion)*
+*Mockup interativo: `sidebar-mockup.html`*
