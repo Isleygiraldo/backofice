@@ -11,32 +11,95 @@
     .shell { display: flex; height: 100vh; }
 
     /* ── Sidebar ── */
-    .sidebar { width: 210px; min-width: 210px; background: #0d0d0d; display: flex; flex-direction: column; border-right: 0.5px solid #1f1f1f; overflow-y: auto; }
-    .sidebar-logo { padding: 18px 16px 14px; border-bottom: 0.5px solid #1f1f1f; }
-    .logo-mark { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
-    .logo-sub { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+    .sidebar {
+      width: 210px;
+      min-width: 210px;
+      background: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      border-right: 0.5px solid #1f1f1f;
+      overflow-y: auto;
+      overflow-x: hidden;
+      transition: width 0.2s ease, min-width 0.2s ease;
+      flex-shrink: 0;
+    }
+    .sidebar-logo { padding: 18px 16px 14px; border-bottom: 0.5px solid #1f1f1f; overflow: hidden; }
+    .logo-mark { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.5px; white-space: nowrap; }
+    .logo-sub { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; white-space: nowrap; }
     .sidebar-section { padding: 14px 0 4px; }
-    .sidebar-label { font-size: 9px; font-weight: 600; color: #444; letter-spacing: 1.2px; text-transform: uppercase; padding: 0 16px 6px; }
-    .sidebar-item { display: flex; align-items: center; gap: 9px; padding: 8px 16px; font-size: 13px; color: #888; cursor: pointer; border-left: 2px solid transparent; transition: color 0.1s, background 0.1s; white-space: nowrap; }
+    .sidebar-label { font-size: 9px; font-weight: 600; color: #444; letter-spacing: 1.2px; text-transform: uppercase; padding: 0 16px 6px; white-space: nowrap; overflow: hidden; transition: opacity 0.15s; }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 16px;
+      font-size: 13px;
+      color: #888;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: color 0.1s, background 0.1s;
+      white-space: nowrap;
+      position: relative;
+    }
     .sidebar-item:hover { color: #ddd; background: #161616; }
     .sidebar-item.active { color: #fff; background: #1c1c1c; border-left-color: #fff; }
     .sidebar-item i { font-size: 16px; flex-shrink: 0; }
+    .item-label { overflow: hidden; transition: opacity 0.15s; }
 
     /* ── Main area ── */
-    .main-area { flex: 1; background: #111; display: flex; flex-direction: column; overflow: hidden; }
-    .topbar { height: 46px; min-height: 46px; background: #0d0d0d; border-bottom: 0.5px solid #1f1f1f; display: flex; align-items: center; padding: 0 24px; }
-    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
-    .breadcrumb .sep { color: #333; }
-    .breadcrumb .bc-link { color: #666; cursor: pointer; }
+    .main-area { flex: 1; background: #111; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+    .topbar { height: 46px; min-height: 46px; background: #0d0d0d; border-bottom: 0.5px solid #1f1f1f; display: flex; align-items: center; padding: 0 24px; gap: 10px; }
+    .hamburger { display: none; background: none; border: none; color: #888; cursor: pointer; padding: 4px 6px; font-size: 20px; flex-shrink: 0; line-height: 1; }
+    .hamburger:hover { color: #eee; }
+
+    /* ── Pull-tab lateral (mobile only) ── */
+    .sidebar-pushtab {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 44px;
+      background: #1f1f1f;
+      border-radius: 0 6px 6px 0;
+      border: 0.5px solid #2a2a2a;
+      border-left: none;
+      z-index: 98;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.15s, background 0.15s;
+    }
+    .sidebar-pushtab::after {
+      content: '›';
+      color: #555;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .sidebar-pushtab:hover { width: 18px; background: #2a2a2a; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; min-width: 0; overflow: hidden; }
+    .breadcrumb .sep { color: #333; flex-shrink: 0; }
+    .breadcrumb .bc-link { color: #666; cursor: pointer; white-space: nowrap; }
     .breadcrumb .bc-link:hover { color: #aaa; }
-    .breadcrumb .current { color: #ccc; }
+    .breadcrumb .current { color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* ── Overlay (mobile drawer) ── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 99;
+    }
+    .sidebar-overlay.visible { display: block; }
 
     /* ── Layout helpers ── */
     .content-area { flex: 1; display: flex; overflow: hidden; }
     .page-full { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
-    /* ── Internal nav (reused across pages) ── */
-    .int-nav { width: 190px; min-width: 190px; background: #0f0f0f; border-right: 0.5px solid #1f1f1f; overflow-y: auto; padding: 14px 0; }
+    /* ── Internal nav ── */
+    .int-nav { width: 190px; min-width: 190px; background: #0f0f0f; border-right: 0.5px solid #1f1f1f; overflow-y: auto; padding: 14px 0; flex-shrink: 0; }
     .int-nav-label { font-size: 9px; font-weight: 600; color: #3a3a3a; letter-spacing: 1.2px; text-transform: uppercase; padding: 10px 16px 4px; }
     .int-nav-label:first-child { padding-top: 0; }
     .int-nav-item { padding: 7px 16px; font-size: 13px; color: #666; cursor: pointer; border-left: 2px solid transparent; transition: color 0.1s, background 0.1s; }
@@ -58,7 +121,7 @@
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
     .form-field { display: flex; flex-direction: column; gap: 5px; }
     .field-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
-    .field-input { height: 34px; background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 6px; color: #ccc; font-size: 13px; padding: 0 10px; font-family: inherit; }
+    .field-input { height: 34px; background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 6px; color: #ccc; font-size: 13px; padding: 0 10px; font-family: inherit; transition: border-color 0.15s; }
     .field-input:focus { outline: none; border-color: #555; }
     .field-textarea { min-height: 72px; background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 6px; color: #ccc; font-size: 13px; padding: 8px 10px; font-family: inherit; resize: vertical; }
     .field-textarea:focus { outline: none; border-color: #555; }
@@ -84,23 +147,23 @@
 
     /* ── Branding nested nav ── */
     .branding-layout { display: flex; height: 100%; }
-    .branding-nav { width: 155px; min-width: 155px; border-right: 0.5px solid #1f1f1f; overflow-y: auto; padding: 14px 0; }
+    .branding-nav { width: 155px; min-width: 155px; border-right: 0.5px solid #1f1f1f; overflow-y: auto; padding: 14px 0; flex-shrink: 0; }
     .branding-grp { font-size: 9px; font-weight: 600; color: #3a3a3a; letter-spacing: 1.2px; text-transform: uppercase; padding: 10px 14px 4px; }
     .branding-grp:first-child { padding-top: 0; }
-    .branding-itm { padding: 6px 14px; font-size: 12.5px; color: #666; cursor: pointer; border-left: 2px solid transparent; }
+    .branding-itm { padding: 6px 14px; font-size: 12.5px; color: #666; cursor: pointer; border-left: 2px solid transparent; white-space: nowrap; }
     .branding-itm:hover { color: #bbb; background: #161616; }
     .branding-itm.active { color: #fff; background: #1c1c1c; border-left-color: #fff; }
-    .branding-body { flex: 1; padding: 20px 24px; overflow-y: auto; }
+    .branding-body { flex: 1; padding: 20px 24px; overflow-y: auto; min-width: 0; }
 
     /* ── Usuários list ── */
     .usuarios-wrap { flex: 1; padding: 22px 28px; overflow-y: auto; }
-    .list-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .list-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
     .list-filters { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
     .filter-input { height: 32px; background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: 6px; color: #ccc; font-size: 12px; padding: 0 10px; font-family: inherit; }
     .filter-input::placeholder { color: #444; }
     .filter-input:focus { outline: none; border-color: #444; }
     .data-table { width: 100%; border-collapse: collapse; }
-    .data-table th { font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px; text-align: left; border-bottom: 0.5px solid #1f1f1f; font-weight: 600; }
+    .data-table th { font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px; text-align: left; border-bottom: 0.5px solid #1f1f1f; font-weight: 600; white-space: nowrap; }
     .data-table td { font-size: 13px; color: #777; padding: 10px 12px; border-bottom: 0.5px solid #191919; }
     .data-table tr:hover td { background: #161616; color: #ccc; cursor: pointer; }
     .badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
@@ -110,7 +173,7 @@
 
     /* ── User profile ── */
     .profile-header { padding: 16px 28px 12px; border-bottom: 0.5px solid #1f1f1f; background: #0e0e0e; }
-    .profile-name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 3px; }
+    .profile-name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 3px; flex-wrap: wrap; }
     .profile-name { font-size: 15px; font-weight: 600; color: #eee; }
     .profile-meta { font-size: 11.5px; color: #555; margin-bottom: 12px; }
     .profile-meta span { margin-right: 14px; }
@@ -135,13 +198,188 @@
     .empty-page span { font-size: 13px; color: #444; }
 
     .hidden { display: none !important; }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVO — TABLET  (769px – 1024px)
+       Sidebar colapsa para ícones automaticamente
+    ══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: 56px;
+        min-width: 56px;
+      }
+      .sidebar-label { opacity: 0; height: 0; padding: 0; overflow: hidden; }
+      .logo-sub { display: none; }
+      .sidebar-logo { padding: 14px 0; display: flex; justify-content: center; align-items: center; }
+      .logo-mark { font-size: 14px; }
+      .sidebar-section { padding: 8px 0 2px; }
+      .sidebar-item { justify-content: center; padding: 10px 0; gap: 0; }
+      .sidebar-item i { font-size: 18px; }
+      .item-label { display: none; }
+
+      /* Tooltip */
+      .sidebar-item::after {
+        content: attr(data-label);
+        position: absolute;
+        left: 62px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #252525;
+        color: #ddd;
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s;
+        z-index: 200;
+        border: 0.5px solid #333;
+      }
+      .sidebar-item:hover::after { opacity: 1; }
+    }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVO — MOBILE  (≤ 768px)
+       Sidebar vira drawer, int-nav vira tabs horizontal
+    ══════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      /* Sidebar: off-screen drawer */
+      .sidebar {
+        position: fixed;
+        left: -210px;
+        width: 210px;
+        min-width: 210px;
+        height: 100vh;
+        z-index: 100;
+        transition: left 0.22s ease;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      .sidebar.open { left: 0; }
+
+      /* Restaura labels dentro do drawer */
+      .sidebar .sidebar-label { opacity: 1; height: auto; padding: 0 16px 6px; }
+      .sidebar .logo-sub { display: block; }
+      .sidebar .sidebar-logo { padding: 18px 16px 14px; justify-content: flex-start; }
+      .sidebar .logo-mark { font-size: 18px; }
+      .sidebar .sidebar-section { padding: 14px 0 4px; }
+      .sidebar .sidebar-item { justify-content: flex-start; padding: 8px 16px; gap: 9px; }
+      .sidebar .sidebar-item i { font-size: 16px; }
+      .sidebar .item-label { display: inline; }
+      .sidebar .sidebar-item::after { display: none; }
+
+      /* Hamburger visível */
+      .hamburger { display: flex; align-items: center; background: #1a1a1a; border-radius: 6px; padding: 6px 8px; border: 0.5px solid #2a2a2a; color: #bbb; }
+      .hamburger:hover { background: #242424; color: #eee; }
+
+      /* Pull-tab visível */
+      .sidebar-pushtab { display: flex; }
+      .sidebar-pushtab.hidden-tab { display: none; }
+
+      /* Topbar */
+      .topbar { padding: 0 14px; gap: 12px; }
+
+      /* Breadcrumb mais compacto */
+      .breadcrumb { font-size: 11px; }
+
+      /* Int-nav → tabs horizontais scrolláveis */
+      .content-area { flex-direction: column; }
+      .int-nav {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        max-height: none;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-right: none;
+        border-bottom: 0.5px solid #1a1a1a;
+        padding: 0;
+        background: #0d0d0d;
+      }
+      .int-nav::-webkit-scrollbar { height: 0; }
+      .int-nav-label { display: none; }
+      .int-nav-item {
+        padding: 10px 14px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -0.5px;
+      }
+      .int-nav-item.active {
+        border-left-color: transparent;
+        border-bottom-color: #fff;
+        background: transparent;
+        color: #fff;
+      }
+
+      /* Branding nav → horizontal */
+      .branding-layout { flex-direction: column; }
+      .branding-nav {
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: 0.5px solid #1a1a1a;
+        padding: 0;
+        height: auto;
+        background: #0d0d0d;
+      }
+      .branding-nav::-webkit-scrollbar { height: 0; }
+      .branding-grp { display: none; }
+      .branding-itm {
+        flex-shrink: 0;
+        border-left: none;
+        padding: 10px 14px;
+        border-bottom: 2px solid transparent;
+      }
+      .branding-itm.active { border-left-color: transparent; border-bottom-color: #fff; background: transparent; color: #fff; }
+      .branding-body { padding: 16px; }
+
+      /* Formulário coluna única */
+      .form-grid { grid-template-columns: 1fr; }
+      .config-content { padding: 16px; }
+
+      /* Dashboard: 2 colunas */
+      .dash-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Saldos: 2 colunas */
+      .balance-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Tabela: scroll horizontal */
+      .usuarios-wrap { padding: 16px; }
+      .table-wrap { overflow-x: auto; }
+
+      /* Footer */
+      .footer-bar { padding: 10px 16px; }
+      .profile-header { padding: 12px 16px; }
+      .profile-body { padding: 16px; }
+
+      /* Perfil meta: blocos */
+      .profile-meta span { display: block; margin-right: 0; margin-bottom: 2px; }
+    }
+
+    /* Mobile XS — tela muito pequena */
+    @media (max-width: 480px) {
+      .dash-grid { grid-template-columns: 1fr; }
+      .balance-grid { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar-pushtab" id="sidebarPushtab" onclick="toggleSidebar()"></div>
+
 <div class="shell">
 
-  <!-- ═══════════════ SIDEBAR ═══════════════ -->
-  <nav class="sidebar">
+  <!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
+  <nav class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div class="logo-mark">BPX</div>
       <div class="logo-sub">Pix365 · Backoffice</div>
@@ -149,34 +387,63 @@
 
     <div class="sidebar-section">
       <div class="sidebar-label">Principal</div>
-      <div class="sidebar-item" data-section="dashboard" onclick="navigate(this)"><i class="ti ti-layout-dashboard"></i> Dashboard</div>
-      <div class="sidebar-item" data-section="operacao" onclick="navigate(this)"><i class="ti ti-activity"></i> Operação</div>
-      <div class="sidebar-item" data-section="financeiro" onclick="navigate(this)"><i class="ti ti-cash"></i> Financeiro</div>
+      <div class="sidebar-item" data-section="dashboard" data-label="Dashboard" onclick="navigate(this)">
+        <i class="ti ti-layout-dashboard"></i><span class="item-label"> Dashboard</span>
+      </div>
+      <div class="sidebar-item" data-section="operacao" data-label="Operação" onclick="navigate(this)">
+        <i class="ti ti-activity"></i><span class="item-label"> Operação</span>
+      </div>
+      <div class="sidebar-item" data-section="financeiro" data-label="Financeiro" onclick="navigate(this)">
+        <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
+      </div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Produto</div>
-      <div class="sidebar-item" data-section="cassino" onclick="navigate(this)"><i class="ti ti-device-gamepad-2"></i> Cassino</div>
-      <div class="sidebar-item" data-section="esportes" onclick="navigate(this)"><i class="ti ti-trophy"></i> Esportes</div>
-      <div class="sidebar-item" data-section="promocoes" onclick="navigate(this)"><i class="ti ti-gift"></i> Promoções</div>
-      <div class="sidebar-item" data-section="comunicacao" onclick="navigate(this)"><i class="ti ti-message-2"></i> Comunicação</div>
-      <div class="sidebar-item" data-section="conteudo" onclick="navigate(this)"><i class="ti ti-file-text"></i> Conteúdo</div>
-      <div class="sidebar-item" data-section="sistema-compliance" onclick="navigate(this)"><i class="ti ti-shield-check"></i> Sistema & Compliance</div>
+      <div class="sidebar-item" data-section="cassino" data-label="Cassino" onclick="navigate(this)">
+        <i class="ti ti-device-gamepad-2"></i><span class="item-label"> Cassino</span>
+      </div>
+      <div class="sidebar-item" data-section="esportes" data-label="Esportes" onclick="navigate(this)">
+        <i class="ti ti-trophy"></i><span class="item-label"> Esportes</span>
+      </div>
+      <div class="sidebar-item" data-section="promocoes" data-label="Promoções" onclick="navigate(this)">
+        <i class="ti ti-gift"></i><span class="item-label"> Promoções</span>
+      </div>
+      <div class="sidebar-item" data-section="comunicacao" data-label="Comunicação" onclick="navigate(this)">
+        <i class="ti ti-message-2"></i><span class="item-label"> Comunicação</span>
+      </div>
+      <div class="sidebar-item" data-section="conteudo" data-label="Conteúdo" onclick="navigate(this)">
+        <i class="ti ti-file-text"></i><span class="item-label"> Conteúdo</span>
+      </div>
+      <div class="sidebar-item" data-section="sistema-compliance" data-label="Sistema & Compliance" onclick="navigate(this)">
+        <i class="ti ti-shield-check"></i><span class="item-label"> Sistema & Compliance</span>
+      </div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Gestão</div>
-      <div class="sidebar-item" data-section="usuarios" onclick="navigate(this)"><i class="ti ti-users"></i> Usuários</div>
-      <div class="sidebar-item" data-section="relatorios" onclick="navigate(this)"><i class="ti ti-chart-bar"></i> Relatórios</div>
-      <div class="sidebar-item" data-section="monitoramento" onclick="navigate(this)"><i class="ti ti-radar"></i> Monitoramento</div>
-      <div class="sidebar-item active" data-section="configuracoes" onclick="navigate(this)"><i class="ti ti-settings"></i> Configurações</div>
+      <div class="sidebar-item" data-section="usuarios" data-label="Usuários" onclick="navigate(this)">
+        <i class="ti ti-users"></i><span class="item-label"> Usuários</span>
+      </div>
+      <div class="sidebar-item" data-section="relatorios" data-label="Relatórios" onclick="navigate(this)">
+        <i class="ti ti-chart-bar"></i><span class="item-label"> Relatórios</span>
+      </div>
+      <div class="sidebar-item" data-section="monitoramento" data-label="Monitoramento" onclick="navigate(this)">
+        <i class="ti ti-radar"></i><span class="item-label"> Monitoramento</span>
+      </div>
+      <div class="sidebar-item active" data-section="configuracoes" data-label="Configurações" onclick="navigate(this)">
+        <i class="ti ti-settings"></i><span class="item-label"> Configurações</span>
+      </div>
     </div>
   </nav>
 
-  <!-- ═══════════════ MAIN ═══════════════ -->
+  <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
   <div class="main-area">
 
     <div class="topbar">
+      <button class="hamburger" onclick="toggleSidebar()" aria-label="Abrir menu">
+        <i class="ti ti-menu-2"></i>
+      </button>
       <div class="breadcrumb" id="breadcrumb">
         <i class="ti ti-home" style="font-size:13px"></i>
         <span class="sep">›</span>
@@ -210,7 +477,7 @@
         <div class="int-nav-item" data-config="afiliado" onclick="selectConfig(this)">Afiliado</div>
         <div class="int-nav-item" data-config="geolocalizacao" onclick="selectConfig(this)">Geolocalização</div>
       </nav>
-      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content" id="configContent">
           <div class="page-title" id="configTitle">Plataforma</div>
           <div class="tabs" id="configTabs"></div>
@@ -244,19 +511,19 @@
     <div class="content-area hidden" id="pageEsportes">
       <nav class="int-nav">
         <div class="int-nav-label">Configuração</div>
-        <div class="int-nav-item active" onclick="selectGenericNav(this, 'esportesTitle')">Esportes</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Categorias</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Torneios</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'esportesTitle')">Esportes</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Categorias</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Torneios</div>
         <div class="int-nav-label">Eventos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Eventos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Competidores</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Populares</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Eventos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Competidores</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Populares</div>
         <div class="int-nav-label">Mercados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Mercados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Grupos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'esportesTitle')">Favoritos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Mercados</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Grupos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Favoritos</div>
       </nav>
-      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
           <div class="page-title" id="esportesTitle">Esportes</div>
           <p style="color:#444; font-size:13px">Em construção.</p>
@@ -267,12 +534,12 @@
     <!-- ══ PROMOÇÕES ══ -->
     <div class="content-area hidden" id="pagePromocoes">
       <nav class="int-nav">
-        <div class="int-nav-item active" onclick="selectGenericNav(this, 'promocoesTitle')">Bônus</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'promocoesTitle')">Regras de afiliado</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'promocoesTitle')">Regras de uso</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'promocoesTitle')">Acionamentos</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'promocoesTitle')">Bônus</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'promocoesTitle')">Regras de afiliado</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'promocoesTitle')">Regras de uso</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'promocoesTitle')">Acionamentos</div>
       </nav>
-      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
           <div class="page-title" id="promocoesTitle">Bônus</div>
           <p style="color:#444; font-size:13px">Em construção.</p>
@@ -297,13 +564,13 @@
     <!-- ══ MONITORAMENTO ══ -->
     <div class="content-area hidden" id="pageMonitoramento">
       <nav class="int-nav">
-        <div class="int-nav-item active" onclick="selectGenericNav(this, 'monitorTitle')">API</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Métricas</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Status</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Logs</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'monitorTitle')">Propriedades</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'monitorTitle')">API</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'monitorTitle')">Métricas</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'monitorTitle')">Status</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'monitorTitle')">Logs</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'monitorTitle')">Propriedades</div>
       </nav>
-      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
           <div class="page-title" id="monitorTitle">API</div>
           <p style="color:#444; font-size:13px">Em construção.</p>
@@ -313,8 +580,6 @@
 
     <!-- ══ USUÁRIOS ══ -->
     <div class="page-full hidden" id="pageUsuarios">
-
-      <!-- Lista -->
       <div id="usuariosList" class="page-full">
         <div class="usuarios-wrap">
           <div class="list-top">
@@ -322,38 +587,37 @@
             <button class="btn btn-primary" style="font-size:12px; padding:6px 14px;">+ Novo</button>
           </div>
           <div class="list-filters">
-            <input class="filter-input" placeholder="Buscar por nome, CPF ou e-mail…" style="width:260px">
+            <input class="filter-input" placeholder="Buscar por nome, CPF ou e-mail…" style="width:260px; max-width:100%">
             <input class="filter-input" placeholder="Status" style="width:110px">
             <button class="btn btn-secondary" style="font-size:12px; padding:5px 14px; height:32px;">Filtrar</button>
           </div>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Nome</th><th>CPF</th><th>E-mail</th><th>Cadastro</th><th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr onclick="openProfile('ISLEY DAVID LOPEZ GIRALDO','isley.giraldo@twinfo.io','708.758.834-60','17/01/2024','Verificado')">
-                <td>ISLEY DAVID LOPEZ GIRALDO</td><td>708.758.834-60</td><td>isley.giraldo@twinfo.io</td><td>17/01/2024</td><td><span class="badge badge-green">Verificado</span></td>
-              </tr>
-              <tr onclick="openProfile('MARIA SILVA SANTOS','maria.santos@email.com','123.456.789-00','05/03/2024','Verificado')">
-                <td>MARIA SILVA SANTOS</td><td>123.456.789-00</td><td>maria.santos@email.com</td><td>05/03/2024</td><td><span class="badge badge-green">Verificado</span></td>
-              </tr>
-              <tr onclick="openProfile('CARLOS EDUARDO MELO','carlos.melo@gmail.com','987.654.321-00','22/04/2024','Pendente')">
-                <td>CARLOS EDUARDO MELO</td><td>987.654.321-00</td><td>carlos.melo@gmail.com</td><td>22/04/2024</td><td><span class="badge badge-yellow">Pendente</span></td>
-              </tr>
-              <tr onclick="openProfile('ANA PAULA FERREIRA','ana.ferreira@outlook.com','456.123.789-00','10/06/2024','Bloqueado')">
-                <td>ANA PAULA FERREIRA</td><td>456.123.789-00</td><td>ana.ferreira@outlook.com</td><td>10/06/2024</td><td><span class="badge badge-red">Bloqueado</span></td>
-              </tr>
-              <tr onclick="openProfile('ROBERTO TEIXEIRA LIMA','roberto.lima@hotmail.com','321.654.987-00','14/06/2025','Verificado')">
-                <td>ROBERTO TEIXEIRA LIMA</td><td>321.654.987-00</td><td>roberto.lima@hotmail.com</td><td>14/06/2025</td><td><span class="badge badge-green">Verificado</span></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Nome</th><th>CPF</th><th>E-mail</th><th>Cadastro</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr onclick="openProfile('ISLEY DAVID LOPEZ GIRALDO','isley.giraldo@twinfo.io','708.758.834-60','17/01/2024','Verificado')">
+                  <td>ISLEY DAVID LOPEZ GIRALDO</td><td>708.758.834-60</td><td>isley.giraldo@twinfo.io</td><td>17/01/2024</td><td><span class="badge badge-green">Verificado</span></td>
+                </tr>
+                <tr onclick="openProfile('MARIA SILVA SANTOS','maria.santos@email.com','123.456.789-00','05/03/2024','Verificado')">
+                  <td>MARIA SILVA SANTOS</td><td>123.456.789-00</td><td>maria.santos@email.com</td><td>05/03/2024</td><td><span class="badge badge-green">Verificado</span></td>
+                </tr>
+                <tr onclick="openProfile('CARLOS EDUARDO MELO','carlos.melo@gmail.com','987.654.321-00','22/04/2024','Pendente')">
+                  <td>CARLOS EDUARDO MELO</td><td>987.654.321-00</td><td>carlos.melo@gmail.com</td><td>22/04/2024</td><td><span class="badge badge-yellow">Pendente</span></td>
+                </tr>
+                <tr onclick="openProfile('ANA PAULA FERREIRA','ana.ferreira@outlook.com','456.123.789-00','10/06/2024','Bloqueado')">
+                  <td>ANA PAULA FERREIRA</td><td>456.123.789-00</td><td>ana.ferreira@outlook.com</td><td>10/06/2024</td><td><span class="badge badge-red">Bloqueado</span></td>
+                </tr>
+                <tr onclick="openProfile('ROBERTO TEIXEIRA LIMA','roberto.lima@hotmail.com','321.654.987-00','14/06/2025','Verificado')">
+                  <td>ROBERTO TEIXEIRA LIMA</td><td>321.654.987-00</td><td>roberto.lima@hotmail.com</td><td>14/06/2025</td><td><span class="badge badge-green">Verificado</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      <!-- Perfil do apostador -->
       <div id="usuarioProfile" class="page-full hidden">
         <div class="profile-header">
           <div class="profile-name-row">
@@ -364,7 +628,6 @@
             <span id="profileEmail">-</span>
             <span>CPF: <span id="profileCPF">-</span></span>
             <span>Cadastro: <span id="profileCadastro">-</span></span>
-            <span>✅ Verificado</span>
           </div>
           <div class="balance-grid">
             <div class="bal-cell"><div class="bal-label">Saldo disponível</div><div class="bal-value">R$ 0,00</div></div>
@@ -416,11 +679,11 @@
     <!-- ══ SISTEMA & COMPLIANCE ══ -->
     <div class="content-area hidden" id="pageSistemaCompliance">
       <nav class="int-nav">
-        <div class="int-nav-item active" onclick="selectGenericNav(this, 'scTitle')">Contratos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'scTitle')">Exportações</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this, 'scTitle')">Auditoria</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'scTitle')">Contratos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'scTitle')">Exportações</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'scTitle')">Auditoria</div>
       </nav>
-      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
           <div class="page-title" id="scTitle">Contratos</div>
           <p style="color:#444; font-size:13px">Em construção.</p>
@@ -443,23 +706,23 @@
                      'pageSistemaCompliance','pageEmpty'];
 
   const CONFIG_PAGES = {
-    plataforma:     { title: 'Plataforma',   tabs: ['Informações','URL','Provedores','Permissões','Preferências','Código','SIGAP'] },
-    branding:       { title: 'Branding',     tabs: null },
-    seo:            { title: 'SEO',          tabs: ['Informações','Sitemap','Código'] },
-    social:         { title: 'Social',       tabs: [] },
-    cms:            { title: 'CMS',          tabs: [] },
-    financial:      { title: 'Financeiro',   tabs: ['Saque','Depósito','Apostas','Cassino','Palpite'] },
-    gateway:        { title: 'Gateway',      tabs: [] },
-    pld:            { title: 'PLD',          tabs: [] },
-    chat:           { title: 'Chat',         tabs: [] },
-    anuncios:       { title: 'Anúncios',     tabs: [] },
-    mensagem:       { title: 'Mensagem',     tabs: [] },
-    notificacoes:   { title: 'Notificações', tabs: ['Ao depositar','Ao sacar','Ao ganhar apostas','Ao ganhar palpite'] },
-    buscas:         { title: 'Buscas',       tabs: [] },
-    analytics:      { title: 'Analytics',    tabs: [] },
-    seguranca:      { title: 'Segurança',    tabs: ['Login','Cadastro','GSE','KYC'] },
-    arquivo:        { title: 'Arquivo',      tabs: [] },
-    afiliado:       { title: 'Afiliado',     tabs: [] },
+    plataforma:     { title: 'Plataforma',     tabs: ['Informações','URL','Provedores','Permissões','Preferências','Código','SIGAP'] },
+    branding:       { title: 'Branding',       tabs: null },
+    seo:            { title: 'SEO',            tabs: ['Informações','Sitemap','Código'] },
+    social:         { title: 'Social',         tabs: [] },
+    cms:            { title: 'CMS',            tabs: [] },
+    financial:      { title: 'Financeiro',     tabs: ['Saque','Depósito','Apostas','Cassino','Palpite'] },
+    gateway:        { title: 'Gateway',        tabs: [] },
+    pld:            { title: 'PLD',            tabs: [] },
+    chat:           { title: 'Chat',           tabs: [] },
+    anuncios:       { title: 'Anúncios',       tabs: [] },
+    mensagem:       { title: 'Mensagem',       tabs: [] },
+    notificacoes:   { title: 'Notificações',   tabs: ['Ao depositar','Ao sacar','Ao ganhar apostas','Ao ganhar palpite'] },
+    buscas:         { title: 'Buscas',         tabs: [] },
+    analytics:      { title: 'Analytics',      tabs: [] },
+    seguranca:      { title: 'Segurança',      tabs: ['Login','Cadastro','GSE','KYC'] },
+    arquivo:        { title: 'Arquivo',        tabs: [] },
+    afiliado:       { title: 'Afiliado',       tabs: [] },
     geolocalizacao: { title: 'Geolocalização', tabs: [] },
   };
 
@@ -492,28 +755,44 @@
   };
 
   const BRANDING_GROUPS = [
-    { group: 'Galeria',    items: ['Logotipo','Banners','Slides','Elementos'] },
-    { group: 'Aparência',  items: ['Estilos','Cabeçalho'] },
-    { group: 'Código',     items: ['Front','Menu Principal','Pop up','Rodapé','Palpite','CTA'] },
+    { group: 'Galeria',   items: ['Logotipo','Banners','Slides','Elementos'] },
+    { group: 'Aparência', items: ['Estilos','Cabeçalho'] },
+    { group: 'Código',    items: ['Front','Menu Principal','Pop up','Rodapé','Palpite','CTA'] },
   ];
 
-  // ── Navigation ──────────────────────────────────────────────────────────────
+  // ── Sidebar (mobile drawer) ──────────────────────────────────────────────────
+  function toggleSidebar() {
+    const sb = document.getElementById('sidebar');
+    const ov = document.getElementById('sidebarOverlay');
+    const tab = document.getElementById('sidebarPushtab');
+    const isOpen = sb.classList.toggle('open');
+    ov.classList.toggle('visible', isOpen);
+    tab.classList.toggle('hidden-tab', isOpen);
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('visible');
+    document.getElementById('sidebarPushtab').classList.remove('hidden-tab');
+  }
+
+  // ── Navigation ───────────────────────────────────────────────────────────────
   function navigate(el) {
     document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
     ALL_PAGES.forEach(id => document.getElementById(id).classList.add('hidden'));
 
     const section = el.dataset.section;
-    const label = el.textContent.trim();
+    const label = el.querySelector('.item-label')?.textContent.trim() || el.dataset.label;
 
     const pageMap = {
-      configuracoes:      'pageConfig',
-      dashboard:          'pageDashboard',
-      esportes:           'pageEsportes',
-      promocoes:          'pagePromocoes',
-      relatorios:         'pageRelatorios',
-      monitoramento:      'pageMonitoramento',
-      usuarios:           'pageUsuarios',
+      configuracoes:        'pageConfig',
+      dashboard:            'pageDashboard',
+      esportes:             'pageEsportes',
+      promocoes:            'pagePromocoes',
+      relatorios:           'pageRelatorios',
+      monitoramento:        'pageMonitoramento',
+      usuarios:             'pageUsuarios',
       'sistema-compliance': 'pageSistemaCompliance',
     };
 
@@ -524,11 +803,11 @@
       document.getElementById('pageEmpty').classList.remove('hidden');
     }
 
-    if (section === 'usuarios') {
-      showUsersList(false);
-    }
-
+    if (section === 'usuarios') showUsersList(false);
     setBreadcrumb(label);
+
+    // fecha drawer no mobile após navegar
+    if (window.innerWidth <= 768) closeSidebar();
   }
 
   function setBreadcrumb(current, parent, parentSection) {
@@ -660,11 +939,9 @@
     document.getElementById('profileEmail').textContent = email;
     document.getElementById('profileCPF').textContent = cpf;
     document.getElementById('profileCadastro').textContent = cadastro;
-
     const badge = document.getElementById('profileBadge');
     badge.textContent = status;
     badge.className = 'badge ' + (status === 'Verificado' ? 'badge-green' : status === 'Pendente' ? 'badge-yellow' : 'badge-red');
-
     document.querySelectorAll('.ptab').forEach((t, i) => t.classList.toggle('active', i === 0));
     document.getElementById('profileBody').innerHTML = `<p style="color:#444; font-size:13px">Em construção — aba: Dados</p>`;
     setBreadcrumb(name, 'Usuários', 'usuarios');
