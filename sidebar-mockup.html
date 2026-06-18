@@ -46,6 +46,15 @@
     .sidebar-item i { font-size: 16px; flex-shrink: 0; }
     .item-label { overflow: hidden; transition: opacity 0.15s; }
 
+    /* ── Sidebar bottom (Configurações) ── */
+    .sidebar-bottom { margin-top: auto; padding-bottom: 8px; }
+    .sidebar-divider { height: 0.5px; background: #1f1f1f; margin: 6px 16px 10px; }
+
+    /* ── Config sidebar back button ── */
+    .sidebar-back { display: flex; align-items: center; gap: 8px; padding: 12px 16px; font-size: 12px; color: #555; cursor: pointer; border-bottom: 0.5px solid #1f1f1f; margin-bottom: 4px; transition: color 0.1s; white-space: nowrap; overflow: hidden; }
+    .sidebar-back:hover { color: #ddd; background: #161616; }
+    .sidebar-back i { font-size: 15px; flex-shrink: 0; }
+
     /* ── Main area ── */
     .main-area { flex: 1; background: #111; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
     .topbar { height: 46px; min-height: 46px; background: #0d0d0d; border-bottom: 0.5px solid #1f1f1f; display: flex; align-items: center; padding: 0 24px; gap: 10px; }
@@ -216,6 +225,9 @@
       .sidebar-item { justify-content: center; padding: 10px 0; gap: 0; }
       .sidebar-item i { font-size: 18px; }
       .item-label { display: none; }
+      .sidebar-back { justify-content: center; padding: 10px 0; gap: 0; }
+      .sidebar-back .back-label { display: none; }
+      .sidebar-back i { font-size: 18px; }
 
       /* Tooltip */
       .sidebar-item::after {
@@ -268,6 +280,9 @@
       .sidebar .sidebar-item i { font-size: 16px; }
       .sidebar .item-label { display: inline; }
       .sidebar .sidebar-item::after { display: none; }
+      .sidebar .sidebar-back { justify-content: flex-start; padding: 12px 16px; gap: 8px; }
+      .sidebar .sidebar-back .back-label { display: inline; }
+      .sidebar .sidebar-back i { font-size: 15px; }
 
       /* Hamburger visível */
       .hamburger { display: flex; align-items: center; background: #1a1a1a; border-radius: 6px; padding: 6px 8px; border: 0.5px solid #2a2a2a; color: #bbb; }
@@ -431,8 +446,90 @@
       <div class="sidebar-item" data-section="monitoramento" data-label="Monitoramento" onclick="navigate(this)">
         <i class="ti ti-radar"></i><span class="item-label"> Monitoramento</span>
       </div>
-      <div class="sidebar-item active" data-section="configuracoes" data-label="Configurações" onclick="navigate(this)">
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item" data-section="configuracoes" data-label="Configurações" onclick="navigate(this)">
         <i class="ti ti-settings"></i><span class="item-label"> Configurações</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════ SIDEBAR CONFIG ═══════════════════════════════ -->
+  <nav class="sidebar hidden" id="sidebarConfig">
+    <div class="sidebar-back" onclick="exitConfig()">
+      <i class="ti ti-arrow-left"></i>
+      <span class="back-label">Backoffice</span>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Plataforma</div>
+      <div class="sidebar-item config-nav-item active" data-config="plataforma" data-label="Plataforma" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-layout-dashboard"></i><span class="item-label"> Plataforma</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="branding" data-label="Branding" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-palette"></i><span class="item-label"> Branding</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="seo" data-label="SEO" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-globe"></i><span class="item-label"> SEO</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="social" data-label="Social" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-share"></i><span class="item-label"> Social</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="cms" data-label="CMS" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-file-text"></i><span class="item-label"> CMS</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Financeiro</div>
+      <div class="sidebar-item config-nav-item" data-config="financial" data-label="Financeiro" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="gateway" data-label="Gateway" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-building-bank"></i><span class="item-label"> Gateway</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="pld" data-label="PLD" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-shield"></i><span class="item-label"> PLD</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Comunicação</div>
+      <div class="sidebar-item config-nav-item" data-config="chat" data-label="Chat" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-message-circle"></i><span class="item-label"> Chat</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="anuncios" data-label="Anúncios" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-speakerphone"></i><span class="item-label"> Anúncios</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="mensagem" data-label="Mensagem" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-mail"></i><span class="item-label"> Mensagem</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="notificacoes" data-label="Notificações" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-bell"></i><span class="item-label"> Notificações</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="buscas" data-label="Buscas" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-search"></i><span class="item-label"> Buscas</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Sistema</div>
+      <div class="sidebar-item config-nav-item" data-config="analytics" data-label="Analytics" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-chart-line"></i><span class="item-label"> Analytics</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="seguranca" data-label="Segurança" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-lock"></i><span class="item-label"> Segurança</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="arquivo" data-label="Arquivo" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-archive"></i><span class="item-label"> Arquivo</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="afiliado" data-label="Afiliado" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-users-group"></i><span class="item-label"> Afiliado</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="geolocalizacao" data-label="Geolocalização" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-map-pin"></i><span class="item-label"> Geolocalização</span>
       </div>
     </div>
   </nav>
@@ -452,41 +549,15 @@
     </div>
 
     <!-- ══ CONFIGURAÇÕES ══ -->
-    <div class="content-area" id="pageConfig">
-      <nav class="int-nav" id="configNav">
-        <div class="int-nav-label">Plataforma</div>
-        <div class="int-nav-item active" data-config="plataforma" onclick="selectConfig(this)">Plataforma</div>
-        <div class="int-nav-item" data-config="branding" onclick="selectConfig(this)">Branding</div>
-        <div class="int-nav-item" data-config="seo" onclick="selectConfig(this)">SEO</div>
-        <div class="int-nav-item" data-config="social" onclick="selectConfig(this)">Social</div>
-        <div class="int-nav-item" data-config="cms" onclick="selectConfig(this)">CMS</div>
-        <div class="int-nav-label">Financeiro</div>
-        <div class="int-nav-item" data-config="financial" onclick="selectConfig(this)">Financeiro</div>
-        <div class="int-nav-item" data-config="gateway" onclick="selectConfig(this)">Gateway</div>
-        <div class="int-nav-item" data-config="pld" onclick="selectConfig(this)">PLD</div>
-        <div class="int-nav-label">Comunicação</div>
-        <div class="int-nav-item" data-config="chat" onclick="selectConfig(this)">Chat</div>
-        <div class="int-nav-item" data-config="anuncios" onclick="selectConfig(this)">Anúncios</div>
-        <div class="int-nav-item" data-config="mensagem" onclick="selectConfig(this)">Mensagem</div>
-        <div class="int-nav-item" data-config="notificacoes" onclick="selectConfig(this)">Notificações</div>
-        <div class="int-nav-item" data-config="buscas" onclick="selectConfig(this)">Buscas</div>
-        <div class="int-nav-label">Sistema</div>
-        <div class="int-nav-item" data-config="analytics" onclick="selectConfig(this)">Analytics</div>
-        <div class="int-nav-item" data-config="seguranca" onclick="selectConfig(this)">Segurança</div>
-        <div class="int-nav-item" data-config="arquivo" onclick="selectConfig(this)">Arquivo</div>
-        <div class="int-nav-item" data-config="afiliado" onclick="selectConfig(this)">Afiliado</div>
-        <div class="int-nav-item" data-config="geolocalizacao" onclick="selectConfig(this)">Geolocalização</div>
-      </nav>
-      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
-        <div class="config-content" id="configContent">
-          <div class="page-title" id="configTitle">Plataforma</div>
-          <div class="tabs" id="configTabs"></div>
-          <div id="configBody"></div>
-        </div>
-        <div class="footer-bar">
-          <button class="btn btn-secondary" onclick="alert('Alterações descartadas')">Cancelar</button>
-          <button class="btn btn-primary" id="btnSave" onclick="handleSave()">Salvar</button>
-        </div>
+    <div class="page-full" id="pageConfig">
+      <div class="config-content" id="configContent">
+        <div class="page-title" id="configTitle">Plataforma</div>
+        <div class="tabs" id="configTabs"></div>
+        <div id="configBody"></div>
+      </div>
+      <div class="footer-bar">
+        <button class="btn btn-secondary" onclick="alert('Alterações descartadas')">Cancelar</button>
+        <button class="btn btn-primary" id="btnSave" onclick="handleSave()">Salvar</button>
       </div>
     </div>
 
@@ -762,7 +833,8 @@
 
   // ── Sidebar (mobile drawer) ──────────────────────────────────────────────────
   function toggleSidebar() {
-    const sb = document.getElementById('sidebar');
+    const isConfigMode = !document.getElementById('sidebarConfig').classList.contains('hidden');
+    const sb = document.getElementById(isConfigMode ? 'sidebarConfig' : 'sidebar');
     const ov = document.getElementById('sidebarOverlay');
     const tab = document.getElementById('sidebarPushtab');
     const isOpen = sb.classList.toggle('open');
@@ -772,56 +844,21 @@
 
   function closeSidebar() {
     document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarConfig').classList.remove('open');
     document.getElementById('sidebarOverlay').classList.remove('visible');
     document.getElementById('sidebarPushtab').classList.remove('hidden-tab');
   }
 
-  // ── Navigation ───────────────────────────────────────────────────────────────
-  function navigate(el) {
-    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-    el.classList.add('active');
-    ALL_PAGES.forEach(id => document.getElementById(id).classList.add('hidden'));
-
-    const section = el.dataset.section;
-    const label = el.querySelector('.item-label')?.textContent.trim() || el.dataset.label;
-
-    const pageMap = {
-      configuracoes:        'pageConfig',
-      dashboard:            'pageDashboard',
-      esportes:             'pageEsportes',
-      promocoes:            'pagePromocoes',
-      relatorios:           'pageRelatorios',
-      monitoramento:        'pageMonitoramento',
-      usuarios:             'pageUsuarios',
-      'sistema-compliance': 'pageSistemaCompliance',
-    };
-
-    if (pageMap[section]) {
-      document.getElementById(pageMap[section]).classList.remove('hidden');
-    } else {
-      document.getElementById('emptyLabel').textContent = label;
-      document.getElementById('pageEmpty').classList.remove('hidden');
-    }
-
-    if (section === 'usuarios') showUsersList(false);
-    setBreadcrumb(label);
-
-    // fecha drawer no mobile após navegar
+  // ── Config sidebar ───────────────────────────────────────────────────────────
+  function exitConfig() {
     if (window.innerWidth <= 768) closeSidebar();
+    document.getElementById('sidebarConfig').classList.add('hidden');
+    document.getElementById('sidebar').classList.remove('hidden');
+    navigate(document.querySelector('[data-section="dashboard"]'));
   }
 
-  function setBreadcrumb(current, parent, parentSection) {
-    const bc = document.getElementById('breadcrumb');
-    if (parent) {
-      bc.innerHTML = `<i class="ti ti-home" style="font-size:13px"></i><span class="sep">›</span><span class="bc-link" onclick="navigate(document.querySelector('[data-section=${parentSection}]'))">${parent}</span><span class="sep">›</span><span class="current">${current}</span>`;
-    } else {
-      bc.innerHTML = `<i class="ti ti-home" style="font-size:13px"></i><span class="sep">›</span><span class="current">${current}</span>`;
-    }
-  }
-
-  // ── Configurações ────────────────────────────────────────────────────────────
-  function selectConfig(el) {
-    document.querySelectorAll('#configNav .int-nav-item').forEach(i => i.classList.remove('active'));
+  function selectConfigSidebar(el) {
+    document.querySelectorAll('.config-nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
     const key = el.dataset.config;
     const cfg = CONFIG_PAGES[key];
@@ -845,7 +882,63 @@
       renderTabs(cfg.tabs, tabsEl);
       renderFields(key, bodyEl, cfg.title);
     }
+
+    if (window.innerWidth <= 768) closeSidebar();
   }
+
+  // ── Navigation ───────────────────────────────────────────────────────────────
+  function navigate(el) {
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    ALL_PAGES.forEach(id => document.getElementById(id).classList.add('hidden'));
+
+    const section = el.dataset.section;
+    const label = el.querySelector('.item-label')?.textContent.trim() || el.dataset.label;
+
+    const pageMap = {
+      configuracoes:        'pageConfig',
+      dashboard:            'pageDashboard',
+      esportes:             'pageEsportes',
+      promocoes:            'pagePromocoes',
+      relatorios:           'pageRelatorios',
+      monitoramento:        'pageMonitoramento',
+      usuarios:             'pageUsuarios',
+      'sistema-compliance': 'pageSistemaCompliance',
+    };
+
+    if (section === 'configuracoes') {
+      document.getElementById('sidebar').classList.add('hidden');
+      document.getElementById('sidebarConfig').classList.remove('hidden');
+      document.getElementById('pageConfig').classList.remove('hidden');
+      const activeItem = document.querySelector('.config-nav-item.active') || document.querySelector('.config-nav-item');
+      if (activeItem) selectConfigSidebar(activeItem);
+      if (window.innerWidth <= 768) closeSidebar();
+      return;
+    }
+
+    if (pageMap[section]) {
+      document.getElementById(pageMap[section]).classList.remove('hidden');
+    } else {
+      document.getElementById('emptyLabel').textContent = label;
+      document.getElementById('pageEmpty').classList.remove('hidden');
+    }
+
+    if (section === 'usuarios') showUsersList(false);
+    setBreadcrumb(label);
+    if (window.innerWidth <= 768) closeSidebar();
+  }
+
+  function setBreadcrumb(current, parent, parentSection) {
+    const bc = document.getElementById('breadcrumb');
+    if (parent) {
+      bc.innerHTML = `<i class="ti ti-home" style="font-size:13px"></i><span class="sep">›</span><span class="bc-link" onclick="navigate(document.querySelector('[data-section=${parentSection}]'))">${parent}</span><span class="sep">›</span><span class="current">${current}</span>`;
+    } else {
+      bc.innerHTML = `<i class="ti ti-home" style="font-size:13px"></i><span class="sep">›</span><span class="current">${current}</span>`;
+    }
+  }
+
+  // ── Configurações (mantido para compatibilidade com breadcrumb) ─────────────
+  function selectConfig(el) { selectConfigSidebar(el); }
 
   function renderTabs(tabs, el) {
     if (!tabs || tabs.length === 0) { el.innerHTML = ''; return; }
@@ -960,7 +1053,7 @@
 
   // ── Init ─────────────────────────────────────────────────────────────────────
   (function init() {
-    selectConfig(document.querySelector('.int-nav-item[data-config="plataforma"]'));
+    navigate(document.querySelector('[data-section="configuracoes"]'));
   })();
 </script>
 </body>

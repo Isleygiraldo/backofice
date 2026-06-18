@@ -50,7 +50,8 @@ Pix365 · Backoffice
 - Máximo de **3 grupos** com label de seção
 - Cada grupo agrupa itens por natureza: operacional, produto e gestão
 - Nenhum item da sidebar abre um submenu dentro dela — a navegação secundária acontece dentro da página
-- Configurações é o único módulo com navegação interna densa (19 sub-itens organizados em página dedicada)
+- **Configurações fica no rodapé da sidebar**, separado dos demais grupos por uma linha divisória
+- Clicar em Configurações **troca o layout inteiro** — a sidebar principal é substituída por uma sidebar dedicada de Configurações
 
 ---
 
@@ -181,6 +182,48 @@ Páginas com `int-nav` lateral (Configurações, Esportes, Monitoramento, etc.) 
 - Apenas um item pode estar ativo por vez
 - No mobile: fecha o drawer automaticamente após navegar
 
+### 5.2 Configurações — troca de layout
+
+Configurações é tratado como uma **área separada** do backoffice, não como mais uma página:
+
+- Fica no **rodapé da sidebar principal**, separado por linha divisória
+- Ao clicar, a sidebar principal é **substituída** por uma sidebar dedicada de Configurações
+- A sidebar de Configurações segue o **mesmo padrão visual e responsivo** da principal
+- No topo da sidebar de Configurações: botão `← Backoffice` que retorna ao backoffice e abre o Dashboard
+- Ao retornar, a sidebar principal volta a ser exibida normalmente
+
+**Estrutura da sidebar de Configurações:**
+
+```
+← Backoffice
+─────────────────
+PLATAFORMA
+  Plataforma
+  Branding
+  SEO
+  Social
+  CMS
+
+FINANCEIRO
+  Financeiro
+  Gateway
+  PLD
+
+COMUNICAÇÃO
+  Chat
+  Anúncios
+  Mensagem
+  Notificações
+  Buscas
+
+SISTEMA
+  Analytics
+  Segurança
+  Arquivo
+  Afiliado
+  Geolocalização
+```
+
 ### 5.2 Breadcrumb
 
 - Exibido no topbar em todas as páginas
@@ -208,7 +251,10 @@ Páginas com `int-nav` lateral (Configurações, Esportes, Monitoramento, etc.) 
 
 ## 7. Critérios de Aceite
 
-- [ ] Sidebar exibe exatamente os itens dos 3 grupos definidos, sem sub-menus expandindo dentro dela
+- [ ] Sidebar exibe os itens dos 3 grupos + Configurações no rodapé separado por linha divisória
+- [ ] Configurações troca o layout completo para a sidebar dedicada (não expande inline)
+- [ ] Sidebar de Configurações exibe botão `← Backoffice` no topo
+- [ ] Clicar em `← Backoffice` retorna ao backoffice principal e abre o Dashboard
 - [ ] Em desktop (> 1024px): sidebar com 210px, ícone + label visíveis
 - [ ] Em tablet (769–1024px): sidebar colapsa para 56px automaticamente, tooltip funcional no hover
 - [ ] Em mobile (≤ 768px): sidebar se torna drawer, hambúrguer visível no topbar, pull-tab lateral visível quando fechado
