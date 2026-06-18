@@ -1,0 +1,77 @@
+@startuml fluxo-sidebar-backoffice
+title Fluxo da Sidebar — Backoffice Pix365
+
+skinparam backgroundColor #111111
+skinparam defaultFontColor #cccccc
+skinparam defaultFontSize 13
+skinparam ArrowColor #888888
+skinparam ActivityBorderColor #333333
+skinparam ActivityBackgroundColor #1a1a1a
+skinparam ActivityDiamondBackgroundColor #1a1a1a
+skinparam ActivityDiamondBorderColor #555555
+skinparam NoteBackgroundColor #1a1a1a
+skinparam NoteBorderColor #333333
+
+start
+
+:Usuário acessa o backoffice;
+
+:Sidebar principal carregada
+(Dashboard, Operação, Financeiro...);
+
+fork
+  :Clica em qualquer módulo
+  (Dashboard, Financeiro, Usuários...);
+  :Página do módulo carrega
+  com nav interna lateral;
+  :Navega entre itens
+  da nav interna;
+fork again
+  :Clica em ⚙ Configurações
+  (rodapé da sidebar);
+  :Navega para página dedicada
+  de Configurações;
+
+  note right
+    Nova página com
+    sidebar própria
+  end note
+
+  :Sidebar de Configurações exibida
+  com 4 grupos:
+  PLATAFORMA / FINANCEIRO /
+  COMUNICAÇÃO / SISTEMA;
+
+  :Seleciona item de configuração;
+
+  switch (Tipo de conteúdo)
+    case (Tabs)
+      :Exibe tabs horizontais
+      ex: Plataforma (7 tabs)
+      ex: Segurança (4 tabs);
+    case (Nav lateral)
+      :Exibe nav lateral interna
+      ex: Branding (Galeria, Código);
+    case (Scroll)
+      :Exibe seções com scroll
+      ex: Gateway;
+    case (Página única)
+      :Exibe formulário simples
+      ex: PLD, Social;
+  endswitch
+
+  :Edita e clica em Salvar;
+
+  :Clicar ← Backoffice?;
+
+  if (sim) then
+    :Retorna à sidebar principal
+    no estado anterior;
+  else (não)
+    :Continua em Configurações;
+  endif
+end fork
+
+stop
+
+@enduml

@@ -1,0 +1,99 @@
+@startuml state-sidebar-backoffice
+title Estados da Sidebar — Backoffice Pix365
+
+skinparam backgroundColor #111111
+skinparam defaultFontColor #cccccc
+skinparam defaultFontSize 13
+skinparam ArrowColor #888888
+skinparam StateBorderColor #333333
+skinparam StateBackgroundColor #1a1a1a
+skinparam StateArrowColor #888888
+skinparam NoteBackgroundColor #1c1c1c
+skinparam NoteBorderColor #444444
+skinparam NoteTextColor #aaaaaa
+
+[*] --> Expandida : acessa o backoffice
+
+state "Sidebar Principal" as Principal {
+
+  state "Expandida" as Expandida {
+    Expandida : width 210px
+    Expandida : ícone + label visível
+    Expandida : grupos de seção visíveis
+  }
+
+  state "Colapsada (ícones)" as Colapsada {
+    Colapsada : width 56px
+    Colapsada : apenas ícones
+    Colapsada : tooltip no hover
+    Colapsada : grupos ocultos
+  }
+
+  state "Drawer (mobile)" as Drawer {
+    Drawer : position fixed
+    Drawer : left -210px (fechado)
+    Drawer : overlay escuro por baixo
+    Drawer : labels completos visíveis
+  }
+
+  Expandida --> Colapsada : tela ≤ 1024px\n(automático)
+  Colapsada --> Expandida : tela > 1024px\n(automático)
+
+  Expandida --> Drawer : tela ≤ 768px\n(automático)
+  Drawer --> Expandida : tela > 768px\n(automático)
+
+  Colapsada --> Drawer : tela ≤ 768px\n(automático)
+  Drawer --> Colapsada : 769px – 1024px\n(automático)
+}
+
+note right of Colapsada
+  Tablet
+  769px – 1024px
+end note
+
+note right of Drawer
+  Mobile
+  ≤ 768px
+  Abrir: hambúrguer
+  Fechar: overlay ou navegar
+end note
+
+' ── CONFIGURAÇÕES ──
+state "Página de Configurações" as Config {
+
+  state "Sidebar de Configs (Expandida)" as CExpand {
+    CExpand : width 210px
+    CExpand : ícone + label
+    CExpand : grupos: Plataforma / Financeiro
+    CExpand : Comunicação / Sistema
+    CExpand : ← Backoffice no topo
+  }
+
+  state "Sidebar de Configs (Colapsada)" as CCollapse {
+    CCollapse : width 56px
+    CCollapse : apenas ícones
+    CCollapse : tooltip no hover
+  }
+
+  state "Sidebar de Configs (Drawer)" as CDrawer {
+    CDrawer : drawer lateral
+    CDrawer : mesmo comportamento\nda sidebar principal
+  }
+
+  CExpand --> CCollapse : tela ≤ 1024px
+  CCollapse --> CExpand : tela > 1024px
+  CExpand --> CDrawer : tela ≤ 768px
+  CDrawer --> CExpand : tela > 768px
+}
+
+' ── TRANSIÇÕES ENTRE CONTEXTOS ──
+Principal --> Config : clica ⚙ Configurações\n(rodapé da sidebar)
+Config --> Principal : clica ← Backoffice
+
+note bottom of Config
+  Página dedicada — substitui o layout inteiro.
+  Sidebar de Configs segue a mesma lógica
+  responsiva da sidebar principal.
+end note
+
+@enduml

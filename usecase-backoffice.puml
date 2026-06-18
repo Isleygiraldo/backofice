@@ -1,0 +1,99 @@
+@startuml usecase-backoffice
+title Casos de Uso — Backoffice Pix365
+
+skinparam backgroundColor #111111
+skinparam defaultFontColor #cccccc
+skinparam defaultFontSize 13
+skinparam ArrowColor #888888
+skinparam ActorBorderColor #555555
+skinparam ActorBackgroundColor #1a1a1a
+skinparam UsecaseBorderColor #333333
+skinparam UsecaseBackgroundColor #1a1a1a
+skinparam PackageBorderColor #333333
+skinparam PackageBackgroundColor #141414
+
+' ── ATORES ──
+actor "Operador" as OP
+actor "Administrador" as ADM
+actor "Super Admin" as SA
+
+ADM --|> OP
+SA --|> ADM
+
+' ── MÓDULOS PRINCIPAIS ──
+rectangle "Backoffice Pix365" {
+
+  package "Operação & Financeiro" {
+    usecase "Visualizar dashboard" as UC_DASH
+    usecase "Gerenciar transações" as UC_TRX
+    usecase "Aprovar saques" as UC_SAQUE
+    usecase "Monitorar métricas" as UC_METR
+  }
+
+  package "Usuários" {
+    usecase "Listar apostadores" as UC_LIST
+    usecase "Visualizar perfil" as UC_PERF
+    usecase "Bloquear / desbloquear" as UC_BLCK
+    usecase "Impersonar usuário" as UC_IMP
+    usecase "Verificar KYC" as UC_KYC
+  }
+
+  package "Produto" {
+    usecase "Gerenciar jogos (cassino)" as UC_JOGOS
+    usecase "Gerenciar esportes" as UC_ESP
+    usecase "Criar promoções / bônus" as UC_PROMO
+    usecase "Gerenciar comunicação" as UC_COMM
+  }
+
+  package "Relatórios" {
+    usecase "Ver relatório esportivo" as UC_RELE
+    usecase "Ver relatório cassino" as UC_RELC
+    usecase "Exportar dados" as UC_EXP
+  }
+
+  package "Configurações\n(página dedicada)" {
+    usecase "Configurar plataforma" as UC_PLAT
+    usecase "Configurar branding" as UC_BRAND
+    usecase "Configurar gateway" as UC_GW
+    usecase "Configurar segurança" as UC_SEC
+    usecase "Configurar afiliados" as UC_AFIL
+    usecase "Gerenciar usuários\ndo sistema" as UC_USERS
+  }
+
+  package "Monitoramento" {
+    usecase "Ver logs e status" as UC_LOG
+    usecase "Consultar API" as UC_API
+  }
+}
+
+' ── OPERADOR ──
+OP --> UC_DASH
+OP --> UC_TRX
+OP --> UC_SAQUE
+OP --> UC_LIST
+OP --> UC_PERF
+OP --> UC_BLCK
+OP --> UC_KYC
+OP --> UC_JOGOS
+OP --> UC_ESP
+OP --> UC_PROMO
+OP --> UC_COMM
+OP --> UC_RELE
+OP --> UC_RELC
+
+' ── ADMINISTRADOR (herda Operador + extras) ──
+ADM --> UC_IMP
+ADM --> UC_EXP
+ADM --> UC_LOG
+ADM --> UC_API
+ADM --> UC_BRAND
+ADM --> UC_GW
+ADM --> UC_AFIL
+
+' ── SUPER ADMIN (herda ADM + configurações críticas) ──
+SA --> UC_PLAT
+SA --> UC_SEC
+SA --> UC_METR
+SA --> UC_USERS
+
+@enduml
