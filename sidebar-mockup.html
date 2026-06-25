@@ -446,6 +446,9 @@
       <div class="sidebar-item" data-section="monitoramento" data-label="Monitoramento" onclick="navigate(this)">
         <i class="ti ti-radar"></i><span class="item-label"> Monitoramento</span>
       </div>
+      <div class="sidebar-item" data-section="afiliados" data-label="Afiliados" onclick="navigate(this)">
+        <i class="ti ti-users-group"></i><span class="item-label"> Afiliados</span>
+      </div>
     </div>
 
     <div class="sidebar-bottom">
@@ -650,6 +653,20 @@
           <div class="page-title" id="monitorTitle">API</div>
           <p style="color:#444; font-size:13px">Em construção.</p>
         </div>
+      </div>
+    </div>
+
+    <!-- ══ AFILIADOS ══ -->
+    <div class="page-full hidden" id="pageAfiliados">
+      <div class="config-content">
+        <div class="page-title">Afiliados</div>
+        <div class="tabs" style="margin-top:16px;">
+          <div class="tab active" onclick="switchTab(this)">Visão Geral</div>
+          <div class="tab" onclick="switchTab(this)">Cadastros</div>
+          <div class="tab" onclick="switchTab(this)">Comissões</div>
+          <div class="tab" onclick="switchTab(this)">Relatório</div>
+        </div>
+        <p style="color:#444; font-size:13px">Em construção.</p>
       </div>
     </div>
 
@@ -907,6 +924,7 @@
       relatorios:           'pageRelatorios',
       monitoramento:        'pageMonitoramento',
       usuarios:             'pageUsuarios',
+      afiliados:            'pageAfiliados',
       'sistema-compliance': 'pageSistemaCompliance',
     };
 
