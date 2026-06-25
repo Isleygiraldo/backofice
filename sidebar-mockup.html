@@ -556,7 +556,7 @@
     </div>
 
     <!-- ══ CONFIGURAÇÕES ══ -->
-    <div class="page-full" id="pageConfig">
+    <div class="page-full hidden" id="pageConfig">
       <div class="config-content" id="configContent">
         <div class="page-title" id="configTitle">Plataforma</div>
         <div class="tabs" id="configTabs"></div>
@@ -908,25 +908,36 @@
   }
 
   // ── Navigation ───────────────────────────────────────────────────────────────
-  function navigate(el) {
-    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-    el.classList.add('active');
-    ALL_PAGES.forEach(id => document.getElementById(id).classList.add('hidden'));
+  const PAGE_MAP = {
+    configuracoes:        'pageConfig',
+    dashboard:            'pageDashboard',
+    esportes:             'pageEsportes',
+    promocoes:            'pagePromocoes',
+    relatorios:           'pageRelatorios',
+    monitoramento:        'pageMonitoramento',
+    usuarios:             'pageUsuarios',
+    afiliados:            'pageAfiliados',
+    'sistema-compliance': 'pageSistemaCompliance',
+  };
 
+  function hideAllPages() {
+    ALL_PAGES.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+  }
+
+  function navigate(el) {
+    if (!el) return;
     const section = el.dataset.section;
     const label = el.querySelector('.item-label')?.textContent.trim() || el.dataset.label;
 
-    const pageMap = {
-      configuracoes:        'pageConfig',
-      dashboard:            'pageDashboard',
-      esportes:             'pageEsportes',
-      promocoes:            'pagePromocoes',
-      relatorios:           'pageRelatorios',
-      monitoramento:        'pageMonitoramento',
-      usuarios:             'pageUsuarios',
-      afiliados:            'pageAfiliados',
-      'sistema-compliance': 'pageSistemaCompliance',
-    };
+    // esconde todas as páginas primeiro, sempre
+    hideAllPages();
+
+    // atualiza sidebar ativa
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
 
     if (section === 'configuracoes') {
       document.getElementById('sidebar').classList.add('hidden');
@@ -938,8 +949,13 @@
       return;
     }
 
-    if (pageMap[section]) {
-      document.getElementById(pageMap[section]).classList.remove('hidden');
+    // garante sidebar principal visível
+    document.getElementById('sidebar').classList.remove('hidden');
+    document.getElementById('sidebarConfig').classList.add('hidden');
+
+    const pageId = PAGE_MAP[section];
+    if (pageId) {
+      document.getElementById(pageId).classList.remove('hidden');
     } else {
       document.getElementById('emptyLabel').textContent = label;
       document.getElementById('pageEmpty').classList.remove('hidden');
