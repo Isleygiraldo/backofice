@@ -814,51 +814,114 @@
       <nav class="int-nav">
         <div class="int-nav-item active" onclick="selectSIGAPNav(this,'sigap-dashboard')">Dashboard</div>
         <div class="int-nav-item" onclick="selectSIGAPNav(this,'sigap-arquivos')">Arquivos</div>
-        <div class="int-nav-item" onclick="selectSIGAPNav(this,'sigap-config')">Configurações</div>
       </nav>
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
 
         <!-- ─ DASHBOARD ─ -->
         <div class="config-content" id="sigap-dashboard">
-          <div class="page-title">SIGAP — Dashboard</div>
-
-          <div class="dash-grid" style="margin-bottom:14px;">
-            <div class="dash-card">
-              <div class="label">Envios hoje</div>
-              <div class="value" style="font-size:20px;">5 / 5</div>
-              <div class="change up">↑ Todos concluídos</div>
-            </div>
-            <div class="dash-card">
-              <div class="label">Falhas últimas 24h</div>
-              <div class="value" style="font-size:20px; color:#c66;">0</div>
-              <div class="change neutral">Nenhuma pendência</div>
-            </div>
-            <div class="dash-card">
-              <div class="label">Próximo envio</div>
-              <div class="value" style="font-size:16px; margin-top:4px;">Hoje 23:59</div>
-              <div class="change neutral">Operador Diário</div>
-            </div>
-            <div class="dash-card">
-              <div class="label">Status API SIGAP</div>
-              <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
-                <span style="width:8px;height:8px;border-radius:50%;background:#4a9;display:inline-block;"></span>
-                <span style="font-size:13px;color:#eee;">Conectada</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+            <div class="page-title" style="margin-bottom:0;">SIGAP — Dashboard</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span style="width:7px;height:7px;border-radius:50%;background:#4caf7d;display:inline-block;"></span>
+                <span style="font-size:12px;color:#555;">API Conectada · Produção</span>
               </div>
-              <div class="change neutral" style="margin-top:6px;">Produção · SPA/MF</div>
-            </div>
-            <div class="dash-card">
-              <div class="label">Registros enviados hoje</div>
-              <div class="value" style="font-size:20px;">1.284.302</div>
-              <div class="change neutral">Ref. 25/06/2026</div>
-            </div>
-            <div class="dash-card">
-              <div class="label">Última notificação SPA</div>
-              <div class="value" style="font-size:13px; margin-top:4px; color:#666;">Nenhuma</div>
-              <div class="change neutral">Sem pendências regulatórias</div>
+              <button class="btn btn-primary" style="font-size:12px;padding:5px 14px;">↑ Enviar tudo agora</button>
             </div>
           </div>
 
-          <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">Histórico de envios — últimos 7 dias</div>
+          <!-- Resumo do dia -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px;">
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">Agendados hoje</div>
+              <div class="value" style="font-size:22px;">6</div>
+              <div class="change neutral">26/06/2026</div>
+            </div>
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">Enviados</div>
+              <div class="value" style="font-size:22px;color:#4caf7d;">6</div>
+              <div class="change up">↑ Todos concluídos</div>
+            </div>
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">Erros / Pendentes</div>
+              <div class="value" style="font-size:22px;">0</div>
+              <div class="change neutral">Sem pendências</div>
+            </div>
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">Registros enviados</div>
+              <div class="value" style="font-size:20px;">721.054</div>
+              <div class="change neutral">Ref. 26/06/2026</div>
+            </div>
+          </div>
+
+          <!-- Agendados para hoje -->
+          <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">Agendados para hoje — 26/06/2026</div>
+          <div class="table-wrap" style="margin-bottom:28px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Arquivo</th>
+                  <th>Agendado às</th>
+                  <th>Referência</th>
+                  <th>Registros</th>
+                  <th>Tamanho</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:500;">Apostador</td><td>00:30</td><td>2026-06-26</td><td>49.003</td><td>12,6 MB</td>
+                  <td><span class="badge badge-green">Aceito</span></td>
+                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500;">Carteira</td><td>00:32</td><td>2026-06-26</td><td>49.003</td><td>9,3 MB</td>
+                  <td><span class="badge badge-green">Aceito</span></td>
+                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500;">Operador Diário</td><td>00:33</td><td>2026-06-26</td><td>1</td><td>2 KB</td>
+                  <td><span class="badge badge-green">Aceito</span></td>
+                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500;">Apostas Esportivas</td><td>00:35</td><td>2026-06-26</td><td>194.120</td><td>47,2 MB</td>
+                  <td><span class="badge badge-green">Aceito</span></td>
+                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500;">Cassino</td><td>00:37</td><td>2026-06-26</td><td>428.927</td><td>71,4 MB</td>
+                  <td><span class="badge badge-green">Aceito</span></td>
+                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Histórico -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;">Histórico de envios</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <input class="filter-input" type="date" value="2026-06-23" style="width:150px;">
+              <input class="filter-input" type="date" value="2026-06-26" style="width:150px;">
+              <select class="filter-input" style="width:160px;">
+                <option>Todos os tipos</option>
+                <option>Apostador</option>
+                <option>Carteira</option>
+                <option>Operador Diário</option>
+                <option>Operador Mensal</option>
+                <option>Apostas Esportivas</option>
+                <option>Cassino</option>
+              </select>
+              <select class="filter-input" style="width:130px;">
+                <option>Todos os status</option>
+                <option>Aceito</option>
+                <option>Pendente</option>
+                <option>Rejeitado</option>
+              </select>
+            </div>
+          </div>
           <div class="table-wrap">
             <table class="data-table">
               <thead>
@@ -870,44 +933,60 @@
                   <th>Tamanho</th>
                   <th>Enviado às</th>
                   <th>Status</th>
-                  <th></th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>25/06/2026</td><td>Apostador</td><td>2026-06-25</td><td>48.201</td><td>12,4 MB</td><td>00:31</td>
+                  <td>25/06</td><td style="font-weight:500;">Apostador</td><td>2026-06-25</td><td>48.201</td><td>12,4 MB</td><td>00:31</td>
                   <td><span class="badge badge-green">Aceito</span></td>
-                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                  <td style="display:flex;gap:5px;"><button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Baixar</button></td>
                 </tr>
                 <tr>
-                  <td>25/06/2026</td><td>Carteira</td><td>2026-06-25</td><td>48.201</td><td>9,1 MB</td><td>00:32</td>
+                  <td>25/06</td><td style="font-weight:500;">Carteira</td><td>2026-06-25</td><td>48.201</td><td>9,1 MB</td><td>00:32</td>
                   <td><span class="badge badge-green">Aceito</span></td>
-                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                  <td style="display:flex;gap:5px;"><button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Baixar</button></td>
                 </tr>
                 <tr>
-                  <td>25/06/2026</td><td>Operador Diário</td><td>2026-06-25</td><td>1</td><td>2 KB</td><td>00:33</td>
+                  <td>25/06</td><td style="font-weight:500;">Operador Diário</td><td>2026-06-25</td><td>1</td><td>2 KB</td><td>00:33</td>
                   <td><span class="badge badge-green">Aceito</span></td>
-                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                  <td style="display:flex;gap:5px;"><button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Baixar</button></td>
                 </tr>
                 <tr>
-                  <td>25/06/2026</td><td>Apostas Esportivas</td><td>2026-06-25</td><td>182.450</td><td>44,7 MB</td><td>00:35</td>
+                  <td>25/06</td><td style="font-weight:500;">Apostas Esportivas</td><td>2026-06-25</td><td>182.450</td><td>44,7 MB</td><td>00:35</td>
                   <td><span class="badge badge-green">Aceito</span></td>
-                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                  <td style="display:flex;gap:5px;"><button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Baixar</button></td>
                 </tr>
                 <tr>
-                  <td>24/06/2026</td><td>Apostador</td><td>2026-06-24</td><td>47.918</td><td>12,3 MB</td><td>00:30</td>
+                  <td>25/06</td><td style="font-weight:500;">Cassino</td><td>2026-06-25</td><td>391.200</td><td>67,3 MB</td><td>00:37</td>
                   <td><span class="badge badge-green">Aceito</span></td>
-                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button></td>
+                  <td style="display:flex;gap:5px;"><button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Baixar</button></td>
                 </tr>
-                <tr>
-                  <td>24/06/2026</td><td>Carteira</td><td>2026-06-24</td><td>47.918</td><td>9,0 MB</td><td>00:31</td>
+                <tr style="background:#fffbe6;">
+                  <td>24/06</td><td style="font-weight:500;">Carteira</td><td>2026-06-24</td><td>47.918</td><td>9,0 MB</td><td>00:31</td>
                   <td><span class="badge badge-yellow">Pendente</span></td>
-                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button></td>
+                  <td style="display:flex;gap:5px;">
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Reenviar</button>
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;color:#b07c00;border-color:#e0b830;" onclick="event.stopPropagation()">Notificar</button>
+                  </td>
                 </tr>
-                <tr>
-                  <td>23/06/2026</td><td>Apostas Esportivas</td><td>2026-06-23</td><td>191.020</td><td>46,2 MB</td><td>00:38</td>
+                <tr style="background:#fff5f5;">
+                  <td>23/06</td><td style="font-weight:500;">Apostas Esportivas</td><td>2026-06-23</td><td>191.020</td><td>46,2 MB</td><td>00:38</td>
                   <td><span class="badge badge-red">Rejeitado</span></td>
-                  <td><button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button></td>
+                  <td style="display:flex;gap:5px;">
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Ver erro</button>
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Reenviar</button>
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;color:#b03030;border-color:#e08080;" onclick="event.stopPropagation()">Notificar</button>
+                  </td>
+                </tr>
+                <tr style="background:#fff5f5;">
+                  <td>22/06</td><td style="font-weight:500;">Cassino</td><td>2026-06-22</td><td>—</td><td>—</td><td>—</td>
+                  <td><span class="badge badge-red">Rejeitado</span></td>
+                  <td style="display:flex;gap:5px;">
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Ver erro</button>
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;" onclick="event.stopPropagation()">Reenviar</button>
+                    <button class="btn btn-secondary" style="font-size:11px;padding:2px 9px;color:#b03030;border-color:#e08080;" onclick="event.stopPropagation()">Notificar</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -916,166 +995,132 @@
 
         <!-- ─ ARQUIVOS ─ -->
         <div class="config-content hidden" id="sigap-arquivos">
-          <div class="page-title">SIGAP — Arquivos</div>
+          <div class="page-title" style="margin-bottom:4px;">SIGAP — Tipos de Arquivo</div>
+          <p style="font-size:13px;color:#888;margin-bottom:22px;">Catálogo dos arquivos enviados periodicamente ao SIGAP/SPA conforme regulamentação da SPA/MF.</p>
 
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-            <button class="btn btn-primary" style="font-size:12px;padding:6px 16px;">↑ Enviar arquivos hoje</button>
-            <input class="filter-input" type="date" value="2026-06-25" style="width:160px;">
-            <button class="btn btn-secondary" style="font-size:12px;padding:5px 14px;">Filtrar</button>
-          </div>
+          <!-- Cards de tipo -->
+          <div style="display:flex;flex-direction:column;gap:12px;max-width:820px;">
 
-          <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">Tipos de arquivo — ref. 25/06/2026</div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Frequência</th>
-                  <th>Descrição</th>
-                  <th>Último envio</th>
-                  <th>Registros</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="color:#ccc;font-weight:500;">Apostador</td>
-                  <td>Diário</td>
-                  <td style="font-size:12px;">Dados cadastrais de apostadores</td>
-                  <td>25/06/2026 00:31</td>
-                  <td>48.201</td>
-                  <td><span class="badge badge-green">Aceito</span></td>
-                  <td style="display:flex;gap:6px;">
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button>
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="color:#ccc;font-weight:500;">Carteira</td>
-                  <td>Diário</td>
-                  <td style="font-size:12px;">Movimentação financeira por apostador</td>
-                  <td>25/06/2026 00:32</td>
-                  <td>48.201</td>
-                  <td><span class="badge badge-green">Aceito</span></td>
-                  <td style="display:flex;gap:6px;">
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button>
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="color:#ccc;font-weight:500;">Operador Diário</td>
-                  <td>Diário</td>
-                  <td style="font-size:12px;">Agregado da operação do dia</td>
-                  <td>25/06/2026 00:33</td>
-                  <td>1</td>
-                  <td><span class="badge badge-green">Aceito</span></td>
-                  <td style="display:flex;gap:6px;">
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button>
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="color:#ccc;font-weight:500;">Operador Mensal</td>
-                  <td>Mensal</td>
-                  <td style="font-size:12px;">Obrigações legais mensais (GGR, transferências)</td>
-                  <td>01/06/2026 01:00</td>
-                  <td>1</td>
-                  <td><span class="badge badge-green">Aceito</span></td>
-                  <td style="display:flex;gap:6px;">
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button>
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="color:#ccc;font-weight:500;">Apostas Esportivas</td>
-                  <td>Diário</td>
-                  <td style="font-size:12px;">Detalhes de todas as apostas do dia</td>
-                  <td>25/06/2026 00:35</td>
-                  <td>182.450</td>
-                  <td><span class="badge badge-green">Aceito</span></td>
-                  <td style="display:flex;gap:6px;">
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button>
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="color:#ccc;font-weight:500;">Cassino</td>
-                  <td>Diário</td>
-                  <td style="font-size:12px;">Detalhes de todas as rodadas de cassino do dia</td>
-                  <td>25/06/2026 00:37</td>
-                  <td>67.3 MB</td>
-                  <td><span class="badge badge-green">Aceito</span></td>
-                  <td style="display:flex;gap:6px;">
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Baixar</button>
-                    <button class="btn btn-secondary" style="font-size:11px;padding:3px 10px;" onclick="event.stopPropagation()">Reenviar</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- ─ CONFIGURAÇÕES ─ -->
-        <div class="config-content hidden" id="sigap-config">
-          <div class="page-title">SIGAP — Configurações</div>
-
-          <div style="max-width:560px;">
-            <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:14px;">Credenciais de Acesso</div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
-              <div>
-                <div class="field-label" style="margin-bottom:5px;">CNPJ da Operadora</div>
-                <input class="filter-input" style="width:100%;box-sizing:border-box;" value="00.000.000/0001-00" placeholder="00.000.000/0001-00">
+            <div class="dash-card" style="padding:18px 20px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:3px;">Apostador</div>
+                  <div style="font-size:12px;color:#666;">Dados cadastrais e financeiros de todos os apostadores registrados na plataforma</div>
+                </div>
+                <div style="display:flex;gap:6px;flex-shrink:0;">
+                  <span style="font-size:10px;font-weight:600;background:#eeeef5;color:#5b169f;border-radius:4px;padding:2px 8px;">DIÁRIO</span>
+                  <span class="badge badge-green">Aceito</span>
+                </div>
               </div>
-              <div>
-                <div class="field-label" style="margin-bottom:5px;">Código da Outorga</div>
-                <input class="filter-input" style="width:100%;box-sizing:border-box;" value="SPA-2025-0001" placeholder="SPA-0000-0000">
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:11px;border-top:0.5px solid #f0f0f0;padding-top:10px;margin-top:6px;">
+                <div><span style="color:#888;display:block;">Formato</span><span style="color:#333;">JSON · GZIP</span></div>
+                <div><span style="color:#888;display:block;">Deadline</span><span style="color:#333;">01:00 (BRT)</span></div>
+                <div><span style="color:#888;display:block;">Último envio</span><span style="color:#333;">26/06/2026 00:30</span></div>
+                <div><span style="color:#888;display:block;">Registros (ontem)</span><span style="color:#333;">48.201</span></div>
               </div>
+              <div style="font-size:11px;color:#888;margin-top:8px;">Campos: <span style="color:#555;">cpf · nome · dataNascimento · email · telefone · saldoAtual · limiteDiario · limiteDeposito · dataRegistro · status</span></div>
             </div>
 
-            <div style="margin-bottom:12px;">
-              <div class="field-label" style="margin-bottom:5px;">Client ID</div>
-              <input class="filter-input" style="width:100%;box-sizing:border-box;" value="sigap_client_pix365_prod" placeholder="client_id">
-            </div>
-            <div style="margin-bottom:12px;">
-              <div class="field-label" style="margin-bottom:5px;">Client Secret</div>
-              <input class="filter-input" type="password" style="width:100%;box-sizing:border-box;" value="••••••••••••••••••••" placeholder="client_secret">
-            </div>
-
-            <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin:18px 0 14px;">Ambiente</div>
-
-            <div style="display:flex;gap:10px;margin-bottom:18px;">
-              <button class="btn btn-secondary" style="font-size:12px;padding:6px 18px;border:0.5px solid #333;">Homologação</button>
-              <button class="btn btn-primary" style="font-size:12px;padding:6px 18px;">Produção ✓</button>
-            </div>
-
-            <div style="margin-bottom:12px;">
-              <div class="field-label" style="margin-bottom:5px;">Endpoint (automático)</div>
-              <input class="filter-input" style="width:100%;box-sizing:border-box;color:#666;" value="https://sigap-rec.estaleiro.serpro.gov.br" readonly>
-            </div>
-
-            <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin:18px 0 14px;">Automação de Envio</div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;">
-              <div>
-                <div class="field-label" style="margin-bottom:5px;">Horário de envio diário</div>
-                <input class="filter-input" style="width:100%;box-sizing:border-box;" value="00:30" type="time">
+            <div class="dash-card" style="padding:18px 20px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:3px;">Carteira</div>
+                  <div style="font-size:12px;color:#666;">Movimentação financeira por apostador — depósitos, saques, bônus, ajustes e saldo final</div>
+                </div>
+                <div style="display:flex;gap:6px;flex-shrink:0;">
+                  <span style="font-size:10px;font-weight:600;background:#eeeef5;color:#5b169f;border-radius:4px;padding:2px 8px;">DIÁRIO</span>
+                  <span class="badge badge-green">Aceito</span>
+                </div>
               </div>
-              <div>
-                <div class="field-label" style="margin-bottom:5px;">Fuso horário</div>
-                <input class="filter-input" style="width:100%;box-sizing:border-box;" value="America/Sao_Paulo">
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:11px;border-top:0.5px solid #f0f0f0;padding-top:10px;margin-top:6px;">
+                <div><span style="color:#888;display:block;">Formato</span><span style="color:#333;">JSON · GZIP</span></div>
+                <div><span style="color:#888;display:block;">Deadline</span><span style="color:#333;">01:00 (BRT)</span></div>
+                <div><span style="color:#888;display:block;">Último envio</span><span style="color:#333;">26/06/2026 00:32</span></div>
+                <div><span style="color:#888;display:block;">Registros (ontem)</span><span style="color:#333;">48.201</span></div>
               </div>
+              <div style="font-size:11px;color:#888;margin-top:8px;">Campos: <span style="color:#555;">cpf · dataHora · tipo · valor · saldoAntes · saldoDepois · metodoPagamento · idTransacao</span></div>
             </div>
 
-            <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
-              <button class="btn btn-primary" style="font-size:12px;padding:6px 16px;">Salvar configurações</button>
-              <button class="btn btn-secondary" style="font-size:12px;padding:5px 14px;">Testar conexão</button>
-              <div style="display:flex;align-items:center;gap:6px;margin-left:8px;">
-                <span style="width:7px;height:7px;border-radius:50%;background:#4a9;display:inline-block;"></span>
-                <span style="font-size:12px;color:#666;">Conectado · Último teste 00:30</span>
+            <div class="dash-card" style="padding:18px 20px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:3px;">Operador Diário</div>
+                  <div style="font-size:12px;color:#666;">Relatório agregado da operação: GGR, handle total, RTP, usuários únicos apostadores</div>
+                </div>
+                <div style="display:flex;gap:6px;flex-shrink:0;">
+                  <span style="font-size:10px;font-weight:600;background:#eeeef5;color:#5b169f;border-radius:4px;padding:2px 8px;">DIÁRIO</span>
+                  <span class="badge badge-green">Aceito</span>
+                </div>
               </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:11px;border-top:0.5px solid #f0f0f0;padding-top:10px;margin-top:6px;">
+                <div><span style="color:#888;display:block;">Formato</span><span style="color:#333;">JSON · GZIP</span></div>
+                <div><span style="color:#888;display:block;">Deadline</span><span style="color:#333;">01:00 (BRT)</span></div>
+                <div><span style="color:#888;display:block;">Último envio</span><span style="color:#333;">26/06/2026 00:33</span></div>
+                <div><span style="color:#888;display:block;">Registros</span><span style="color:#333;">1 (agregado)</span></div>
+              </div>
+              <div style="font-size:11px;color:#888;margin-top:8px;">Campos: <span style="color:#555;">dataReferencia · handleTotal · GGRBruto · GGRLiquido · totalDepositos · totalSaques · usuariosUnicos · rtpEsportivo · rtpCassino</span></div>
             </div>
+
+            <div class="dash-card" style="padding:18px 20px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:3px;">Operador Mensal</div>
+                  <div style="font-size:12px;color:#666;">Obrigações legais mensais: GGR bruto, transferências ao governo, impostos devidos (IRPJ, CSLL)</div>
+                </div>
+                <div style="display:flex;gap:6px;flex-shrink:0;">
+                  <span style="font-size:10px;font-weight:600;background:#f5f0e8;color:#b07020;border-radius:4px;padding:2px 8px;">MENSAL</span>
+                  <span class="badge badge-green">Aceito</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:11px;border-top:0.5px solid #f0f0f0;padding-top:10px;margin-top:6px;">
+                <div><span style="color:#888;display:block;">Formato</span><span style="color:#333;">JSON · GZIP</span></div>
+                <div><span style="color:#888;display:block;">Deadline</span><span style="color:#333;">Dia 1 · 03:00 (BRT)</span></div>
+                <div><span style="color:#888;display:block;">Último envio</span><span style="color:#333;">01/06/2026 01:00</span></div>
+                <div><span style="color:#888;display:block;">Registros</span><span style="color:#333;">1 (agregado)</span></div>
+              </div>
+              <div style="font-size:11px;color:#888;margin-top:8px;">Campos: <span style="color:#555;">mesReferencia · GGRBruto · impostoDevido · transferenciaSPA · saldoOperador · totalPremios · totalBonus</span></div>
+            </div>
+
+            <div class="dash-card" style="padding:18px 20px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:3px;">Apostas Esportivas</div>
+                  <div style="font-size:12px;color:#666;">Detalhes de todas as apostas esportivas do dia — odds, mercados, eventos, resultados e prêmios pagos</div>
+                </div>
+                <div style="display:flex;gap:6px;flex-shrink:0;">
+                  <span style="font-size:10px;font-weight:600;background:#eeeef5;color:#5b169f;border-radius:4px;padding:2px 8px;">DIÁRIO</span>
+                  <span class="badge badge-green">Aceito</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:11px;border-top:0.5px solid #f0f0f0;padding-top:10px;margin-top:6px;">
+                <div><span style="color:#888;display:block;">Formato</span><span style="color:#333;">JSON · GZIP</span></div>
+                <div><span style="color:#888;display:block;">Deadline</span><span style="color:#333;">01:00 (BRT)</span></div>
+                <div><span style="color:#888;display:block;">Último envio</span><span style="color:#333;">26/06/2026 00:35</span></div>
+                <div><span style="color:#888;display:block;">Registros (ontem)</span><span style="color:#333;">182.450</span></div>
+              </div>
+              <div style="font-size:11px;color:#888;margin-top:8px;">Campos: <span style="color:#555;">idAposta · cpfApostador · dataHora · evento · mercado · odd · valorApostado · resultado · premioLiquido · modalidade</span></div>
+            </div>
+
+            <div class="dash-card" style="padding:18px 20px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#111;margin-bottom:3px;">Cassino</div>
+                  <div style="font-size:12px;color:#666;">Detalhes de todas as rodadas de cassino do dia — jogos, providers, RTP por rodada, prêmios</div>
+                </div>
+                <div style="display:flex;gap:6px;flex-shrink:0;">
+                  <span style="font-size:10px;font-weight:600;background:#eeeef5;color:#5b169f;border-radius:4px;padding:2px 8px;">DIÁRIO</span>
+                  <span class="badge badge-green">Aceito</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:11px;border-top:0.5px solid #f0f0f0;padding-top:10px;margin-top:6px;">
+                <div><span style="color:#888;display:block;">Formato</span><span style="color:#333;">JSON · GZIP</span></div>
+                <div><span style="color:#888;display:block;">Deadline</span><span style="color:#333;">01:00 (BRT)</span></div>
+                <div><span style="color:#888;display:block;">Último envio</span><span style="color:#333;">26/06/2026 00:37</span></div>
+                <div><span style="color:#888;display:block;">Registros (ontem)</span><span style="color:#333;">391.200</span></div>
+              </div>
+              <div style="font-size:11px;color:#888;margin-top:8px;">Campos: <span style="color:#555;">idRodada · cpfApostador · dataHora · jogo · provider · valorApostado · valorPremio · rtp · resultado · saldoFinal</span></div>
+            </div>
+
           </div>
         </div>
 
@@ -1336,7 +1381,7 @@
   }
 
   // ── SIGAP nav (show/hide sections) ───────────────────────────────────────────
-  const SIGAP_SECTIONS = ['sigap-dashboard','sigap-arquivos','sigap-config'];
+  const SIGAP_SECTIONS = ['sigap-dashboard','sigap-arquivos'];
   function selectSIGAPNav(el, sectionId) {
     el.closest('.int-nav').querySelectorAll('.int-nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
