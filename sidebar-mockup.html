@@ -50,6 +50,9 @@
     .sidebar-bottom { margin-top: auto; padding-bottom: 8px; }
     .sidebar-divider { height: 0.5px; background: #1f1f1f; margin: 6px 16px 10px; }
 
+    /* ── Admin badge ── */
+    .badge-admin { font-size: 8px; font-weight: 700; color: #f5a623; background: rgba(245,166,35,0.12); border: 0.5px solid rgba(245,166,35,0.3); border-radius: 3px; padding: 1px 5px; letter-spacing: 0.5px; text-transform: uppercase; margin-left: auto; flex-shrink: 0; }
+
     /* ── Config sidebar back button ── */
     .sidebar-back { display: flex; align-items: center; gap: 8px; padding: 12px 16px; font-size: 12px; color: #555; cursor: pointer; border-bottom: 0.5px solid #1f1f1f; margin-bottom: 4px; transition: color 0.1s; white-space: nowrap; overflow: hidden; }
     .sidebar-back:hover { color: #ddd; background: #161616; }
@@ -451,22 +454,6 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Acesso</div>
-      <div class="sidebar-item config-nav-item" data-config="cargos" data-label="Cargos" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-briefcase"></i><span class="item-label"> Cargos</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="operadores" data-label="Operadores" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-user-cog"></i><span class="item-label"> Operadores</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="autorizacoes" data-label="Autorizações" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-shield-check"></i><span class="item-label"> Autorizações</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="bloqueios" data-label="Bloqueios" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-ban"></i><span class="item-label"> Bloqueios</span>
-      </div>
-    </div>
-
     <div class="sidebar-bottom">
       <div class="sidebar-divider"></div>
       <div class="sidebar-item" data-section="configuracoes" data-label="Configurações" onclick="navigate(this)">
@@ -553,6 +540,22 @@
       </div>
       <div class="sidebar-item config-nav-item" data-config="geolocalizacao" data-label="Geolocalização" onclick="selectConfigSidebar(this)">
         <i class="ti ti-map-pin"></i><span class="item-label"> Geolocalização</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Acesso</div>
+      <div class="sidebar-item config-nav-item" data-config="cargos" data-label="Cargos" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-briefcase"></i><span class="item-label"> Cargos</span><span class="badge-admin">admin</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="operadores" data-label="Operadores" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-user-cog"></i><span class="item-label"> Operadores</span><span class="badge-admin">admin</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="autorizacoes" data-label="Autorizações" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-shield-check"></i><span class="item-label"> Autorizações</span><span class="badge-admin">admin</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="bloqueios" data-label="Bloqueios" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-ban"></i><span class="item-label"> Bloqueios</span><span class="badge-admin">admin</span>
       </div>
     </div>
   </nav>
