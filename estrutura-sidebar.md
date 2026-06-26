@@ -29,7 +29,7 @@
 | Usuários | Abas: Dados · Bloqueios · Transações · Bônus · Apostas · Cassino · Palpites · Notificações · Mensagem Privada · KYC · Autorizações · Grupos · Afiliados · Limites · Logins |
 | Relatórios | Abas: Dashboard · Cassino · Esportivo · Resumo |
 | Monitoramento | Sub-nav: API · Métricas · Status · Logs · Propriedades |
-| **Afiliados** _(novo)_ | Abas: Visão Geral · Cadastros · Comissões · Relatório |
+| Afiliados | Abas: Visão Geral · Cadastros · Comissões · Relatório |
 
 ### Rodapé
 | Item | Comportamento |
@@ -68,6 +68,14 @@
 - Afiliado
 - Geolocalização
 
+### Acesso _(visível apenas para Admin)_
+| Item | Descrição |
+|------|-----------|
+| Cargos | Definição de funções/roles dos operadores |
+| Operadores | Usuários administradores/operadores do backoffice |
+| Autorizações | Controle de permissões de acesso |
+| Bloqueios | Bloqueio de usuários do sistema |
+
 ---
 
 ## Hierarquia resumida
@@ -97,5 +105,6 @@ Sidebar Principal
     ├── Plataforma → [Plataforma, Branding, SEO, Social, CMS]
     ├── Financeiro → [Financeiro, Gateway, PLD]
     ├── Comunicação → [Chat, Anúncios, Mensagem, Notificações, Buscas]
-    └── Sistema → [Analytics, Segurança, Arquivo, Afiliado, Geolocalização]
+    ├── Sistema → [Analytics, Segurança, Arquivo, Afiliado, Geolocalização]
+    └── Acesso ★ admin → [Cargos, Operadores, Autorizações, Bloqueios]
 ```
