@@ -451,6 +451,22 @@
       </div>
     </div>
 
+    <div class="sidebar-section">
+      <div class="sidebar-label">Acesso</div>
+      <div class="sidebar-item config-nav-item" data-config="cargos" data-label="Cargos" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-briefcase"></i><span class="item-label"> Cargos</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="operadores" data-label="Operadores" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-user-cog"></i><span class="item-label"> Operadores</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="autorizacoes" data-label="Autorizações" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-shield-check"></i><span class="item-label"> Autorizações</span>
+      </div>
+      <div class="sidebar-item config-nav-item" data-config="bloqueios" data-label="Bloqueios" onclick="selectConfigSidebar(this)">
+        <i class="ti ti-ban"></i><span class="item-label"> Bloqueios</span>
+      </div>
+    </div>
+
     <div class="sidebar-bottom">
       <div class="sidebar-divider"></div>
       <div class="sidebar-item" data-section="configuracoes" data-label="Configurações" onclick="navigate(this)">
@@ -816,6 +832,10 @@
     arquivo:        { title: 'Arquivo',        tabs: [] },
     afiliado:       { title: 'Afiliado',       tabs: [] },
     geolocalizacao: { title: 'Geolocalização', tabs: [] },
+    cargos:         { title: 'Cargos',         tabs: [] },
+    operadores:     { title: 'Operadores',     tabs: [] },
+    autorizacoes:   { title: 'Autorizações',   tabs: [] },
+    bloqueios:      { title: 'Bloqueios',      tabs: [] },
   };
 
   const DEFAULT_FIELDS = {
