@@ -59,7 +59,7 @@
     .sidebar-back i { font-size: 15px; flex-shrink: 0; }
 
     /* ── Main area ── */
-    .main-area { flex: 1; background: #191627; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+    .main-area { flex: 1; background: #f5f5f7; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
     .topbar { height: 46px; min-height: 46px; background: #0d061c; border-bottom: 0.5px solid #1e1535; display: flex; align-items: center; padding: 0 24px; gap: 10px; }
     .hamburger { display: none; background: none; border: none; color: #888; cursor: pointer; padding: 4px 6px; font-size: 20px; flex-shrink: 0; line-height: 1; }
     .hamburger:hover { color: #eee; }
@@ -90,11 +90,11 @@
       line-height: 1;
     }
     .sidebar-pushtab:hover { width: 18px; background: #2a2a2a; }
-    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #666; min-width: 0; overflow: hidden; }
-    .breadcrumb .sep { color: #444; flex-shrink: 0; }
-    .breadcrumb .bc-link { color: #888; cursor: pointer; white-space: nowrap; }
-    .breadcrumb .bc-link:hover { color: #aaa; }
-    .breadcrumb .current { color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888; min-width: 0; overflow: hidden; }
+    .breadcrumb .sep { color: #555; flex-shrink: 0; }
+    .breadcrumb .bc-link { color: #999; cursor: pointer; white-space: nowrap; }
+    .breadcrumb .bc-link:hover { color: #ccc; }
+    .breadcrumb .current { color: #eee; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     /* ── Overlay (mobile drawer) ── */
     .sidebar-overlay {
@@ -111,47 +111,47 @@
     .page-full { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
     /* ── Internal nav ── */
-    .int-nav { width: 190px; min-width: 190px; background: #0f0f0f; border-right: 0.5px solid #1e1535; overflow-y: auto; padding: 14px 0; flex-shrink: 0; }
-    .int-nav-label { font-size: 9px; font-weight: 600; color: #555; letter-spacing: 1.2px; text-transform: uppercase; padding: 10px 16px 4px; }
+    .int-nav { width: 190px; min-width: 190px; background: #eeeef2; border-right: 0.5px solid #e0e0e0; overflow-y: auto; padding: 14px 0; flex-shrink: 0; }
+    .int-nav-label { font-size: 9px; font-weight: 600; color: #888; letter-spacing: 1.2px; text-transform: uppercase; padding: 10px 16px 4px; }
     .int-nav-label:first-child { padding-top: 0; }
-    .int-nav-item { padding: 7px 16px; font-size: 13px; color: #888; cursor: pointer; border-left: 2px solid transparent; transition: color 0.1s, background 0.1s; }
-    .int-nav-item:hover { color: #bbb; background: #150f23; }
-    .int-nav-item.active { color: #fff; background: #1e1535; border-left-color: #5b169f; }
+    .int-nav-item { padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 2px solid transparent; transition: color 0.1s, background 0.1s; }
+    .int-nav-item:hover { color: #111; background: #e2e2ea; }
+    .int-nav-item.active { color: #5b169f; background: #ede5ff; border-left-color: #5b169f; }
 
     /* ── Content panel ── */
     .config-content { flex: 1; padding: 22px 28px; overflow-y: auto; }
-    .page-title { font-size: 17px; font-weight: 500; color: #eee; margin-bottom: 18px; }
+    .page-title { font-size: 17px; font-weight: 500; color: #111; margin-bottom: 18px; }
 
     /* ── Tabs ── */
-    .tabs { display: flex; border-bottom: 0.5px solid #222; margin-bottom: 22px; overflow-x: auto; }
+    .tabs { display: flex; border-bottom: 0.5px solid #e0e0e0; margin-bottom: 22px; overflow-x: auto; }
     .tabs::-webkit-scrollbar { height: 0; }
     .tab { padding: 8px 16px; font-size: 12.5px; color: #888; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -0.5px; white-space: nowrap; transition: color 0.1s; flex-shrink: 0; }
-    .tab:hover { color: #bbb; }
-    .tab.active { color: #fff; border-bottom-color: #fff; }
+    .tab:hover { color: #333; }
+    .tab.active { color: #111; border-bottom-color: #5b169f; }
 
     /* ── Form ── */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
     .form-field { display: flex; flex-direction: column; gap: 5px; }
     .field-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
-    .field-input { height: 34px; background: #150f23; border: 0.5px solid #2a1a45; border-radius: 6px; color: #ccc; font-size: 13px; padding: 0 10px; font-family: inherit; transition: border-color 0.15s; }
-    .field-input:focus { outline: none; border-color: #555; }
-    .field-textarea { min-height: 72px; background: #150f23; border: 0.5px solid #2a1a45; border-radius: 6px; color: #ccc; font-size: 13px; padding: 8px 10px; font-family: inherit; resize: vertical; }
-    .field-textarea:focus { outline: none; border-color: #555; }
+    .field-input { height: 34px; background: #fff; border: 0.5px solid #ddd; border-radius: 6px; color: #111; font-size: 13px; padding: 0 10px; font-family: inherit; transition: border-color 0.15s; }
+    .field-input:focus { outline: none; border-color: #5b169f; }
+    .field-textarea { min-height: 72px; background: #fff; border: 0.5px solid #ddd; border-radius: 6px; color: #111; font-size: 13px; padding: 8px 10px; font-family: inherit; resize: vertical; }
+    .field-textarea:focus { outline: none; border-color: #5b169f; }
 
     /* ── Footer bar ── */
-    .footer-bar { display: flex; justify-content: flex-end; align-items: center; padding: 12px 28px; border-top: 0.5px solid #1a1a1a; background: #0d061c; gap: 10px; }
+    .footer-bar { display: flex; justify-content: flex-end; align-items: center; padding: 12px 28px; border-top: 0.5px solid #e5e5e5; background: #fff; gap: 10px; }
     .btn { border: none; border-radius: 6px; padding: 7px 20px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; transition: background 0.1s; }
     .btn-primary { background: #5b169f; color: #fff; }
     .btn-primary:hover { background: #8b5fbf; }
-    .btn-secondary { background: transparent; color: #888; border: 0.5px solid #2a1a45; }
-    .btn-secondary:hover { color: #bbb; border-color: #444; }
+    .btn-secondary { background: #fff; color: #444; border: 0.5px solid #ddd; }
+    .btn-secondary:hover { color: #111; border-color: #999; }
 
     /* ── Dashboard ── */
     .page-dashboard { padding: 22px 28px; overflow-y: auto; flex: 1; }
     .dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
-    .dash-card { background: #150f23; border: 0.5px solid #1e1535; border-radius: 8px; padding: 16px; }
-    .dash-card .label { font-size: 11px; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .dash-card .value { font-size: 22px; font-weight: 500; color: #eee; }
+    .dash-card { background: #fff; border: 0.5px solid #e5e5e5; border-radius: 8px; padding: 16px; }
+    .dash-card .label { font-size: 11px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .dash-card .value { font-size: 22px; font-weight: 500; color: #111; }
     .dash-card .change { font-size: 11px; margin-top: 6px; }
     .dash-card .change.up { color: #4a9; }
     .dash-card .change.down { color: #c66; }
@@ -159,55 +159,55 @@
 
     /* ── Branding nested nav ── */
     .branding-layout { display: flex; height: 100%; }
-    .branding-nav { width: 155px; min-width: 155px; border-right: 0.5px solid #1e1535; overflow-y: auto; padding: 14px 0; flex-shrink: 0; }
+    .branding-nav { width: 155px; min-width: 155px; background: #eeeef2; border-right: 0.5px solid #e0e0e0; overflow-y: auto; padding: 14px 0; flex-shrink: 0; }
     .branding-grp { font-size: 9px; font-weight: 600; color: #555; letter-spacing: 1.2px; text-transform: uppercase; padding: 10px 14px 4px; }
     .branding-grp:first-child { padding-top: 0; }
-    .branding-itm { padding: 6px 14px; font-size: 12.5px; color: #888; cursor: pointer; border-left: 2px solid transparent; white-space: nowrap; }
-    .branding-itm:hover { color: #bbb; background: #150f23; }
-    .branding-itm.active { color: #fff; background: #1e1535; border-left-color: #5b169f; }
+    .branding-itm { padding: 6px 14px; font-size: 12.5px; color: #555; cursor: pointer; border-left: 2px solid transparent; white-space: nowrap; }
+    .branding-itm:hover { color: #111; background: #eeeef2; }
+    .branding-itm.active { color: #5b169f; background: #ede5ff; border-left-color: #5b169f; }
     .branding-body { flex: 1; padding: 20px 24px; overflow-y: auto; min-width: 0; }
 
     /* ── Usuários list ── */
     .usuarios-wrap { flex: 1; padding: 22px 28px; overflow-y: auto; }
     .list-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
     .list-filters { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-    .filter-input { height: 32px; background: #150f23; border: 0.5px solid #2a1a45; border-radius: 6px; color: #ccc; font-size: 12px; padding: 0 10px; font-family: inherit; }
-    .filter-input::placeholder { color: #555; }
-    .filter-input:focus { outline: none; border-color: #444; }
+    .filter-input { height: 32px; background: #fff; border: 0.5px solid #ddd; border-radius: 6px; color: #333; font-size: 12px; padding: 0 10px; font-family: inherit; }
+    .filter-input::placeholder { color: #aaa; }
+    .filter-input:focus { outline: none; border-color: #5b169f; }
     .data-table { width: 100%; border-collapse: collapse; }
-    .data-table th { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px; text-align: left; border-bottom: 0.5px solid #1e1535; font-weight: 600; white-space: nowrap; }
-    .data-table td { font-size: 13px; color: #888; padding: 10px 12px; border-bottom: 0.5px solid #191919; }
-    .data-table tr:hover td { background: #150f23; color: #ccc; cursor: pointer; }
+    .data-table th { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 12px; text-align: left; border-bottom: 0.5px solid #e0e0e0; font-weight: 600; white-space: nowrap; }
+    .data-table td { font-size: 13px; color: #333; padding: 10px 12px; border-bottom: 0.5px solid #f0f0f0; }
+    .data-table tr:hover td { background: #eeeef5; color: #111; cursor: pointer; }
     .badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
     .badge-green { background: #1a2600; color: #b9e918; border: 0.5px solid #3a5200; }
     .badge-yellow { background: #2a2210; color: #a87; border: 0.5px solid #4a3a10; }
     .badge-red { background: #2a1010; color: #c66; border: 0.5px solid #4a1a1a; }
 
     /* ── User profile ── */
-    .profile-header { padding: 16px 28px 12px; border-bottom: 0.5px solid #1e1535; background: #0e0e0e; }
+    .profile-header { padding: 16px 28px 12px; border-bottom: 0.5px solid #e5e5e5; background: #fff; }
     .profile-name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 3px; flex-wrap: wrap; }
-    .profile-name { font-size: 15px; font-weight: 600; color: #eee; }
+    .profile-name { font-size: 15px; font-weight: 600; color: #111; }
     .profile-meta { font-size: 11.5px; color: #666; margin-bottom: 12px; }
     .profile-meta span { margin-right: 14px; }
-    .balance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1f1f1f; border-radius: 6px; overflow: hidden; margin-bottom: 1px; }
-    .balance-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1f1f1f; border-radius: 6px; overflow: hidden; }
-    .bal-cell { background: #141414; padding: 9px 14px; }
-    .bal-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
-    .bal-value { font-size: 14px; font-weight: 500; color: #bbb; }
-    .profile-tabs-row { display: flex; align-items: stretch; background: #0d061c; border-bottom: 0.5px solid #1e1535; }
+    .balance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e8e8e8; border-radius: 6px; overflow: hidden; margin-bottom: 1px; }
+    .balance-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e8e8e8; border-radius: 6px; overflow: hidden; }
+    .bal-cell { background: #fff; padding: 9px 14px; }
+    .bal-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+    .bal-value { font-size: 14px; font-weight: 500; color: #222; }
+    .profile-tabs-row { display: flex; align-items: stretch; background: #fff; border-bottom: 0.5px solid #e0e0e0; }
     .ptabs-scroll { display: flex; overflow-x: auto; flex: 1; }
     .ptabs-scroll::-webkit-scrollbar { height: 0; }
     .ptab { padding: 10px 13px; font-size: 12px; color: #666; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; flex-shrink: 0; transition: color 0.1s; }
-    .ptab:hover { color: #bbb; }
-    .ptab.active { color: #fff; border-bottom-color: #fff; }
+    .ptab:hover { color: #333; }
+    .ptab.active { color: #5b169f; border-bottom-color: #5b169f; }
     .scroll-arrow { background: none; border: none; color: #555; cursor: pointer; padding: 0 8px; font-size: 14px; }
     .scroll-arrow:hover { color: #aaa; }
     .profile-body { flex: 1; padding: 20px 28px; overflow-y: auto; }
 
     /* ── Empty state ── */
     .empty-page { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
-    .empty-page i { font-size: 36px; color: #333; }
-    .empty-page span { font-size: 13px; color: #555; }
+    .empty-page i { font-size: 36px; color: #bbb; }
+    .empty-page span { font-size: 13px; color: #999; }
 
     .hidden { display: none !important; }
 
