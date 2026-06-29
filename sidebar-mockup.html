@@ -632,7 +632,153 @@
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
           <div class="page-title" id="cassinoTitle">Dashboard</div>
-          <p style="color:#666; font-size:13px">Em construção.</p>
+
+          <!-- KPIs -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px;">
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">GGR hoje</div>
+              <div class="value">R$ 61.445</div>
+              <div class="change up">↑ +3% vs ontem</div>
+            </div>
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">Rodadas hoje</div>
+              <div class="value">428.927</div>
+              <div class="change neutral">Ref. 26/06/2026</div>
+            </div>
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">Jogadores únicos</div>
+              <div class="value">3.812</div>
+              <div class="change up">↑ +7% vs ontem</div>
+            </div>
+            <div class="dash-card" style="padding:14px;">
+              <div class="label">RTP médio</div>
+              <div class="value">96,4%</div>
+              <div class="change neutral">Dentro do limite</div>
+            </div>
+          </div>
+
+          <!-- Top jogos -->
+          <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">Top jogos — hoje</div>
+          <div class="table-wrap" style="margin-bottom:24px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Jogo</th>
+                  <th>Provider</th>
+                  <th>Categoria</th>
+                  <th>Rodadas</th>
+                  <th>Handle</th>
+                  <th>GGR</th>
+                  <th>RTP</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color:#888;">1</td>
+                  <td style="font-weight:500;">Sweet Bonanza</td><td>Pragmatic Play</td><td>Slots</td>
+                  <td style="font-variant-numeric:tabular-nums;">42.810</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 284.200</td>
+                  <td style="font-variant-numeric:tabular-nums;color:#2a7a2a;font-weight:500;">R$ 11.368</td>
+                  <td>96,0%</td>
+                  <td><span class="badge badge-green">Ativo</span></td>
+                </tr>
+                <tr>
+                  <td style="color:#888;">2</td>
+                  <td style="font-weight:500;">Gates of Olympus</td><td>Pragmatic Play</td><td>Slots</td>
+                  <td style="font-variant-numeric:tabular-nums;">38.204</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 241.900</td>
+                  <td style="font-variant-numeric:tabular-nums;color:#2a7a2a;font-weight:500;">R$ 9.676</td>
+                  <td>96,0%</td>
+                  <td><span class="badge badge-green">Ativo</span></td>
+                </tr>
+                <tr>
+                  <td style="color:#888;">3</td>
+                  <td style="font-weight:500;">Lightning Roulette</td><td>Evolution</td><td>Ao vivo</td>
+                  <td style="font-variant-numeric:tabular-nums;">14.590</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 1.021.300</td>
+                  <td style="font-variant-numeric:tabular-nums;color:#2a7a2a;font-weight:500;">R$ 8.170</td>
+                  <td>97,3%</td>
+                  <td><span class="badge badge-green">Ativo</span></td>
+                </tr>
+                <tr>
+                  <td style="color:#888;">4</td>
+                  <td style="font-weight:500;">Big Bass Bonanza</td><td>Pragmatic Play</td><td>Slots</td>
+                  <td style="font-variant-numeric:tabular-nums;">29.130</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 174.780</td>
+                  <td style="font-variant-numeric:tabular-nums;color:#2a7a2a;font-weight:500;">R$ 6.991</td>
+                  <td>96,7%</td>
+                  <td><span class="badge badge-green">Ativo</span></td>
+                </tr>
+                <tr>
+                  <td style="color:#888;">5</td>
+                  <td style="font-weight:500;">Crazy Time</td><td>Evolution</td><td>Ao vivo</td>
+                  <td style="font-variant-numeric:tabular-nums;">9.880</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 692.600</td>
+                  <td style="font-variant-numeric:tabular-nums;color:#2a7a2a;font-weight:500;">R$ 5.541</td>
+                  <td>96,1%</td>
+                  <td><span class="badge badge-green">Ativo</span></td>
+                </tr>
+                <tr>
+                  <td style="color:#888;">6</td>
+                  <td style="font-weight:500;">Fortune Tiger</td><td>PG Soft</td><td>Slots</td>
+                  <td style="font-variant-numeric:tabular-nums;">51.440</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 205.760</td>
+                  <td style="font-variant-numeric:tabular-nums;color:#c66;font-weight:500;">R$ -1.232</td>
+                  <td>100,6%</td>
+                  <td><span class="badge badge-yellow">Atenção</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Providers -->
+          <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">Providers — GGR hoje</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Provider</th>
+                  <th>Jogos ativos</th>
+                  <th>Rodadas</th>
+                  <th>Handle</th>
+                  <th>GGR</th>
+                  <th>Participação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:500;">Pragmatic Play</td><td>184</td>
+                  <td style="font-variant-numeric:tabular-nums;">198.420</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 1.189.200</td>
+                  <td style="font-variant-numeric:tabular-nums;font-weight:500;">R$ 27.650</td>
+                  <td>45,0%</td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500;">Evolution</td><td>62</td>
+                  <td style="font-variant-numeric:tabular-nums;">48.310</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 3.381.700</td>
+                  <td style="font-variant-numeric:tabular-nums;font-weight:500;">R$ 18.090</td>
+                  <td>29,4%</td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500;">PG Soft</td><td>98</td>
+                  <td style="font-variant-numeric:tabular-nums;">121.340</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 485.360</td>
+                  <td style="font-variant-numeric:tabular-nums;font-weight:500;">R$ 9.707</td>
+                  <td>15,8%</td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500;">Outros</td><td>209</td>
+                  <td style="font-variant-numeric:tabular-nums;">60.857</td>
+                  <td style="font-variant-numeric:tabular-nums;">R$ 364.420</td>
+                  <td style="font-variant-numeric:tabular-nums;font-weight:500;">R$ 5.998</td>
+                  <td>9,8%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
