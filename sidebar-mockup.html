@@ -418,6 +418,9 @@
       <div class="sidebar-item" data-section="usuarios" data-label="Usuários" onclick="navigate(this)">
         <i class="ti ti-users"></i><span class="item-label"> Usuários</span>
       </div>
+      <div class="sidebar-item" data-section="afiliados" data-label="Afiliados" onclick="navigate(this)">
+        <i class="ti ti-affiliate"></i><span class="item-label"> Afiliados</span>
+      </div>
       <div class="sidebar-item" data-section="financeiro" data-label="Financeiro" onclick="navigate(this)">
         <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
       </div>
@@ -497,37 +500,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Financeiro</div>
-      <div class="sidebar-item config-nav-item" data-config="financial" data-label="Financeiro" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="gateway" data-label="Gateway" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-building-bank"></i><span class="item-label"> Gateway</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="pld" data-label="PLD" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-shield"></i><span class="item-label"> PLD</span>
-      </div>
-    </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Comunicação</div>
-      <div class="sidebar-item config-nav-item" data-config="chat" data-label="Chat" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-message-circle"></i><span class="item-label"> Chat</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="anuncios" data-label="Anúncios" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-speakerphone"></i><span class="item-label"> Anúncios</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="mensagem" data-label="Mensagem" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-mail"></i><span class="item-label"> Mensagem</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="notificacoes" data-label="Notificações" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-bell"></i><span class="item-label"> Notificações</span>
-      </div>
-      <div class="sidebar-item config-nav-item" data-config="buscas" data-label="Buscas" onclick="selectConfigSidebar(this)">
-        <i class="ti ti-search"></i><span class="item-label"> Buscas</span>
-      </div>
-    </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Sistema</div>
@@ -832,6 +805,81 @@
           <div class="tab" onclick="switchTab(this)">Resumo</div>
         </div>
         <p style="color:#666; font-size:13px">Em construção.</p>
+      </div>
+    </div>
+
+    <!-- ══ FINANCEIRO ══ -->
+    <div class="content-area hidden" id="pageFinanceiro">
+      <nav class="int-nav">
+        <div class="int-nav-label">Movimentação</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'financeiroTitle')">Depósitos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Saques</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Transações</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Extrato</div>
+        <div class="int-nav-label">Configuração</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Gateway</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">PLD</div>
+        <div class="int-nav-label">Dados</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Relatório</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+        <div class="config-content">
+          <div class="page-title" id="financeiroTitle">Depósitos</div>
+          <p style="color:#666; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ OPERAÇÃO ══ -->
+    <div class="content-area hidden" id="pageOperacao">
+      <nav class="int-nav">
+        <div class="int-nav-label">Visão geral</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'operacaoTitle')">Dashboard</div>
+        <div class="int-nav-label">Apostas</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Apostas ao vivo</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Histórico</div>
+        <div class="int-nav-label">Controles</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Limites</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Regras</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+        <div class="config-content">
+          <div class="page-title" id="operacaoTitle">Dashboard</div>
+          <p style="color:#666; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ COMUNICAÇÃO ══ -->
+    <div class="content-area hidden" id="pageComunicacao">
+      <nav class="int-nav">
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'comunicacaoTitle')">Chat</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'comunicacaoTitle')">Anúncios</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'comunicacaoTitle')">Mensagem</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'comunicacaoTitle')">Notificações</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'comunicacaoTitle')">Buscas</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+        <div class="config-content">
+          <div class="page-title" id="comunicacaoTitle">Chat</div>
+          <p style="color:#666; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CONTEÚDO ══ -->
+    <div class="content-area hidden" id="pageConteudo">
+      <nav class="int-nav">
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'conteudoTitle')">Banners</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'conteudoTitle')">Páginas</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'conteudoTitle')">CMS</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'conteudoTitle')">SEO</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+        <div class="config-content">
+          <div class="page-title" id="conteudoTitle">Banners</div>
+          <p style="color:#666; font-size:13px">Em construção.</p>
+        </div>
       </div>
     </div>
 
@@ -1309,7 +1357,9 @@
 <script>
   const ALL_PAGES = ['pageConfig','pageCassino','pageEsportes','pagePromocoes',
                      'pageRelatorios','pageMonitoramento','pageUsuarios','pageAfiliados',
-                     'pageSistemaCompliance','pageSIGAP','pageEmpty'];
+                     'pageSistemaCompliance','pageSIGAP',
+                     'pageFinanceiro','pageOperacao','pageComunicacao','pageConteudo',
+                     'pageEmpty'];
 
   const CONFIG_PAGES = {
     plataforma:     { title: 'Plataforma',     tabs: ['Informações','URL','Provedores','Permissões','Preferências','Código','SIGAP'] },
@@ -1436,7 +1486,11 @@
     usuarios:             'pageUsuarios',
     afiliados:            'pageAfiliados',
     'sistema-compliance': 'pageSistemaCompliance',
-      sigap:                'pageSIGAP',
+    sigap:                'pageSIGAP',
+    financeiro:           'pageFinanceiro',
+    operacao:             'pageOperacao',
+    comunicacao:          'pageComunicacao',
+    conteudo:             'pageConteudo',
   };
 
   function hideAllPages() {
