@@ -183,26 +183,110 @@
     .badge-yellow { background: #2a2210; color: #a87; border: 0.5px solid #4a3a10; }
     .badge-red { background: #2a1010; color: #c66; border: 0.5px solid #4a1a1a; }
 
-    /* ── User profile ── */
-    .profile-header { padding: 16px 28px 12px; border-bottom: 0.5px solid #e5e5e5; background: #fff; }
-    .profile-name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 3px; flex-wrap: wrap; }
-    .profile-name { font-size: 15px; font-weight: 600; color: #111; }
-    .profile-meta { font-size: 11.5px; color: #666; margin-bottom: 12px; }
-    .profile-meta span { margin-right: 14px; }
-    .balance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e8e8e8; border-radius: 6px; overflow: hidden; margin-bottom: 1px; }
-    .balance-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e8e8e8; border-radius: 6px; overflow: hidden; }
-    .bal-cell { background: #fff; padding: 9px 14px; }
-    .bal-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
-    .bal-value { font-size: 14px; font-weight: 500; color: #222; }
-    .profile-tabs-row { display: flex; align-items: stretch; background: #fff; border-bottom: 0.5px solid #e0e0e0; }
-    .ptabs-scroll { display: flex; overflow-x: auto; flex: 1; }
-    .ptabs-scroll::-webkit-scrollbar { height: 0; }
-    .ptab { padding: 10px 13px; font-size: 12px; color: #666; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; flex-shrink: 0; transition: color 0.1s; }
-    .ptab:hover { color: #333; }
-    .ptab.active { color: #5b169f; border-bottom-color: #5b169f; }
-    .scroll-arrow { background: none; border: none; color: #555; cursor: pointer; padding: 0 8px; font-size: 14px; }
-    .scroll-arrow:hover { color: #aaa; }
-    .profile-body { flex: 1; padding: 20px 28px; overflow-y: auto; }
+    /* ── User profile redesign ── */
+    .profile-page { display:flex; flex-direction:column; height:100%; overflow:hidden; background:#f5f5f7; }
+    .profile-topbar { display:flex; align-items:center; justify-content:space-between; padding:10px 22px; background:#fff; border-bottom:0.5px solid #e0e0e0; flex-shrink:0; }
+    .profile-topbar-crumb { font-size:12px; color:#888; display:flex; align-items:center; gap:6px; }
+    .profile-topbar-crumb span { color:#5b169f; font-weight:500; cursor:pointer; }
+    .profile-topbar-actions { display:flex; gap:8px; }
+    .profile-scroll { flex:1; overflow-y:auto; padding:18px 22px; }
+    .profile-main-grid { display:grid; grid-template-columns:1fr 320px; gap:14px; margin-bottom:14px; }
+    .profile-left { display:flex; flex-direction:column; gap:14px; }
+    .profile-right { display:flex; flex-direction:column; gap:14px; }
+    .pcard { background:#fff; border-radius:8px; border:0.5px solid #e0e0e0; padding:18px 20px; }
+    .pcard-title { font-size:11px; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; }
+    /* Bloco A */
+    .identity-row { display:flex; align-items:flex-start; gap:14px; }
+    .p-avatar { width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700; color:#fff; flex-shrink:0; }
+    .identity-info { flex:1; min-width:0; }
+    .identity-name { font-size:16px; font-weight:700; color:#111; line-height:1.2; }
+    .identity-user { font-size:12px; color:#888; margin-bottom:6px; }
+    .identity-fields { font-size:12px; color:#555; display:flex; flex-direction:column; gap:3px; }
+    .identity-fields span { display:flex; align-items:center; gap:6px; }
+    .identity-fields i { font-size:13px; color:#aaa; }
+    .identity-badges { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+    .badge-pill { display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:600; padding:3px 9px; border-radius:20px; }
+    .badge-pill.green { background:#dcfce7; color:#16a34a; }
+    .badge-pill.yellow { background:#fef9c3; color:#a16207; }
+    .badge-pill.red { background:#fee2e2; color:#dc2626; }
+    .badge-pill.gray { background:#f3f4f6; color:#6b7280; }
+    .badge-pill.purple { background:#ede9fe; color:#7c3aed; }
+    .badge-pill.gold { background:#fef3c7; color:#b45309; }
+    .reveal-btn { background:none; border:none; cursor:pointer; color:#aaa; font-size:12px; padding:0; }
+    /* Bloco B */
+    .fin-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .fin-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+    .fin-card { background:#f9f9f9; border:0.5px solid #ebebeb; border-radius:6px; padding:11px 14px; }
+    .fin-label { font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:3px; }
+    .fin-value { font-size:15px; font-weight:600; color:#111; }
+    .fin-sub { font-size:11px; color:#888; margin-top:2px; }
+    .fin-card.highlight .fin-value { color:#5b169f; font-size:18px; }
+    /* Bloco C - gauge */
+    .gauge-wrap { display:flex; flex-direction:column; align-items:center; margin-bottom:12px; }
+    .gauge-score { font-size:26px; font-weight:700; color:#111; line-height:1; }
+    .gauge-label { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+    .risk-bars { margin-top:10px; }
+    .risk-bar-row { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+    .risk-bar-label { font-size:11px; color:#555; width:84px; flex-shrink:0; }
+    .risk-bar-track { flex:1; height:5px; background:#eee; border-radius:3px; overflow:hidden; }
+    .risk-bar-fill { height:100%; border-radius:3px; }
+    .risk-bar-val { font-size:11px; color:#333; width:22px; text-align:right; flex-shrink:0; }
+    .risk-alerts { margin-top:12px; padding-top:12px; border-top:0.5px solid #eee; display:flex; flex-direction:column; gap:5px; }
+    .risk-alert-row { font-size:11.5px; color:#555; display:flex; align-items:center; gap:6px; }
+    /* Bloco D */
+    .perm-list { display:flex; flex-direction:column; gap:8px; }
+    .perm-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .perm-label { font-size:12px; color:#444; }
+    .toggle-read { width:30px; height:17px; border-radius:9px; flex-shrink:0; position:relative; cursor:default; }
+    .toggle-on { background:#22c55e; }
+    .toggle-off { background:#d1d5db; }
+    .toggle-on::after,.toggle-off::after { content:''; position:absolute; width:11px; height:11px; border-radius:50%; background:#fff; top:3px; }
+    .toggle-on::after { left:16px; }
+    .toggle-off::after { left:3px; }
+    /* Bloco E accordion */
+    .accordion-btn { width:100%; background:none; border:none; padding:14px 20px; text-align:left; cursor:pointer; font-size:12.5px; color:#5b169f; font-weight:600; display:flex; align-items:center; justify-content:space-between; border-radius:8px; }
+    .accordion-body { display:none; padding:0 20px 16px; grid-template-columns:repeat(4,1fr); gap:10px 16px; }
+    .accordion-body.open { display:grid; }
+    .acc-label { font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.4px; }
+    .acc-value { font-size:12.5px; color:#222; margin-top:2px; }
+    /* Global filter */
+    .profile-filter { background:#fff; border-top:0.5px solid #e0e0e0; border-bottom:0.5px solid #e0e0e0; padding:9px 22px; display:flex; align-items:center; gap:10px; flex-shrink:0; flex-wrap:wrap; }
+    .filter-date { border:0.5px solid #ddd; border-radius:5px; padding:5px 10px; font-size:12px; color:#333; background:#fff; cursor:pointer; }
+    .filter-presets { display:flex; gap:4px; margin-left:4px; }
+    .filter-preset { font-size:11px; color:#888; cursor:pointer; padding:3px 7px; border-radius:4px; border:0.5px solid #e0e0e0; }
+    .filter-preset:hover,.filter-preset.active { background:#ede5ff; color:#5b169f; border-color:#c4a8f5; }
+    /* Profile tabs */
+    .profile-tabs-bar { background:#fff; border-bottom:0.5px solid #e0e0e0; display:flex; align-items:stretch; flex-shrink:0; }
+    .ptabs-wrap { display:flex; overflow-x:auto; flex:1; }
+    .ptabs-wrap::-webkit-scrollbar { height:0; }
+    .ptab2 { padding:10px 14px; font-size:12px; color:#666; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; flex-shrink:0; }
+    .ptab2:hover { color:#333; }
+    .ptab2.active { color:#5b169f; border-bottom-color:#5b169f; font-weight:500; }
+    .profile-tab-body { flex:1; overflow-y:auto; padding:18px 22px; background:#f5f5f7; }
+    /* Tab contextual filter */
+    .tab-filter { display:flex; gap:8px; margin-bottom:14px; align-items:center; flex-wrap:wrap; }
+    .tab-filter select,.tab-filter input { border:0.5px solid #ddd; border-radius:5px; padding:5px 10px; font-size:12px; color:#333; background:#fff; }
+    /* Chat messages */
+    .chat-feed { display:flex; flex-direction:column; gap:12px; }
+    .chat-msg { background:#fff; border-radius:8px; border:0.5px solid #e0e0e0; padding:12px 16px; }
+    .chat-meta { font-size:11px; color:#888; margin-bottom:4px; display:flex; gap:10px; }
+    .chat-text { font-size:13px; color:#333; }
+    /* Bonus cards */
+    .bonus-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .bonus-card { background:#fff; border-radius:8px; border:0.5px solid #e0e0e0; padding:14px 16px; }
+    .bonus-card-title { font-size:13px; font-weight:600; color:#111; margin-bottom:8px; }
+    /* Block cards */
+    .block-list { display:flex; flex-direction:column; gap:10px; }
+    .block-card { background:#fff; border-radius:8px; border:0.5px solid #fee2e2; padding:14px 16px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    /* Auth toggles */
+    .auth-list { background:#fff; border-radius:8px; border:0.5px solid #e0e0e0; overflow:hidden; }
+    .auth-row { display:flex; align-items:center; justify-content:space-between; padding:10px 16px; border-bottom:0.5px solid #f0f0f0; font-size:12.5px; }
+    .auth-row:last-child { border-bottom:none; }
+    /* Error state */
+    .tab-error { background:#fff; border-radius:8px; border:0.5px solid #e0e0e0; padding:32px; text-align:center; color:#999; font-size:13px; }
+    /* Responsive */
+    @media (max-width:1024px) { .profile-main-grid { grid-template-columns:1fr; } .fin-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:768px) { .profile-scroll { padding:12px 14px; } .profile-filter { padding:8px 14px; } .profile-tab-body { padding:12px 14px; } .bonus-grid { grid-template-columns:1fr 1fr; } .accordion-body.open { grid-template-columns:1fr 1fr; } }
 
     /* ── Empty state ── */
     .empty-page { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
@@ -947,61 +1031,398 @@
       </div>
 
       <div id="usuarioProfile" class="page-full hidden">
-        <div class="profile-header">
-          <div class="profile-name-row">
-            <div class="profile-name" id="profileName">-</div>
-            <span class="badge badge-green" id="profileBadge">Verificado</span>
+        <div class="profile-page">
+
+          <!-- Topbar -->
+          <div class="profile-topbar">
+            <div class="profile-topbar-crumb">
+              <i class="ti ti-users" style="font-size:13px"></i>
+              <span onclick="backToList()">Apostadores</span>
+              <span style="color:#bbb;">›</span>
+              <span id="profileName" style="color:#111;font-weight:600;cursor:default">-</span>
+            </div>
+            <div class="profile-topbar-actions">
+              <button class="btn btn-secondary" onclick="backToList()" style="font-size:12px;padding:5px 12px;"><i class="ti ti-arrow-left"></i> Voltar</button>
+              <button class="btn btn-secondary" style="font-size:12px;padding:5px 12px;"><i class="ti ti-user-share"></i> Impersonar</button>
+              <button class="btn btn-primary" style="font-size:12px;padding:5px 14px;"><i class="ti ti-pencil"></i> Editar</button>
+            </div>
           </div>
-          <div class="profile-meta">
-            <span id="profileEmail">-</span>
-            <span>CPF: <span id="profileCPF">-</span></span>
-            <span>Cadastro: <span id="profileCadastro">-</span></span>
+
+          <!-- Scrollable body -->
+          <div class="profile-scroll">
+            <div class="profile-main-grid">
+
+              <!-- LEFT: A + B + E -->
+              <div class="profile-left">
+
+                <!-- Bloco A — Identidade -->
+                <div class="pcard">
+                  <div class="identity-row">
+                    <div class="p-avatar" id="profileAvatar" style="background:#5b169f;">IL</div>
+                    <div class="identity-info">
+                      <div class="identity-name" id="profileNameBlock">ISLEY DAVID LOPEZ GIRALDO</div>
+                      <div class="identity-user">@isleygiraldo</div>
+                      <div class="identity-fields">
+                        <span><i class="ti ti-mail"></i> <span id="profileEmail">isley.giraldo@twinfo.io</span></span>
+                        <span><i class="ti ti-device-mobile"></i> +55 (11) 99999-0000</span>
+                        <span><i class="ti ti-id"></i> CPF: <span id="profileCPF">***.***.***-**</span> <button class="reveal-btn" title="Revelar"><i class="ti ti-eye"></i></button></span>
+                        <span><i class="ti ti-gender-androgyne"></i> Masculino &nbsp;·&nbsp; <i class="ti ti-cake"></i> 15/03/1990</span>
+                        <span><i class="ti ti-calendar-plus"></i> Cadastro: <span id="profileCadastro">17/01/2024 09:41</span> &nbsp;·&nbsp; <i class="ti ti-fingerprint"></i> <span style="font-family:monospace;font-size:11px;">d67e8a2f…</span> <button class="reveal-btn"><i class="ti ti-copy"></i></button></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="identity-badges">
+                    <span class="badge-pill green"><i class="ti ti-circle-check" style="font-size:11px"></i> Conta Ativa</span>
+                    <span class="badge-pill green"><i class="ti ti-shield-check" style="font-size:11px"></i> KYC Verificado</span>
+                    <span class="badge-pill green"><i class="ti ti-user-check" style="font-size:11px"></i> Apostador Ativo</span>
+                    <span class="badge-pill purple"><i class="ti ti-crown" style="font-size:11px"></i> VIP LEGEND</span>
+                  </div>
+                </div>
+
+                <!-- Bloco B — Resumo Financeiro -->
+                <div class="pcard">
+                  <div class="pcard-title">Resumo Financeiro</div>
+                  <div class="fin-grid">
+                    <div class="fin-card highlight" style="grid-column:span 3;">
+                      <div class="fin-label">Saldo disponível</div>
+                      <div class="fin-value">R$ 1.240,50</div>
+                    </div>
+                    <div class="fin-card">
+                      <div class="fin-label">Bônus Esportivo</div>
+                      <div class="fin-value">R$ 80,00</div>
+                      <div class="fin-sub">Free Bet: R$ 20,00</div>
+                    </div>
+                    <div class="fin-card">
+                      <div class="fin-label">Bônus Cassino</div>
+                      <div class="fin-value">R$ 150,00</div>
+                    </div>
+                    <div class="fin-card">
+                      <div class="fin-label">Depósito Pendente</div>
+                      <div class="fin-value" style="color:#a16207;">R$ 0,00</div>
+                    </div>
+                  </div>
+                  <div class="fin-grid-2">
+                    <div class="fin-card">
+                      <div class="fin-label">Saque Pendente</div>
+                      <div class="fin-value">R$ 0,00</div>
+                    </div>
+                    <div class="fin-card" style="background:#fafafa;border-style:dashed;">
+                      <div class="fin-label" style="color:#bbb;">—</div>
+                      <div class="fin-value" style="color:#ccc;font-size:12px;">+histórico em Dados Adicionais</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bloco E — Dados Adicionais (accordion) -->
+                <div class="pcard" style="padding:0;">
+                  <button class="accordion-btn" onclick="toggleAccordion(this)">
+                    <span>Ver dados adicionais</span>
+                    <i class="ti ti-chevron-down" id="accordionIcon"></i>
+                  </button>
+                  <div class="accordion-body" id="accordionBody">
+                    <div><div class="acc-label">Endereço</div><div class="acc-value">Rua das Flores, 123 — SP</div></div>
+                    <div><div class="acc-label">País</div><div class="acc-value">Brasil</div></div>
+                    <div><div class="acc-label">Fuso horário</div><div class="acc-value">America/Sao_Paulo</div></div>
+                    <div><div class="acc-label">Cargo</div><div class="acc-value">—</div></div>
+                    <div><div class="acc-label">1º Depósito</div><div class="acc-value">18/01/2024</div></div>
+                    <div><div class="acc-label">Total depositado</div><div class="acc-value">R$ 12.400,00</div></div>
+                    <div><div class="acc-label">Total sacado</div><div class="acc-value">R$ 9.800,00</div></div>
+                    <div><div class="acc-label">FTD Rollover rem.</div><div class="acc-value">0x</div></div>
+                    <div><div class="acc-label">Cód. afiliado indic.</div><div class="acc-value">—</div></div>
+                    <div><div class="acc-label">Aceite contratos</div><div class="acc-value">17/01/2024 09:41</div></div>
+                    <div><div class="acc-label">Motivo desativação</div><div class="acc-value">—</div></div>
+                    <div><div class="acc-label">IP de cadastro</div><div class="acc-value" style="font-family:monospace;font-size:11.5px;">187.22.100.45</div></div>
+                    <div><div class="acc-label">IP última atualiz.</div><div class="acc-value" style="font-family:monospace;font-size:11.5px;">187.22.100.45</div></div>
+                    <div><div class="acc-label">Data de modificação</div><div class="acc-value">22/06/2026</div></div>
+                    <div><div class="acc-label">Editado por</div><div class="acc-value">admin@twinfo.io</div></div>
+                    <div><div class="acc-label">ISPB</div><div class="acc-value">00416968</div></div>
+                    <div><div class="acc-label">Agência / Conta</div><div class="acc-value">0001 / 123456-7</div></div>
+                    <div><div class="acc-label">Instagram</div><div class="acc-value">—</div></div>
+                  </div>
+                </div>
+
+              </div><!-- /left -->
+
+              <!-- RIGHT: C + D -->
+              <div class="profile-right">
+
+                <!-- Bloco C — Score de Risco -->
+                <div class="pcard">
+                  <div class="pcard-title">Score de Risco</div>
+                  <div class="gauge-wrap">
+                    <svg viewBox="0 0 140 80" style="width:150px;height:86px;">
+                      <path d="M 15,70 A 55,55 0 0,1 125,70" fill="none" stroke="#e5e5e5" stroke-width="10" stroke-linecap="round"/>
+                      <path d="M 15,70 A 55,55 0 0,1 110,32" fill="none" stroke="#eab308" stroke-width="10" stroke-linecap="round"/>
+                      <text x="70" y="58" text-anchor="middle" font-size="22" font-weight="700" fill="#111" font-family="sans-serif">76</text>
+                      <text x="70" y="70" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif" letter-spacing="0.5">/ 100</text>
+                    </svg>
+                    <div class="gauge-score" style="display:none">76</div>
+                    <div class="gauge-label" style="color:#a16207;">Risco Médio</div>
+                  </div>
+                  <div class="risk-bars">
+                    <div class="risk-bar-row">
+                      <div class="risk-bar-label">Financeiro</div>
+                      <div class="risk-bar-track"><div class="risk-bar-fill" style="width:70%;background:#eab308;"></div></div>
+                      <div class="risk-bar-val">70</div>
+                    </div>
+                    <div class="risk-bar-row">
+                      <div class="risk-bar-label">PLD / AML</div>
+                      <div class="risk-bar-track"><div class="risk-bar-fill" style="width:85%;background:#f97316;"></div></div>
+                      <div class="risk-bar-val">85</div>
+                    </div>
+                    <div class="risk-bar-row">
+                      <div class="risk-bar-label">Jogo Resp.</div>
+                      <div class="risk-bar-track"><div class="risk-bar-fill" style="width:0%;background:#22c55e;"></div></div>
+                      <div class="risk-bar-val">0</div>
+                    </div>
+                  </div>
+                  <div class="risk-alerts">
+                    <div class="risk-alert-row"><i class="ti ti-alert-triangle" style="color:#f97316;font-size:13px"></i> 200 alertas ativos</div>
+                    <div class="risk-alert-row"><i class="ti ti-link" style="color:#888;font-size:13px"></i> Vínculos de IP: 1 conta</div>
+                  </div>
+                </div>
+
+                <!-- Bloco D — Status e Permissões -->
+                <div class="pcard">
+                  <div class="pcard-title">Status e Permissões</div>
+                  <div class="perm-list">
+                    <div class="perm-row"><span class="perm-label">Permissão para apostar</span><div class="toggle-read toggle-on"></div></div>
+                    <div class="perm-row"><span class="perm-label">Permissão para sacar</span><div class="toggle-read toggle-on"></div></div>
+                    <div class="perm-row"><span class="perm-label">Permissão para depositar</span><div class="toggle-read toggle-on"></div></div>
+                    <div class="perm-row"><span class="perm-label">E-mail verificado</span><span class="badge-pill green" style="font-size:10px;">Verificado</span></div>
+                    <div class="perm-row"><span class="perm-label">Celular verificado</span><span class="badge-pill yellow" style="font-size:10px;">Pendente</span></div>
+                    <div class="perm-row"><span class="perm-label">Reset de senha no login</span><span class="badge-pill gray" style="font-size:10px;">Não</span></div>
+                    <div class="perm-row"><span class="perm-label">Exigir MFA no login</span><span class="badge-pill gray" style="font-size:10px;">Não</span></div>
+                    <div class="perm-row" style="flex-direction:column;align-items:flex-start;gap:2px;"><span class="perm-label">Último status KYC</span><span style="font-size:12px;color:#16a34a;margin-top:2px;">Aprovado · 22/01/2024</span></div>
+                    <div class="perm-row" style="flex-direction:column;align-items:flex-start;gap:2px;"><span class="perm-label">Última verificação KYC</span><span style="font-size:12px;color:#444;margin-top:2px;">22/01/2024 14:33</span></div>
+                  </div>
+                </div>
+
+              </div><!-- /right -->
+            </div><!-- /grid -->
+          </div><!-- /profile-scroll -->
+
+          <!-- Filtro global -->
+          <div class="profile-filter">
+            <i class="ti ti-calendar" style="color:#888;font-size:14px;"></i>
+            <input class="filter-date" type="date" value="2026-06-01">
+            <span style="color:#bbb;font-size:12px;">→</span>
+            <input class="filter-date" type="date" value="2026-06-29">
+            <button class="btn btn-primary" style="font-size:11px;padding:4px 12px;">Aplicar</button>
+            <button class="btn btn-secondary" style="font-size:11px;padding:4px 10px;">Limpar</button>
+            <div class="filter-presets">
+              <span class="filter-preset active">Hoje</span>
+              <span class="filter-preset">7 dias</span>
+              <span class="filter-preset">30 dias</span>
+              <span class="filter-preset">90 dias</span>
+              <span class="filter-preset">Custom</span>
+            </div>
           </div>
-          <div class="balance-grid">
-            <div class="bal-cell"><div class="bal-label">Saldo disponível</div><div class="bal-value">R$ 0,00</div></div>
-            <div class="bal-cell"><div class="bal-label">Depósito pend.</div><div class="bal-value">R$ 0,00</div></div>
-            <div class="bal-cell"><div class="bal-label">Saque pendente</div><div class="bal-value">R$ 0,00</div></div>
+
+          <!-- Tabs -->
+          <div class="profile-tabs-bar">
+            <div class="ptabs-wrap" id="ptabsWrap">
+              <div class="ptab2 active" onclick="switchPTab2(this,'ptab-transacoes')">Transações</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-apostas')">Apostas</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-cassino')">Cassino</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-palpites')">Palpites</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-kyc')">KYC</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-bonus')">Bônus</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-bloqueios')">Bloqueios</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-logins')">Logins</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-notificacoes')">Notificações</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-mensagem')">Mensagem Privada</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-autorizacoes')">Autorizações</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-grupos')">Grupos</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-afiliados')">Afiliados</div>
+              <div class="ptab2" onclick="switchPTab2(this,'ptab-limites')">Limites</div>
+            </div>
           </div>
-          <div class="balance-grid" style="margin-top:1px; margin-bottom:6px;">
-            <div class="bal-cell"><div class="bal-label">Saldo bônus esp.</div><div class="bal-value">R$ 0,00</div></div>
-            <div class="bal-cell"><div class="bal-label">Saldo free bet</div><div class="bal-value">R$ 0,00</div></div>
-            <div class="bal-cell"><div class="bal-label">Saldo bônus cassino</div><div class="bal-value">R$ 0,00</div></div>
-          </div>
-          <div class="balance-grid-2">
-            <div class="bal-cell"><div class="bal-label">Total depositado</div><div class="bal-value">R$ 0,00</div></div>
-            <div class="bal-cell"><div class="bal-label">Total sacado</div><div class="bal-value">R$ 0,00</div></div>
-          </div>
-        </div>
-        <div class="profile-tabs-row">
-          <button class="scroll-arrow" onclick="scrollPTabs(-140)">‹</button>
-          <div class="ptabs-scroll" id="ptabsScroll">
-            <div class="ptab active" onclick="switchPTab(this)">Dados</div>
-            <div class="ptab" onclick="switchPTab(this)">Bloqueios</div>
-            <div class="ptab" onclick="switchPTab(this)">Transações</div>
-            <div class="ptab" onclick="switchPTab(this)">Bônus</div>
-            <div class="ptab" onclick="switchPTab(this)">Apostas</div>
-            <div class="ptab" onclick="switchPTab(this)">Cassino</div>
-            <div class="ptab" onclick="switchPTab(this)">Palpites</div>
-            <div class="ptab" onclick="switchPTab(this)">Notificações</div>
-            <div class="ptab" onclick="switchPTab(this)">Mensagem Privada</div>
-            <div class="ptab" onclick="switchPTab(this)">KYC</div>
-            <div class="ptab" onclick="switchPTab(this)">Autorizações</div>
-            <div class="ptab" onclick="switchPTab(this)">Grupos</div>
-            <div class="ptab" onclick="switchPTab(this)">Afiliados</div>
-            <div class="ptab" onclick="switchPTab(this)">Limites</div>
-            <div class="ptab" onclick="switchPTab(this)">Logins</div>
-          </div>
-          <button class="scroll-arrow" onclick="scrollPTabs(140)">›</button>
-        </div>
-        <div class="profile-body" id="profileBody">
-          <p style="color:#666; font-size:13px">Em construção — aba: Dados</p>
-        </div>
-        <div class="footer-bar">
-          <button class="btn btn-secondary" onclick="backToList()">Voltar</button>
-          <button class="btn btn-secondary">Impersonar</button>
-          <button class="btn btn-primary">Editar</button>
-        </div>
-      </div>
+
+          <!-- Tab bodies -->
+          <div class="profile-tab-body">
+
+            <!-- Transações -->
+            <div id="ptab-transacoes">
+              <div class="tab-filter">
+                <select><option>Todos os tipos</option><option>Depósito</option><option>Saque</option></select>
+                <select><option>Todos os status</option><option>Aprovado</option><option>Pendente</option><option>Cancelado</option></select>
+                <button class="btn btn-secondary" style="font-size:11px;padding:4px 12px;margin-left:auto;">+ Adicionar crédito</button>
+                <button class="btn btn-secondary" style="font-size:11px;padding:4px 12px;">− Retirar crédito</button>
+              </div>
+              <div class="table-wrap"><table class="data-table">
+                <thead><tr><th>Data/hora</th><th>Tipo</th><th>Valor</th><th>Status</th><th>Gateway</th><th>ID Transação</th></tr></thead>
+                <tbody>
+                  <tr><td>29/06/2026 14:22</td><td><span class="badge badge-green" style="font-size:10px;">Depósito</span></td><td>R$ 500,00</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>PIX</td><td style="font-family:monospace;font-size:11px;">a3f8e2b1… <i class="ti ti-copy" style="cursor:pointer;color:#aaa;"></i></td></tr>
+                  <tr><td>25/06/2026 09:10</td><td><span class="badge badge-red" style="font-size:10px;">Saque</span></td><td>R$ 200,00</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>PIX</td><td style="font-family:monospace;font-size:11px;">c9d1a7f3… <i class="ti ti-copy" style="cursor:pointer;color:#aaa;"></i></td></tr>
+                  <tr><td>20/06/2026 17:45</td><td><span class="badge badge-green" style="font-size:10px;">Depósito</span></td><td>R$ 300,00</td><td><span class="badge badge-yellow" style="font-size:10px;">Pendente</span></td><td>Cartão</td><td style="font-family:monospace;font-size:11px;">e7b2c4a9… <i class="ti ti-copy" style="cursor:pointer;color:#aaa;"></i></td></tr>
+                </tbody>
+              </table></div>
+            </div>
+
+            <!-- Apostas -->
+            <div id="ptab-apostas" style="display:none">
+              <div class="table-wrap"><table class="data-table">
+                <thead><tr><th>ID Ticket</th><th>Esporte</th><th>Evento</th><th>Mercado</th><th>Odd</th><th>Apostado</th><th>Retorno</th><th>Status</th><th>Data</th></tr></thead>
+                <tbody>
+                  <tr><td>#48291</td><td>Futebol</td><td>Flamengo x Palmeiras</td><td>Resultado Final</td><td>2.10</td><td>R$ 100,00</td><td>R$ 210,00</td><td><span class="badge badge-green" style="font-size:10px;">Ganhou</span></td><td>28/06/2026</td></tr>
+                  <tr><td>#48100</td><td>Futebol</td><td>São Paulo x Corinthians</td><td>Over 2.5</td><td>1.85</td><td>R$ 50,00</td><td>R$ 92,50</td><td><span class="badge badge-red" style="font-size:10px;">Perdeu</span></td><td>26/06/2026</td></tr>
+                  <tr><td>#47980</td><td>Tênis</td><td>Djokovic x Alcaraz</td><td>Vencedor</td><td>3.50</td><td>R$ 30,00</td><td>R$ 105,00</td><td><span class="badge badge-gray" style="font-size:10px;">Em aberto</span></td><td>29/06/2026</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+
+            <!-- Cassino -->
+            <div id="ptab-cassino" style="display:none">
+              <div class="tab-filter">
+                <select><option>Todos os tipos</option><option>Aposta</option><option>Ganho</option><option>Bônus</option></select>
+              </div>
+              <div class="table-wrap"><table class="data-table">
+                <thead><tr><th>Jogo</th><th>Fornecedor</th><th>Tipo</th><th>Valor</th><th>Data</th><th>ID Sessão</th></tr></thead>
+                <tbody>
+                  <tr><td>Sweet Bonanza</td><td>Pragmatic Play</td><td><span class="badge badge-red" style="font-size:10px;">Aposta</span></td><td>R$ 20,00</td><td>28/06/2026 21:10</td><td style="font-family:monospace;font-size:11px;">sess_a1b2…</td></tr>
+                  <tr><td>Gates of Olympus</td><td>Pragmatic Play</td><td><span class="badge badge-green" style="font-size:10px;">Ganho</span></td><td>R$ 180,00</td><td>28/06/2026 20:45</td><td style="font-family:monospace;font-size:11px;">sess_c3d4…</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+
+            <!-- Palpites -->
+            <div id="ptab-palpites" style="display:none">
+              <div class="table-wrap"><table class="data-table">
+                <thead><tr><th>Palpite</th><th>Evento</th><th>Resultado</th><th>Valor</th><th>Status</th><th>Data</th></tr></thead>
+                <tbody>
+                  <tr><td>Flamengo vence</td><td>Flamengo x Santos</td><td>Correto</td><td>R$ 10,00</td><td><span class="badge badge-green" style="font-size:10px;">Ganhou</span></td><td>27/06/2026</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+
+            <!-- KYC -->
+            <div id="ptab-kyc" style="display:none">
+              <div class="table-wrap"><table class="data-table">
+                <thead><tr><th>Tipo</th><th>Status</th><th>Enviado em</th><th>Analisado em</th><th>Operador</th><th>Arquivo</th><th>Ações</th></tr></thead>
+                <tbody>
+                  <tr><td>CNH</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>22/01/2024</td><td>22/01/2024</td><td>ops@twinfo.io</td><td><a style="color:#5b169f;font-size:12px;cursor:pointer;">Ver documento</a></td><td>—</td></tr>
+                  <tr><td>Selfie</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>22/01/2024</td><td>22/01/2024</td><td>ops@twinfo.io</td><td><a style="color:#5b169f;font-size:12px;cursor:pointer;">Ver documento</a></td><td>—</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+
+            <!-- Bônus -->
+            <div id="ptab-bonus" style="display:none">
+              <div class="bonus-grid">
+                <div class="bonus-card">
+                  <div class="bonus-card-title">Boas-vindas Esportivo</div>
+                  <div style="font-size:11px;color:#888;display:flex;flex-direction:column;gap:4px;">
+                    <span>Valor: <strong>R$ 80,00</strong></span>
+                    <span>Rollover: 5x</span>
+                    <span>Expiração: 30/07/2026</span>
+                    <span>Criação: 17/01/2024</span>
+                  </div>
+                  <div style="margin-top:8px;"><span class="badge-pill green" style="font-size:10px;">Ativo</span></div>
+                </div>
+                <div class="bonus-card">
+                  <div class="bonus-card-title">Cashback Cassino</div>
+                  <div style="font-size:11px;color:#888;display:flex;flex-direction:column;gap:4px;">
+                    <span>Valor: <strong>R$ 150,00</strong></span>
+                    <span>Rollover: 10x</span>
+                    <span>Expiração: 15/07/2026</span>
+                    <span>Criação: 01/06/2026</span>
+                  </div>
+                  <div style="margin-top:8px;"><span class="badge-pill green" style="font-size:10px;">Ativo</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bloqueios -->
+            <div id="ptab-bloqueios" style="display:none">
+              <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px;">
+                <button class="btn btn-secondary" style="font-size:11px;padding:4px 12px;">Histórico</button>
+                <button class="btn btn-primary" style="font-size:11px;padding:4px 12px;">+ Adicionar bloqueio</button>
+              </div>
+              <div class="tab-error"><i class="ti ti-lock-open" style="font-size:28px;display:block;margin-bottom:8px;"></i>Nenhum bloqueio ativo</div>
+            </div>
+
+            <!-- Logins -->
+            <div id="ptab-logins" style="display:none">
+              <div class="tab-filter">
+                <select><option>Todos os status</option><option>Sucesso</option><option>Falha</option></select>
+              </div>
+              <div class="table-wrap"><table class="data-table">
+                <thead><tr><th>Data/hora</th><th>IP</th><th>Dispositivo</th><th>Navegador</th><th>SO</th><th>Localização</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>29/06/2026 09:30</td><td style="font-family:monospace;font-size:11px;">187.22.100.45</td><td>Mobile</td><td>Chrome 124</td><td>Android 14</td><td>São Paulo, BR</td><td><span class="badge badge-green" style="font-size:10px;">Sucesso</span></td></tr>
+                  <tr><td>28/06/2026 18:12</td><td style="font-family:monospace;font-size:11px;">187.22.100.45</td><td>Desktop</td><td>Safari 17</td><td>macOS 14</td><td>São Paulo, BR</td><td><span class="badge badge-green" style="font-size:10px;">Sucesso</span></td></tr>
+                  <tr><td>27/06/2026 07:55</td><td style="font-family:monospace;font-size:11px;">45.180.221.8</td><td>Desktop</td><td>Chrome 124</td><td>Windows 11</td><td>Rio de Janeiro, BR</td><td><span class="badge badge-red" style="font-size:10px;">Falha</span></td></tr>
+                </tbody>
+              </table></div>
+            </div>
+
+            <!-- Notificações -->
+            <div id="ptab-notificacoes" style="display:none">
+              <div class="table-wrap"><table class="data-table">
+                <thead><tr><th>Tipo</th><th>Título</th><th>Canal</th><th>Status</th><th>Data</th></tr></thead>
+                <tbody>
+                  <tr><td>Promoção</td><td>Cashback disponível!</td><td><span class="badge-pill gray" style="font-size:10px;">Push</span></td><td><span class="badge badge-green" style="font-size:10px;">Lido</span></td><td>25/06/2026</td></tr>
+                  <tr><td>Sistema</td><td>Saque aprovado</td><td><span class="badge-pill gray" style="font-size:10px;">E-mail</span></td><td><span class="badge badge-green" style="font-size:10px;">Enviado</span></td><td>25/06/2026</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+
+            <!-- Mensagem Privada -->
+            <div id="ptab-mensagem" style="display:none">
+              <div class="chat-feed" style="margin-bottom:14px;">
+                <div class="chat-msg">
+                  <div class="chat-meta"><span>ops@twinfo.io</span><span>22/06/2026 10:15</span><span class="badge-pill green" style="font-size:10px;">Lido</span></div>
+                  <div class="chat-text">Usuário solicitou revisão de limite. Aguardando documentação adicional.</div>
+                </div>
+                <div class="chat-msg">
+                  <div class="chat-meta"><span>admin@twinfo.io</span><span>20/06/2026 09:00</span><span class="badge-pill gray" style="font-size:10px;">Não lido</span></div>
+                  <div class="chat-text">Ajuste de limite aprovado pelo supervisor.</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <input class="filter-input" placeholder="Digite a mensagem…" style="flex:1;">
+                <button class="btn btn-primary" style="font-size:12px;padding:6px 14px;">Enviar</button>
+              </div>
+            </div>
+
+            <!-- Autorizações -->
+            <div id="ptab-autorizacoes" style="display:none">
+              <div class="auth-list">
+                <div class="auth-row"><span>Visualizar apostas</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill gray" style="font-size:10px;">Individual</span><div class="toggle-read toggle-on"></div></div></div>
+                <div class="auth-row"><span>Realizar saque</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill purple" style="font-size:10px;">Grupo</span><div class="toggle-read toggle-on"></div></div></div>
+                <div class="auth-row"><span>Acesso ao cassino</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill purple" style="font-size:10px;">Grupo</span><div class="toggle-read toggle-on"></div></div></div>
+                <div class="auth-row"><span>Live betting</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill gray" style="font-size:10px;">Individual</span><div class="toggle-read toggle-off"></div></div></div>
+              </div>
+            </div>
+
+            <!-- Grupos -->
+            <div id="ptab-grupos" style="display:none">
+              <div class="auth-list">
+                <div class="auth-row">
+                  <div><div style="font-size:12.5px;font-weight:500;">VIP Legend</div><div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px;"><span class="badge-pill purple" style="font-size:10px;">Saque prioritário</span><span class="badge-pill purple" style="font-size:10px;">Cashback 15%</span><span class="badge-pill purple" style="font-size:10px;">Gerente dedicado</span></div></div>
+                  <div class="toggle-read toggle-on"></div>
+                </div>
+                <div class="auth-row">
+                  <div><div style="font-size:12.5px;font-weight:500;">Apostador Padrão</div><div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px;"><span class="badge-pill gray" style="font-size:10px;">Apostas esportivas</span><span class="badge-pill gray" style="font-size:10px;">Cassino</span></div></div>
+                  <div class="toggle-read toggle-off"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Afiliados -->
+            <div id="ptab-afiliados" style="display:none">
+              <div class="tab-error"><i class="ti ti-wifi-off" style="font-size:28px;display:block;margin-bottom:8px;color:#f97316;"></i>Dados indisponíveis no momento<br><span style="font-size:11px;color:#bbb;">Endpoint retornando erro 500. Tente novamente mais tarde.</span></div>
+            </div>
+
+            <!-- Limites -->
+            <div id="ptab-limites" style="display:none">
+              <div class="tab-error"><i class="ti ti-alert-circle" style="font-size:28px;display:block;margin-bottom:8px;color:#f97316;"></i>Dados indisponíveis no momento<br><span style="font-size:11px;color:#bbb;">Endpoint retornando erro 404. Tente novamente mais tarde.</span></div>
+            </div>
+
+          </div><!-- /profile-tab-body -->
+        </div><!-- /profile-page -->
+      </div><!-- /usuarioProfile -->
     </div>
 
     <!-- ══ SISTEMA & COMPLIANCE ══ -->
@@ -1620,15 +2041,19 @@
   }
 
   // ── Profile tabs ─────────────────────────────────────────────────────────────
-  function switchPTab(el) {
-    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  function switchPTab2(el, tabId) {
+    document.querySelectorAll('.ptab2').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
-    document.getElementById('profileBody').innerHTML =
-      `<p style="color:#666; font-size:13px">Em construção — aba: ${el.textContent.trim()}</p>`;
+    document.querySelectorAll('#usuarioProfile .profile-tab-body > div').forEach(d => d.style.display = 'none');
+    const tab = document.getElementById(tabId);
+    if (tab) tab.style.display = '';
   }
 
-  function scrollPTabs(delta) {
-    document.getElementById('ptabsScroll').scrollBy({ left: delta, behavior: 'smooth' });
+  function toggleAccordion(btn) {
+    const body = document.getElementById('accordionBody');
+    const icon = document.getElementById('accordionIcon');
+    const open = body.classList.toggle('open');
+    icon.className = open ? 'ti ti-chevron-up' : 'ti ti-chevron-down';
   }
 
   // ── Usuários ─────────────────────────────────────────────────────────────────
@@ -1641,15 +2066,20 @@
   function openProfile(name, email, cpf, cadastro, status) {
     document.getElementById('usuariosList').classList.add('hidden');
     document.getElementById('usuarioProfile').classList.remove('hidden');
+    // Update identity fields
     document.getElementById('profileName').textContent = name;
+    document.getElementById('profileNameBlock').textContent = name;
     document.getElementById('profileEmail').textContent = email;
-    document.getElementById('profileCPF').textContent = cpf;
     document.getElementById('profileCadastro').textContent = cadastro;
-    const badge = document.getElementById('profileBadge');
-    badge.textContent = status;
-    badge.className = 'badge ' + (status === 'Verificado' ? 'badge-green' : status === 'Pendente' ? 'badge-yellow' : 'badge-red');
-    document.querySelectorAll('.ptab').forEach((t, i) => t.classList.toggle('active', i === 0));
-    document.getElementById('profileBody').innerHTML = `<p style="color:#666; font-size:13px">Em construção — aba: Dados</p>`;
+    // Avatar initials + color
+    const initials = name.split(' ').slice(0,2).map(w=>w[0]).join('');
+    const colors = ['#5b169f','#0891b2','#059669','#d97706','#dc2626','#7c3aed'];
+    const color = colors[name.charCodeAt(0) % colors.length];
+    const av = document.getElementById('profileAvatar');
+    av.textContent = initials; av.style.background = color;
+    // Reset to first tab
+    document.querySelectorAll('.ptab2').forEach((t,i) => t.classList.toggle('active', i===0));
+    document.querySelectorAll('#usuarioProfile .profile-tab-body > div').forEach((d,i) => d.style.display = i===0 ? '' : 'none');
     setBreadcrumb(name, 'Usuários', 'usuarios');
   }
 
