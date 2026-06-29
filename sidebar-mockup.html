@@ -404,26 +404,30 @@
     </div>
 
     <div class="sidebar-section">
-      <div class="sidebar-label">Principal</div>
-      <div class="sidebar-item" data-section="dashboard" data-label="Dashboard" onclick="navigate(this)">
-        <i class="ti ti-layout-dashboard"></i><span class="item-label"> Dashboard</span>
-      </div>
-      <div class="sidebar-item" data-section="operacao" data-label="Operação" onclick="navigate(this)">
-        <i class="ti ti-activity"></i><span class="item-label"> Operação</span>
-      </div>
-      <div class="sidebar-item" data-section="financeiro" data-label="Financeiro" onclick="navigate(this)">
-        <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
-      </div>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-label">Produto</div>
+      <div class="sidebar-label">Produtos</div>
       <div class="sidebar-item" data-section="cassino" data-label="Cassino" onclick="navigate(this)">
         <i class="ti ti-device-gamepad-2"></i><span class="item-label"> Cassino</span>
       </div>
       <div class="sidebar-item" data-section="esportes" data-label="Esportes" onclick="navigate(this)">
         <i class="ti ti-trophy"></i><span class="item-label"> Esportes</span>
       </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Operação</div>
+      <div class="sidebar-item" data-section="usuarios" data-label="Usuários" onclick="navigate(this)">
+        <i class="ti ti-users"></i><span class="item-label"> Usuários</span>
+      </div>
+      <div class="sidebar-item" data-section="financeiro" data-label="Financeiro" onclick="navigate(this)">
+        <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
+      </div>
+      <div class="sidebar-item" data-section="operacao" data-label="Operação" onclick="navigate(this)">
+        <i class="ti ti-activity"></i><span class="item-label"> Operação</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Marketing</div>
       <div class="sidebar-item" data-section="promocoes" data-label="Promoções" onclick="navigate(this)">
         <i class="ti ti-gift"></i><span class="item-label"> Promoções</span>
       </div>
@@ -433,24 +437,18 @@
       <div class="sidebar-item" data-section="conteudo" data-label="Conteúdo" onclick="navigate(this)">
         <i class="ti ti-file-text"></i><span class="item-label"> Conteúdo</span>
       </div>
-      <div class="sidebar-item" data-section="sistema-compliance" data-label="Sistema & Compliance" onclick="navigate(this)">
-        <i class="ti ti-shield-check"></i><span class="item-label"> Sistema & Compliance</span>
-      </div>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-label">Gestão</div>
-      <div class="sidebar-item" data-section="usuarios" data-label="Usuários" onclick="navigate(this)">
-        <i class="ti ti-users"></i><span class="item-label"> Usuários</span>
-      </div>
       <div class="sidebar-item" data-section="relatorios" data-label="Relatórios" onclick="navigate(this)">
         <i class="ti ti-chart-bar"></i><span class="item-label"> Relatórios</span>
       </div>
       <div class="sidebar-item" data-section="monitoramento" data-label="Monitoramento" onclick="navigate(this)">
         <i class="ti ti-radar"></i><span class="item-label"> Monitoramento</span>
       </div>
-      <div class="sidebar-item" data-section="afiliados" data-label="Afiliados" onclick="navigate(this)">
-        <i class="ti ti-users-group"></i><span class="item-label"> Afiliados</span>
+      <div class="sidebar-item" data-section="sistema-compliance" data-label="Sistema & Compliance" onclick="navigate(this)">
+        <i class="ti ti-shield-check"></i><span class="item-label"> Sistema & Compliance</span>
       </div>
     </div>
 
@@ -611,11 +609,41 @@
       </div>
     </div>
 
+    <!-- ══ CASSINO ══ -->
+    <div class="content-area hidden" id="pageCassino">
+      <nav class="int-nav">
+        <div class="int-nav-label">Visão geral</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'cassinoTitle')">Dashboard</div>
+        <div class="int-nav-label">Jogos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Jogos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Jogos ao vivo</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Mesas ao vivo</div>
+        <div class="int-nav-label">Catálogo</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Fornecedores</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Categorias</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Categorias Fixas</div>
+        <div class="int-nav-label">Bônus</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Bônus</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Regras de uso</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Acionamentos</div>
+        <div class="int-nav-label">Dados</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Relatório</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+        <div class="config-content">
+          <div class="page-title" id="cassinoTitle">Dashboard</div>
+          <p style="color:#666; font-size:13px">Em construção.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- ══ ESPORTES ══ -->
     <div class="content-area hidden" id="pageEsportes">
       <nav class="int-nav">
+        <div class="int-nav-label">Visão geral</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'esportesTitle')">Dashboard</div>
         <div class="int-nav-label">Configuração</div>
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'esportesTitle')">Esportes</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Esportes</div>
         <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Categorias</div>
         <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Torneios</div>
         <div class="int-nav-label">Eventos</div>
@@ -638,14 +666,11 @@
     <!-- ══ PROMOÇÕES ══ -->
     <div class="content-area hidden" id="pagePromocoes">
       <nav class="int-nav">
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'promocoesTitle')">Bônus</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'promocoesTitle')">Regras de afiliado</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'promocoesTitle')">Regras de uso</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'promocoesTitle')">Acionamentos</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'promocoesTitle')">Regras de afiliado</div>
       </nav>
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
-          <div class="page-title" id="promocoesTitle">Bônus</div>
+          <div class="page-title" id="promocoesTitle">Regras de afiliado</div>
           <p style="color:#666; font-size:13px">Em construção.</p>
         </div>
       </div>
@@ -657,7 +682,6 @@
         <div class="page-title">Relatórios</div>
         <div class="tabs" style="margin-top:16px;">
           <div class="tab active" onclick="switchTab(this)">Dashboard</div>
-          <div class="tab" onclick="switchTab(this)">Cassino</div>
           <div class="tab" onclick="switchTab(this)">Esportivo</div>
           <div class="tab" onclick="switchTab(this)">Resumo</div>
         </div>
@@ -1137,7 +1161,7 @@
 </div>
 
 <script>
-  const ALL_PAGES = ['pageConfig','pageDashboard','pageEsportes','pagePromocoes',
+  const ALL_PAGES = ['pageConfig','pageCassino','pageEsportes','pagePromocoes',
                      'pageRelatorios','pageMonitoramento','pageUsuarios','pageAfiliados',
                      'pageSistemaCompliance','pageSIGAP','pageEmpty'];
 
@@ -1223,7 +1247,7 @@
     if (window.innerWidth <= 768) closeSidebar();
     document.getElementById('sidebarConfig').classList.add('hidden');
     document.getElementById('sidebar').classList.remove('hidden');
-    navigate(document.querySelector('[data-section="dashboard"]'));
+    navigate(document.querySelector('[data-section="cassino"]'));
   }
 
   function selectConfigSidebar(el) {
@@ -1258,7 +1282,7 @@
   // ── Navigation ───────────────────────────────────────────────────────────────
   const PAGE_MAP = {
     configuracoes:        'pageConfig',
-    dashboard:            'pageDashboard',
+    cassino:              'pageCassino',
     esportes:             'pageEsportes',
     promocoes:            'pagePromocoes',
     relatorios:           'pageRelatorios',
