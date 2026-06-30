@@ -873,15 +873,23 @@
     </div>
 
     <!-- ══ RELATÓRIOS ══ -->
-    <div class="page-full hidden" id="pageRelatorios">
-      <div class="config-content">
-        <div class="page-title">Relatórios</div>
-        <div class="tabs" style="margin-top:16px;">
-          <div class="tab active" onclick="switchTab(this)">Dashboard</div>
-          <div class="tab" onclick="switchTab(this)">Esportivo</div>
-          <div class="tab" onclick="switchTab(this)">Resumo</div>
+    <div class="content-area hidden" id="pageRelatorios">
+      <nav class="int-nav">
+        <div class="int-nav-label">Visão geral</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'relatoriosTitle')">Dashboard</div>
+        <div class="int-nav-label">Produto</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'relatoriosTitle')">Esportivo</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'relatoriosTitle')">Cassino</div>
+        <div class="int-nav-label">Financeiro</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'relatoriosTitle')">Resumo</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'relatoriosTitle')">Depósitos</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'relatoriosTitle')">Saques</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+        <div class="config-content">
+          <div class="page-title" id="relatoriosTitle">Dashboard</div>
+          <p style="color:#666; font-size:13px">Em construção.</p>
         </div>
-        <p style="color:#666; font-size:13px">Em construção.</p>
       </div>
     </div>
 
@@ -977,16 +985,21 @@
     </div>
 
     <!-- ══ AFILIADOS ══ -->
-    <div class="page-full hidden" id="pageAfiliados">
-      <div class="config-content">
-        <div class="page-title">Afiliados</div>
-        <div class="tabs" style="margin-top:16px;">
-          <div class="tab active" onclick="switchTab(this)">Visão Geral</div>
-          <div class="tab" onclick="switchTab(this)">Cadastros</div>
-          <div class="tab" onclick="switchTab(this)">Comissões</div>
-          <div class="tab" onclick="switchTab(this)">Relatório</div>
+    <div class="content-area hidden" id="pageAfiliados">
+      <nav class="int-nav">
+        <div class="int-nav-label">Visão geral</div>
+        <div class="int-nav-item active" onclick="selectGenericNav(this,'afiliadosTitle')">Visão Geral</div>
+        <div class="int-nav-label">Gestão</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Cadastros</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Comissões</div>
+        <div class="int-nav-label">Dados</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Relatório</div>
+      </nav>
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
+        <div class="config-content">
+          <div class="page-title" id="afiliadosTitle">Visão Geral</div>
+          <p style="color:#666; font-size:13px">Em construção.</p>
         </div>
-        <p style="color:#666; font-size:13px">Em construção.</p>
       </div>
     </div>
 
