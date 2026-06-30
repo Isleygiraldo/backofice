@@ -1887,10 +1887,11 @@
     const bodyEl = document.getElementById('configBody');
 
     if (key === 'branding') {
-      cc.style.padding = '0';
-      titleEl.classList.add('hidden');
-      navEl.style.display = 'none';
-      bodyEl.innerHTML = renderBranding();
+      cc.style.padding = '';
+      titleEl.classList.remove('hidden');
+      titleEl.textContent = 'Branding';
+      renderBrandingIntNav(navEl);
+      bodyEl.innerHTML = renderBrandingBody();
     } else {
       cc.style.padding = '';
       titleEl.classList.remove('hidden');
@@ -2007,35 +2008,33 @@
     el.innerHTML = `<div class="form-grid">${cols}</div>`;
   }
 
-  function renderBranding() {
-    const navHtml = BRANDING_GROUPS.map((grp, gi) =>
-      `<div class="branding-grp">${grp.group}</div>` +
+  function renderBrandingIntNav(navEl) {
+    navEl.style.display = '';
+    navEl.innerHTML = BRANDING_GROUPS.map((grp, gi) =>
+      `<div class="int-nav-label">${grp.group}</div>` +
       grp.items.map((item, ii) =>
-        `<div class="branding-itm${gi === 0 && ii === 0 ? ' active' : ''}" onclick="selectBrandingItem(this)">${item}</div>`
+        `<div class="int-nav-item${gi === 0 && ii === 0 ? ' active' : ''}" onclick="selectBrandingItem(this)">${item}</div>`
       ).join('')
     ).join('');
-    return `<div class="branding-layout">
-      <nav class="branding-nav">${navHtml}</nav>
-      <div class="branding-body">
-        <div class="page-title" id="brandingTitle">Logotipo</div>
-        <div class="form-grid" id="brandingBody">
-          <div class="form-field"><div class="field-label">Logo padrão</div><input class="field-input" value="/assets/logo.svg"></div>
-          <div class="form-field"><div class="field-label">Logo escura</div><input class="field-input" value="/assets/logo-dark.svg"></div>
-          <div class="form-field"><div class="field-label">Logo clara</div><input class="field-input" value="/assets/logo-light.svg"></div>
-          <div class="form-field"><div class="field-label">Logo Mobile</div><input class="field-input" value="/assets/logo-mobile.svg"></div>
-          <div class="form-field"><div class="field-label">Favicon</div><input class="field-input" value="/assets/favicon.ico"></div>
-          <div class="form-field"><div class="field-label">Escudo Default</div><input class="field-input" value="/assets/shield.svg"></div>
-        </div>
-      </div>
+  }
+
+  function renderBrandingBody() {
+    return `<div class="form-grid">
+      <div class="form-field"><div class="field-label">Logo padrão</div><input class="field-input" value="/assets/logo.svg"></div>
+      <div class="form-field"><div class="field-label">Logo escura</div><input class="field-input" value="/assets/logo-dark.svg"></div>
+      <div class="form-field"><div class="field-label">Logo clara</div><input class="field-input" value="/assets/logo-light.svg"></div>
+      <div class="form-field"><div class="field-label">Logo Mobile</div><input class="field-input" value="/assets/logo-mobile.svg"></div>
+      <div class="form-field"><div class="field-label">Favicon</div><input class="field-input" value="/assets/favicon.ico"></div>
+      <div class="form-field"><div class="field-label">Escudo Default</div><input class="field-input" value="/assets/shield.svg"></div>
     </div>`;
   }
 
   function selectBrandingItem(el) {
-    document.querySelectorAll('.branding-itm').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('#configIntNav .int-nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
     const name = el.textContent;
-    document.getElementById('brandingTitle').textContent = name;
-    document.getElementById('brandingBody').innerHTML = `<p style="color:#666; font-size:13px; grid-column:span 2">Configurações de ${name} — em construção.</p>`;
+    document.getElementById('configTitle').textContent = name;
+    document.getElementById('configBody').innerHTML = `<p style="color:#666; font-size:13px">Configurações de ${name} — em construção.</p>`;
   }
 
   // ── SIGAP nav (show/hide sections) ───────────────────────────────────────────
