@@ -629,10 +629,12 @@
 
     <!-- ══ CONFIGURAÇÕES ══ -->
     <div class="page-full hidden" id="pageConfig">
-      <div class="config-content" id="configContent">
-        <div class="page-title" id="configTitle">Plataforma</div>
-        <div class="tabs" id="configTabs"></div>
-        <div id="configBody"></div>
+      <div style="flex:1;display:flex;overflow:hidden;">
+        <nav class="int-nav" id="configIntNav" style="display:none;"></nav>
+        <div class="config-content" id="configContent">
+          <div class="page-title" id="configTitle">Plataforma</div>
+          <div id="configBody"></div>
+        </div>
       </div>
       <div class="footer-bar">
         <button class="btn btn-secondary" onclick="alert('Alterações descartadas')">Cancelar</button>
@@ -1881,20 +1883,19 @@
 
     const cc = document.getElementById('configContent');
     const titleEl = document.getElementById('configTitle');
-    const tabsEl = document.getElementById('configTabs');
+    const navEl = document.getElementById('configIntNav');
     const bodyEl = document.getElementById('configBody');
 
     if (key === 'branding') {
       cc.style.padding = '0';
       titleEl.classList.add('hidden');
-      tabsEl.classList.add('hidden');
+      navEl.style.display = 'none';
       bodyEl.innerHTML = renderBranding();
     } else {
       cc.style.padding = '';
       titleEl.classList.remove('hidden');
-      tabsEl.classList.remove('hidden');
       titleEl.textContent = cfg.title;
-      renderTabs(cfg.tabs, tabsEl);
+      renderConfigIntNav(cfg.tabs, navEl);
       renderFields(key, bodyEl, cfg.title);
     }
 
@@ -1977,11 +1978,18 @@
   // ── Configurações (mantido para compatibilidade com breadcrumb) ─────────────
   function selectConfig(el) { selectConfigSidebar(el); }
 
-  function renderTabs(tabs, el) {
-    if (!tabs || tabs.length === 0) { el.innerHTML = ''; return; }
-    el.innerHTML = tabs.map((t, i) =>
-      `<div class="tab${i === 0 ? ' active' : ''}" onclick="switchTab(this)">${t}</div>`
+  function renderConfigIntNav(tabs, navEl) {
+    if (!tabs || tabs.length === 0) { navEl.style.display = 'none'; return; }
+    navEl.style.display = '';
+    navEl.innerHTML = tabs.map((t, i) =>
+      `<div class="int-nav-item${i === 0 ? ' active' : ''}" onclick="selectConfigIntNav(this)">${t}</div>`
     ).join('');
+  }
+
+  function selectConfigIntNav(el) {
+    document.querySelectorAll('#configIntNav .int-nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('configTitle').textContent = el.textContent;
   }
 
   function renderFields(key, el, title) {
