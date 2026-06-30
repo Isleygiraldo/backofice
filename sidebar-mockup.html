@@ -471,6 +471,95 @@
       .dash-grid { grid-template-columns: 1fr; }
       .balance-grid { grid-template-columns: 1fr 1fr; }
     }
+
+/* ═══════════════════════════════════════════════════
+   PERFIL v3 — scaffold de 3 zonas
+   Não sobrescreve classes antigas, só adiciona novas
+═══════════════════════════════════════════════════ */
+.p3-page { display:flex; flex-direction:column; height:100%; overflow:hidden; background:#f5f5f5; }
+.p3-topbar { display:flex; align-items:center; gap:12px; padding:10px 18px; background:#fff; border-bottom:0.5px solid #e5e5e5; flex-shrink:0; }
+.p3-breadcrumb { font-size:11px; color:#999; display:flex; align-items:center; gap:5px; }
+.p3-breadcrumb .p3-bc-link { color:#7F77DD; cursor:pointer; }
+.p3-breadcrumb .p3-bc-link:hover { text-decoration:underline; }
+.p3-topbar-divider { width:0.5px; height:28px; background:#e5e5e5; flex-shrink:0; }
+.p3-avatar { width:36px; height:36px; border-radius:50%; background:#CECBF6; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; color:#3C3489; flex-shrink:0; text-transform:uppercase; }
+.p3-identity { flex:1; min-width:0; }
+.p3-name { font-size:14px; font-weight:500; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.p3-badges-row { display:flex; gap:5px; margin-top:3px; flex-wrap:wrap; }
+.p3-badge { display:inline-flex; align-items:center; gap:3px; padding:2px 8px; border-radius:99px; font-size:10px; font-weight:500; border:0.5px solid; }
+.p3b-green  { background:#EAF3DE; color:#3B6D11; border-color:#C0DD97; }
+.p3b-teal   { background:#E1F5EE; color:#0F6E56; border-color:#9FE1CB; }
+.p3b-purple { background:#EEEDFE; color:#3C3489; border-color:#CECBF6; }
+.p3b-red    { background:#FCEBEB; color:#791F1F; border-color:#F7C1C1; }
+.p3b-gray   { background:#F1EFE8; color:#5F5E5A; border-color:#D3D1C7; }
+.p3-topbar-actions { display:flex; gap:6px; flex-shrink:0; }
+.p3-body { display:flex; flex:1; overflow:hidden; }
+.p3-main { flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0; }
+.p3-filter { display:flex; align-items:center; gap:7px; padding:8px 16px; background:#fff; border-bottom:0.5px solid #e5e5e5; flex-shrink:0; }
+.p3-filter input[type="date"] { font-size:12px; padding:4px 8px; border-radius:6px; border:0.5px solid #ddd; background:#f8f8f8; color:#333; }
+.p3-filter-sep { color:#bbb; font-size:12px; }
+.p3-filter-apply { font-size:11px; padding:4px 11px; border-radius:6px; background:#7F77DD; color:white; border:none; cursor:pointer; }
+.p3-filter-clear { font-size:11px; padding:4px 9px; border-radius:6px; background:transparent; border:0.5px solid #ddd; color:#888; cursor:pointer; }
+.p3-presets { display:flex; gap:4px; margin-left:auto; }
+.p3-preset { font-size:11px; padding:3px 8px; border-radius:6px; border:0.5px solid #ddd; background:transparent; color:#888; cursor:pointer; }
+.p3-preset.p3-ativo { background:#EEEDFE; color:#534AB7; border-color:#AFA9EC; }
+.p3-tabs-wrap { display:flex; align-items:center; background:#fff; border-bottom:0.5px solid #e5e5e5; flex-shrink:0; }
+.p3-tabs-scroll { display:flex; overflow-x:auto; scrollbar-width:none; }
+.p3-tabs-scroll::-webkit-scrollbar { display:none; }
+.p3-tab { font-size:12px; padding:9px 14px; color:#888; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent; flex-shrink:0; }
+.p3-tab.p3-ativo { color:#534AB7; border-bottom-color:#534AB7; font-weight:500; }
+.p3-tab:hover:not(.p3-ativo) { color:#444; background:#fafafa; }
+.p3-scroll-btn { background:transparent; border:none; color:#bbb; padding:0 8px; cursor:pointer; font-size:16px; flex-shrink:0; }
+.p3-tab-body { flex:1; overflow-y:auto; padding:16px; background:#f5f5f5; }
+.p3-sidebar { width:264px; flex-shrink:0; overflow-y:auto; background:#fff; border-left:0.5px solid #e5e5e5; display:flex; flex-direction:column; gap:0; }
+.p3-sidebar-section { padding:12px 14px; border-bottom:0.5px solid #f0f0f0; }
+.p3-sidebar-section:last-child { border-bottom:none; }
+.p3-sec-title { font-size:10px; font-weight:500; letter-spacing:0.6px; text-transform:uppercase; color:#bbb; margin-bottom:10px; }
+.p3-fin-list { display:flex; flex-direction:column; gap:1px; }
+.p3-fin-row { display:flex; justify-content:space-between; align-items:baseline; padding:5px 0; border-bottom:0.5px solid #f5f5f5; }
+.p3-fin-row:last-child { border-bottom:none; }
+.p3-fin-lbl { font-size:11px; color:#aaa; }
+.p3-fin-val { font-size:13px; font-weight:500; color:#222; }
+.p3-fin-val.destaque { color:#534AB7; font-size:15px; }
+.p3-fin-val.warn { color:#BA7517; }
+.p3-fin-sub { font-size:10px; color:#bbb; text-align:right; }
+.p3-score-wrap { display:flex; flex-direction:column; align-items:center; margin-bottom:10px; }
+.p3-score-wrap svg { width:90px; height:50px; }
+.p3-score-num { font-size:16px; font-weight:500; color:#111; text-align:center; margin-top:-2px; }
+.p3-score-lbl { font-size:10px; padding:2px 7px; border-radius:99px; font-weight:500; margin-top:2px; }
+.p3sl-baixo { background:#EAF3DE; color:#3B6D11; }
+.p3sl-medio { background:#FAEEDA; color:#854F0B; }
+.p3sl-alto  { background:#FCEBEB; color:#791F1F; }
+.p3-bars { display:flex; flex-direction:column; gap:5px; }
+.p3-bar-row { display:flex; align-items:center; gap:6px; }
+.p3-bar-lbl { font-size:10px; color:#aaa; width:60px; flex-shrink:0; }
+.p3-bar-track { flex:1; height:3px; background:#f0f0f0; border-radius:2px; overflow:hidden; }
+.p3-bar-fill  { height:100%; border-radius:2px; }
+.p3-bar-num   { font-size:10px; color:#aaa; width:20px; text-align:right; }
+.p3-alerts { margin-top:8px; padding-top:8px; border-top:0.5px solid #f0f0f0; display:flex; flex-direction:column; gap:4px; }
+.p3-alert-row { display:flex; align-items:center; gap:5px; font-size:11px; color:#888; }
+.p3-alert-row i { font-size:12px; }
+.p3-perm-list { display:flex; flex-direction:column; gap:5px; }
+.p3-perm-row { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:#888; }
+.p3-perm-divider { border:none; border-top:0.5px solid #f0f0f0; margin:4px 0; }
+.p3-tog-on { width:26px; height:14px; background:#639922; border-radius:7px; position:relative; flex-shrink:0; }
+.p3-tog-on::after { content:''; position:absolute; right:2px; top:2px; width:10px; height:10px; background:white; border-radius:50%; }
+.p3-tog-off { width:26px; height:14px; background:#ddd; border-radius:7px; position:relative; flex-shrink:0; }
+.p3-tog-off::after { content:''; position:absolute; left:2px; top:2px; width:10px; height:10px; background:white; border-radius:50%; }
+.p3-tag { font-size:10px; padding:2px 6px; border-radius:99px; font-weight:500; }
+.p3t-green { background:#EAF3DE; color:#3B6D11; }
+.p3t-amber { background:#FAEEDA; color:#854F0B; }
+.p3t-gray  { background:#f0f0f0; color:#777; }
+.p3-sub-info { font-size:10px; color:#bbb; text-align:right; }
+.p3-accordion-toggle { display:flex; justify-content:space-between; align-items:center; cursor:pointer; padding:2px 0 8px; font-size:10px; font-weight:500; letter-spacing:0.6px; text-transform:uppercase; color:#bbb; user-select:none; }
+.p3-accordion-toggle:hover { color:#888; }
+.p3-accordion-body { display:none; }
+.p3-accordion-body.p3-aberto { display:block; }
+.p3-dp-list { display:flex; flex-direction:column; gap:6px; }
+.p3-dp-lbl { font-size:10px; color:#bbb; margin-bottom:1px; }
+.p3-dp-val { font-size:12px; color:#333; font-weight:500; }
+@media (max-width:1024px) { .p3-sidebar { width:220px; } .p3-presets { display:none; } }
+@media (max-width:768px) { .p3-body { flex-direction:column; } .p3-sidebar { width:100%; border-left:none; border-top:0.5px solid #e5e5e5; max-height:280px; } }
   </style>
 </head>
 <body>
@@ -1031,397 +1120,206 @@
       </div>
 
       <div id="usuarioProfile" class="page-full hidden">
-        <div class="profile-page">
+        <div class="p3-page">
 
-          <!-- Topbar -->
-          <div class="profile-topbar">
-            <div class="profile-topbar-crumb">
-              <i class="ti ti-users" style="font-size:13px"></i>
-              <span onclick="backToList()">Apostadores</span>
-              <span style="color:#bbb;">›</span>
-              <span id="profileName" style="color:#111;font-weight:600;cursor:default">-</span>
-            </div>
-            <div class="profile-topbar-actions">
-              <button class="btn btn-secondary" onclick="backToList()" style="font-size:12px;padding:5px 12px;"><i class="ti ti-arrow-left"></i> Voltar</button>
-              <button class="btn btn-secondary" style="font-size:12px;padding:5px 12px;"><i class="ti ti-user-share"></i> Impersonar</button>
-              <button class="btn btn-primary" style="font-size:12px;padding:5px 14px;"><i class="ti ti-pencil"></i> Editar</button>
-            </div>
+<!-- ── ZONA 1: Topbar ── -->
+<div class="p3-topbar">
+  <div class="p3-breadcrumb">
+    <i class="ti ti-users" style="font-size:13px"></i>
+    <span class="p3-bc-link" onclick="backToList()">Apostadores</span>
+    <span>›</span>
+    <span id="p3NomeBreadcrumb" style="color:#555;">—</span>
+  </div>
+  <div class="p3-topbar-divider"></div>
+  <div class="p3-avatar" id="p3Avatar">—</div>
+  <div class="p3-identity">
+    <div class="p3-name" id="p3Nome">—</div>
+    <div class="p3-badges-row" id="p3BadgesRow">
+      <span class="p3-badge p3b-green"><i class="ti ti-circle-check" style="font-size:11px"></i> Conta Ativa</span>
+      <span class="p3-badge p3b-teal"><i class="ti ti-shield-check" style="font-size:11px"></i> KYC Verificado</span>
+      <span class="p3-badge p3b-green"><i class="ti ti-user-check" style="font-size:11px"></i> Apostador Ativo</span>
+      <span class="p3-badge p3b-purple"><i class="ti ti-crown" style="font-size:11px"></i> VIP LEGEND</span>
+    </div>
+  </div>
+  <div class="p3-topbar-actions">
+    <button class="btn btn-secondary" onclick="backToList()">← Voltar</button>
+    <button class="btn btn-secondary"><i class="ti ti-user-bolt"></i> Impersonar</button>
+    <button class="btn btn-primary"><i class="ti ti-pencil"></i> Editar</button>
+  </div>
+</div>
+
+<!-- ── ZONA 2: Body = main + sidebar ── -->
+<div class="p3-body">
+
+  <!-- ── ZONA 2a: Área principal ── -->
+  <div class="p3-main">
+
+    <!-- Filtro global -->
+    <div class="p3-filter">
+      <i class="ti ti-calendar" style="font-size:13px;color:#bbb"></i>
+      <input type="date" id="p3DataIni" />
+      <span class="p3-filter-sep">→</span>
+      <input type="date" id="p3DataFim" />
+      <button class="p3-filter-apply" onclick="p3AplicarFiltro()">Aplicar</button>
+      <button class="p3-filter-clear" onclick="p3LimparFiltro()">Limpar</button>
+      <div class="p3-presets">
+        <button class="p3-preset" onclick="p3Preset('hoje',this)">Hoje</button>
+        <button class="p3-preset" onclick="p3Preset('7d',this)">7 dias</button>
+        <button class="p3-preset p3-ativo" onclick="p3Preset('30d',this)">30 dias</button>
+        <button class="p3-preset" onclick="p3Preset('90d',this)">90 dias</button>
+      </div>
+    </div>
+
+    <!-- Abas -->
+    <div class="p3-tabs-wrap">
+      <button class="p3-scroll-btn" onclick="p3ScrollTabs(-140)">‹</button>
+      <div class="p3-tabs-scroll" id="p3TabsScroll">
+        <div class="p3-tab p3-ativo" onclick="p3SwitchTab(this,'Transações')">Transações</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Apostas')">Apostas</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Cassino')">Cassino</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Palpites')">Palpites</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'KYC')">KYC</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Bônus')">Bônus</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Bloqueios')">Bloqueios</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Logins')">Logins</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Notificações')">Notificações</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Mensagem Privada')">Mensagem Privada</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Autorizações')">Autorizações</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Grupos')">Grupos</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Afiliados')">Afiliados</div>
+        <div class="p3-tab" onclick="p3SwitchTab(this,'Limites')">Limites</div>
+      </div>
+      <button class="p3-scroll-btn" onclick="p3ScrollTabs(140)">›</button>
+    </div>
+
+    <!-- Conteúdo da aba -->
+    <div class="p3-tab-body" id="p3TabBody">
+      <p style="color:#bbb;font-size:13px;">Em construção.</p>
+    </div>
+
+  </div><!-- /p3-main -->
+
+  <!-- ── ZONA 2b: Sidebar direita ── -->
+  <div class="p3-sidebar">
+
+    <!-- Financeiro -->
+    <div class="p3-sidebar-section">
+      <div class="p3-sec-title">Financeiro</div>
+      <div class="p3-fin-list">
+        <div class="p3-fin-row">
+          <span class="p3-fin-lbl">Saldo disponível</span>
+          <div style="text-align:right">
+            <div class="p3-fin-val destaque" id="p3FinSaldo">R$ 0,00</div>
           </div>
-
-          <!-- Scrollable body -->
-          <div class="profile-scroll">
-            <div class="profile-main-grid">
-
-              <!-- LEFT: A + B + E -->
-              <div class="profile-left">
-
-                <!-- Bloco A — Identidade -->
-                <div class="pcard">
-                  <div class="identity-row">
-                    <div class="p-avatar" id="profileAvatar" style="background:#5b169f;">IL</div>
-                    <div class="identity-info">
-                      <div class="identity-name" id="profileNameBlock">ISLEY DAVID LOPEZ GIRALDO</div>
-                      <div class="identity-user">@isleygiraldo</div>
-                      <div class="identity-fields">
-                        <span><i class="ti ti-mail"></i> <span id="profileEmail">isley.giraldo@twinfo.io</span></span>
-                        <span><i class="ti ti-device-mobile"></i> +55 (11) 99999-0000</span>
-                        <span><i class="ti ti-id"></i> CPF: <span id="profileCPF">***.***.***-**</span> <button class="reveal-btn" title="Revelar"><i class="ti ti-eye"></i></button></span>
-                        <span><i class="ti ti-gender-androgyne"></i> Masculino &nbsp;·&nbsp; <i class="ti ti-cake"></i> 15/03/1990</span>
-                        <span><i class="ti ti-calendar-plus"></i> Cadastro: <span id="profileCadastro">17/01/2024 09:41</span> &nbsp;·&nbsp; <i class="ti ti-fingerprint"></i> <span style="font-family:monospace;font-size:11px;">d67e8a2f…</span> <button class="reveal-btn"><i class="ti ti-copy"></i></button></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="identity-badges">
-                    <span class="badge-pill green"><i class="ti ti-circle-check" style="font-size:11px"></i> Conta Ativa</span>
-                    <span class="badge-pill green"><i class="ti ti-shield-check" style="font-size:11px"></i> KYC Verificado</span>
-                    <span class="badge-pill green"><i class="ti ti-user-check" style="font-size:11px"></i> Apostador Ativo</span>
-                    <span class="badge-pill purple"><i class="ti ti-crown" style="font-size:11px"></i> VIP LEGEND</span>
-                  </div>
-                </div>
-
-                <!-- Bloco B — Resumo Financeiro -->
-                <div class="pcard">
-                  <div class="pcard-title">Resumo Financeiro</div>
-                  <div class="fin-grid">
-                    <div class="fin-card highlight" style="grid-column:span 3;">
-                      <div class="fin-label">Saldo disponível</div>
-                      <div class="fin-value">R$ 1.240,50</div>
-                    </div>
-                    <div class="fin-card">
-                      <div class="fin-label">Bônus Esportivo</div>
-                      <div class="fin-value">R$ 80,00</div>
-                      <div class="fin-sub">Free Bet: R$ 20,00</div>
-                    </div>
-                    <div class="fin-card">
-                      <div class="fin-label">Bônus Cassino</div>
-                      <div class="fin-value">R$ 150,00</div>
-                    </div>
-                    <div class="fin-card">
-                      <div class="fin-label">Depósito Pendente</div>
-                      <div class="fin-value" style="color:#a16207;">R$ 0,00</div>
-                    </div>
-                  </div>
-                  <div class="fin-grid-2">
-                    <div class="fin-card">
-                      <div class="fin-label">Saque Pendente</div>
-                      <div class="fin-value">R$ 0,00</div>
-                    </div>
-                    <div class="fin-card" style="background:#fafafa;border-style:dashed;">
-                      <div class="fin-label" style="color:#bbb;">—</div>
-                      <div class="fin-value" style="color:#ccc;font-size:12px;">+histórico em Dados Adicionais</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Bloco E — Dados Adicionais (accordion) -->
-                <div class="pcard" style="padding:0;">
-                  <button class="accordion-btn" onclick="toggleAccordion(this)">
-                    <span>Ver dados adicionais</span>
-                    <i class="ti ti-chevron-down" id="accordionIcon"></i>
-                  </button>
-                  <div class="accordion-body" id="accordionBody">
-                    <div><div class="acc-label">Endereço</div><div class="acc-value">Rua das Flores, 123 — SP</div></div>
-                    <div><div class="acc-label">País</div><div class="acc-value">Brasil</div></div>
-                    <div><div class="acc-label">Fuso horário</div><div class="acc-value">America/Sao_Paulo</div></div>
-                    <div><div class="acc-label">Cargo</div><div class="acc-value">—</div></div>
-                    <div><div class="acc-label">1º Depósito</div><div class="acc-value">18/01/2024</div></div>
-                    <div><div class="acc-label">Total depositado</div><div class="acc-value">R$ 12.400,00</div></div>
-                    <div><div class="acc-label">Total sacado</div><div class="acc-value">R$ 9.800,00</div></div>
-                    <div><div class="acc-label">FTD Rollover rem.</div><div class="acc-value">0x</div></div>
-                    <div><div class="acc-label">Cód. afiliado indic.</div><div class="acc-value">—</div></div>
-                    <div><div class="acc-label">Aceite contratos</div><div class="acc-value">17/01/2024 09:41</div></div>
-                    <div><div class="acc-label">Motivo desativação</div><div class="acc-value">—</div></div>
-                    <div><div class="acc-label">IP de cadastro</div><div class="acc-value" style="font-family:monospace;font-size:11.5px;">187.22.100.45</div></div>
-                    <div><div class="acc-label">IP última atualiz.</div><div class="acc-value" style="font-family:monospace;font-size:11.5px;">187.22.100.45</div></div>
-                    <div><div class="acc-label">Data de modificação</div><div class="acc-value">22/06/2026</div></div>
-                    <div><div class="acc-label">Editado por</div><div class="acc-value">admin@twinfo.io</div></div>
-                    <div><div class="acc-label">ISPB</div><div class="acc-value">00416968</div></div>
-                    <div><div class="acc-label">Agência / Conta</div><div class="acc-value">0001 / 123456-7</div></div>
-                    <div><div class="acc-label">Instagram</div><div class="acc-value">—</div></div>
-                  </div>
-                </div>
-
-              </div><!-- /left -->
-
-              <!-- RIGHT: C + D -->
-              <div class="profile-right">
-
-                <!-- Bloco C — Score de Risco -->
-                <div class="pcard">
-                  <div class="pcard-title">Score de Risco</div>
-                  <div class="gauge-wrap">
-                    <svg viewBox="0 0 140 80" style="width:150px;height:86px;">
-                      <path d="M 15,70 A 55,55 0 0,1 125,70" fill="none" stroke="#e5e5e5" stroke-width="10" stroke-linecap="round"/>
-                      <path d="M 15,70 A 55,55 0 0,1 110,32" fill="none" stroke="#eab308" stroke-width="10" stroke-linecap="round"/>
-                      <text x="70" y="58" text-anchor="middle" font-size="22" font-weight="700" fill="#111" font-family="sans-serif">76</text>
-                      <text x="70" y="70" text-anchor="middle" font-size="8" fill="#888" font-family="sans-serif" letter-spacing="0.5">/ 100</text>
-                    </svg>
-                    <div class="gauge-score" style="display:none">76</div>
-                    <div class="gauge-label" style="color:#a16207;">Risco Médio</div>
-                  </div>
-                  <div class="risk-bars">
-                    <div class="risk-bar-row">
-                      <div class="risk-bar-label">Financeiro</div>
-                      <div class="risk-bar-track"><div class="risk-bar-fill" style="width:70%;background:#eab308;"></div></div>
-                      <div class="risk-bar-val">70</div>
-                    </div>
-                    <div class="risk-bar-row">
-                      <div class="risk-bar-label">PLD / AML</div>
-                      <div class="risk-bar-track"><div class="risk-bar-fill" style="width:85%;background:#f97316;"></div></div>
-                      <div class="risk-bar-val">85</div>
-                    </div>
-                    <div class="risk-bar-row">
-                      <div class="risk-bar-label">Jogo Resp.</div>
-                      <div class="risk-bar-track"><div class="risk-bar-fill" style="width:0%;background:#22c55e;"></div></div>
-                      <div class="risk-bar-val">0</div>
-                    </div>
-                  </div>
-                  <div class="risk-alerts">
-                    <div class="risk-alert-row"><i class="ti ti-alert-triangle" style="color:#f97316;font-size:13px"></i> 200 alertas ativos</div>
-                    <div class="risk-alert-row"><i class="ti ti-link" style="color:#888;font-size:13px"></i> Vínculos de IP: 1 conta</div>
-                  </div>
-                </div>
-
-                <!-- Bloco D — Status e Permissões -->
-                <div class="pcard">
-                  <div class="pcard-title">Status e Permissões</div>
-                  <div class="perm-list">
-                    <div class="perm-row"><span class="perm-label">Permissão para apostar</span><div class="toggle-read toggle-on"></div></div>
-                    <div class="perm-row"><span class="perm-label">Permissão para sacar</span><div class="toggle-read toggle-on"></div></div>
-                    <div class="perm-row"><span class="perm-label">Permissão para depositar</span><div class="toggle-read toggle-on"></div></div>
-                    <div class="perm-row"><span class="perm-label">E-mail verificado</span><span class="badge-pill green" style="font-size:10px;">Verificado</span></div>
-                    <div class="perm-row"><span class="perm-label">Celular verificado</span><span class="badge-pill yellow" style="font-size:10px;">Pendente</span></div>
-                    <div class="perm-row"><span class="perm-label">Reset de senha no login</span><span class="badge-pill gray" style="font-size:10px;">Não</span></div>
-                    <div class="perm-row"><span class="perm-label">Exigir MFA no login</span><span class="badge-pill gray" style="font-size:10px;">Não</span></div>
-                    <div class="perm-row" style="flex-direction:column;align-items:flex-start;gap:2px;"><span class="perm-label">Último status KYC</span><span style="font-size:12px;color:#16a34a;margin-top:2px;">Aprovado · 22/01/2024</span></div>
-                    <div class="perm-row" style="flex-direction:column;align-items:flex-start;gap:2px;"><span class="perm-label">Última verificação KYC</span><span style="font-size:12px;color:#444;margin-top:2px;">22/01/2024 14:33</span></div>
-                  </div>
-                </div>
-
-              </div><!-- /right -->
-            </div><!-- /grid -->
-          </div><!-- /profile-scroll -->
-
-          <!-- Filtro global -->
-          <div class="profile-filter">
-            <i class="ti ti-calendar" style="color:#888;font-size:14px;"></i>
-            <input class="filter-date" type="date" value="2026-06-01">
-            <span style="color:#bbb;font-size:12px;">→</span>
-            <input class="filter-date" type="date" value="2026-06-29">
-            <button class="btn btn-primary" style="font-size:11px;padding:4px 12px;">Aplicar</button>
-            <button class="btn btn-secondary" style="font-size:11px;padding:4px 10px;">Limpar</button>
-            <div class="filter-presets">
-              <span class="filter-preset active">Hoje</span>
-              <span class="filter-preset">7 dias</span>
-              <span class="filter-preset">30 dias</span>
-              <span class="filter-preset">90 dias</span>
-              <span class="filter-preset">Custom</span>
-            </div>
+        </div>
+        <div class="p3-fin-row">
+          <span class="p3-fin-lbl">Bônus esportivo</span>
+          <div style="text-align:right">
+            <div class="p3-fin-val" id="p3FinBonEsp">R$ 0,00</div>
+            <div class="p3-fin-sub" id="p3FinFreeBet">Free bet: R$ 0,00</div>
           </div>
+        </div>
+        <div class="p3-fin-row">
+          <span class="p3-fin-lbl">Bônus cassino</span>
+          <div class="p3-fin-val" id="p3FinBonCass">R$ 0,00</div>
+        </div>
+        <div class="p3-fin-row">
+          <span class="p3-fin-lbl">Dep. pendente</span>
+          <div class="p3-fin-val" id="p3FinDepPend">R$ 0,00</div>
+        </div>
+        <div class="p3-fin-row">
+          <span class="p3-fin-lbl">Saque pendente</span>
+          <div class="p3-fin-val" id="p3FinSaqPend">R$ 0,00</div>
+        </div>
+      </div>
+    </div>
 
-          <!-- Tabs -->
-          <div class="profile-tabs-bar">
-            <div class="ptabs-wrap" id="ptabsWrap">
-              <div class="ptab2 active" onclick="switchPTab2(this,'ptab-transacoes')">Transações</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-apostas')">Apostas</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-cassino')">Cassino</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-palpites')">Palpites</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-kyc')">KYC</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-bonus')">Bônus</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-bloqueios')">Bloqueios</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-logins')">Logins</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-notificacoes')">Notificações</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-mensagem')">Mensagem Privada</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-autorizacoes')">Autorizações</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-grupos')">Grupos</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-afiliados')">Afiliados</div>
-              <div class="ptab2" onclick="switchPTab2(this,'ptab-limites')">Limites</div>
-            </div>
-          </div>
+    <!-- Score de risco -->
+    <div class="p3-sidebar-section">
+      <div class="p3-sec-title">Score de risco</div>
+      <div class="p3-score-wrap">
+        <svg viewBox="0 0 100 56" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10,50 A40,40 0 0,1 90,50" fill="none" stroke="#f0f0f0" stroke-width="9" stroke-linecap="round"/>
+          <path id="p3GaugeFill" d="M10,50 A40,40 0 0,1 90,50" fill="none" stroke="#639922" stroke-width="9" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="35"/>
+        </svg>
+        <div class="p3-score-num" id="p3ScoreNum">—</div>
+        <div class="p3-score-lbl p3sl-baixo" id="p3ScoreLbl">Risco baixo</div>
+      </div>
+      <div class="p3-bars">
+        <div class="p3-bar-row">
+          <span class="p3-bar-lbl">Financeiro</span>
+          <div class="p3-bar-track"><div class="p3-bar-fill" id="p3BarFin" style="background:#EF9F27;width:0%"></div></div>
+          <span class="p3-bar-num" id="p3NumFin">—</span>
+        </div>
+        <div class="p3-bar-row">
+          <span class="p3-bar-lbl">PLD / AML</span>
+          <div class="p3-bar-track"><div class="p3-bar-fill" id="p3BarAML" style="background:#D85A30;width:0%"></div></div>
+          <span class="p3-bar-num" id="p3NumAML">—</span>
+        </div>
+        <div class="p3-bar-row">
+          <span class="p3-bar-lbl">Jogo resp.</span>
+          <div class="p3-bar-track"><div class="p3-bar-fill" id="p3BarJogo" style="background:#7F77DD;width:0%"></div></div>
+          <span class="p3-bar-num" id="p3NumJogo">—</span>
+        </div>
+      </div>
+      <div class="p3-alerts">
+        <div class="p3-alert-row"><i class="ti ti-alert-triangle" style="color:#BA7517"></i><span id="p3Alertas">—</span></div>
+        <div class="p3-alert-row"><i class="ti ti-link" style="color:#aaa"></i><span id="p3Vinculos">—</span></div>
+      </div>
+    </div>
 
-          <!-- Tab bodies -->
-          <div class="profile-tab-body">
+    <!-- Status e permissões -->
+    <div class="p3-sidebar-section">
+      <div class="p3-sec-title">Status e permissões</div>
+      <div class="p3-perm-list">
+        <div class="p3-perm-row"><span>Apostar</span><div class="p3-tog-on" id="p3TogApostar"></div></div>
+        <div class="p3-perm-row"><span>Sacar</span><div class="p3-tog-on" id="p3TogSacar"></div></div>
+        <div class="p3-perm-row"><span>Depositar</span><div class="p3-tog-on" id="p3TogDepositar"></div></div>
+        <hr class="p3-perm-divider">
+        <div class="p3-perm-row"><span>E-mail</span><span class="p3-tag p3t-green" id="p3TagEmail">Verificado</span></div>
+        <div class="p3-perm-row"><span>Celular</span><span class="p3-tag p3t-amber" id="p3TagCelular">Pendente</span></div>
+        <hr class="p3-perm-divider">
+        <div class="p3-perm-row"><span>KYC</span><span class="p3-tag p3t-green" id="p3TagKYC">Aprovado</span></div>
+        <div class="p3-sub-info" id="p3DataKYC">—</div>
+        <hr class="p3-perm-divider">
+        <div class="p3-perm-row"><span>Reset senha</span><span class="p3-tag p3t-gray" id="p3TagReset">Não</span></div>
+        <div class="p3-perm-row"><span>Exigir MFA</span><span class="p3-tag p3t-gray" id="p3TagMFA">Não</span></div>
+      </div>
+    </div>
 
-            <!-- Transações -->
-            <div id="ptab-transacoes">
-              <div class="tab-filter">
-                <select><option>Todos os tipos</option><option>Depósito</option><option>Saque</option></select>
-                <select><option>Todos os status</option><option>Aprovado</option><option>Pendente</option><option>Cancelado</option></select>
-                <button class="btn btn-secondary" style="font-size:11px;padding:4px 12px;margin-left:auto;">+ Adicionar crédito</button>
-                <button class="btn btn-secondary" style="font-size:11px;padding:4px 12px;">− Retirar crédito</button>
-              </div>
-              <div class="table-wrap"><table class="data-table">
-                <thead><tr><th>Data/hora</th><th>Tipo</th><th>Valor</th><th>Status</th><th>Gateway</th><th>ID Transação</th></tr></thead>
-                <tbody>
-                  <tr><td>29/06/2026 14:22</td><td><span class="badge badge-green" style="font-size:10px;">Depósito</span></td><td>R$ 500,00</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>PIX</td><td style="font-family:monospace;font-size:11px;">a3f8e2b1… <i class="ti ti-copy" style="cursor:pointer;color:#aaa;"></i></td></tr>
-                  <tr><td>25/06/2026 09:10</td><td><span class="badge badge-red" style="font-size:10px;">Saque</span></td><td>R$ 200,00</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>PIX</td><td style="font-family:monospace;font-size:11px;">c9d1a7f3… <i class="ti ti-copy" style="cursor:pointer;color:#aaa;"></i></td></tr>
-                  <tr><td>20/06/2026 17:45</td><td><span class="badge badge-green" style="font-size:10px;">Depósito</span></td><td>R$ 300,00</td><td><span class="badge badge-yellow" style="font-size:10px;">Pendente</span></td><td>Cartão</td><td style="font-family:monospace;font-size:11px;">e7b2c4a9… <i class="ti ti-copy" style="cursor:pointer;color:#aaa;"></i></td></tr>
-                </tbody>
-              </table></div>
-            </div>
+    <!-- Dados pessoais (accordion) -->
+    <div class="p3-sidebar-section">
+      <div class="p3-accordion-toggle" onclick="p3ToggleAccordion()">
+        <span>Dados pessoais</span>
+        <i class="ti ti-chevron-down" id="p3AccChevron" style="font-size:12px"></i>
+      </div>
+      <div class="p3-accordion-body" id="p3AccBody">
+        <div class="p3-dp-list">
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Nome completo</div><div class="p3-dp-val" id="p3DpNome">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Username</div><div class="p3-dp-val" id="p3DpUser">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">E-mail</div><div class="p3-dp-val" id="p3DpEmail">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Celular</div><div class="p3-dp-val" id="p3DpCel">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">CPF</div><div class="p3-dp-val" id="p3DpCPF">***.***.***-**</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Data de nascimento</div><div class="p3-dp-val" id="p3DpNasc">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Gênero</div><div class="p3-dp-val" id="p3DpGenero">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Cadastro em</div><div class="p3-dp-val" id="p3DpCadastro">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">ID</div><div class="p3-dp-val" id="p3DpID" style="font-family:monospace;font-size:10px;word-break:break-all;">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">IP de cadastro</div><div class="p3-dp-val" id="p3DpIP">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Endereço</div><div class="p3-dp-val" id="p3DpEndereco">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">País</div><div class="p3-dp-val" id="p3DpPais">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Total depositado</div><div class="p3-dp-val" id="p3DpTotalDep">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Total sacado</div><div class="p3-dp-val" id="p3DpTotalSac">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Agência / Conta</div><div class="p3-dp-val" id="p3DpBanco">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">ISPB</div><div class="p3-dp-val" id="p3DpISPB">—</div></div>
+          <div class="p3-dp-row"><div class="p3-dp-lbl">Afiliado indicador</div><div class="p3-dp-val" id="p3DpAfiliado">—</div></div>
+        </div>
+      </div>
+    </div>
 
-            <!-- Apostas -->
-            <div id="ptab-apostas" style="display:none">
-              <div class="table-wrap"><table class="data-table">
-                <thead><tr><th>ID Ticket</th><th>Esporte</th><th>Evento</th><th>Mercado</th><th>Odd</th><th>Apostado</th><th>Retorno</th><th>Status</th><th>Data</th></tr></thead>
-                <tbody>
-                  <tr><td>#48291</td><td>Futebol</td><td>Flamengo x Palmeiras</td><td>Resultado Final</td><td>2.10</td><td>R$ 100,00</td><td>R$ 210,00</td><td><span class="badge badge-green" style="font-size:10px;">Ganhou</span></td><td>28/06/2026</td></tr>
-                  <tr><td>#48100</td><td>Futebol</td><td>São Paulo x Corinthians</td><td>Over 2.5</td><td>1.85</td><td>R$ 50,00</td><td>R$ 92,50</td><td><span class="badge badge-red" style="font-size:10px;">Perdeu</span></td><td>26/06/2026</td></tr>
-                  <tr><td>#47980</td><td>Tênis</td><td>Djokovic x Alcaraz</td><td>Vencedor</td><td>3.50</td><td>R$ 30,00</td><td>R$ 105,00</td><td><span class="badge badge-gray" style="font-size:10px;">Em aberto</span></td><td>29/06/2026</td></tr>
-                </tbody>
-              </table></div>
-            </div>
+  </div><!-- /p3-sidebar -->
+</div><!-- /p3-body -->
 
-            <!-- Cassino -->
-            <div id="ptab-cassino" style="display:none">
-              <div class="tab-filter">
-                <select><option>Todos os tipos</option><option>Aposta</option><option>Ganho</option><option>Bônus</option></select>
-              </div>
-              <div class="table-wrap"><table class="data-table">
-                <thead><tr><th>Jogo</th><th>Fornecedor</th><th>Tipo</th><th>Valor</th><th>Data</th><th>ID Sessão</th></tr></thead>
-                <tbody>
-                  <tr><td>Sweet Bonanza</td><td>Pragmatic Play</td><td><span class="badge badge-red" style="font-size:10px;">Aposta</span></td><td>R$ 20,00</td><td>28/06/2026 21:10</td><td style="font-family:monospace;font-size:11px;">sess_a1b2…</td></tr>
-                  <tr><td>Gates of Olympus</td><td>Pragmatic Play</td><td><span class="badge badge-green" style="font-size:10px;">Ganho</span></td><td>R$ 180,00</td><td>28/06/2026 20:45</td><td style="font-family:monospace;font-size:11px;">sess_c3d4…</td></tr>
-                </tbody>
-              </table></div>
-            </div>
-
-            <!-- Palpites -->
-            <div id="ptab-palpites" style="display:none">
-              <div class="table-wrap"><table class="data-table">
-                <thead><tr><th>Palpite</th><th>Evento</th><th>Resultado</th><th>Valor</th><th>Status</th><th>Data</th></tr></thead>
-                <tbody>
-                  <tr><td>Flamengo vence</td><td>Flamengo x Santos</td><td>Correto</td><td>R$ 10,00</td><td><span class="badge badge-green" style="font-size:10px;">Ganhou</span></td><td>27/06/2026</td></tr>
-                </tbody>
-              </table></div>
-            </div>
-
-            <!-- KYC -->
-            <div id="ptab-kyc" style="display:none">
-              <div class="table-wrap"><table class="data-table">
-                <thead><tr><th>Tipo</th><th>Status</th><th>Enviado em</th><th>Analisado em</th><th>Operador</th><th>Arquivo</th><th>Ações</th></tr></thead>
-                <tbody>
-                  <tr><td>CNH</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>22/01/2024</td><td>22/01/2024</td><td>ops@twinfo.io</td><td><a style="color:#5b169f;font-size:12px;cursor:pointer;">Ver documento</a></td><td>—</td></tr>
-                  <tr><td>Selfie</td><td><span class="badge badge-green" style="font-size:10px;">Aprovado</span></td><td>22/01/2024</td><td>22/01/2024</td><td>ops@twinfo.io</td><td><a style="color:#5b169f;font-size:12px;cursor:pointer;">Ver documento</a></td><td>—</td></tr>
-                </tbody>
-              </table></div>
-            </div>
-
-            <!-- Bônus -->
-            <div id="ptab-bonus" style="display:none">
-              <div class="bonus-grid">
-                <div class="bonus-card">
-                  <div class="bonus-card-title">Boas-vindas Esportivo</div>
-                  <div style="font-size:11px;color:#888;display:flex;flex-direction:column;gap:4px;">
-                    <span>Valor: <strong>R$ 80,00</strong></span>
-                    <span>Rollover: 5x</span>
-                    <span>Expiração: 30/07/2026</span>
-                    <span>Criação: 17/01/2024</span>
-                  </div>
-                  <div style="margin-top:8px;"><span class="badge-pill green" style="font-size:10px;">Ativo</span></div>
-                </div>
-                <div class="bonus-card">
-                  <div class="bonus-card-title">Cashback Cassino</div>
-                  <div style="font-size:11px;color:#888;display:flex;flex-direction:column;gap:4px;">
-                    <span>Valor: <strong>R$ 150,00</strong></span>
-                    <span>Rollover: 10x</span>
-                    <span>Expiração: 15/07/2026</span>
-                    <span>Criação: 01/06/2026</span>
-                  </div>
-                  <div style="margin-top:8px;"><span class="badge-pill green" style="font-size:10px;">Ativo</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bloqueios -->
-            <div id="ptab-bloqueios" style="display:none">
-              <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px;">
-                <button class="btn btn-secondary" style="font-size:11px;padding:4px 12px;">Histórico</button>
-                <button class="btn btn-primary" style="font-size:11px;padding:4px 12px;">+ Adicionar bloqueio</button>
-              </div>
-              <div class="tab-error"><i class="ti ti-lock-open" style="font-size:28px;display:block;margin-bottom:8px;"></i>Nenhum bloqueio ativo</div>
-            </div>
-
-            <!-- Logins -->
-            <div id="ptab-logins" style="display:none">
-              <div class="tab-filter">
-                <select><option>Todos os status</option><option>Sucesso</option><option>Falha</option></select>
-              </div>
-              <div class="table-wrap"><table class="data-table">
-                <thead><tr><th>Data/hora</th><th>IP</th><th>Dispositivo</th><th>Navegador</th><th>SO</th><th>Localização</th><th>Status</th></tr></thead>
-                <tbody>
-                  <tr><td>29/06/2026 09:30</td><td style="font-family:monospace;font-size:11px;">187.22.100.45</td><td>Mobile</td><td>Chrome 124</td><td>Android 14</td><td>São Paulo, BR</td><td><span class="badge badge-green" style="font-size:10px;">Sucesso</span></td></tr>
-                  <tr><td>28/06/2026 18:12</td><td style="font-family:monospace;font-size:11px;">187.22.100.45</td><td>Desktop</td><td>Safari 17</td><td>macOS 14</td><td>São Paulo, BR</td><td><span class="badge badge-green" style="font-size:10px;">Sucesso</span></td></tr>
-                  <tr><td>27/06/2026 07:55</td><td style="font-family:monospace;font-size:11px;">45.180.221.8</td><td>Desktop</td><td>Chrome 124</td><td>Windows 11</td><td>Rio de Janeiro, BR</td><td><span class="badge badge-red" style="font-size:10px;">Falha</span></td></tr>
-                </tbody>
-              </table></div>
-            </div>
-
-            <!-- Notificações -->
-            <div id="ptab-notificacoes" style="display:none">
-              <div class="table-wrap"><table class="data-table">
-                <thead><tr><th>Tipo</th><th>Título</th><th>Canal</th><th>Status</th><th>Data</th></tr></thead>
-                <tbody>
-                  <tr><td>Promoção</td><td>Cashback disponível!</td><td><span class="badge-pill gray" style="font-size:10px;">Push</span></td><td><span class="badge badge-green" style="font-size:10px;">Lido</span></td><td>25/06/2026</td></tr>
-                  <tr><td>Sistema</td><td>Saque aprovado</td><td><span class="badge-pill gray" style="font-size:10px;">E-mail</span></td><td><span class="badge badge-green" style="font-size:10px;">Enviado</span></td><td>25/06/2026</td></tr>
-                </tbody>
-              </table></div>
-            </div>
-
-            <!-- Mensagem Privada -->
-            <div id="ptab-mensagem" style="display:none">
-              <div class="chat-feed" style="margin-bottom:14px;">
-                <div class="chat-msg">
-                  <div class="chat-meta"><span>ops@twinfo.io</span><span>22/06/2026 10:15</span><span class="badge-pill green" style="font-size:10px;">Lido</span></div>
-                  <div class="chat-text">Usuário solicitou revisão de limite. Aguardando documentação adicional.</div>
-                </div>
-                <div class="chat-msg">
-                  <div class="chat-meta"><span>admin@twinfo.io</span><span>20/06/2026 09:00</span><span class="badge-pill gray" style="font-size:10px;">Não lido</span></div>
-                  <div class="chat-text">Ajuste de limite aprovado pelo supervisor.</div>
-                </div>
-              </div>
-              <div style="display:flex;gap:8px;">
-                <input class="filter-input" placeholder="Digite a mensagem…" style="flex:1;">
-                <button class="btn btn-primary" style="font-size:12px;padding:6px 14px;">Enviar</button>
-              </div>
-            </div>
-
-            <!-- Autorizações -->
-            <div id="ptab-autorizacoes" style="display:none">
-              <div class="auth-list">
-                <div class="auth-row"><span>Visualizar apostas</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill gray" style="font-size:10px;">Individual</span><div class="toggle-read toggle-on"></div></div></div>
-                <div class="auth-row"><span>Realizar saque</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill purple" style="font-size:10px;">Grupo</span><div class="toggle-read toggle-on"></div></div></div>
-                <div class="auth-row"><span>Acesso ao cassino</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill purple" style="font-size:10px;">Grupo</span><div class="toggle-read toggle-on"></div></div></div>
-                <div class="auth-row"><span>Live betting</span><div style="display:flex;align-items:center;gap:8px;"><span class="badge-pill gray" style="font-size:10px;">Individual</span><div class="toggle-read toggle-off"></div></div></div>
-              </div>
-            </div>
-
-            <!-- Grupos -->
-            <div id="ptab-grupos" style="display:none">
-              <div class="auth-list">
-                <div class="auth-row">
-                  <div><div style="font-size:12.5px;font-weight:500;">VIP Legend</div><div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px;"><span class="badge-pill purple" style="font-size:10px;">Saque prioritário</span><span class="badge-pill purple" style="font-size:10px;">Cashback 15%</span><span class="badge-pill purple" style="font-size:10px;">Gerente dedicado</span></div></div>
-                  <div class="toggle-read toggle-on"></div>
-                </div>
-                <div class="auth-row">
-                  <div><div style="font-size:12.5px;font-weight:500;">Apostador Padrão</div><div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px;"><span class="badge-pill gray" style="font-size:10px;">Apostas esportivas</span><span class="badge-pill gray" style="font-size:10px;">Cassino</span></div></div>
-                  <div class="toggle-read toggle-off"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Afiliados -->
-            <div id="ptab-afiliados" style="display:none">
-              <div class="tab-error"><i class="ti ti-wifi-off" style="font-size:28px;display:block;margin-bottom:8px;color:#f97316;"></i>Dados indisponíveis no momento<br><span style="font-size:11px;color:#bbb;">Endpoint retornando erro 500. Tente novamente mais tarde.</span></div>
-            </div>
-
-            <!-- Limites -->
-            <div id="ptab-limites" style="display:none">
-              <div class="tab-error"><i class="ti ti-alert-circle" style="font-size:28px;display:block;margin-bottom:8px;color:#f97316;"></i>Dados indisponíveis no momento<br><span style="font-size:11px;color:#bbb;">Endpoint retornando erro 404. Tente novamente mais tarde.</span></div>
-            </div>
-
-          </div><!-- /profile-tab-body -->
-        </div><!-- /profile-page -->
+        </div><!-- /p3-page -->
       </div><!-- /usuarioProfile -->
     </div>
 
@@ -2081,6 +1979,7 @@
     document.querySelectorAll('.ptab2').forEach((t,i) => t.classList.toggle('active', i===0));
     document.querySelectorAll('#usuarioProfile .profile-tab-body > div').forEach((d,i) => d.style.display = i===0 ? '' : 'none');
     setBreadcrumb(name, 'Usuários', 'usuarios');
+    p3OpenProfile(name, email, cpf, cadastro, status);
   }
 
   function backToList() { showUsersList(); }
@@ -2098,6 +1997,95 @@
   (function init() {
     navigate(document.querySelector('[data-section="configuracoes"]'));
   })();
+  // ── Perfil v3 ──────────────────────────────────────────────────────────────
+  function p3OpenProfile(nome, email, cpf, cadastro, kycStatus) {
+    const primeiros = nome.split(' ').slice(0,2).join(' ');
+    document.getElementById('p3NomeBreadcrumb').textContent = primeiros;
+    const iniciais = nome.split(' ').filter(Boolean).slice(0,2).map(p=>p[0]).join('');
+    document.getElementById('p3Avatar').textContent = iniciais;
+    document.getElementById('p3Nome').textContent = nome;
+    document.getElementById('p3FinSaldo').textContent    = 'R$ 444,70';
+    document.getElementById('p3FinBonEsp').textContent   = 'R$ 0,00';
+    document.getElementById('p3FinFreeBet').textContent  = 'Free bet: R$ 0,00';
+    document.getElementById('p3FinBonCass').textContent  = 'R$ 0,00';
+    document.getElementById('p3FinDepPend').textContent  = 'R$ 0,00';
+    document.getElementById('p3FinSaqPend').textContent  = 'R$ 0,00';
+    document.getElementById('p3ScoreNum').textContent = '76';
+    document.getElementById('p3BarFin').style.width = '70%';
+    document.getElementById('p3NumFin').textContent = '70';
+    document.getElementById('p3BarAML').style.width = '85%';
+    document.getElementById('p3NumAML').textContent = '85';
+    document.getElementById('p3BarJogo').style.width = '0%';
+    document.getElementById('p3NumJogo').textContent = '0';
+    document.getElementById('p3Alertas').textContent = '200 alertas ativos';
+    document.getElementById('p3Vinculos').textContent = 'Vínculos de IP: 1 conta';
+    document.getElementById('p3DpNome').textContent    = nome;
+    document.getElementById('p3DpUser').textContent    = '@' + nome.toLowerCase().replace(/\s+/g,'.');
+    document.getElementById('p3DpEmail').textContent   = email;
+    document.getElementById('p3DpCel').textContent     = '+55 (83) 99606-1302';
+    document.getElementById('p3DpCPF').textContent     = cpf;
+    document.getElementById('p3DpNasc').textContent    = '09/01/1982';
+    document.getElementById('p3DpGenero').textContent  = 'Masculino';
+    document.getElementById('p3DpCadastro').textContent= cadastro;
+    document.getElementById('p3DpID').textContent      = 'd67eb8e9-4072-4c09-95a2-9be88a7ed';
+    document.getElementById('p3DpIP').textContent      = '177.158.187.148';
+    document.getElementById('p3DpEndereco').textContent= 'Lá em casa';
+    document.getElementById('p3DpPais').textContent    = 'Brasil';
+    document.getElementById('p3DpTotalDep').textContent= 'R$ 0,00';
+    document.getElementById('p3DpTotalSac').textContent= 'R$ 0,00';
+    document.getElementById('p3DpBanco').textContent   = '1 / 3850110-9';
+    document.getElementById('p3DpISPB').textContent    = '18236120';
+    document.getElementById('p3DpAfiliado').textContent= '—';
+    p3Preset('30d', document.querySelector('.p3-preset.p3-ativo'));
+    const primeiraTab = document.querySelector('.p3-tab.p3-ativo');
+    if (primeiraTab) p3SwitchTab(primeiraTab, primeiraTab.textContent.trim());
+  }
+
+  function p3SwitchTab(el, nome) {
+    document.querySelectorAll('.p3-tab').forEach(t => t.classList.remove('p3-ativo'));
+    el.classList.add('p3-ativo');
+    document.getElementById('p3TabBody').innerHTML =
+      '<p style="color:#bbb;font-size:13px;">Conteúdo de <strong>' + nome + '</strong> — em construção.</p>';
+  }
+
+  function p3ScrollTabs(dx) {
+    const el = document.getElementById('p3TabsScroll');
+    if (el) el.scrollBy({left:dx, behavior:'smooth'});
+  }
+
+  function p3Preset(tipo, btn) {
+    document.querySelectorAll('.p3-preset').forEach(b => b.classList.remove('p3-ativo'));
+    if (btn) btn.classList.add('p3-ativo');
+    const hoje = new Date();
+    const fmt = d => d.toISOString().split('T')[0];
+    const ini = document.getElementById('p3DataIni');
+    const fim = document.getElementById('p3DataFim');
+    if (!ini || !fim) return;
+    fim.value = fmt(hoje);
+    if (tipo==='hoje')  ini.value = fmt(hoje);
+    if (tipo==='7d')    { const d=new Date(hoje); d.setDate(d.getDate()-7);  ini.value=fmt(d); }
+    if (tipo==='30d')   { const d=new Date(hoje); d.setDate(d.getDate()-30); ini.value=fmt(d); }
+    if (tipo==='90d')   { const d=new Date(hoje); d.setDate(d.getDate()-90); ini.value=fmt(d); }
+  }
+
+  function p3AplicarFiltro() {
+    const ini = document.getElementById('p3DataIni').value;
+    const fim = document.getElementById('p3DataFim').value;
+    console.log('Filtro global aplicado:', ini, '→', fim);
+  }
+
+  function p3LimparFiltro() {
+    document.getElementById('p3DataIni').value = '';
+    document.getElementById('p3DataFim').value = '';
+    document.querySelectorAll('.p3-preset').forEach(b => b.classList.remove('p3-ativo'));
+  }
+
+  function p3ToggleAccordion() {
+    const body = document.getElementById('p3AccBody');
+    const ch   = document.getElementById('p3AccChevron');
+    body.classList.toggle('p3-aberto');
+    ch.style.transform = body.classList.contains('p3-aberto') ? 'rotate(180deg)' : '';
+  }
 </script>
 </body>
 </html>
