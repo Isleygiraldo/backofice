@@ -515,9 +515,6 @@
 
     <div class="sidebar-section">
       <div class="sidebar-label">Marketing</div>
-      <div class="sidebar-item" data-section="promocoes" data-label="Promoções" onclick="navigate(this)">
-        <i class="ti ti-gift"></i><span class="item-label"> Promoções</span>
-      </div>
       <div class="sidebar-item" data-section="comunicacao" data-label="Comunicação" onclick="navigate(this)">
         <i class="ti ti-message-2"></i><span class="item-label"> Comunicação</span>
       </div>
@@ -862,17 +859,7 @@
     </div>
 
     <!-- ══ PROMOÇÕES ══ -->
-    <div class="content-area hidden" id="pagePromocoes">
-      <nav class="int-nav">
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'promocoesTitle')">Regras de afiliado</div>
-      </nav>
-      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
-        <div class="config-content">
-          <div class="page-title" id="promocoesTitle">Regras de afiliado</div>
-          <p style="color:#666; font-size:13px">Em construção.</p>
-        </div>
-      </div>
-    </div>
+
 
     <!-- ══ RELATÓRIOS ══ -->
     <div class="content-area hidden" id="pageRelatorios">
@@ -994,6 +981,7 @@
         <div class="int-nav-label">Gestão</div>
         <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Cadastros</div>
         <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Comissões</div>
+        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Regras de afiliado</div>
         <div class="int-nav-label">Dados</div>
         <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Relatório</div>
       </nav>
@@ -1783,7 +1771,7 @@
 </div>
 
 <script>
-  const ALL_PAGES = ['pageConfig','pageCassino','pageEsportes','pagePromocoes',
+  const ALL_PAGES = ['pageConfig','pageCassino','pageEsportes',
                      'pageRelatorios','pageMonitoramento','pageUsuarios','pageAfiliados',
                      'pageSistemaCompliance','pageSIGAP',
                      'pageFinanceiro','pageOperacao','pageComunicacao','pageConteudo',
@@ -1908,7 +1896,6 @@
     configuracoes:        'pageConfig',
     cassino:              'pageCassino',
     esportes:             'pageEsportes',
-    promocoes:            'pagePromocoes',
     relatorios:           'pageRelatorios',
     monitoramento:        'pageMonitoramento',
     usuarios:             'pageUsuarios',
