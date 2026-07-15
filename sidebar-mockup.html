@@ -49,39 +49,34 @@
     .logo-mark { font-size: 15px; font-weight: 700; color: var(--md-sys-color-primary); letter-spacing: -0.5px; white-space: nowrap; }
     .logo-sub { font-size: 9px; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase; letter-spacing: 1.2px; margin-top: 3px; white-space: nowrap; }
 
-    /* MD3 section label — acordeão */
-    .sidebar-section { padding: 4px 0 2px; }
+    /* MD3 section label */
+    .sidebar-section { padding: 12px 0 2px; }
     .sidebar-label {
       font-size: 9px;
       font-weight: 600;
       color: var(--md-sys-color-on-surface-variant);
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      padding: 8px 14px 4px 28px;
+      padding: 0 28px 4px;
       white-space: nowrap;
       overflow: hidden;
       transition: opacity 0.15s;
+    }
+
+    /* ── Int-nav accordion (módulos com muitas seções) ── */
+    .int-nav-group-body { overflow: hidden; max-height: 0; transition: max-height 0.22s ease; }
+    .int-nav-group.open .int-nav-group-body { max-height: 400px; }
+    .int-nav-label.acc {
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      cursor: pointer;
+      padding-right: 10px;
       user-select: none;
     }
-    .sidebar-label:hover { color: var(--md-sys-color-on-surface); }
-    .sidebar-chevron {
-      font-size: 13px;
-      transition: transform 0.2s ease;
-      flex-shrink: 0;
-      opacity: 0.7;
-    }
-    .sidebar-section:not(.open) .sidebar-chevron { transform: rotate(-90deg); }
-    /* Accordion body */
-    .sidebar-items {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.22s ease;
-    }
-    .sidebar-section.open .sidebar-items { max-height: 400px; }
+    .int-nav-label.acc:hover { color: var(--md-sys-color-on-surface); }
+    .int-nav-chevron { font-size: 11px; transition: transform 0.2s ease; opacity: 0.7; flex-shrink: 0; }
+    .int-nav-group:not(.open) .int-nav-chevron { transform: rotate(-90deg); }
 
     /* MD3 Navigation Item — active indicator pill */
     .sidebar-item {
@@ -386,9 +381,7 @@
         width: 56px;
         min-width: 56px;
       }
-      .sidebar-label { opacity: 0; height: 0; padding: 0; overflow: hidden; cursor: default; }
-      .sidebar-items { max-height: none !important; overflow: visible; }
-      .sidebar-chevron { display: none; }
+      .sidebar-label { opacity: 0; height: 0; padding: 0; overflow: hidden; }
       .logo-sub { display: none; }
       .sidebar-logo { padding: 14px 0; display: flex; justify-content: center; align-items: center; }
       .logo-mark { font-size: 14px; }
@@ -442,10 +435,7 @@
       .sidebar.open { left: 0; }
 
       /* Restaura labels dentro do drawer */
-      .sidebar .sidebar-label { opacity: 1; height: auto; padding: 8px 14px 4px 28px; cursor: pointer; }
-      .sidebar .sidebar-chevron { display: inline; }
-      .sidebar .sidebar-items { max-height: 0; transition: max-height 0.22s ease; }
-      .sidebar .sidebar-section.open .sidebar-items { max-height: 400px; }
+      .sidebar .sidebar-label { opacity: 1; height: auto; padding: 0 16px 6px; }
       .sidebar .logo-sub { display: block; }
       .sidebar .sidebar-logo { padding: 18px 16px 14px; justify-content: flex-start; }
       .sidebar .logo-mark { font-size: 18px; }
@@ -490,6 +480,7 @@
       }
       .int-nav::-webkit-scrollbar { height: 0; }
       .int-nav-label { display: none; }
+      .int-nav-group-body { max-height: none !important; overflow: visible; }
       .int-nav-item {
         padding: 10px 14px;
         height: auto;
@@ -578,63 +569,53 @@
       <div class="logo-sub">Pix365 · Backoffice</div>
     </div>
 
-    <div class="sidebar-section open">
-      <div class="sidebar-label" onclick="toggleSidebarGroup(this)">Produtos<i class="ti ti-chevron-down sidebar-chevron"></i></div>
-      <div class="sidebar-items">
-        <div class="sidebar-item" data-section="cassino" data-label="Cassino" onclick="navigate(this)">
-          <i class="ti ti-device-gamepad-2"></i><span class="item-label"> Cassino</span>
-        </div>
-        <div class="sidebar-item" data-section="esportes" data-label="Esportes" onclick="navigate(this)">
-          <i class="ti ti-trophy"></i><span class="item-label"> Esportes</span>
-        </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Produtos</div>
+      <div class="sidebar-item" data-section="cassino" data-label="Cassino" onclick="navigate(this)">
+        <i class="ti ti-device-gamepad-2"></i><span class="item-label"> Cassino</span>
+      </div>
+      <div class="sidebar-item" data-section="esportes" data-label="Esportes" onclick="navigate(this)">
+        <i class="ti ti-trophy"></i><span class="item-label"> Esportes</span>
       </div>
     </div>
 
     <div class="sidebar-section">
-      <div class="sidebar-label" onclick="toggleSidebarGroup(this)">Operação<i class="ti ti-chevron-down sidebar-chevron"></i></div>
-      <div class="sidebar-items">
-        <div class="sidebar-item" data-section="usuarios" data-label="Usuários" onclick="navigate(this)">
-          <i class="ti ti-users"></i><span class="item-label"> Usuários</span>
-        </div>
-        <div class="sidebar-item" data-section="afiliados" data-label="Afiliados" onclick="navigate(this)">
-          <i class="ti ti-affiliate"></i><span class="item-label"> Afiliados</span>
-        </div>
-        <div class="sidebar-item" data-section="financeiro" data-label="Financeiro" onclick="navigate(this)">
-          <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
-        </div>
-        <div class="sidebar-item" data-section="operacao" data-label="Operação" onclick="navigate(this)">
-          <i class="ti ti-activity"></i><span class="item-label"> Operação</span>
-        </div>
+      <div class="sidebar-label">Operação</div>
+      <div class="sidebar-item" data-section="usuarios" data-label="Usuários" onclick="navigate(this)">
+        <i class="ti ti-users"></i><span class="item-label"> Usuários</span>
+      </div>
+      <div class="sidebar-item" data-section="afiliados" data-label="Afiliados" onclick="navigate(this)">
+        <i class="ti ti-affiliate"></i><span class="item-label"> Afiliados</span>
+      </div>
+      <div class="sidebar-item" data-section="financeiro" data-label="Financeiro" onclick="navigate(this)">
+        <i class="ti ti-cash"></i><span class="item-label"> Financeiro</span>
+      </div>
+      <div class="sidebar-item" data-section="operacao" data-label="Operação" onclick="navigate(this)">
+        <i class="ti ti-activity"></i><span class="item-label"> Operação</span>
       </div>
     </div>
 
     <div class="sidebar-section">
-      <div class="sidebar-label" onclick="toggleSidebarGroup(this)">Marketing<i class="ti ti-chevron-down sidebar-chevron"></i></div>
-      <div class="sidebar-items">
-        <div class="sidebar-item" data-section="comunicacao" data-label="Comunicação" onclick="navigate(this)">
-          <i class="ti ti-message-2"></i><span class="item-label"> Comunicação</span>
-        </div>
+      <div class="sidebar-label">Marketing</div>
+      <div class="sidebar-item" data-section="comunicacao" data-label="Comunicação" onclick="navigate(this)">
+        <i class="ti ti-message-2"></i><span class="item-label"> Comunicação</span>
       </div>
     </div>
 
     <div class="sidebar-section">
-      <div class="sidebar-label" onclick="toggleSidebarGroup(this)">Gestão<i class="ti ti-chevron-down sidebar-chevron"></i></div>
-      <div class="sidebar-items">
-        <div class="sidebar-item" data-section="monitoramento" data-label="Monitoramento" onclick="navigate(this)">
-          <i class="ti ti-radar"></i><span class="item-label"> Monitoramento</span>
-        </div>
-        <div class="sidebar-item" data-section="sistema-compliance" data-label="Sistema & Compliance" onclick="navigate(this)">
-          <i class="ti ti-shield-check"></i><span class="item-label"> Sistema & Compliance</span>
-        </div>
+      <div class="sidebar-label">Gestão</div>
+      <div class="sidebar-item" data-section="monitoramento" data-label="Monitoramento" onclick="navigate(this)">
+        <i class="ti ti-radar"></i><span class="item-label"> Monitoramento</span>
+      </div>
+      <div class="sidebar-item" data-section="sistema-compliance" data-label="Sistema & Compliance" onclick="navigate(this)">
+        <i class="ti ti-shield-check"></i><span class="item-label"> Sistema & Compliance</span>
       </div>
     </div>
 
     <div class="sidebar-section">
-      <div class="sidebar-label" onclick="toggleSidebarGroup(this)">Regulatório<i class="ti ti-chevron-down sidebar-chevron"></i></div>
-      <div class="sidebar-items">
-        <div class="sidebar-item" data-section="sigap" data-label="SIGAP" onclick="navigate(this)">
-          <i class="ti ti-building-bank"></i><span class="item-label"> SIGAP</span>
-        </div>
+      <div class="sidebar-label">Regulatório</div>
+      <div class="sidebar-item" data-section="sigap" data-label="SIGAP" onclick="navigate(this)">
+        <i class="ti ti-building-bank"></i><span class="item-label"> SIGAP</span>
       </div>
     </div>
 
@@ -760,22 +741,42 @@
     <!-- ══ CASSINO ══ -->
     <div class="content-area hidden" id="pageCassino">
       <nav class="int-nav">
-        <div class="int-nav-label">Visão geral</div>
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'cassinoTitle')">Dashboard</div>
-        <div class="int-nav-label">Jogos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Jogos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Jogos ao vivo</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Mesas ao vivo</div>
-        <div class="int-nav-label">Catálogo</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Fornecedores</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Categorias</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Categorias Fixas</div>
-        <div class="int-nav-label">Bônus</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Bônus</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Regras de uso</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Acionamentos</div>
-        <div class="int-nav-label">Dados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Relatório</div>
+        <div class="int-nav-group open">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Visão geral<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item active" onclick="selectGenericNav(this,'cassinoTitle')">Dashboard</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Jogos<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Jogos</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Jogos ao vivo</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Mesas ao vivo</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Catálogo<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Fornecedores</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Categorias</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Categorias Fixas</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Bônus<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Bônus</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Regras de uso</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Acionamentos</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Dados<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'cassinoTitle')">Relatório</div>
+          </div>
+        </div>
       </nav>
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
@@ -934,22 +935,42 @@
     <!-- ══ ESPORTES ══ -->
     <div class="content-area hidden" id="pageEsportes">
       <nav class="int-nav">
-        <div class="int-nav-label">Visão geral</div>
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'esportesTitle')">Dashboard</div>
-        <div class="int-nav-label">Configuração</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Esportes</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Categorias</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Torneios</div>
-        <div class="int-nav-label">Eventos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Eventos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Competidores</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Populares</div>
-        <div class="int-nav-label">Mercados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Mercados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Grupos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Favoritos</div>
-        <div class="int-nav-label">Dados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Relatórios</div>
+        <div class="int-nav-group open">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Visão geral<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item active" onclick="selectGenericNav(this,'esportesTitle')">Dashboard</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Configuração<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Esportes</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Categorias</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Torneios</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Eventos<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Eventos</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Competidores</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Populares</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Mercados<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Mercados</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Grupos</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Favoritos</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Dados<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'esportesTitle')">Relatórios</div>
+          </div>
+        </div>
       </nav>
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
@@ -986,16 +1007,28 @@
     <!-- ══ FINANCEIRO ══ -->
     <div class="content-area hidden" id="pageFinanceiro">
       <nav class="int-nav">
-        <div class="int-nav-label">Movimentação</div>
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'financeiroTitle')">Depósitos</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Saques</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Transações</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Extrato</div>
-        <div class="int-nav-label">Configuração</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Gateway</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">PLD</div>
-        <div class="int-nav-label">Dados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Relatório</div>
+        <div class="int-nav-group open">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Movimentação<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item active" onclick="selectGenericNav(this,'financeiroTitle')">Depósitos</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Saques</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Transações</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Extrato</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Configuração<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Gateway</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">PLD</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Dados<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'financeiroTitle')">Relatório</div>
+          </div>
+        </div>
       </nav>
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
@@ -1008,14 +1041,26 @@
     <!-- ══ OPERAÇÃO ══ -->
     <div class="content-area hidden" id="pageOperacao">
       <nav class="int-nav">
-        <div class="int-nav-label">Visão geral</div>
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'operacaoTitle')">Dashboard</div>
-        <div class="int-nav-label">Apostas</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Apostas ao vivo</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Histórico</div>
-        <div class="int-nav-label">Controles</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Limites</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Regras</div>
+        <div class="int-nav-group open">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Visão geral<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item active" onclick="selectGenericNav(this,'operacaoTitle')">Dashboard</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Apostas<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Apostas ao vivo</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Histórico</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Controles<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Limites</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'operacaoTitle')">Regras</div>
+          </div>
+        </div>
       </nav>
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
@@ -1077,14 +1122,26 @@
     <!-- ══ AFILIADOS ══ -->
     <div class="content-area hidden" id="pageAfiliados">
       <nav class="int-nav">
-        <div class="int-nav-label">Visão geral</div>
-        <div class="int-nav-item active" onclick="selectGenericNav(this,'afiliadosTitle')">Visão Geral</div>
-        <div class="int-nav-label">Gestão</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Cadastros</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Comissões</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Regras de afiliado</div>
-        <div class="int-nav-label">Dados</div>
-        <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Relatório</div>
+        <div class="int-nav-group open">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Visão geral<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item active" onclick="selectGenericNav(this,'afiliadosTitle')">Visão Geral</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Gestão<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Cadastros</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Comissões</div>
+            <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Regras de afiliado</div>
+          </div>
+        </div>
+        <div class="int-nav-group">
+          <div class="int-nav-label acc" onclick="toggleIntGroup(this)">Dados<i class="ti ti-chevron-down int-nav-chevron"></i></div>
+          <div class="int-nav-group-body">
+            <div class="int-nav-item" onclick="selectGenericNav(this,'afiliadosTitle')">Relatório</div>
+          </div>
+        </div>
       </nav>
       <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0;">
         <div class="config-content">
@@ -2016,8 +2073,8 @@
     });
   }
 
-  function toggleSidebarGroup(labelEl) {
-    labelEl.closest('.sidebar-section').classList.toggle('open');
+  function toggleIntGroup(labelEl) {
+    labelEl.closest('.int-nav-group').classList.toggle('open');
   }
 
   function navigate(el) {
@@ -2031,10 +2088,6 @@
     // atualiza sidebar ativa
     document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
-
-    // auto-expande o grupo do item clicado
-    const parentSection = el.closest('.sidebar-section');
-    if (parentSection) parentSection.classList.add('open');
 
     if (section === 'configuracoes') {
       document.getElementById('sidebar').classList.add('hidden');
@@ -2148,6 +2201,9 @@
     el.closest('.int-nav').querySelectorAll('.int-nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
     document.getElementById(titleId).textContent = el.textContent.trim();
+    // auto-expande o grupo accordion pai, se existir
+    const group = el.closest('.int-nav-group');
+    if (group) group.classList.add('open');
   }
 
   // ── Tabs ─────────────────────────────────────────────────────────────────────
