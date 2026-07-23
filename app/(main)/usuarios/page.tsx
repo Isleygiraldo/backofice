@@ -1,7 +1,6 @@
 'use client';
 
 export default function UsuariosDashboard() {
-  // Mock data
   const vipStats = {
     totalAtivos: 2714,
     emRisco: 158,
@@ -37,76 +36,76 @@ export default function UsuariosDashboard() {
   ];
 
   return (
-    <div className="p-4 md:p-6 space-y-4 md:space-y-6 max-w-[1600px] mx-auto">
+    <div className="p-[1rem] md:p-[1.5rem] space-y-[1rem] md:space-y-[1.5rem] max-w-[1600px] mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem]">
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[var(--content-text)]">
+          <h2 className="headline-md text-[var(--content-text)]">
             Dashboard de Usuários & Fidelidade
           </h2>
-          <p className="text-xs text-[var(--content-text-secondary)] mt-0.5">
+          <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]">
             Monitoramento VIP e detecção de riscos em tempo real
           </p>
         </div>
       </div>
 
       {/* Top KPIs */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-        <div className="bg-[var(--content-surface)] p-4 rounded-xl border border-[var(--content-border)] flex flex-col justify-between">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[0.75rem] md:gap-[1rem]">
+        <div className="md3-card p-[1rem] flex flex-col justify-between">
           <div>
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Total de VIPs Ativos
             </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-[var(--content-text)]">
+            <h3 className="headline-lg text-[var(--content-text)]">
               {vipStats.totalAtivos.toLocaleString('pt-BR')}
             </h3>
           </div>
-          <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-green-600">
+          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-green-600">
             <span className="material-symbols-outlined text-sm">trending_up</span>
             +5.2% vs mês anterior
           </div>
         </div>
 
-        <div className="bg-[var(--content-surface)] p-4 rounded-xl border border-[var(--content-border)] flex flex-col justify-between">
+        <div className="md3-card p-[1rem] flex flex-col justify-between">
           <div>
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               VIPs em Risco (Critical)
             </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-[var(--content-badge-error-text)]">
+            <h3 className="headline-lg text-[var(--content-badge-error-text)]">
               {vipStats.emRisco}
             </h3>
           </div>
-          <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-[var(--content-badge-error-text)]">
+          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-[var(--content-badge-error-text)]">
             <span className="material-symbols-outlined text-sm">warning</span>
             8 pendentes de revisão
           </div>
         </div>
 
-        <div className="bg-[var(--content-surface)] p-4 rounded-xl border border-[var(--content-border)] flex flex-col justify-between">
+        <div className="md3-card p-[1rem] flex flex-col justify-between">
           <div>
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Crescimento High-Tiers
             </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-[var(--md-sys-color-secondary)]">
+            <h3 className="headline-lg text-[var(--md-sys-color-secondary)]">
               {vipStats.crescimentoHighTier}%
             </h3>
           </div>
-          <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-green-600">
+          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-green-600">
             <span className="material-symbols-outlined text-sm">bolt</span>
             Novas promoções para 'Legend'
           </div>
         </div>
 
-        <div className="bg-[var(--content-surface)] p-4 rounded-xl border border-[var(--content-border)] flex flex-col justify-between">
+        <div className="md3-card p-[1rem] flex flex-col justify-between">
           <div>
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Churn Rate (VIPs)
             </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-[var(--content-text)]">
+            <h3 className="headline-lg text-[var(--content-text)]">
               {vipStats.churnRate}%
             </h3>
           </div>
-          <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-[var(--content-text-secondary)]">
+          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-[var(--content-text-secondary)]">
             <span className="material-symbols-outlined text-sm">check_circle</span>
             Abaixo da meta de 2.5%
           </div>
@@ -114,19 +113,19 @@ export default function UsuariosDashboard() {
       </div>
 
       {/* Main Content: Two Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-[1rem] md:gap-[1.5rem]">
         {/* Left: Risk Alerts */}
-        <div className="lg:col-span-7 bg-[var(--content-surface)] rounded-xl border border-[var(--content-border)] overflow-hidden">
-          <div className="p-4 md:p-5 border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div className="lg:col-span-7 md3-card overflow-hidden">
+          <div className="p-[1rem] md:p-[1.25rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] bg-[var(--content-hover)]">
             <div>
-              <h4 className="text-base md:text-lg font-semibold text-[var(--content-text)]">
+              <h4 className="headline-md text-[var(--content-text)]">
                 Alertas de Risco & Segurança
               </h4>
-              <p className="text-xs text-[var(--content-text-secondary)] mt-0.5">
+              <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]">
                 Detecção de anomalias em tempo real
               </p>
             </div>
-            <span className="bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase border border-[var(--content-badge-error-border)]">
+            <span className="bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)] label-caps px-[0.625rem] py-[0.25rem] shape-sm border border-[var(--content-badge-error-border)]">
               12 Ocorrências Hoje
             </span>
           </div>
@@ -136,16 +135,16 @@ export default function UsuariosDashboard() {
               <table className="w-full">
                 <thead className="bg-[var(--content-hover)] border-b border-[var(--content-border)]">
                   <tr>
-                    <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-left">
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">
                       Jogador ID / Username
                     </th>
-                    <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-center">
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-center">
                       Score
                     </th>
-                    <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-left">
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">
                       Motivo do Alerta
                     </th>
-                    <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-right">
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-right">
                       Ação
                     </th>
                   </tr>
@@ -153,14 +152,14 @@ export default function UsuariosDashboard() {
                 <tbody className="divide-y divide-[var(--content-border)]">
                   {alertas.map((alerta, i) => (
                     <tr key={i} className="hover:bg-[var(--content-hover)] transition-colors">
-                      <td className="px-4 py-3">
-                        <div className="font-bold text-sm text-[var(--content-text)]">{alerta.id}</div>
-                        <div className="text-[10px] text-[var(--content-text-secondary)]">
+                      <td className="px-[1rem] py-[0.75rem]">
+                        <div className="table-data text-[var(--content-text)]">{alerta.id}</div>
+                        <div className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>
                           {alerta.username} • {alerta.tempo}
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-center">
-                        <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold ${
+                      <td className="px-[1rem] py-[0.75rem] text-center">
+                        <span className={`inline-flex items-center justify-center w-[2rem] h-[2rem] rounded-full body-sm font-bold ${
                           alerta.tipo === 'critical' ? 'bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)]' :
                           alerta.tipo === 'warning' ? 'bg-[var(--content-badge-warning-bg)] text-[var(--content-badge-warning-text)]' :
                           'bg-[var(--content-hover)] text-[var(--content-text)]'
@@ -168,18 +167,18 @@ export default function UsuariosDashboard() {
                           {alerta.score}
                         </span>
                       </td>
-                      <td className="px-4 py-3">
-                        <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                      <td className="px-[1rem] py-[0.75rem]">
+                        <span className={`inline-block px-[0.5rem] py-[0.125rem] shape-xs label-caps ${
                           alerta.tipo === 'critical' ? 'bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)] border border-[var(--content-badge-error-border)]' :
                           alerta.tipo === 'warning' ? 'bg-[var(--content-badge-warning-bg)] text-[var(--content-badge-warning-text)] border border-[var(--content-badge-warning-border)]' :
                           'bg-[var(--content-hover)] text-[var(--content-text)] border border-[var(--content-border)]'
-                        }`}>
+                        }`} style={{ fontSize: '10px' }}>
                           {alerta.motivo}
                         </span>
-                        <p className="text-[10px] text-[var(--content-text-secondary)] mt-1">{alerta.detalhe}</p>
+                        <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]" style={{ fontSize: '10px' }}>{alerta.detalhe}</p>
                       </td>
-                      <td className="px-4 py-3 text-right">
-                        <button className="text-xs font-bold text-[var(--md-sys-color-secondary)] hover:underline">
+                      <td className="px-[1rem] py-[0.75rem] text-right">
+                        <button className="label-caps text-[var(--md-sys-color-secondary)] hover:underline" style={{ fontSize: '11px' }}>
                           REVISAR
                         </button>
                       </td>
@@ -190,34 +189,34 @@ export default function UsuariosDashboard() {
             </div>
           </div>
 
-          <div className="p-3 bg-[var(--content-hover)] border-t border-[var(--content-border)] text-center">
-            <button className="text-[11px] font-bold text-[var(--md-sys-color-secondary)] hover:bg-[var(--md-sys-color-secondary)] hover:text-white px-4 py-1.5 rounded transition-colors uppercase">
+          <div className="p-[0.75rem] bg-[var(--content-hover)] border-t border-[var(--content-border)] text-center">
+            <button className="label-caps text-[var(--md-sys-color-secondary)] hover:bg-[var(--md-sys-color-secondary)] hover:text-white px-[1rem] py-[0.375rem] shape-md transition-colors">
               Ver Todos os Alertas de Risco
             </button>
           </div>
         </div>
 
         {/* Right: VIP Distribution & Migration */}
-        <div className="lg:col-span-5 space-y-4">
+        <div className="lg:col-span-5 space-y-[1rem]">
           {/* VIP Tiers */}
-          <div className="bg-[var(--content-surface)] rounded-xl border border-[var(--content-border)] p-4 md:p-5">
-            <h4 className="text-base md:text-lg font-semibold text-[var(--content-text)] mb-4">
+          <div className="md3-card p-[1rem] md:p-[1.25rem]">
+            <h4 className="headline-md text-[var(--content-text)] mb-[1rem]">
               Distribuição VIP & Fidelidade
             </h4>
-            <div className="space-y-3.5">
+            <div className="space-y-[0.875rem]">
               {vipTiers.map((tier, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className={`w-9 h-9 rounded-full ${tier.cor} flex items-center justify-center text-white flex-shrink-0`}>
+                <div key={i} className="flex items-center gap-[0.75rem]">
+                  <div className={`w-[2.25rem] h-[2.25rem] shape-md ${tier.cor} flex items-center justify-center text-white flex-shrink-0`}>
                     <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: '"FILL" 1' }}>
                       {tier.icon}
                     </span>
                   </div>
                   <div className="flex-grow min-w-0">
-                    <div className="flex justify-between items-end mb-1">
-                      <span className="text-sm font-bold text-[var(--content-text)]">{tier.nome}</span>
-                      <span className="text-xs font-bold text-[var(--content-text-secondary)]">{tier.ativos} Ativos</span>
+                    <div className="flex justify-between items-end mb-[0.25rem]">
+                      <span className="table-data text-[var(--content-text)]">{tier.nome}</span>
+                      <span className="body-sm font-bold text-[var(--content-text-secondary)]">{tier.ativos} Ativos</span>
                     </div>
-                    <div className="w-full bg-[var(--content-hover)] h-1.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-[var(--content-hover)] h-[0.375rem] shape-sm overflow-hidden">
                       <div className={`${tier.cor} h-full`} style={{ width: `${tier.percentual}%` }}></div>
                     </div>
                   </div>
@@ -227,31 +226,31 @@ export default function UsuariosDashboard() {
           </div>
 
           {/* Tier Migration */}
-          <div className="bg-[var(--content-surface)] rounded-xl border border-[var(--content-border)] p-4 md:p-5">
-            <h4 className="text-base md:text-lg font-semibold text-[var(--content-text)] mb-3">
+          <div className="md3-card p-[1rem] md:p-[1.25rem]">
+            <h4 className="headline-md text-[var(--content-text)] mb-[0.75rem]">
               Migração de Tiers (24h)
             </h4>
-            <div className="space-y-2.5">
-              <div className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                <div className="flex items-center gap-2.5 min-w-0">
+            <div className="space-y-[0.625rem]">
+              <div className="flex items-center justify-between p-[0.75rem] bg-green-50 dark:bg-green-900/20 shape-md border border-green-200 dark:border-green-800">
+                <div className="flex items-center gap-[0.625rem] min-w-0">
                   <span className="material-symbols-outlined text-green-600 flex-shrink-0">arrow_upward</span>
                   <div className="min-w-0">
-                    <p className="text-xs font-bold text-green-700 dark:text-green-400">Promovidos para Elite</p>
-                    <p className="text-[10px] text-green-600 dark:text-green-500">4 jogadores atingiram meta GGR</p>
+                    <p className="body-sm font-bold text-green-700 dark:text-green-400">Promovidos para Elite</p>
+                    <p className="body-sm text-green-600 dark:text-green-500" style={{ fontSize: '10px' }}>4 jogadores atingiram meta GGR</p>
                   </div>
                 </div>
-                <span className="text-lg font-bold text-green-600 flex-shrink-0 ml-2">+4</span>
+                <span className="headline-md font-bold text-green-600 flex-shrink-0 ml-[0.5rem]">+4</span>
               </div>
 
-              <div className="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
-                <div className="flex items-center gap-2.5 min-w-0">
+              <div className="flex items-center justify-between p-[0.75rem] bg-red-50 dark:bg-red-900/20 shape-md border border-red-200 dark:border-red-800">
+                <div className="flex items-center gap-[0.625rem] min-w-0">
                   <span className="material-symbols-outlined text-red-600 flex-shrink-0">arrow_downward</span>
                   <div className="min-w-0">
-                    <p className="text-xs font-bold text-red-700 dark:text-red-400">Risco de Demoted (Black)</p>
-                    <p className="text-[10px] text-red-600 dark:text-red-500">12 jogadores inativos há &gt;15 dias</p>
+                    <p className="body-sm font-bold text-red-700 dark:text-red-400">Risco de Demoted (Black)</p>
+                    <p className="body-sm text-red-600 dark:text-red-500" style={{ fontSize: '10px' }}>12 jogadores inativos há &gt;15 dias</p>
                   </div>
                 </div>
-                <span className="text-lg font-bold text-red-600 flex-shrink-0 ml-2">12</span>
+                <span className="headline-md font-bold text-red-600 flex-shrink-0 ml-[0.5rem]">12</span>
               </div>
             </div>
           </div>
@@ -259,41 +258,41 @@ export default function UsuariosDashboard() {
       </div>
 
       {/* Geographic Concentration */}
-      <div className="bg-[var(--content-surface)] rounded-xl border border-[var(--content-border)] p-4 md:p-6">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
+      <div className="md3-card p-[1rem] md:p-[1.5rem]">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-[1rem] mb-[1.5rem]">
           <div>
-            <h4 className="text-base md:text-lg font-semibold text-[var(--content-text)]">
+            <h4 className="headline-md text-[var(--content-text)]">
               Concentração por Localidade (VIPs)
             </h4>
-            <p className="text-xs text-[var(--content-text-secondary)] mt-0.5">
+            <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]">
               Distribuição geográfica dos jogadores de alto valor no Brasil
             </p>
           </div>
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-[1rem] flex-wrap">
             <div>
-              <p className="text-[10px] text-[var(--content-text-secondary)] uppercase font-bold">Top Estado</p>
-              <p className="text-lg md:text-xl font-bold text-[var(--content-text)]">São Paulo (47%)</p>
+              <p className="label-caps text-[var(--content-text-secondary)]">Top Estado</p>
+              <p className="headline-md text-[var(--content-text)]">São Paulo (47%)</p>
             </div>
             <div className="w-px bg-[var(--content-border)]"></div>
             <div>
-              <p className="text-[10px] text-[var(--content-text-secondary)] uppercase font-bold">Total GGR VIP</p>
-              <p className="text-lg md:text-xl font-bold text-[var(--md-sys-color-secondary)]">R$ 287,4M</p>
+              <p className="label-caps text-[var(--content-text-secondary)]">Total GGR VIP</p>
+              <p className="headline-md text-[var(--md-sys-color-secondary)]">R$ 287,4M</p>
             </div>
           </div>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-[0.875rem]">
           {estadosTop.map((estado, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <span className="w-6 text-[10px] font-bold text-[var(--content-text-secondary)] flex-shrink-0">
+            <div key={i} className="flex items-center gap-[0.75rem]">
+              <span className="w-[1.5rem] label-caps text-[var(--content-text-secondary)] flex-shrink-0">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div className="flex-grow min-w-0">
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between body-sm font-bold mb-[0.25rem]">
                   <span className="text-[var(--content-text)]">{estado.estado}</span>
                   <span className="text-[var(--content-text-secondary)]">{estado.vips} VIPs</span>
                 </div>
-                <div className="w-full bg-[var(--content-hover)] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[var(--content-hover)] h-[0.5rem] shape-sm overflow-hidden">
                   <div
                     className="bg-[var(--md-sys-color-secondary)] h-full"
                     style={{ width: `${estado.percentual}%` }}
@@ -306,21 +305,21 @@ export default function UsuariosDashboard() {
       </div>
 
       {/* Critical Users Table */}
-      <div className="bg-[var(--content-surface)] rounded-xl border border-[var(--content-border)] overflow-hidden">
-        <div className="p-4 md:p-5 border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div className="md3-card overflow-hidden">
+        <div className="p-[1rem] md:p-[1.25rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem]">
           <div>
-            <h4 className="text-base md:text-lg font-semibold text-[var(--content-text)]">
+            <h4 className="headline-md text-[var(--content-text)]">
               Detalhamento de Usuários Críticos
             </h4>
-            <p className="text-xs text-[var(--content-text-secondary)] mt-0.5">
+            <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]">
               Monitoramento operacional profundo e histórico de ações
             </p>
           </div>
-          <div className="flex gap-2">
-            <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[var(--content-border)] text-xs font-bold rounded hover:bg-[var(--content-hover)] transition-colors text-[var(--content-text)]">
+          <div className="flex gap-[0.5rem]">
+            <button className="flex items-center gap-[0.375rem] px-[0.75rem] py-[0.375rem] border border-[var(--content-border)] label-caps shape-md hover:bg-[var(--content-hover)] transition-colors text-[var(--content-text)]">
               <span className="material-symbols-outlined text-sm">filter_list</span> Filtros
             </button>
-            <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] text-xs font-bold rounded hover:opacity-90 transition-opacity">
+            <button className="flex items-center gap-[0.375rem] px-[0.75rem] py-[0.375rem] bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] label-caps shape-md hover:opacity-90 transition-opacity">
               <span className="material-symbols-outlined text-sm">download</span> CSV
             </button>
           </div>
@@ -331,30 +330,30 @@ export default function UsuariosDashboard() {
             <table className="w-full">
               <thead className="bg-[var(--content-hover)] border-b border-[var(--content-border)]">
                 <tr>
-                  <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-left">Jogador</th>
-                  <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-left">Tier</th>
-                  <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-left">GGR Total</th>
-                  <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-left">Ticket Médio</th>
-                  <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-left">Status Risco</th>
-                  <th className="px-4 py-3 text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] text-right">Ação</th>
+                  <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">Jogador</th>
+                  <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">Tier</th>
+                  <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">GGR Total</th>
+                  <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">Ticket Médio</th>
+                  <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">Status Risco</th>
+                  <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-right">Ação</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[var(--content-border)]">
                 {usuariosCriticos.map((user, i) => (
                   <tr key={i} className="hover:bg-[var(--content-hover)] transition-colors">
-                    <td className="px-4 py-3">
-                      <div className="font-bold text-sm text-[var(--content-text)]">{user.nome}</div>
-                      <div className="text-[10px] text-[var(--content-text-secondary)]">ID: {user.id}</div>
+                    <td className="px-[1rem] py-[0.75rem]">
+                      <div className="table-data text-[var(--content-text)]">{user.nome}</div>
+                      <div className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>ID: {user.id}</div>
                     </td>
-                    <td className="px-4 py-3">
-                      <span className="bg-gradient-to-br from-amber-400 to-yellow-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                    <td className="px-[1rem] py-[0.75rem]">
+                      <span className="bg-gradient-to-br from-amber-400 to-yellow-600 text-white label-caps px-[0.5rem] py-[0.125rem] shape-xs" style={{ fontSize: '10px' }}>
                         {user.tier}
                       </span>
                     </td>
-                    <td className="px-4 py-3 font-bold text-sm text-[var(--content-text)]">{user.ggr}</td>
-                    <td className="px-4 py-3 text-sm text-[var(--content-text)]">{user.ticketMedio}</td>
-                    <td className="px-4 py-3">
-                      <span className={`text-xs font-bold ${
+                    <td className="px-[1rem] py-[0.75rem] table-data font-bold text-[var(--content-text)]">{user.ggr}</td>
+                    <td className="px-[1rem] py-[0.75rem] table-data text-[var(--content-text)]">{user.ticketMedio}</td>
+                    <td className="px-[1rem] py-[0.75rem]">
+                      <span className={`body-sm font-bold ${
                         user.risco === 'saudavel' ? 'text-green-600' :
                         user.risco === 'critico' ? 'text-[var(--content-badge-error-text)]' :
                         'text-[var(--content-badge-warning-text)]'
@@ -362,12 +361,12 @@ export default function UsuariosDashboard() {
                         {user.risco === 'saudavel' ? 'Saudável' : user.risco === 'critico' ? 'Alerta Crítico' : 'Suspeito'}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-right">
-                      <button className={`text-xs font-bold px-3 py-1 rounded transition-colors ${
+                    <td className="px-[1rem] py-[0.75rem] text-right">
+                      <button className={`label-caps px-[0.75rem] py-[0.25rem] shape-md transition-colors ${
                         user.risco === 'critico'
                           ? 'bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)] hover:opacity-80'
                           : 'bg-[var(--content-hover)] text-[var(--content-text)] hover:bg-[var(--content-border)]'
-                      }`}>
+                      }`} style={{ fontSize: '11px' }}>
                         {user.risco === 'critico' ? 'Suspender' : user.risco === 'suspeito' ? 'Investigar' : 'Perfil'}
                       </button>
                     </td>
@@ -378,24 +377,24 @@ export default function UsuariosDashboard() {
           </div>
         </div>
 
-        <div className="px-4 py-3 bg-[var(--content-hover)] border-t border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-center gap-3">
-          <span className="text-[11px] text-[var(--content-text-secondary)] font-bold">
+        <div className="px-[1rem] py-[0.75rem] bg-[var(--content-hover)] border-t border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-center gap-[0.75rem]">
+          <span className="label-caps text-[var(--content-text-secondary)]">
             Mostrando 1-3 de 158 usuários em risco
           </span>
-          <div className="flex gap-1">
-            <button className="w-8 h-8 flex items-center justify-center rounded border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text-secondary)] disabled:opacity-50" disabled>
+          <div className="flex gap-[0.25rem]">
+            <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text-secondary)] disabled:opacity-50" disabled>
               <span className="material-symbols-outlined text-sm">chevron_left</span>
             </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] text-[10px] font-bold">
+            <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] label-caps" style={{ fontSize: '10px' }}>
               1
             </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text)] text-[10px] font-bold hover:bg-[var(--content-hover)]">
+            <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text)] label-caps hover:bg-[var(--content-hover)]" style={{ fontSize: '10px' }}>
               2
             </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text)] text-[10px] font-bold hover:bg-[var(--content-hover)]">
+            <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text)] label-caps hover:bg-[var(--content-hover)]" style={{ fontSize: '10px' }}>
               3
             </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text-secondary)]">
+            <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text-secondary)]">
               <span className="material-symbols-outlined text-sm">chevron_right</span>
             </button>
           </div>

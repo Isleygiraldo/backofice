@@ -7,7 +7,6 @@ export default function SigapDashboard() {
     total: 5,
     enviados: 4,
     pendentes: 1,
-    proximoDeadline: '01:00 AM',
   };
 
   const timelineEvents = [
@@ -57,73 +56,73 @@ export default function SigapDashboard() {
   ];
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6 md:space-y-8">
+    <div className="p-[1rem] md:p-[1.5rem] lg:p-[2rem] max-w-[1400px] mx-auto space-y-[1.5rem] md:space-y-[2rem]">
       {/* Hero Header & Métricas */}
-      <div className="flex flex-col lg:flex-row justify-between gap-6">
-        <div className="space-y-1">
-          <h1 className="text-xl md:text-2xl font-bold text-[var(--content-text)] tracking-tight">
+      <div className="flex flex-col lg:flex-row justify-between gap-[1.5rem]">
+        <div className="space-y-[0.25rem]">
+          <h1 className="headline-lg text-[var(--content-text)]">
             Auditoria e Timeline
           </h1>
-          <p className="text-sm text-[var(--content-text-secondary)]">
+          <p className="body-md text-[var(--content-text-secondary)]">
             Log sequencial de eventos regulatórios para{' '}
             <span className="font-bold">Hoje, 26 de Junho de 2026</span>
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 flex-1 lg:max-w-3xl">
-          <div className="bg-[var(--content-surface)] p-4 rounded-xl shadow-sm border border-[var(--content-border)]">
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.75rem] md:gap-[1rem] flex-1 lg:max-w-3xl">
+          <div className="md3-card p-[1rem]">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Progresso Total
             </p>
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-[var(--content-text)]">
+            <div className="flex items-baseline gap-[0.5rem]">
+              <span className="headline-lg text-[var(--content-text)]">
                 {metricas.progressoTotal}%
               </span>
-              <span className="text-[11px] text-green-600 font-bold">
+              <span className="label-caps text-green-600">
                 {metricas.concluidos}/{metricas.total}
               </span>
             </div>
-            <div className="w-full bg-[var(--content-hover)] h-1.5 rounded-full mt-3 overflow-hidden">
+            <div className="w-full bg-[var(--content-hover)] h-[0.375rem] shape-sm mt-[0.75rem] overflow-hidden">
               <div
-                className="bg-[var(--md-sys-color-secondary)] h-full rounded-full"
+                className="bg-[var(--md-sys-color-secondary)] h-full shape-sm"
                 style={{ width: `${metricas.progressoTotal}%` }}
               ></div>
             </div>
           </div>
 
-          <div className="bg-[var(--content-surface)] p-4 rounded-xl shadow-sm border border-[var(--content-border)]">
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+          <div className="md3-card p-[1rem]">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Enviados
             </p>
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-green-600">{metricas.enviados}</span>
-              <span className="text-[11px] text-[var(--content-text-secondary)] font-medium">
+            <div className="flex items-baseline gap-[0.5rem]">
+              <span className="headline-lg text-green-600">{metricas.enviados}</span>
+              <span className="body-sm text-[var(--content-text-secondary)] font-medium">
                 Aceitos
               </span>
             </div>
           </div>
 
-          <div className="bg-[var(--content-surface)] p-4 rounded-xl shadow-sm border border-[var(--content-border)]">
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+          <div className="md3-card p-[1rem]">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Pendentes
             </p>
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-amber-500">{metricas.pendentes}</span>
-              <span className="text-[11px] text-[var(--content-text-secondary)] font-medium">
+            <div className="flex items-baseline gap-[0.5rem]">
+              <span className="headline-lg text-amber-500">{metricas.pendentes}</span>
+              <span className="body-sm text-[var(--content-text-secondary)] font-medium">
                 Missing
               </span>
             </div>
           </div>
 
-          <div className="bg-[var(--content-surface)] p-4 rounded-xl shadow-sm border border-[var(--content-border)]">
-            <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px] mb-1">
+          <div className="md3-card p-[1rem]">
+            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Próx. Deadline
             </p>
-            <div className="flex items-baseline gap-2">
-              <span className="text-xl md:text-2xl font-bold text-[var(--content-text)]">
+            <div className="flex items-baseline gap-[0.5rem]">
+              <span className="headline-lg text-[var(--content-text)]">
                 01:00
               </span>
-              <span className="text-[11px] text-[var(--content-text-secondary)] font-medium">
+              <span className="body-sm text-[var(--content-text-secondary)] font-medium">
                 AM (BRT)
               </span>
             </div>
@@ -132,7 +131,7 @@ export default function SigapDashboard() {
       </div>
 
       {/* Alerta de Arquivo Ausente */}
-      <div className="bg-[var(--content-badge-error-bg)] border-l-4 border-[var(--content-badge-error-text)] p-4 rounded-r-xl flex items-start md:items-center gap-3 md:gap-4">
+      <div className="bg-[var(--content-badge-error-bg)] border-l-4 border-[var(--content-badge-error-text)] p-[1rem] shape-md flex items-start md:items-center gap-[0.75rem] md:gap-[1rem]">
         <span
           className="material-symbols-outlined text-[var(--content-badge-error-text)] flex-shrink-0"
           style={{ fontVariationSettings: '"FILL" 1' }}
@@ -140,48 +139,48 @@ export default function SigapDashboard() {
           warning
         </span>
         <div className="flex-1 min-w-0">
-          <p className="text-[var(--content-badge-error-text)] font-bold text-sm">
+          <p className="body-md font-bold text-[var(--content-badge-error-text)]">
             ALERTA: ARQUIVO CRÍTICO AUSENTE
           </p>
-          <p className="text-[var(--content-badge-error-text)] opacity-80 text-xs mt-0.5">
+          <p className="body-sm text-[var(--content-badge-error-text)] opacity-80 mt-[0.125rem]">
             O arquivo <span className="font-bold">Operador Diário (00:33)</span> não foi
             identificado pelo sistema até o momento.
           </p>
         </div>
-        <span className="text-[10px] font-bold text-[var(--content-badge-error-text)] uppercase tracking-widest px-2 py-1 bg-[var(--content-badge-error-text)]/10 rounded flex-shrink-0">
+        <span className="label-caps text-[var(--content-badge-error-text)] px-[0.5rem] py-[0.25rem] bg-[var(--content-badge-error-text)]/10 shape-xs flex-shrink-0">
           Urgente
         </span>
       </div>
 
       {/* Timeline Section */}
-      <div className="bg-[var(--content-surface)] rounded-2xl shadow-sm border border-[var(--content-border)] overflow-hidden">
-        <div className="px-4 md:px-6 py-4 border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-[var(--content-hover)]">
-          <h3 className="text-base md:text-lg font-semibold text-[var(--content-text)] flex items-center gap-2">
+      <div className="md3-card overflow-hidden">
+        <div className="p-[1rem] md:p-[1.5rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] bg-[var(--content-hover)]">
+          <h3 className="headline-md text-[var(--content-text)] flex items-center gap-[0.5rem]">
             <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)]">
               history
             </span>
             Audit Trail de Fragmentos
           </h3>
-          <div className="flex gap-2 flex-wrap">
-            <button className="text-xs font-bold px-3 py-1.5 border border-[var(--content-border)] rounded-full hover:bg-[var(--content-hover)] transition-colors text-[var(--content-text)]">
+          <div className="flex gap-[0.5rem] flex-wrap">
+            <button className="md3-button-outlined label-caps px-[0.75rem] py-[0.375rem]">
               Filtrar por Evento
             </button>
-            <button className="text-xs font-bold px-3 py-1.5 bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] rounded-full hover:opacity-90">
+            <button className="md3-button-filled label-caps px-[0.75rem] py-[0.375rem]">
               Exportar Log
             </button>
           </div>
         </div>
 
-        <div className="p-4 md:p-8">
-          <div className="relative space-y-6 md:space-y-8">
+        <div className="p-[1rem] md:p-[2rem]">
+          <div className="relative space-y-[1.5rem] md:space-y-[2rem]">
             {/* Vertical Line */}
             <div className="absolute left-[20px] top-4 bottom-4 w-px bg-[var(--content-border)]"></div>
 
             {timelineEvents.map((event, i) => (
-              <div key={i} className="relative pl-12">
-                <div className="absolute left-0 top-1.5 w-[40px] h-[40px] flex items-center justify-center">
+              <div key={i} className="relative pl-[3rem]">
+                <div className="absolute left-0 top-[0.375rem] w-[40px] h-[40px] flex items-center justify-center">
                   <div
-                    className={`w-3 h-3 rounded-full ring-4 z-10 ${
+                    className={`w-[0.75rem] h-[0.75rem] rounded-full ring-4 z-10 ${
                       event.tipo === 'error'
                         ? 'bg-[var(--content-badge-error-text)] ring-[var(--content-badge-error-text)]/20'
                         : event.tipo === 'success'
@@ -192,18 +191,18 @@ export default function SigapDashboard() {
                 </div>
 
                 <div
-                  className={`rounded-xl p-4 md:p-5 border ${
+                  className={`shape-xl p-[1rem] md:p-[1.25rem] border elevation-1 ${
                     event.tipo === 'error'
                       ? 'bg-[var(--content-badge-error-bg)] border-[var(--content-badge-error-border)]'
                       : event.tipo === 'info'
                       ? 'bg-[var(--content-hover)] border-dashed border-[var(--content-border)]'
-                      : 'bg-[var(--content-surface)] border-[var(--content-border)] shadow-sm'
+                      : 'bg-[var(--content-surface)] border-[var(--content-border)]'
                   }`}
                 >
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-3">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-[0.75rem] mb-[0.75rem]">
                     <div className="flex-1">
                       <span
-                        className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded ${
+                        className={`label-caps px-[0.5rem] py-[0.125rem] shape-xs ${
                           event.tipo === 'error'
                             ? 'text-[var(--content-badge-error-text)] bg-[var(--content-badge-error-text)]/10'
                             : event.tipo === 'success'
@@ -213,29 +212,29 @@ export default function SigapDashboard() {
                       >
                         {event.status}
                       </span>
-                      <h4 className="font-bold text-[var(--content-text)] mt-1 text-sm md:text-base">
+                      <h4 className="table-data text-[var(--content-text)] mt-[0.25rem]">
                         {event.titulo}
                       </h4>
-                      <p className="text-xs text-[var(--content-text-secondary)]">
+                      <p className="body-sm text-[var(--content-text-secondary)]">
                         {event.descricao}
                       </p>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <p className="text-sm font-bold text-[var(--content-text)]">
+                      <p className="table-data text-[var(--content-text)]">
                         {event.horario}
                       </p>
-                      <p className="text-[10px] text-[var(--content-text-secondary)] uppercase">
+                      <p className="label-caps text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>
                         REF: {event.ref}
                       </p>
                     </div>
                   </div>
 
                   {event.log && (
-                    <div className="rounded-lg bg-[var(--md-sys-color-primary-container)] p-4 font-mono text-[11px] text-[var(--md-sys-color-on-primary-container)] border border-[var(--content-border)] overflow-x-auto">
-                      <p className="text-[var(--md-sys-color-on-primary-container)] opacity-70 font-bold mb-2 uppercase tracking-widest text-[9px]">
+                    <div className="shape-md bg-[var(--md-sys-color-primary-container)] p-[1rem] font-mono body-sm text-[var(--md-sys-color-on-primary-container)] border border-[var(--content-border)] overflow-x-auto">
+                      <p className="text-[var(--md-sys-color-on-primary-container)] opacity-70 font-bold mb-[0.5rem] label-caps" style={{ fontSize: '9px' }}>
                         [SPA-BR-992 RESPONSE]
                       </p>
-                      <pre className="whitespace-pre-wrap text-[var(--md-sys-color-on-primary-container)]">
+                      <pre className="whitespace-pre-wrap text-[var(--md-sys-color-on-primary-container)]" style={{ fontSize: '11px' }}>
                         {event.log}
                       </pre>
                     </div>
@@ -245,8 +244,8 @@ export default function SigapDashboard() {
             ))}
           </div>
 
-          <div className="mt-8 md:mt-12 text-center">
-            <button className="text-xs font-bold text-[var(--content-text-secondary)] hover:text-[var(--md-sys-color-primary)] transition-colors flex items-center gap-2 mx-auto">
+          <div className="mt-[2rem] md:mt-[3rem] text-center">
+            <button className="label-caps text-[var(--content-text-secondary)] hover:text-[var(--md-sys-color-primary)] transition-colors flex items-center gap-[0.5rem] mx-auto">
               <span className="material-symbols-outlined text-sm">keyboard_arrow_down</span>
               Carregar Eventos Anteriores
             </button>
@@ -255,41 +254,41 @@ export default function SigapDashboard() {
       </div>
 
       {/* Footer Stats - Histórico Semanal */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-[var(--content-surface)] p-6 rounded-2xl shadow-sm border border-[var(--content-border)] md:col-span-2">
-          <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-[1.5rem]">
+        <div className="md3-card p-[1.5rem] md:col-span-2">
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-[1rem] mb-[1.5rem]">
             <div>
-              <p className="text-[10px] font-semibold text-[var(--content-text-secondary)] uppercase tracking-[0.8px]">
+              <p className="label-caps text-[var(--content-text-secondary)]">
                 Histórico de Operação
               </p>
-              <h4 className="text-base md:text-lg font-semibold text-[var(--content-text)]">
+              <h4 className="headline-md text-[var(--content-text)]">
                 Status Semanal de Envios
               </h4>
             </div>
-            <div className="flex items-center gap-3 text-[10px] font-bold text-[var(--content-text-secondary)] uppercase">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-green-500"></span>
+            <div className="flex items-center gap-[0.75rem] label-caps text-[var(--content-text-secondary)]">
+              <div className="flex items-center gap-[0.375rem]">
+                <span className="w-[0.5rem] h-[0.5rem] rounded-full bg-green-500"></span>
                 Sucesso
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[var(--content-badge-error-text)]"></span>
+              <div className="flex items-center gap-[0.375rem]">
+                <span className="w-[0.5rem] h-[0.5rem] rounded-full bg-[var(--content-badge-error-text)]"></span>
                 Falha
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-2">
+          <div className="grid grid-cols-7 gap-[0.5rem]">
             {semana.map((item, i) => (
               <div
                 key={i}
-                className={`flex flex-col items-center gap-3 p-3 rounded-xl border ${
+                className={`flex flex-col items-center gap-[0.75rem] p-[0.75rem] shape-xl border ${
                   item.status === 'error'
                     ? 'bg-[var(--content-badge-error-bg)] border-[var(--content-badge-error-border)]'
                     : 'bg-[var(--content-hover)] border-[var(--content-border)]'
                 }`}
               >
                 <span
-                  className={`text-[10px] font-bold uppercase ${
+                  className={`label-caps ${
                     item.status === 'error'
                       ? 'text-[var(--content-badge-error-text)]'
                       : 'text-[var(--content-text-secondary)] opacity-50'
@@ -298,7 +297,7 @@ export default function SigapDashboard() {
                   {item.dia}
                 </span>
                 <div
-                  className={`w-full h-2 rounded-full ${
+                  className={`w-full h-[0.5rem] shape-sm ${
                     item.status === 'error'
                       ? 'bg-[var(--content-badge-error-text)] animate-pulse'
                       : 'bg-green-500'
@@ -309,15 +308,15 @@ export default function SigapDashboard() {
           </div>
         </div>
 
-        <div className="bg-[var(--content-surface)] p-6 rounded-2xl shadow-sm border border-[var(--content-border)] flex flex-col justify-center">
-          <div className="flex items-center gap-3 text-green-600 mb-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <span className="text-xs font-bold uppercase tracking-widest">
+        <div className="md3-card p-[1.5rem] flex flex-col justify-center">
+          <div className="flex items-center gap-[0.75rem] text-green-600 mb-[0.5rem]">
+            <span className="w-[0.5rem] h-[0.5rem] bg-green-500 rounded-full animate-pulse"></span>
+            <span className="body-sm font-bold uppercase tracking-widest">
               API Conectada • Produção
             </span>
           </div>
-          <p className="text-[10px] text-[var(--content-text-secondary)] mt-2">
-            <span className="material-symbols-outlined text-sm align-middle mr-1">
+          <p className="label-caps text-[var(--content-text-secondary)] mt-[0.5rem] flex items-center gap-[0.25rem]">
+            <span className="material-symbols-outlined text-sm align-middle">
               verified_user
             </span>
             SIGAP Secure Protocol v2.4.0
