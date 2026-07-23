@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import { SidebarProvider } from "@/components/SidebarContext";
-import Sidebar from "@/components/Sidebar";
-import Topbar from "@/components/Topbar";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const roboto = Roboto({
-  weight: ["400", "500", "700"],
+const inter = Inter({
   subsets: ["latin"],
 });
 
@@ -21,21 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={roboto.className}>
+    <html lang="pt-BR" className={inter.className}>
       <head>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
       </head>
-      <body className="h-screen flex overflow-hidden">
-        <SidebarProvider>
-          <Sidebar />
-          <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-            <Topbar />
-            <main className="flex-1 overflow-y-auto">{children}</main>
-          </div>
-        </SidebarProvider>
+      <body className="h-screen overflow-hidden">
+        {children}
       </body>
     </html>
   );

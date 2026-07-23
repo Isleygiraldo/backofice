@@ -15,13 +15,28 @@ interface NavGroup {
 
 interface IntNavProps {
   groups: NavGroup[];
+  backButton?: {
+    label: string;
+    href: string;
+  };
 }
 
-export default function IntNav({ groups }: IntNavProps) {
+export default function IntNav({ groups, backButton }: IntNavProps) {
   const pathname = usePathname();
 
   return (
     <nav className="w-full md:w-[190px] md:min-w-[190px] bg-[var(--md-sys-color-surface-container)] border-b md:border-b-0 md:border-r border-[var(--md-sys-color-outline-variant)] overflow-x-auto md:overflow-y-auto md:overflow-x-hidden py-0 md:py-2 flex-shrink-0">
+      {/* Back button (desktop only) */}
+      {backButton && (
+        <Link
+          href={backButton.href}
+          className="hidden md:flex items-center gap-2.5 px-4 h-9 border-b border-[var(--md-sys-color-outline-variant)] mb-2 text-xs font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all"
+        >
+          <i className="ti ti-arrow-left text-base flex-shrink-0" />
+          <span>{backButton.label}</span>
+        </Link>
+      )}
+
       {/* Mobile: horizontal tabs */}
       <div className="flex md:hidden">
         {groups.flatMap(group => group.items).map((item) => (
