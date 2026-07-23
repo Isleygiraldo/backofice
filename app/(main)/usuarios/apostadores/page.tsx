@@ -63,12 +63,12 @@ export default function ApostadoresPage() {
   return (
     <div className="p-4 space-y-4 max-w-[1600px] mx-auto">
       {/* Header - MD3 Typography */}
-      <div className="flex justify-between items-center py-2">
-        <h2 className="text-xl font-semibold tracking-tight text-[var(--content-text)]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 py-2">
+        <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[var(--content-text)]">
           Gerenciamento de Apostadores
         </h2>
         {/* MD3 Filled Button */}
-        <button className="bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:shadow-md transition-shadow active:scale-[0.98]">
+        <button className="w-full sm:w-auto bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] px-4 py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:shadow-md transition-shadow active:scale-[0.98]">
           <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20' }}>
             add
           </span>
@@ -114,12 +114,12 @@ export default function ApostadoresPage() {
         ))}
       </div>
 
-      {/* MD3 Chips - Recent Users */}
-      <div className="flex items-center gap-3 py-1">
+      {/* MD3 Chips - Recent Users (Hidden on mobile) */}
+      <div className="hidden md:flex items-center gap-3 py-1">
         <span className="text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold flex-shrink-0">
           Recentes:
         </span>
-        <div className="flex gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex gap-2 overflow-x-auto">
           {recent.map((user, i) => (
             <div
               key={i}
@@ -133,10 +133,10 @@ export default function ApostadoresPage() {
       </div>
 
       {/* MD3 Filter Bar */}
-      <div className="bg-[var(--content-surface)] border border-[var(--content-border)] rounded px-3 py-2 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4 flex-1">
+      <div className="bg-[var(--content-surface)] border border-[var(--content-border)] rounded px-3 py-2 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-1">
           {/* MD3 Text Field */}
-          <div className="relative flex-1 max-w-[240px]">
+          <div className="relative w-full sm:flex-1 sm:max-w-[240px]">
             <input
               type="text"
               placeholder="Pesquisar..."
@@ -147,7 +147,8 @@ export default function ApostadoresPage() {
             </span>
           </div>
 
-          <div className="flex items-center gap-4 border-l border-[var(--content-border)] pl-4">
+          {/* Filters - Hidden on mobile */}
+          <div className="hidden lg:flex items-center gap-4 border-l border-[var(--content-border)] pl-4">
             <button className="flex items-center gap-1.5 group">
               <span className="text-xs text-[var(--content-text)]">Vip</span>
               <span className="bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
@@ -182,7 +183,7 @@ export default function ApostadoresPage() {
         </div>
 
         {/* MD3 Outlined Button */}
-        <button className="px-3 py-1 rounded border border-[var(--content-border)] text-[var(--content-text-secondary)] text-[11px] font-bold hover:bg-[var(--content-hover)] transition-all">
+        <button className="px-3 py-1.5 rounded border border-[var(--content-border)] text-[var(--content-text-secondary)] text-[11px] font-bold hover:bg-[var(--content-hover)] transition-all whitespace-nowrap">
           Limpar filtros
         </button>
       </div>
@@ -190,7 +191,7 @@ export default function ApostadoresPage() {
       {/* MD3 Data Table */}
       <div className="bg-[var(--content-surface)] rounded-lg shadow-sm border border-[var(--content-border)] overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse table-fixed">
+          <table className="w-full text-left border-collapse min-w-[800px]">
             <thead className="bg-[var(--content-bg)] border-b border-[var(--content-border)]">
               <tr>
                 <th className="w-[28%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold">
@@ -218,9 +219,9 @@ export default function ApostadoresPage() {
             </thead>
             <tbody className="divide-y divide-[var(--content-border)]">
               {apostadores.map((user) => (
-                <tr key={user.id} className="hover:bg-[var(--content-hover)] transition-colors group">
+                <tr key={user.id} className="hover:bg-[var(--content-hover)] transition-colors cursor-pointer group">
                   <td className="px-4 py-2">
-                    <div className="flex items-center gap-2">
+                    <Link href={`/usuarios/apostadores/${user.id}`} className="flex items-center gap-2">
                       <img src={user.avatar} alt={user.name} className="w-7 h-7 rounded-full object-cover flex-shrink-0" />
                       <div className="truncate">
                         <p className="text-[13px] font-medium text-[var(--content-text)] truncate">
@@ -230,36 +231,46 @@ export default function ApostadoresPage() {
                           ID: #{user.id}
                         </p>
                       </div>
-                    </div>
+                    </Link>
                   </td>
                   <td className="px-4 py-2 text-xs text-[var(--content-text-secondary)] text-center tabular-nums">
-                    {user.cpf}
+                    <Link href={`/usuarios/apostadores/${user.id}`} className="block">
+                      {user.cpf}
+                    </Link>
                   </td>
                   <td className="px-4 py-2 text-xs text-[var(--content-text-secondary)] truncate">
-                    {user.email}
+                    <Link href={`/usuarios/apostadores/${user.id}`} className="block truncate">
+                      {user.email}
+                    </Link>
                   </td>
                   <td className="px-4 py-2 text-xs text-[var(--content-text-secondary)] text-center">
-                    {user.cadastro}
+                    <Link href={`/usuarios/apostadores/${user.id}`} className="block">
+                      {user.cadastro}
+                    </Link>
                   </td>
                   <td className="px-4 py-2 text-xs text-right font-bold text-[var(--content-text)] tabular-nums">
-                    {user.depositos}
+                    <Link href={`/usuarios/apostadores/${user.id}`} className="block">
+                      {user.depositos}
+                    </Link>
                   </td>
                   <td className="px-4 py-2 text-center">
-                    {user.status === 'verificado' && (
-                      <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-[var(--content-badge-success-bg)] text-[var(--content-badge-success-text)] border-[0.5px] border-[var(--content-badge-success-border)] uppercase leading-none">
-                        Verificado
-                      </span>
-                    )}
-                    {user.status === 'pendente' && (
-                      <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-900/40 text-amber-500 border-[0.5px] border-amber-700/50 uppercase leading-none">
-                        Pendente
-                      </span>
-                    )}
-                    {user.status === 'bloqueado' && (
-                      <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-900/40 text-red-500 border-[0.5px] border-red-700/50 uppercase leading-none">
-                        Bloqueado
-                      </span>
-                    )}
+                    <Link href={`/usuarios/apostadores/${user.id}`} className="block">
+                      {user.status === 'verificado' && (
+                        <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-[var(--content-badge-success-bg)] text-[var(--content-badge-success-text)] border-[0.5px] border-[var(--content-badge-success-border)] uppercase leading-none">
+                          Verificado
+                        </span>
+                      )}
+                      {user.status === 'pendente' && (
+                        <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-900/40 text-amber-500 border-[0.5px] border-amber-700/50 uppercase leading-none">
+                          Pendente
+                        </span>
+                      )}
+                      {user.status === 'bloqueado' && (
+                        <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-900/40 text-red-500 border-[0.5px] border-red-700/50 uppercase leading-none">
+                          Bloqueado
+                        </span>
+                      )}
+                    </Link>
                   </td>
                   <td className="px-4 py-2 text-center">
                     {/* MD3 Icon Button */}

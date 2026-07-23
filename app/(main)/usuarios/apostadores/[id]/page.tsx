@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 
 export default function PerfilApostadorPage() {
   const params = useParams();
-  const [detailsExpanded, setDetailsExpanded] = useState(false);
+  const [detailsExpanded, setDetailsExpanded] = useState(true); // Iniciar aberto
   const [activeTab, setActiveTab] = useState('transacoes');
 
   // Mock data - em produção viria de API baseado no params.id
@@ -70,50 +70,50 @@ export default function PerfilApostadorPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6 max-w-[1400px] mx-auto">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6 max-w-[1400px] mx-auto">
       {/* Card Expansível do Usuário */}
       <section className="bg-[var(--content-surface)] rounded-xl shadow-sm border border-[var(--content-border)] overflow-hidden transition-all">
         {/* Header */}
         <div
-          className="p-6 flex items-center gap-6 cursor-pointer hover:bg-[var(--content-hover)] transition-colors"
+          className="p-4 md:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer hover:bg-[var(--content-hover)] transition-colors"
           onClick={() => setDetailsExpanded(!detailsExpanded)}
         >
-          <div className="w-20 h-20 bg-[var(--md-sys-color-secondary)]/10 rounded-full flex items-center justify-center border-2 border-[var(--content-border)] flex-shrink-0">
-            <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[40px]" style={{ fontVariationSettings: '"FILL" 1' }}>
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-[var(--md-sys-color-secondary)]/10 rounded-full flex items-center justify-center border-2 border-[var(--content-border)] flex-shrink-0">
+            <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[32px] md:text-[40px]" style={{ fontVariationSettings: '"FILL" 1' }}>
               person
             </span>
           </div>
 
-          <div className="flex-1 min-w-0">
-            <h2 className="text-2xl font-bold text-[var(--content-text)] truncate">
+          <div className="flex-1 min-w-0 w-full sm:w-auto">
+            <h2 className="text-xl md:text-2xl font-bold text-[var(--content-text)] truncate">
               {apostador.nome}
             </h2>
-            <div className="flex items-center gap-4 mt-2 flex-wrap">
-              <span className="text-[10px] font-bold uppercase px-3 py-1 bg-gradient-to-r from-[#D4AF37] to-[#F9E076] text-black rounded-full">
+            <div className="flex items-center gap-2 md:gap-4 mt-2 flex-wrap">
+              <span className="text-[9px] md:text-[10px] font-bold uppercase px-2 md:px-3 py-1 bg-gradient-to-r from-[#D4AF37] to-[#F9E076] text-black rounded-full">
                 {apostador.vip}
               </span>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                <span className="text-[10px] font-bold text-green-500 uppercase">{apostador.status}</span>
+                <span className="text-[9px] md:text-[10px] font-bold text-green-500 uppercase">{apostador.status}</span>
               </div>
               {apostador.kyc && (
-                <div className="flex items-center gap-1 px-2.5 py-1 bg-[var(--content-badge-success-bg)] border border-[var(--content-badge-success-border)] rounded-full">
-                  <span className="material-symbols-outlined text-[var(--content-badge-success-text)] text-[14px]">fingerprint</span>
-                  <span className="text-[10px] font-bold text-[var(--content-badge-success-text)] uppercase">KYC Verificado</span>
+                <div className="flex items-center gap-1 px-2 md:px-2.5 py-1 bg-[var(--content-badge-success-bg)] border border-[var(--content-badge-success-border)] rounded-full">
+                  <span className="material-symbols-outlined text-[var(--content-badge-success-text)] text-[12px] md:text-[14px]">fingerprint</span>
+                  <span className="text-[9px] md:text-[10px] font-bold text-[var(--content-badge-success-text)] uppercase">KYC Verificado</span>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4 w-full sm:w-auto">
             <button
               onClick={(e) => e.stopPropagation()}
-              className="px-4 py-2 border border-red-500 text-red-500 rounded-lg text-[11px] font-bold uppercase hover:bg-red-500/10 transition-all flex items-center gap-2"
+              className="flex-1 sm:flex-none px-3 md:px-4 py-2 border border-red-500 text-red-500 rounded-lg text-[10px] md:text-[11px] font-bold uppercase hover:bg-red-500/10 transition-all flex items-center justify-center gap-2"
             >
-              <span className="material-symbols-outlined text-[18px]">block</span>
-              Suspender Conta
+              <span className="material-symbols-outlined text-[16px] md:text-[18px]">block</span>
+              <span className="hidden sm:inline">Suspender</span>
             </button>
-            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--content-hover)] text-[var(--md-sys-color-secondary)]">
+            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--content-hover)] text-[var(--md-sys-color-secondary)] flex-shrink-0">
               <span
                 className={`material-symbols-outlined text-[24px] transition-transform ${detailsExpanded ? 'rotate-180' : ''}`}
               >
@@ -202,18 +202,16 @@ export default function PerfilApostadorPage() {
       </section>
 
       {/* Overview Financeiro */}
-      <section className="space-y-6">
-        <div className="flex justify-between items-center">
+      <section className="space-y-4 md:space-y-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[24px]">analytics</span>
-            <h2 className="text-xl font-semibold text-[var(--content-text)]">Overview Financeiro</h2>
+            <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[20px] md:text-[24px]">analytics</span>
+            <h2 className="text-lg md:text-xl font-semibold text-[var(--content-text)]">Overview Financeiro</h2>
           </div>
-          <div className="flex gap-2">
-            <button className="px-4 py-2 bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] rounded-lg text-[11px] font-bold uppercase flex items-center gap-2 shadow-sm hover:opacity-90">
-              <span className="material-symbols-outlined text-[18px]">add</span>
-              Adicionar Crédito
-            </button>
-          </div>
+          <button className="w-full sm:w-auto px-4 py-2 bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] rounded-lg text-[11px] font-bold uppercase flex items-center justify-center gap-2 shadow-sm hover:opacity-90">
+            <span className="material-symbols-outlined text-[18px]">add</span>
+            Adicionar Crédito
+          </button>
         </div>
 
         {/* Cards Financeiros */}
@@ -267,7 +265,7 @@ export default function PerfilApostadorPage() {
       <section className="space-y-4">
         <div className="bg-[var(--content-surface)] rounded-xl shadow-sm border border-[var(--content-border)] overflow-hidden">
           {/* Tabs */}
-          <div className="flex bg-[var(--content-bg)] border-b border-[var(--content-border)] overflow-x-auto">
+          <div className="flex bg-[var(--content-bg)] border-b border-[var(--content-border)] overflow-x-auto scrollbar-hide">
             {['transacoes', 'apostas', 'cassino', 'bonus', 'kyc', 'logins'].map((tab) => (
               <button
                 key={tab}
@@ -289,7 +287,7 @@ export default function PerfilApostadorPage() {
           {/* Tabela de Transações */}
           {activeTab === 'transacoes' && (
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[800px]">
                 <thead className="bg-[var(--content-bg)] border-b border-[var(--content-border)]">
                   <tr>
                     <th className="px-6 py-3 text-left text-[10px] font-bold text-[var(--content-text-secondary)] uppercase tracking-wider">Data/Hora</th>
