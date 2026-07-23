@@ -58,7 +58,8 @@ const navSections: NavSection[] = [
         icon: 'ti-users',
         label: 'Usuários',
         children: [
-          { label: 'Lista', href: '/usuarios' },
+          { label: 'Dashboard', href: '/usuarios' },
+          { label: 'Apostadores', href: '/usuarios/apostadores' },
           { label: 'Perfil', href: '/usuarios/perfil' },
           { label: 'Grupos', href: '/usuarios/grupos' },
         ]

@@ -10,23 +10,23 @@ export default function Dashboard() {
 
   return (
     <div className="p-6 md:p-7">
-      <h1 className="text-sm font-medium text-[var(--md-sys-color-on-surface)] mb-3.5">Dashboard</h1>
+      <h1 className="text-sm font-medium text-[var(--content-text)] mb-3.5">Dashboard</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-3.5">
         {cards.map((card, i) => (
           <div
             key={i}
-            className="bg-[var(--md-sys-color-surface-container)] border border-[var(--md-sys-color-outline-variant)] rounded-xl p-4"
+            className="bg-[var(--content-surface)] border border-[var(--content-border)] rounded-xl p-4"
           >
-            <div className="text-[11px] text-[var(--md-sys-color-on-surface-variant)] uppercase tracking-[0.5px] mb-2">
+            <div className="text-[11px] text-[var(--content-text-secondary)] uppercase tracking-[0.5px] mb-2">
               {card.label}
             </div>
-            <div className="text-lg font-medium text-[var(--md-sys-color-on-surface)]">
+            <div className="text-lg font-medium text-[var(--content-text)]">
               {card.value}
             </div>
             <div
               className={`text-[11px] mt-1.5 ${
-                card.up ? 'text-[#81C995]' : card.down ? 'text-[#F28B82]' : 'text-[var(--md-sys-color-on-surface-variant)]'
+                card.up ? 'text-[#81C995]' : card.down ? 'text-[#F28B82]' : 'text-[var(--content-text-secondary)]'
               }`}
             >
               {card.change}

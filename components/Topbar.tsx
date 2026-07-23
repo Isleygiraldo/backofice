@@ -1,9 +1,11 @@
 'use client';
 
 import { useSidebar } from './SidebarContext';
+import { useTheme } from './ThemeContext';
 
 export default function Topbar() {
   const { toggleSidebar } = useSidebar();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="h-[46px] bg-[var(--md-sys-color-surface-container)] border-b border-[var(--md-sys-color-outline-variant)] flex items-center px-4 md:px-6 gap-2.5">
@@ -20,6 +22,16 @@ export default function Topbar() {
         <span className="flex-shrink-0">›</span>
         <span className="text-[var(--md-sys-color-on-surface)] truncate">Dashboard</span>
       </div>
+
+      {/* Theme toggle */}
+      <button
+        onClick={toggleTheme}
+        className="ml-auto p-1.5 rounded-full hover:bg-[rgba(202,196,208,0.08)] transition-colors"
+        aria-label={`Mudar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
+        title={`Tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
+      >
+        <i className={`ti ${theme === 'dark' ? 'ti-sun' : 'ti-moon'} text-lg text-[var(--md-sys-color-on-surface-variant)]`} />
+      </button>
     </div>
   );
 }

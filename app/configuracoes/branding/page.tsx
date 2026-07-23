@@ -1,8 +1,8 @@
 export default function Branding() {
   return (
     <div className="p-6 md:p-7">
-      <h1 className="text-sm font-medium text-[var(--md-sys-color-on-surface)] mb-3.5">Branding</h1>
-      <p className="text-[13px] text-[var(--md-sys-color-on-surface-variant)]">Cores, logos e identidade visual.</p>
+      <h1 className="text-sm font-medium text-[var(--content-text)] mb-3.5">Branding</h1>
+      <p className="text-[13px] text-[var(--content-text-secondary)]">Cores, logos e identidade visual.</p>
     </div>
   );
 }
