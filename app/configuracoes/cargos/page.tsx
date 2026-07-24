@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function CargosPage() {
+  const router = useRouter();
   const [filtroNome, setFiltroNome] = useState('');
   const [activeTab, setActiveTab] = useState('grupos');
 
@@ -93,7 +95,10 @@ export default function CargosPage() {
             <span className="material-symbols-outlined text-[16px]">refresh</span>
             Atualizar
           </button>
-          <button className="flex-1 sm:flex-none md3-button-filled flex items-center justify-center gap-[0.5rem]">
+          <button
+            className="flex-1 sm:flex-none md3-button-filled flex items-center justify-center gap-[0.5rem]"
+            onClick={() => router.push('/configuracoes/cargos/novo')}
+          >
             <span className="material-symbols-outlined text-[16px]">add</span>
             Adicionar Cargo
           </button>
