@@ -42,7 +42,7 @@ export default function JogosPage() {
             <label className="label-caps text-[var(--content-text-secondary)]">Nome</label>
             <input
               type="text"
-              className="w-full bg-[var(--content-bg)] border border-[var(--content-border)] shape-md px-[0.5rem] py-[0.375rem] body-sm focus:ring-1 focus:ring-[var(--md-sys-color-secondary)] text-[var(--content-text)]"
+              className="md3-input"
               placeholder="Filtrar por nome"
               value={filtros.nome}
               onChange={(e) => setFiltros({ ...filtros, nome: e.target.value })}
@@ -51,7 +51,7 @@ export default function JogosPage() {
           <div className="space-y-[0.25rem]">
             <label className="label-caps text-[var(--content-text-secondary)]">Gênero</label>
             <select
-              className="w-full bg-[var(--content-bg)] border border-[var(--content-border)] shape-md px-[0.5rem] py-[0.375rem] body-sm focus:ring-1 focus:ring-[var(--md-sys-color-secondary)] text-[var(--content-text)]"
+              className="md3-select"
               value={filtros.genero}
               onChange={(e) => setFiltros({ ...filtros, genero: e.target.value })}
             >
@@ -65,7 +65,7 @@ export default function JogosPage() {
           <div className="space-y-[0.25rem]">
             <label className="label-caps text-[var(--content-text-secondary)]">Fornecedor</label>
             <select
-              className="w-full bg-[var(--content-bg)] border border-[var(--content-border)] shape-md px-[0.5rem] py-[0.375rem] body-sm focus:ring-1 focus:ring-[var(--md-sys-color-secondary)] text-[var(--content-text)]"
+              className="md3-select"
               value={filtros.fornecedor}
               onChange={(e) => setFiltros({ ...filtros, fornecedor: e.target.value })}
             >
@@ -78,7 +78,7 @@ export default function JogosPage() {
           <div className="space-y-[0.25rem]">
             <label className="label-caps text-[var(--content-text-secondary)]">Status</label>
             <select
-              className="w-full bg-[var(--content-bg)] border border-[var(--content-border)] shape-md px-[0.5rem] py-[0.375rem] body-sm focus:ring-1 focus:ring-[var(--md-sys-color-secondary)] text-[var(--content-text)]"
+              className="md3-select"
               value={filtros.status}
               onChange={(e) => setFiltros({ ...filtros, status: e.target.value })}
             >
@@ -90,7 +90,7 @@ export default function JogosPage() {
           <div className="space-y-[0.25rem]">
             <label className="label-caps text-[var(--content-text-secondary)]">Volatilidade</label>
             <select
-              className="w-full bg-[var(--content-bg)] border border-[var(--content-border)] shape-md px-[0.5rem] py-[0.375rem] body-sm focus:ring-1 focus:ring-[var(--md-sys-color-secondary)] text-[var(--content-text)]"
+              className="md3-select"
               value={filtros.volatilidade}
               onChange={(e) => setFiltros({ ...filtros, volatilidade: e.target.value })}
             >
@@ -101,12 +101,12 @@ export default function JogosPage() {
             </select>
           </div>
           <div className="flex gap-[0.375rem]">
-            <button className="flex-1 md3-button-filled label-caps py-[0.375rem] flex items-center justify-center gap-[0.375rem]">
+            <button className="flex-1 md3-button-filled label-caps flex items-center justify-center gap-[0.375rem]">
               <span className="material-symbols-outlined text-[14px]">search</span>
               Pesquisar
             </button>
-            <button className="px-[0.5rem] bg-transparent border border-[var(--content-border)] text-[var(--content-text-secondary)] hover:bg-[var(--content-hover)] shape-md transition-all">
-              <span className="material-symbols-outlined text-[14px]">refresh</span>
+            <button className="md3-icon-button">
+              <span className="material-symbols-outlined text-[18px]">refresh</span>
             </button>
           </div>
         </div>
@@ -243,29 +243,14 @@ export default function JogosPage() {
                   </td>
                   <td className="px-[1rem] py-[0.625rem] text-right">
                     <div className="flex justify-end gap-[0.125rem]">
-                      <button
-                        className="p-[0.25rem] hover:bg-[var(--md-sys-color-secondary)]/20 hover:text-[var(--md-sys-color-secondary)] shape-xs transition-all"
-                        title="Visualizar"
-                      >
-                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
-                          visibility
-                        </span>
+                      <button className="md3-icon-button" title="Visualizar">
+                        <span className="material-symbols-outlined text-[18px]">visibility</span>
                       </button>
-                      <button
-                        className="p-[0.25rem] hover:bg-[var(--md-sys-color-secondary)]/20 hover:text-[var(--md-sys-color-secondary)] shape-xs transition-all"
-                        title="Editar"
-                      >
-                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
-                          edit
-                        </span>
+                      <button className="md3-icon-button" title="Editar">
+                        <span className="material-symbols-outlined text-[18px]">edit</span>
                       </button>
-                      <button
-                        className="p-[0.25rem] hover:bg-[var(--md-sys-color-secondary)]/20 hover:text-[var(--md-sys-color-secondary)] shape-xs transition-all"
-                        title="Configurações"
-                      >
-                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
-                          settings
-                        </span>
+                      <button className="md3-icon-button" title="Configurações">
+                        <span className="material-symbols-outlined text-[18px]">settings</span>
                       </button>
                     </div>
                   </td>

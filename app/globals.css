@@ -235,6 +235,78 @@ body {
   transform: translateY(-2px);
 }
 
+/* MD3 Component: Input Field */
+.md3-input {
+  width: 100%;
+  background-color: var(--content-bg);
+  border: 1px solid var(--content-border);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 0.5rem 0.75rem;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--content-text);
+  transition: all 0.2s ease;
+}
+
+.md3-input::placeholder {
+  color: var(--content-text-secondary);
+}
+
+.md3-input:focus {
+  outline: none;
+  border-color: var(--md-sys-color-secondary);
+  box-shadow: 0 0 0 1px var(--md-sys-color-secondary);
+}
+
+.md3-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* MD3 Component: Select Field */
+.md3-select {
+  width: 100%;
+  background-color: var(--content-bg);
+  border: 1px solid var(--content-border);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 0.5rem 0.75rem;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--content-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.md3-select:focus {
+  outline: none;
+  border-color: var(--md-sys-color-secondary);
+  box-shadow: 0 0 0 1px var(--md-sys-color-secondary);
+}
+
+.md3-select option {
+  background-color: var(--content-surface);
+  color: var(--content-text);
+}
+
+/* MD3 Component: Icon Button */
+.md3-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-small);
+  color: var(--content-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.md3-icon-button:hover {
+  background-color: var(--content-hover);
+  color: var(--md-sys-color-secondary);
+}
+
 /* Hide scrollbar but keep functionality */
 .scrollbar-hide {
   -ms-overflow-style: none;
