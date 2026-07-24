@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Button, Card, IconButton } from '@/app/_components/ui';
 
 export default function ApostadoresPage() {
   const stats = [
@@ -67,18 +68,15 @@ export default function ApostadoresPage() {
         <h2 className="headline-md text-[var(--content-text)]">
           Gerenciamento de Apostadores
         </h2>
-        <button className="w-full sm:w-auto md3-button-filled label-caps px-[1rem] py-[0.5rem] flex items-center justify-center gap-[0.5rem]">
-          <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20' }}>
-            add
-          </span>
+        <Button variant="filled" icon="add" fullWidth className="sm:w-auto">
           Novo Apostador
-        </button>
+        </Button>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[0.75rem]">
         {stats.map((stat, i) => (
-          <div key={i} className="md3-card p-[0.75rem] flex items-center justify-between">
+          <Card key={i} className="p-[0.75rem] flex items-center justify-between">
             <div>
               <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
                 {stat.label}
@@ -107,7 +105,7 @@ export default function ApostadoresPage() {
                 {stat.icon}
               </span>
             )}
-          </div>
+          </Card>
         ))}
       </div>
 
@@ -130,7 +128,7 @@ export default function ApostadoresPage() {
       </div>
 
       {/* Filter Bar */}
-      <div className="md3-card px-[0.75rem] py-[0.5rem] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-[0.75rem]">
+      <Card className="px-[0.75rem] py-[0.5rem] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-[0.75rem]">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[0.75rem] flex-1">
           <div className="relative w-full sm:flex-1 sm:max-w-[240px]">
             <input
@@ -174,10 +172,10 @@ export default function ApostadoresPage() {
         <button className="px-[0.75rem] py-[0.375rem] shape-md border border-[var(--content-border)] text-[var(--content-text-secondary)] label-caps hover:bg-[var(--content-hover)] transition-all whitespace-nowrap">
           Limpar filtros
         </button>
-      </div>
+      </Card>
 
       {/* Data Table */}
-      <div className="md3-card overflow-hidden">
+      <Card className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[800px]">
             <thead className="bg-[var(--content-bg)] border-b border-[var(--content-border)]">
@@ -275,7 +273,7 @@ export default function ApostadoresPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
