@@ -2,13 +2,15 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Button, Input, Card, IconButton, Tab } from '@/app/_components/ui';
+import type { Cargo } from '@/app/_lib/types';
 
 export default function CargosPage() {
   const router = useRouter();
   const [filtroNome, setFiltroNome] = useState('');
   const [activeTab, setActiveTab] = useState('grupos');
 
-  const cargos = [
+  const cargos: Cargo[] = [
     {
       id: 1,
       nome: 'Master Admin',
@@ -57,30 +59,18 @@ export default function CargosPage() {
     <div className="p-[1rem] md:p-[1.5rem] space-y-[1rem] md:space-y-[1.5rem] max-w-[1600px] mx-auto">
       {/* Tabs */}
       <div className="flex bg-[var(--content-hover)] shape-lg p-[0.25rem] gap-[0.25rem] opacity-0 animate-[fadeIn_0.4s_ease-out_forwards] overflow-x-auto">
-        <button
-          className={`md3-tab ${activeTab === 'autorizacoes' ? 'active' : ''}`}
-          onClick={() => setActiveTab('autorizacoes')}
-        >
+        <Tab active={activeTab === 'autorizacoes'} onClick={() => setActiveTab('autorizacoes')}>
           Autorizações
-        </button>
-        <button
-          className={`md3-tab ${activeTab === 'grupos' ? 'active' : ''}`}
-          onClick={() => setActiveTab('grupos')}
-        >
+        </Tab>
+        <Tab active={activeTab === 'grupos'} onClick={() => setActiveTab('grupos')}>
           Grupo de autorizações
-        </button>
-        <button
-          className={`md3-tab ${activeTab === 'otp' ? 'active' : ''}`}
-          onClick={() => setActiveTab('otp')}
-        >
+        </Tab>
+        <Tab active={activeTab === 'otp'} onClick={() => setActiveTab('otp')}>
           Gerenciamento OTP
-        </button>
-        <button
-          className={`md3-tab ${activeTab === 'apikey' ? 'active' : ''}`}
-          onClick={() => setActiveTab('apikey')}
-        >
+        </Tab>
+        <Tab active={activeTab === 'apikey'} onClick={() => setActiveTab('apikey')}>
           API Key
-        </button>
+        </Tab>
       </div>
 
       {/* Header */}
@@ -91,39 +81,35 @@ export default function CargosPage() {
           </p>
         </div>
         <div className="flex items-center gap-[0.75rem] w-full sm:w-auto">
-          <button className="flex-1 sm:flex-none md3-button-outlined flex items-center justify-center gap-[0.5rem]">
-            <span className="material-symbols-outlined text-[16px]">refresh</span>
+          <Button variant="outlined" icon="refresh" fullWidth className="sm:w-auto">
             Atualizar
-          </button>
-          <button
-            className="flex-1 sm:flex-none md3-button-filled flex items-center justify-center gap-[0.5rem]"
+          </Button>
+          <Button
+            variant="filled"
+            icon="add"
+            fullWidth
+            className="sm:w-auto"
             onClick={() => router.push('/configuracoes/cargos/novo')}
           >
-            <span className="material-symbols-outlined text-[16px]">add</span>
             Adicionar Cargo
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Filtros */}
-      <div className="md3-card p-[1rem] flex flex-col sm:flex-row items-stretch sm:items-end gap-[0.75rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.2s_forwards]">
-        <div className="flex-1">
-          <label className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem] block">
-            Filtrar por nome
-          </label>
-          <input
-            type="text"
-            className="md3-input"
-            placeholder="Ex: Administrador..."
-            value={filtroNome}
-            onChange={(e) => setFiltroNome(e.target.value)}
-          />
-        </div>
-        <button className="md3-button-filled">Filtrar</button>
-      </div>
+      <Card className="p-[1rem] flex flex-col sm:flex-row items-stretch sm:items-end gap-[0.75rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.2s_forwards]">
+        <Input
+          label="Filtrar por nome"
+          placeholder="Ex: Administrador..."
+          value={filtroNome}
+          onChange={(e) => setFiltroNome(e.target.value)}
+          className="flex-1"
+        />
+        <Button variant="filled">Filtrar</Button>
+      </Card>
 
       {/* Tabela */}
-      <div className="md3-card overflow-hidden opacity-0 animate-[slideUp_0.5s_ease-out_0.3s_forwards]">
+      <Card className="overflow-hidden opacity-0 animate-[slideUp_0.5s_ease-out_0.3s_forwards]">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse min-w-[800px]">
             <thead>
@@ -157,12 +143,8 @@ export default function CargosPage() {
                   </td>
                   <td className="px-[1rem] py-[0.625rem]">
                     <div className="flex items-center justify-end gap-[0.25rem]">
-                      <button className="md3-icon-button" title="Editar">
-                        <span className="material-symbols-outlined text-[18px]">edit</span>
-                      </button>
-                      <button className="md3-icon-button hover:text-red-500" title="Excluir">
-                        <span className="material-symbols-outlined text-[18px]">delete</span>
-                      </button>
+                      <IconButton icon="edit" title="Editar" />
+                      <IconButton icon="delete" variant="danger" title="Excluir" />
                     </div>
                   </td>
                 </tr>
@@ -195,7 +177,7 @@ export default function CargosPage() {
             </button>
           </div>
         </div>
-      </div>
+      </Card>
 
       {/* Info Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.4s_forwards]">
@@ -219,7 +201,7 @@ export default function CargosPage() {
         </div>
 
         {/* Métricas */}
-        <div className="md3-card p-[1.5rem]">
+        <Card className="p-[1.5rem]">
           <h4 className="label-caps text-[var(--content-text-secondary)] mb-[1rem]">
             Métricas de Cargos
           </h4>
@@ -243,7 +225,7 @@ export default function CargosPage() {
               <span className="body-md font-bold text-amber-500">{metricas.revisao}</span>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
 
       <style jsx>{`

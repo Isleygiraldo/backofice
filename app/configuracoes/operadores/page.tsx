@@ -2,6 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Button, Input, Select, Card, IconButton } from '@/app/_components/ui';
+import { StatsCard } from '@/app/_components/features';
+import { Breadcrumb } from '@/app/_components/layout';
+import type { Metrica, Operador } from '@/app/_lib/types';
 
 export default function OperadoresPage() {
   const router = useRouter();
@@ -11,14 +15,14 @@ export default function OperadoresPage() {
     status: 'todos',
   });
 
-  const metricas = [
+  const metricas: Metrica[] = [
     { label: 'Ativos', valor: '118', trend: '+4', icon: 'group' },
     { label: 'Novos (Mês)', valor: '12', subtitle: 'Meta: 15', icon: 'person_add' },
     { label: 'Pendentes', valor: '3', subtitle: 'Aguardando', icon: 'schedule', accent: true },
     { label: 'Alertas', valor: '2', icon: 'warning', critical: true },
   ];
 
-  const operadores = [
+  const operadores: Operador[] = [
     {
       id: 1,
       nome: 'Ricardo Almeida',
@@ -81,114 +85,69 @@ export default function OperadoresPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] opacity-0 animate-[fadeIn_0.4s_ease-out_forwards]">
         <div>
-          <nav className="flex items-center gap-[0.375rem] label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
-            <span>Configuração</span>
-            <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-            <span className="text-[var(--md-sys-color-secondary)]">Operadores</span>
-          </nav>
+          <Breadcrumb items={[
+            { label: 'Configuração' },
+            { label: 'Operadores', active: true }
+          ]} />
           <h2 className="headline-md text-[var(--content-text)]">Operadores do Sistema</h2>
         </div>
-        <button
-          className="w-full sm:w-auto md3-button-filled flex items-center justify-center gap-[0.5rem]"
+        <Button
+          variant="filled"
+          icon="add"
+          fullWidth
+          className="sm:w-auto"
           onClick={() => router.push('/configuracoes/operadores/novo')}
         >
-          <span className="material-symbols-outlined text-[16px]">add</span>
           Novo Operador
-        </button>
+        </Button>
       </div>
 
       {/* Métricas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[0.75rem] md:gap-[1rem]">
         {metricas.map((metrica, i) => (
-          <div
-            key={i}
-            className="md3-card p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_forwards] hover:elevation-2 transition-all group"
-            style={{ animationDelay: `${i * 100}ms` }}
-          >
-            <div className="flex items-start justify-between mb-[0.5rem]">
-              <p className="label-caps text-[var(--content-text-secondary)]">{metrica.label}</p>
-              <span
-                className={`material-symbols-outlined text-[20px] transition-all duration-300 ${
-                  metrica.critical
-                    ? 'text-red-500 animate-[pulse_2s_ease-in-out_infinite]'
-                    : metrica.accent
-                    ? 'text-[var(--md-sys-color-secondary)] group-hover:scale-110'
-                    : 'text-[var(--content-text-secondary)] group-hover:text-[var(--md-sys-color-secondary)] group-hover:scale-110'
-                }`}
-              >
-                {metrica.icon}
-              </span>
-            </div>
-            <h3
-              className={`headline-lg ${
-                metrica.critical ? 'text-red-500' : 'text-[var(--content-text)]'
-              }`}
-            >
-              {metrica.valor}
-            </h3>
-            {(metrica.trend || metrica.subtitle) && (
-              <div className="mt-[0.5rem] body-sm text-[var(--content-text-secondary)]">
-                {metrica.trend && (
-                  <span className="flex items-center gap-[0.25rem]">
-                    <span className="material-symbols-outlined text-[14px]">north_east</span>
-                    {metrica.trend}
-                  </span>
-                )}
-                {metrica.subtitle && <span>{metrica.subtitle}</span>}
-              </div>
-            )}
-          </div>
+          <StatsCard key={i} {...metrica} delay={i * 0.1} />
         ))}
       </div>
 
       {/* Filtros */}
-      <div className="md3-card p-[0.75rem] flex flex-col md:flex-row items-stretch md:items-center gap-[0.75rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.4s_forwards]">
-        <div className="relative flex-1">
-          <input
-            type="text"
-            className="md3-input pl-[2rem]"
-            placeholder="Buscar por nome, e-mail ou CPF..."
-            value={filtros.busca}
-            onChange={(e) => setFiltros({ ...filtros, busca: e.target.value })}
-          />
-          <span className="material-symbols-outlined absolute left-[0.5rem] top-1/2 -translate-y-1/2 text-[var(--content-text-secondary)] text-[18px]">
-            search
-          </span>
-        </div>
-        <select
-          className="md3-select min-w-[160px]"
+      <Card className="p-[0.75rem] flex flex-col md:flex-row items-stretch md:items-center gap-[0.75rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.4s_forwards]">
+        <Input
+          icon="search"
+          placeholder="Buscar por nome, e-mail ou CPF..."
+          value={filtros.busca}
+          onChange={(e) => setFiltros({ ...filtros, busca: e.target.value })}
+          className="flex-1"
+        />
+        <Select
           value={filtros.cargo}
           onChange={(e) => setFiltros({ ...filtros, cargo: e.target.value })}
+          className="min-w-[160px]"
         >
           <option value="todos">Todos os Cargos</option>
           <option value="admin">Administrador Master</option>
           <option value="gerente">Gerente Operacional</option>
           <option value="suporte">Suporte N1</option>
-        </select>
-        <select
-          className="md3-select min-w-[140px]"
+        </Select>
+        <Select
           value={filtros.status}
           onChange={(e) => setFiltros({ ...filtros, status: e.target.value })}
+          className="min-w-[140px]"
         >
           <option value="todos">Situação: Todas</option>
           <option value="ativo">Ativo</option>
           <option value="inativo">Inativo</option>
-        </select>
+        </Select>
         <button className="body-sm text-[var(--md-sys-color-secondary)] font-bold hover:underline whitespace-nowrap">
           Limpar filtros
         </button>
         <div className="flex gap-[0.5rem] ml-auto">
-          <button className="md3-icon-button" title="Exportar">
-            <span className="material-symbols-outlined text-[18px]">download</span>
-          </button>
-          <button className="md3-icon-button" title="Atualizar">
-            <span className="material-symbols-outlined text-[18px]">refresh</span>
-          </button>
+          <IconButton icon="download" title="Exportar" />
+          <IconButton icon="refresh" title="Atualizar" />
         </div>
-      </div>
+      </Card>
 
       {/* Tabela */}
-      <div className="md3-card overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.5s_forwards]">
+      <Card className="overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.5s_forwards]">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse min-w-[1000px]">
             <thead>
@@ -274,12 +233,8 @@ export default function OperadoresPage() {
                   </td>
                   <td className="px-[1rem] py-[0.625rem] text-right">
                     <div className="flex justify-end gap-[0.25rem]">
-                      <button className="md3-icon-button" title="Editar">
-                        <span className="material-symbols-outlined text-[18px]">edit</span>
-                      </button>
-                      <button className="md3-icon-button hover:text-red-500" title="Excluir">
-                        <span className="material-symbols-outlined text-[18px]">delete</span>
-                      </button>
+                      <IconButton icon="edit" title="Editar" />
+                      <IconButton icon="delete" variant="danger" title="Excluir" />
                     </div>
                   </td>
                 </tr>
@@ -314,7 +269,7 @@ export default function OperadoresPage() {
             </button>
           </div>
         </div>
-      </div>
+      </Card>
 
       <style jsx>{`
         @keyframes fadeIn {

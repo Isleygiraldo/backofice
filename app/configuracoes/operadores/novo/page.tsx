@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Button, Input, Select, Card, IconButton } from '@/app/_components/ui';
+import { Breadcrumb } from '@/app/_components/layout';
 
 export default function NovoOperadorPage() {
   const router = useRouter();
@@ -36,20 +38,17 @@ export default function NovoOperadorPage() {
 
   return (
     <div className="p-[1rem] md:p-[1.5rem] max-w-[1200px] mx-auto">
-      {/* Breadcrumb */}
-      <nav className="flex items-center gap-[0.375rem] label-caps text-[var(--content-text-secondary)] mb-[0.5rem] opacity-0 animate-[fadeIn_0.4s_ease-out_forwards]">
-        <span>Configuração</span>
-        <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-        <span>Operadores</span>
-        <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-        <span className="text-[var(--md-sys-color-secondary)]">Novo Operador</span>
-      </nav>
+      <Breadcrumb items={[
+        { label: 'Configuração' },
+        { label: 'Operadores' },
+        { label: 'Novo Operador', active: true }
+      ]} />
 
       <h2 className="headline-md text-[var(--content-text)] mb-[1.5rem] opacity-0 animate-[fadeIn_0.4s_ease-out_0.1s_forwards]">
         Novo Operador
       </h2>
 
-      <div className="md3-card overflow-hidden opacity-0 animate-[slideUp_0.5s_ease-out_0.2s_forwards]">
+      <Card className="overflow-hidden opacity-0 animate-[slideUp_0.5s_ease-out_0.2s_forwards]">
         {/* Step 1: Busca */}
         <section className="p-[1.5rem]">
           <div className="flex items-center gap-[0.75rem] mb-[1.5rem]">
@@ -65,29 +64,25 @@ export default function NovoOperadorPage() {
 
           <div className="space-y-[1rem]">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-[1rem]">
-              <div className="md:col-span-9 space-y-[0.25rem]">
-                <label className="label-caps text-[var(--content-text-secondary)]">
-                  Email ou CPF
-                </label>
-                <input
-                  type="text"
-                  className="md3-input"
+              <div className="md:col-span-9">
+                <Input
+                  label="Email ou CPF"
                   placeholder="Digite o e-mail ou número do CPF"
                   value={busca}
                   onChange={(e) => setBusca(e.target.value)}
                 />
               </div>
               <div className="md:col-span-3 flex items-end">
-                <button
-                  className="w-full md3-button-filled flex items-center justify-center gap-[0.5rem]"
+                <Button
+                  variant="filled"
+                  icon={buscando ? 'sync' : 'search'}
+                  fullWidth
                   onClick={handleBuscar}
                   disabled={buscando}
+                  className={buscando ? '[&_span]:animate-spin' : ''}
                 >
-                  <span className={`material-symbols-outlined text-[16px] ${buscando ? 'animate-spin' : ''}`}>
-                    {buscando ? 'sync' : 'search'}
-                  </span>
                   {buscando ? 'Buscando...' : 'Buscar Usuário'}
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -120,12 +115,10 @@ export default function NovoOperadorPage() {
                       </div>
                     </div>
                   </div>
-                  <button
-                    className="md3-icon-button"
+                  <IconButton
+                    icon="close"
                     onClick={() => setUsuarioEncontrado(false)}
-                  >
-                    <span className="material-symbols-outlined text-[18px]">close</span>
-                  </button>
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-y-[1rem] pt-[1rem] border-t border-[var(--content-border)]">
                   <div>
@@ -161,12 +154,9 @@ export default function NovoOperadorPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[2rem]">
-            <div className="space-y-[0.25rem]">
-              <label className="label-caps text-[var(--content-text-secondary)]">
-                Atribuir Cargo (Grupo)
-              </label>
-              <select
-                className="md3-select"
+            <div>
+              <Select
+                label="Atribuir Cargo (Grupo)"
                 value={cargoSelecionado}
                 onChange={(e) => setCargoSelecionado(e.target.value)}
               >
@@ -178,7 +168,7 @@ export default function NovoOperadorPage() {
                 <option value="suporte-n1">Suporte N1 (Atendimento)</option>
                 <option value="compliance">Compliance Officer</option>
                 <option value="auditor">Auditor Externo</option>
-              </select>
+              </Select>
               <p className="body-sm text-[var(--content-text-secondary)] mt-[0.5rem] italic" style={{ fontSize: '11px' }}>
                 * O cargo define quais telas e ações o operador poderá acessar.
               </p>
@@ -207,28 +197,25 @@ export default function NovoOperadorPage() {
             </div>
           </div>
         </section>
-      </div>
+      </Card>
 
       {/* Actions */}
       <div className="mt-[1.5rem] flex justify-end gap-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.3s_forwards]">
-        <button
-          className="md3-button-outlined"
+        <Button
+          variant="outlined"
           onClick={() => router.push('/configuracoes/operadores')}
         >
           Cancelar
-        </button>
-        <button
-          className={`px-[3rem] flex items-center gap-[0.5rem] ${
-            usuarioEncontrado && cargoSelecionado
-              ? 'md3-button-filled'
-              : 'bg-[var(--md-sys-color-secondary)]/40 text-white/50 cursor-not-allowed px-[3rem] py-[0.5rem] shape-lg label-caps'
-          }`}
+        </Button>
+        <Button
+          variant="filled"
+          icon="how_to_reg"
           onClick={handleCriar}
           disabled={!usuarioEncontrado || !cargoSelecionado}
+          className="px-[3rem]"
         >
-          <span className="material-symbols-outlined text-[16px]">how_to_reg</span>
           Criar Operador
-        </button>
+        </Button>
       </div>
 
       {/* Toast */}
