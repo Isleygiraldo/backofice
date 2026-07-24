@@ -61,14 +61,13 @@ export default function ApostadoresPage() {
   ];
 
   return (
-    <div className="p-4 space-y-4 max-w-[1600px] mx-auto">
-      {/* Header - MD3 Typography */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 py-2">
-        <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[var(--content-text)]">
+    <div className="p-[1rem] space-y-[1rem] max-w-[1600px] mx-auto">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] py-[0.5rem]">
+        <h2 className="headline-md text-[var(--content-text)]">
           Gerenciamento de Apostadores
         </h2>
-        {/* MD3 Filled Button */}
-        <button className="w-full sm:w-auto bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] px-4 py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:shadow-md transition-shadow active:scale-[0.98]">
+        <button className="w-full sm:w-auto md3-button-filled label-caps px-[1rem] py-[0.5rem] flex items-center justify-center gap-[0.5rem]">
           <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20' }}>
             add
           </span>
@@ -76,143 +75,132 @@ export default function ApostadoresPage() {
         </button>
       </div>
 
-      {/* MD3 Cards - Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[0.75rem]">
         {stats.map((stat, i) => (
-          <div key={i} className="bg-[var(--content-surface)] border border-[var(--content-border)] rounded-xl p-3 flex items-center justify-between shadow-sm">
+          <div key={i} className="md3-card p-[0.75rem] flex items-center justify-between">
             <div>
-              <p className="text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold mb-1">
+              <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
                 {stat.label}
               </p>
-              <h3 className="text-xl font-semibold text-[var(--content-text)] leading-none">
+              <h3 className="headline-lg text-[var(--content-text)] leading-none">
                 {stat.value}
               </h3>
               {stat.trend && (
-                <div className={`flex items-center gap-1 mt-1.5 ${stat.trendUp ? 'text-emerald-600' : 'text-[var(--content-text-secondary)]'}`}>
+                <div className={`flex items-center gap-[0.25rem] mt-[0.375rem] ${stat.trendUp ? 'text-emerald-600' : 'text-[var(--content-text-secondary)]'}`}>
                   {stat.trendUp && (
                     <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400' }}>
                       trending_up
                     </span>
                   )}
-                  <span className="text-[9px] font-bold">{stat.trend}</span>
+                  <span className="label-caps" style={{ fontSize: '9px' }}>{stat.trend}</span>
+                </div>
+              )}
+              {stat.progress !== undefined && (
+                <div className="w-full bg-[var(--content-hover)] h-[0.375rem] shape-sm mt-[0.5rem] overflow-hidden">
+                  <div className="bg-[var(--md-sys-color-secondary)] h-full" style={{ width: `${stat.progress}%` }}></div>
                 </div>
               )}
             </div>
-            <div className="text-[var(--content-text-secondary)] opacity-40">
-              {stat.icon && (
-                <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400' }}>
-                  {stat.icon}
-                </span>
-              )}
-              {stat.progress && (
-                <div className="w-16 bg-[var(--content-border)] rounded-full h-1 overflow-hidden">
-                  <div className="bg-emerald-500 h-full" style={{ width: `${stat.progress}%` }} />
-                </div>
-              )}
-            </div>
+            {stat.icon && (
+              <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[32px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 300' }}>
+                {stat.icon}
+              </span>
+            )}
           </div>
         ))}
       </div>
 
-      {/* MD3 Chips - Recent Users (Hidden on mobile) */}
-      <div className="hidden md:flex items-center gap-3 py-1">
-        <span className="text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold flex-shrink-0">
+      {/* Recent Users Chips (Hidden on mobile) */}
+      <div className="hidden md:flex items-center gap-[0.75rem] py-[0.25rem]">
+        <span className="label-caps text-[var(--content-text-secondary)] flex-shrink-0">
           Recentes:
         </span>
-        <div className="flex gap-2 overflow-x-auto">
+        <div className="flex gap-[0.5rem] overflow-x-auto">
           {recent.map((user, i) => (
             <div
               key={i}
-              className="flex-shrink-0 flex items-center gap-2 bg-[var(--content-surface)] border border-[var(--content-border)] px-2 py-1 rounded-full hover:border-[var(--md-sys-color-secondary)] cursor-pointer transition-all"
+              className="flex items-center gap-[0.375rem] px-[0.5rem] py-[0.25rem] bg-[var(--content-surface)] border border-[var(--content-border)] shape-md hover:elevation-1 transition-all cursor-pointer"
             >
-              <img src={user.avatar} alt={user.name} className="w-5 h-5 rounded-full" />
-              <span className="text-[11px] font-bold text-[var(--content-text)]">{user.name}</span>
+              <img src={user.avatar} alt={user.name} className="w-[1rem] h-[1rem] rounded-full object-cover" />
+              <span className="body-sm text-[var(--content-text)] whitespace-nowrap">{user.name}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* MD3 Filter Bar */}
-      <div className="bg-[var(--content-surface)] border border-[var(--content-border)] rounded px-3 py-2 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-1">
-          {/* MD3 Text Field */}
+      {/* Filter Bar */}
+      <div className="md3-card px-[0.75rem] py-[0.5rem] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-[0.75rem]">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[0.75rem] flex-1">
           <div className="relative w-full sm:flex-1 sm:max-w-[240px]">
             <input
               type="text"
               placeholder="Pesquisar..."
-              className="w-full h-8 pl-8 pr-3 rounded border border-[var(--content-border)] bg-[var(--content-bg)] text-sm text-[var(--content-text)] focus:ring-1 focus:ring-[var(--md-sys-color-secondary)]/40 focus:border-[var(--md-sys-color-secondary)] transition-all outline-none"
+              className="w-full h-[2rem] px-[2rem] shape-md bg-[var(--content-bg)] border border-[var(--content-border)] body-sm text-[var(--content-text)] placeholder:text-[var(--content-text-secondary)] focus:ring-1 focus:ring-[var(--md-sys-color-secondary)]"
             />
-            <span className="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-[var(--content-text-secondary)] opacity-60 text-[18px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400' }}>
+            <span className="material-symbols-outlined absolute left-[0.5rem] top-1/2 -translate-y-1/2 text-[var(--content-text-secondary)] text-[18px]">
               search
             </span>
           </div>
 
           {/* Filters - Hidden on mobile */}
-          <div className="hidden lg:flex items-center gap-4 border-l border-[var(--content-border)] pl-4">
-            <button className="flex items-center gap-1.5 group">
-              <span className="text-xs text-[var(--content-text)]">Vip</span>
-              <span className="bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
-                1
+          <div className="hidden lg:flex items-center gap-[1rem] border-l border-[var(--content-border)] pl-[1rem]">
+            <button className="flex items-center gap-[0.375rem] group">
+              <span className="body-sm text-[var(--content-text)]">Vip</span>
+              <span className="bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] label-caps w-[1rem] h-[1rem] flex items-center justify-center rounded-full" style={{ fontSize: '9px' }}>
+                3
               </span>
-              <span className="material-symbols-outlined text-[var(--content-text-secondary)] group-hover:text-[var(--md-sys-color-primary)] text-[16px]">
+              <span className="material-symbols-outlined text-[var(--content-text-secondary)] text-[14px]">
                 expand_more
               </span>
             </button>
 
-            <button className="flex items-center gap-1.5 group">
-              <span className="text-xs text-[var(--content-text)]">Status</span>
-              <span className="material-symbols-outlined text-[var(--content-text-secondary)] group-hover:text-[var(--md-sys-color-primary)] text-[16px]">
+            <button className="flex items-center gap-[0.375rem] group">
+              <span className="body-sm text-[var(--content-text)]">Status</span>
+              <span className="material-symbols-outlined text-[var(--content-text-secondary)] text-[14px]">
                 expand_more
               </span>
             </button>
 
-            <button className="flex items-center gap-1.5 group">
-              <span className="text-xs text-[var(--content-text)]">Verificado</span>
-              <span className="material-symbols-outlined text-[var(--content-text-secondary)] group-hover:text-[var(--md-sys-color-primary)] text-[16px]">
+            <button className="flex items-center gap-[0.375rem] group">
+              <span className="body-sm text-[var(--content-text)]">Data</span>
+              <span className="material-symbols-outlined text-[var(--content-text-secondary)] text-[14px]">
                 expand_more
-              </span>
-            </button>
-
-            <button className="flex items-center gap-1.5 group">
-              <span className="text-xs text-[var(--content-text)]">Data cadastro</span>
-              <span className="material-symbols-outlined text-[var(--content-text-secondary)] group-hover:text-[var(--md-sys-color-primary)] text-[16px]">
-                calendar_today
               </span>
             </button>
           </div>
         </div>
 
-        {/* MD3 Outlined Button */}
-        <button className="px-3 py-1.5 rounded border border-[var(--content-border)] text-[var(--content-text-secondary)] text-[11px] font-bold hover:bg-[var(--content-hover)] transition-all whitespace-nowrap">
+        <button className="px-[0.75rem] py-[0.375rem] shape-md border border-[var(--content-border)] text-[var(--content-text-secondary)] label-caps hover:bg-[var(--content-hover)] transition-all whitespace-nowrap">
           Limpar filtros
         </button>
       </div>
 
-      {/* MD3 Data Table */}
-      <div className="bg-[var(--content-surface)] rounded-lg shadow-sm border border-[var(--content-border)] overflow-hidden">
+      {/* Data Table */}
+      <div className="md3-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[800px]">
             <thead className="bg-[var(--content-bg)] border-b border-[var(--content-border)]">
               <tr>
-                <th className="w-[28%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold">
+                <th className="w-[28%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)]">
                   Apostador
                 </th>
-                <th className="w-[14%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold text-center">
+                <th className="w-[14%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)] text-center">
                   CPF
                 </th>
-                <th className="w-[18%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold">
+                <th className="w-[20%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)]">
                   Email
                 </th>
-                <th className="w-[12%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold text-center">
+                <th className="w-[12%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)] text-center">
                   Cadastro
                 </th>
-                <th className="w-[12%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold text-right">
+                <th className="w-[14%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)] text-right">
                   Depósitos
                 </th>
-                <th className="w-[10%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold text-center">
+                <th className="w-[10%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)] text-center">
                   Status
                 </th>
-                <th className="w-[6%] px-4 py-2.5 text-[10px] text-[var(--content-text-secondary)] uppercase tracking-[0.05em] font-bold text-center">
+                <th className="w-[2%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)] text-center">
                   Ações
                 </th>
               </tr>
@@ -220,63 +208,62 @@ export default function ApostadoresPage() {
             <tbody className="divide-y divide-[var(--content-border)]">
               {apostadores.map((user) => (
                 <tr key={user.id} className="hover:bg-[var(--content-hover)] transition-colors cursor-pointer group">
-                  <td className="px-4 py-2">
-                    <Link href={`/usuarios/apostadores/${user.id}`} className="flex items-center gap-2">
-                      <img src={user.avatar} alt={user.name} className="w-7 h-7 rounded-full object-cover flex-shrink-0" />
+                  <td className="px-[1rem] py-[0.5rem]">
+                    <Link href={`/usuarios/apostadores/${user.id}`} className="flex items-center gap-[0.5rem]">
+                      <img src={user.avatar} alt={user.name} className="w-[1.75rem] h-[1.75rem] rounded-full object-cover flex-shrink-0" />
                       <div className="truncate">
-                        <p className="text-[13px] font-medium text-[var(--content-text)] truncate">
+                        <p className="table-data text-[var(--content-text)] truncate">
                           {user.name}
                         </p>
-                        <p className="text-[11px] text-[var(--content-text-secondary)] opacity-50">
+                        <p className="body-sm text-[var(--content-text-secondary)] opacity-50" style={{ fontSize: '11px' }}>
                           ID: #{user.id}
                         </p>
                       </div>
                     </Link>
                   </td>
-                  <td className="px-4 py-2 text-xs text-[var(--content-text-secondary)] text-center tabular-nums">
+                  <td className="px-[1rem] py-[0.5rem] text-center body-sm text-[var(--content-text-secondary)] tabular-nums">
                     <Link href={`/usuarios/apostadores/${user.id}`} className="block">
                       {user.cpf}
                     </Link>
                   </td>
-                  <td className="px-4 py-2 text-xs text-[var(--content-text-secondary)] truncate">
+                  <td className="px-[1rem] py-[0.5rem] body-sm text-[var(--content-text-secondary)] truncate">
                     <Link href={`/usuarios/apostadores/${user.id}`} className="block truncate">
                       {user.email}
                     </Link>
                   </td>
-                  <td className="px-4 py-2 text-xs text-[var(--content-text-secondary)] text-center">
+                  <td className="px-[1rem] py-[0.5rem] text-center body-sm text-[var(--content-text-secondary)]">
                     <Link href={`/usuarios/apostadores/${user.id}`} className="block">
                       {user.cadastro}
                     </Link>
                   </td>
-                  <td className="px-4 py-2 text-xs text-right font-bold text-[var(--content-text)] tabular-nums">
+                  <td className="px-[1rem] py-[0.5rem] text-right table-data font-bold text-[var(--content-text)] tabular-nums">
                     <Link href={`/usuarios/apostadores/${user.id}`} className="block">
                       {user.depositos}
                     </Link>
                   </td>
-                  <td className="px-4 py-2 text-center">
+                  <td className="px-[1rem] py-[0.5rem] text-center">
                     <Link href={`/usuarios/apostadores/${user.id}`} className="block">
                       {user.status === 'verificado' && (
-                        <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-[var(--content-badge-success-bg)] text-[var(--content-badge-success-text)] border-[0.5px] border-[var(--content-badge-success-border)] uppercase leading-none">
+                        <span className="inline-block px-[0.375rem] py-[0.125rem] shape-xs label-caps bg-[var(--content-badge-success-bg)] text-[var(--content-badge-success-text)] border border-[var(--content-badge-success-border)] leading-none" style={{ fontSize: '9px' }}>
                           Verificado
                         </span>
                       )}
                       {user.status === 'pendente' && (
-                        <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-900/40 text-amber-500 border-[0.5px] border-amber-700/50 uppercase leading-none">
+                        <span className="inline-block px-[0.375rem] py-[0.125rem] shape-xs label-caps bg-amber-900/40 text-amber-500 border border-amber-700/50 leading-none" style={{ fontSize: '9px' }}>
                           Pendente
                         </span>
                       )}
                       {user.status === 'bloqueado' && (
-                        <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-900/40 text-red-500 border-[0.5px] border-red-700/50 uppercase leading-none">
+                        <span className="inline-block px-[0.375rem] py-[0.125rem] shape-xs label-caps bg-red-900/40 text-red-500 border border-red-700/50 leading-none" style={{ fontSize: '9px' }}>
                           Bloqueado
                         </span>
                       )}
                     </Link>
                   </td>
-                  <td className="px-4 py-2 text-center">
-                    {/* MD3 Icon Button */}
+                  <td className="px-[1rem] py-[0.5rem] text-center">
                     <Link
                       href={`/usuarios/apostadores/${user.id}`}
-                      className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[var(--md-sys-color-secondary)]/10 text-[var(--content-text-secondary)] hover:text-[var(--md-sys-color-secondary)] transition-all mx-auto"
+                      className="w-[1.75rem] h-[1.75rem] flex items-center justify-center shape-md hover:bg-[var(--md-sys-color-secondary)]/10 text-[var(--content-text-secondary)] hover:text-[var(--md-sys-color-secondary)] transition-all mx-auto"
                     >
                       <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400' }}>
                         visibility
@@ -287,34 +274,6 @@ export default function ApostadoresPage() {
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* MD3 Pagination */}
-        <div className="px-4 py-3 bg-[var(--content-bg)] border-t border-[var(--content-border)] flex justify-between items-center">
-          <p className="text-xs text-[var(--content-text-secondary)]">Exibindo 1-10 de 1.240</p>
-          <div className="flex items-center gap-1.5">
-            <button
-              disabled
-              className="w-7 h-7 flex items-center justify-center rounded border border-[var(--content-border)] text-[var(--content-text-secondary)] hover:bg-[var(--content-surface)] transition-all disabled:opacity-30"
-            >
-              <span className="material-symbols-outlined text-[16px]">chevron_left</span>
-            </button>
-            <div className="flex gap-1">
-              <button className="w-7 h-7 rounded bg-[var(--md-sys-color-secondary)] text-[var(--md-sys-color-on-secondary)] font-bold text-xs">
-                1
-              </button>
-              <button className="w-7 h-7 rounded border border-[var(--content-border)] hover:bg-[var(--content-surface)] text-[var(--content-text-secondary)] font-bold text-xs">
-                2
-              </button>
-              <button className="w-7 h-7 rounded border border-[var(--content-border)] hover:bg-[var(--content-surface)] text-[var(--content-text-secondary)] font-bold text-xs">
-                3
-              </button>
-              <span className="px-0.5 text-[var(--content-text-secondary)] text-xs flex items-end">...</span>
-            </div>
-            <button className="w-7 h-7 flex items-center justify-center rounded border border-[var(--content-border)] text-[var(--content-text-secondary)] hover:bg-[var(--content-surface)] transition-all">
-              <span className="material-symbols-outlined text-[16px]">chevron_right</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
