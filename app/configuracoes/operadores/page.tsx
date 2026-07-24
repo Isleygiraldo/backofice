@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function OperadoresPage() {
+  const router = useRouter();
   const [filtros, setFiltros] = useState({
     busca: '',
     cargo: 'todos',
@@ -86,7 +88,10 @@ export default function OperadoresPage() {
           </nav>
           <h2 className="headline-md text-[var(--content-text)]">Operadores do Sistema</h2>
         </div>
-        <button className="w-full sm:w-auto md3-button-filled flex items-center justify-center gap-[0.5rem]">
+        <button
+          className="w-full sm:w-auto md3-button-filled flex items-center justify-center gap-[0.5rem]"
+          onClick={() => router.push('/configuracoes/operadores/novo')}
+        >
           <span className="material-symbols-outlined text-[16px]">add</span>
           Novo Operador
         </button>
