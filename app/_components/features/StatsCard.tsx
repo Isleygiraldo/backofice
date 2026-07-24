@@ -29,7 +29,7 @@ export function StatsCard({
 
   return (
     <Card
-      className={`p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_${delay}s_forwards]`}
+      className="p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_forwards]"
       style={{ animationDelay: `${delay}s` }}
     >
       <div className="flex items-start justify-between mb-[0.75rem]">
