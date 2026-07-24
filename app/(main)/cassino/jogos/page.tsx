@@ -101,10 +101,9 @@ export default function JogosPage() {
             </select>
           </div>
           <div className="flex gap-[0.375rem]">
-            <button className="flex-1 md3-button-filled label-caps flex items-center justify-center gap-[0.375rem]">
-              <span className="material-symbols-outlined text-[14px]">search</span>
+            <Button variant="filled" icon="search" fullWidth>
               Pesquisar
-            </button>
+            </Button>
             <IconButton icon="refresh" />
           </div>
         </div>
