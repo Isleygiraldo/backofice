@@ -133,37 +133,37 @@ export default function JogosPage() {
           <table className="w-full border-collapse min-w-[1000px]">
             <thead>
               <tr className="bg-[var(--content-hover)] border-b border-[var(--content-border)]">
-                <th className="px-[0.75rem] py-[0.5rem] text-left label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-left label-caps text-[var(--content-text-secondary)]">
                   Thumbnail
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-left label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-left label-caps text-[var(--content-text-secondary)]">
                   Nome
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-left label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-left label-caps text-[var(--content-text-secondary)]">
                   ID
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-left label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-left label-caps text-[var(--content-text-secondary)]">
                   Status
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-left label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-left label-caps text-[var(--content-text-secondary)]">
                   Gênero
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-left label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-left label-caps text-[var(--content-text-secondary)]">
                   Fornecedor
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-center label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-center label-caps text-[var(--content-text-secondary)]">
                   RTP %
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-center label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-center label-caps text-[var(--content-text-secondary)]">
                   Hit Rate
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-center label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-center label-caps text-[var(--content-text-secondary)]">
                   Volatilidade
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-left label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-left label-caps text-[var(--content-text-secondary)]">
                   Destaque
                 </th>
-                <th className="px-[0.75rem] py-[0.5rem] text-right label-caps text-[var(--content-text-secondary)]">
+                <th className="px-[1rem] py-[0.75rem] text-right label-caps text-[var(--content-text-secondary)]">
                   Ações
                 </th>
               </tr>
@@ -176,7 +176,7 @@ export default function JogosPage() {
                     jogo.status === 'ativo' ? 'bg-[var(--md-sys-color-secondary)]/5' : ''
                   }`}
                 >
-                  <td className="px-[0.75rem] py-[0.375rem]">
+                  <td className="px-[1rem] py-[0.625rem]">
                     <div className="w-[2.5rem] h-[1.5rem] shape-sm bg-[var(--content-hover)] overflow-hidden border border-[var(--content-border)]">
                       <img
                         className="w-full h-full object-cover"
@@ -185,13 +185,13 @@ export default function JogosPage() {
                       />
                     </div>
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] table-data text-[var(--content-text)] truncate max-w-[150px]">
+                  <td className="px-[1rem] py-[0.625rem] table-data text-[var(--content-text)] truncate max-w-[150px]">
                     {jogo.nome}
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] table-data text-[var(--content-text-secondary)]">
+                  <td className="px-[1rem] py-[0.625rem] table-data text-[var(--content-text-secondary)]">
                     {jogo.id}
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem]">
+                  <td className="px-[1rem] py-[0.625rem]">
                     <span
                       className={`label-caps px-[0.375rem] py-[0.125rem] shape-xs ${
                         jogo.status === 'ativo'
@@ -203,19 +203,19 @@ export default function JogosPage() {
                       {jogo.status === 'ativo' ? 'Ativo' : 'Inativo'}
                     </span>
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] table-data text-[var(--content-text)]">
+                  <td className="px-[1rem] py-[0.625rem] table-data text-[var(--content-text)]">
                     {jogo.genero}
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] table-data text-[var(--content-text)]">
+                  <td className="px-[1rem] py-[0.625rem] table-data text-[var(--content-text)]">
                     {jogo.fornecedor}
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] text-center table-data text-[var(--md-sys-color-secondary)]">
+                  <td className="px-[1rem] py-[0.625rem] text-center table-data text-[var(--md-sys-color-secondary)]">
                     {jogo.rtp}%
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] text-center table-data text-[var(--content-text-secondary)]">
+                  <td className="px-[1rem] py-[0.625rem] text-center table-data text-[var(--content-text-secondary)]">
                     {jogo.hitRate}%
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] text-center">
+                  <td className="px-[1rem] py-[0.625rem] text-center">
                     <span
                       className={`label-caps px-[0.375rem] py-[0.125rem] shape-xs ${
                         jogo.volatilidade === 'low'
@@ -229,7 +229,7 @@ export default function JogosPage() {
                       {jogo.volatilidade === 'low' ? 'Baixa' : jogo.volatilidade === 'medium' ? 'Média' : 'Alta'}
                     </span>
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem]">
+                  <td className="px-[1rem] py-[0.625rem]">
                     <span
                       className={`label-caps px-[0.375rem] py-[0.125rem] shape-xs ${
                         jogo.destaque
@@ -241,7 +241,7 @@ export default function JogosPage() {
                       {jogo.destaque ? 'On' : 'Off'}
                     </span>
                   </td>
-                  <td className="px-[0.75rem] py-[0.375rem] text-right">
+                  <td className="px-[1rem] py-[0.625rem] text-right">
                     <div className="flex justify-end gap-[0.125rem]">
                       <button
                         className="p-[0.25rem] hover:bg-[var(--md-sys-color-secondary)]/20 hover:text-[var(--md-sys-color-secondary)] shape-xs transition-all"
