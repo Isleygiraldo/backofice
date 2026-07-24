@@ -1,5 +1,7 @@
 'use client';
 
+import { Card } from '@/app/_components/ui';
+
 export default function SigapDashboard() {
   const metricas = {
     progressoTotal: 80,
@@ -70,7 +72,7 @@ export default function SigapDashboard() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.75rem] md:gap-[1rem] flex-1 lg:max-w-3xl">
-          <div className="md3-card p-[1rem]">
+          <Card className="p-[1rem]">
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Progresso Total
             </p>
@@ -88,9 +90,9 @@ export default function SigapDashboard() {
                 style={{ width: `${metricas.progressoTotal}%` }}
               ></div>
             </div>
-          </div>
+          </Card>
 
-          <div className="md3-card p-[1rem]">
+          <Card className="p-[1rem]">
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Enviados
             </p>
@@ -100,9 +102,9 @@ export default function SigapDashboard() {
                 Aceitos
               </span>
             </div>
-          </div>
+          </Card>
 
-          <div className="md3-card p-[1rem]">
+          <Card className="p-[1rem]">
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Pendentes
             </p>
@@ -112,9 +114,9 @@ export default function SigapDashboard() {
                 Missing
               </span>
             </div>
-          </div>
+          </Card>
 
-          <div className="md3-card p-[1rem]">
+          <Card className="p-[1rem]">
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
               Próx. Deadline
             </p>
@@ -126,7 +128,7 @@ export default function SigapDashboard() {
                 AM (BRT)
               </span>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
 
@@ -153,7 +155,7 @@ export default function SigapDashboard() {
       </div>
 
       {/* Timeline Section */}
-      <div className="md3-card overflow-hidden">
+      <Card className="overflow-hidden">
         <div className="p-[1rem] md:p-[1.5rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] bg-[var(--content-hover)]">
           <h3 className="headline-md text-[var(--content-text)] flex items-center gap-[0.5rem]">
             <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)]">
@@ -251,11 +253,11 @@ export default function SigapDashboard() {
             </button>
           </div>
         </div>
-      </div>
+      </Card>
 
       {/* Footer Stats - Histórico Semanal */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-[1.5rem]">
-        <div className="md3-card p-[1.5rem] md:col-span-2">
+        <Card className="p-[1.5rem] md:col-span-2">
           <div className="flex flex-col sm:flex-row justify-between items-start gap-[1rem] mb-[1.5rem]">
             <div>
               <p className="label-caps text-[var(--content-text-secondary)]">
@@ -306,9 +308,9 @@ export default function SigapDashboard() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
 
-        <div className="md3-card p-[1.5rem] flex flex-col justify-center">
+        <Card className="p-[1.5rem] flex flex-col justify-center">
           <div className="flex items-center gap-[0.75rem] text-green-600 mb-[0.5rem]">
             <span className="w-[0.5rem] h-[0.5rem] bg-green-500 rounded-full animate-pulse"></span>
             <span className="body-sm font-bold uppercase tracking-widest">
@@ -321,7 +323,7 @@ export default function SigapDashboard() {
             </span>
             SIGAP Secure Protocol v2.4.0
           </p>
-        </div>
+        </Card>
       </div>
     </div>
   );
