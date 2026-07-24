@@ -16,10 +16,10 @@ export default function UsuariosDashboard() {
   ];
 
   const vipTiers = [
-    { nome: 'Legend', icon: 'workspace_premium', ativos: 64, percentual: 2, cor: 'bg-gradient-to-br from-amber-400 to-yellow-600' },
-    { nome: 'Elite', icon: 'military_tech', ativos: 82, percentual: 3, cor: 'bg-[var(--md-sys-color-secondary)]' },
-    { nome: 'Exclusive', icon: 'stars', ativos: 453, percentual: 16, cor: 'bg-purple-400' },
-    { nome: 'Black', icon: 'token', ativos: 2115, percentual: 78, cor: 'bg-[var(--md-sys-color-primary-container)]' },
+    { nome: 'Legend', icon: 'workspace_premium', ativos: 64, percentual: 2, nivel: 4 },
+    { nome: 'Elite', icon: 'military_tech', ativos: 82, percentual: 3, nivel: 3 },
+    { nome: 'Exclusive', icon: 'stars', ativos: 453, percentual: 16, nivel: 2 },
+    { nome: 'Black', icon: 'token', ativos: 2115, percentual: 78, nivel: 1 },
   ];
 
   const estadosTop = [
@@ -38,7 +38,7 @@ export default function UsuariosDashboard() {
   return (
     <div className="p-[1rem] md:p-[1.5rem] space-y-[1rem] md:space-y-[1.5rem] max-w-[1600px] mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] opacity-0 animate-[fadeIn_0.4s_ease-out_forwards]">
         <div>
           <h2 className="headline-md text-[var(--content-text)]">
             Dashboard de Usuários & Fidelidade
@@ -51,81 +51,50 @@ export default function UsuariosDashboard() {
 
       {/* Top KPIs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[0.75rem] md:gap-[1rem]">
-        <div className="md3-card p-[1rem] flex flex-col justify-between">
-          <div>
-            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
-              Total de VIPs Ativos
-            </p>
-            <h3 className="headline-lg text-[var(--content-text)]">
-              {vipStats.totalAtivos.toLocaleString('pt-BR')}
+        {[
+          { label: 'Total de VIPs Ativos', value: vipStats.totalAtivos.toLocaleString('pt-BR'), icon: 'group', trend: '+5.2% vs mês anterior', trendUp: true, delay: 0 },
+          { label: 'VIPs em Risco (Critical)', value: vipStats.emRisco, icon: 'warning', trend: '8 pendentes de revisão', critical: true, delay: 100 },
+          { label: 'Crescimento High-Tiers', value: `${vipStats.crescimentoHighTier}%`, icon: 'trending_up', trend: 'Novas promoções ativas', accent: true, delay: 200 },
+          { label: 'Churn Rate (VIPs)', value: `${vipStats.churnRate}%`, icon: 'analytics', trend: 'Abaixo da meta de 2.5%', delay: 300 },
+        ].map((stat, i) => (
+          <div
+            key={i}
+            className="md3-card p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_forwards] hover:elevation-2 transition-all"
+            style={{ animationDelay: `${stat.delay}ms` }}
+          >
+            <div className="flex items-start justify-between mb-[0.75rem]">
+              <p className="label-caps text-[var(--content-text-secondary)]">{stat.label}</p>
+              <span className={`material-symbols-outlined text-[20px] ${
+                stat.critical ? 'text-red-500' : stat.accent ? 'text-[var(--md-sys-color-secondary)]' : 'text-[var(--content-text-secondary)]'
+              }`}>
+                {stat.icon}
+              </span>
+            </div>
+            <h3 className={`headline-lg ${stat.critical ? 'text-red-500' : stat.accent ? 'text-[var(--md-sys-color-secondary)]' : 'text-[var(--content-text)]'}`}>
+              {stat.value}
             </h3>
+            <div className={`mt-[0.5rem] flex items-center gap-[0.25rem] body-sm ${
+              stat.trendUp ? 'text-green-600' : 'text-[var(--content-text-secondary)]'
+            }`}>
+              {stat.trendUp && <span className="material-symbols-outlined text-[14px]">north_east</span>}
+              {stat.trend}
+            </div>
           </div>
-          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-green-600">
-            <span className="material-symbols-outlined text-sm">trending_up</span>
-            +5.2% vs mês anterior
-          </div>
-        </div>
-
-        <div className="md3-card p-[1rem] flex flex-col justify-between">
-          <div>
-            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
-              VIPs em Risco (Critical)
-            </p>
-            <h3 className="headline-lg text-[var(--content-badge-error-text)]">
-              {vipStats.emRisco}
-            </h3>
-          </div>
-          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-[var(--content-badge-error-text)]">
-            <span className="material-symbols-outlined text-sm">warning</span>
-            8 pendentes de revisão
-          </div>
-        </div>
-
-        <div className="md3-card p-[1rem] flex flex-col justify-between">
-          <div>
-            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
-              Crescimento High-Tiers
-            </p>
-            <h3 className="headline-lg text-[var(--md-sys-color-secondary)]">
-              {vipStats.crescimentoHighTier}%
-            </h3>
-          </div>
-          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-green-600">
-            <span className="material-symbols-outlined text-sm">bolt</span>
-            Novas promoções para 'Legend'
-          </div>
-        </div>
-
-        <div className="md3-card p-[1rem] flex flex-col justify-between">
-          <div>
-            <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
-              Churn Rate (VIPs)
-            </p>
-            <h3 className="headline-lg text-[var(--content-text)]">
-              {vipStats.churnRate}%
-            </h3>
-          </div>
-          <div className="mt-[0.75rem] flex items-center gap-[0.375rem] body-sm font-bold text-[var(--content-text-secondary)]">
-            <span className="material-symbols-outlined text-sm">check_circle</span>
-            Abaixo da meta de 2.5%
-          </div>
-        </div>
+        ))}
       </div>
 
       {/* Main Content: Two Columns */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-[1rem] md:gap-[1.5rem]">
         {/* Left: Risk Alerts */}
-        <div className="lg:col-span-7 md3-card overflow-hidden">
+        <div className="lg:col-span-7 md3-card overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.4s_forwards]">
           <div className="p-[1rem] md:p-[1.25rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] bg-[var(--content-hover)]">
             <div>
-              <h4 className="headline-md text-[var(--content-text)]">
-                Alertas de Risco & Segurança
-              </h4>
+              <h4 className="headline-md text-[var(--content-text)]">Alertas de Risco & Segurança</h4>
               <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]">
                 Detecção de anomalias em tempo real
               </p>
             </div>
-            <span className="bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)] label-caps px-[0.625rem] py-[0.25rem] shape-sm border border-[var(--content-badge-error-border)]">
+            <span className="bg-red-900/20 text-red-500 label-caps px-[0.625rem] py-[0.25rem] shape-sm border border-red-800">
               12 Ocorrências Hoje
             </span>
           </div>
@@ -135,18 +104,10 @@ export default function UsuariosDashboard() {
               <table className="w-full">
                 <thead className="bg-[var(--content-hover)] border-b border-[var(--content-border)]">
                   <tr>
-                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">
-                      Jogador ID / Username
-                    </th>
-                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-center">
-                      Score
-                    </th>
-                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">
-                      Motivo do Alerta
-                    </th>
-                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-right">
-                      Ação
-                    </th>
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">Jogador ID / Username</th>
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-center">Score</th>
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-left">Motivo do Alerta</th>
+                    <th className="px-[1rem] py-[0.75rem] label-caps text-[var(--content-text-secondary)] text-right">Ação</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[var(--content-border)]">
@@ -160,18 +121,18 @@ export default function UsuariosDashboard() {
                       </td>
                       <td className="px-[1rem] py-[0.75rem] text-center">
                         <span className={`inline-flex items-center justify-center w-[2rem] h-[2rem] rounded-full body-sm font-bold ${
-                          alerta.tipo === 'critical' ? 'bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)]' :
-                          alerta.tipo === 'warning' ? 'bg-[var(--content-badge-warning-bg)] text-[var(--content-badge-warning-text)]' :
-                          'bg-[var(--content-hover)] text-[var(--content-text)]'
+                          alerta.tipo === 'critical' ? 'bg-red-900/20 text-red-500' :
+                          alerta.tipo === 'warning' ? 'bg-amber-900/20 text-amber-500' :
+                          'bg-[var(--content-hover)] text-[var(--content-text-secondary)]'
                         }`}>
                           {alerta.score}
                         </span>
                       </td>
                       <td className="px-[1rem] py-[0.75rem]">
-                        <span className={`inline-block px-[0.5rem] py-[0.125rem] shape-xs label-caps ${
-                          alerta.tipo === 'critical' ? 'bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)] border border-[var(--content-badge-error-border)]' :
-                          alerta.tipo === 'warning' ? 'bg-[var(--content-badge-warning-bg)] text-[var(--content-badge-warning-text)] border border-[var(--content-badge-warning-border)]' :
-                          'bg-[var(--content-hover)] text-[var(--content-text)] border border-[var(--content-border)]'
+                        <span className={`inline-block px-[0.5rem] py-[0.125rem] shape-xs label-caps border ${
+                          alerta.tipo === 'critical' ? 'bg-red-900/20 text-red-500 border-red-800' :
+                          alerta.tipo === 'warning' ? 'bg-amber-900/20 text-amber-500 border-amber-800' :
+                          'bg-[var(--content-hover)] text-[var(--content-text-secondary)] border-[var(--content-border)]'
                         }`} style={{ fontSize: '10px' }}>
                           {alerta.motivo}
                         </span>
@@ -199,25 +160,34 @@ export default function UsuariosDashboard() {
         {/* Right: VIP Distribution & Migration */}
         <div className="lg:col-span-5 space-y-[1rem]">
           {/* VIP Tiers */}
-          <div className="md3-card p-[1rem] md:p-[1.25rem]">
-            <h4 className="headline-md text-[var(--content-text)] mb-[1rem]">
-              Distribuição VIP & Fidelidade
-            </h4>
+          <div className="md3-card p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.5s_forwards]">
+            <h4 className="headline-md text-[var(--content-text)] mb-[1rem]">Distribuição VIP & Fidelidade</h4>
             <div className="space-y-[0.875rem]">
               {vipTiers.map((tier, i) => (
-                <div key={i} className="flex items-center gap-[0.75rem]">
-                  <div className={`w-[2.25rem] h-[2.25rem] shape-md ${tier.cor} flex items-center justify-center text-white flex-shrink-0`}>
-                    <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: '"FILL" 1' }}>
+                <div key={i} className="flex items-center gap-[0.75rem] group">
+                  <div className={`w-[2.25rem] h-[2.25rem] shape-md flex items-center justify-center flex-shrink-0 transition-all ${
+                    tier.nivel === 4 ? 'bg-[var(--md-sys-color-secondary)] text-white' :
+                    tier.nivel === 3 ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]' :
+                    'bg-[var(--content-hover)] text-[var(--content-text-secondary)]'
+                  } group-hover:scale-110`}>
+                    <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 1' }}>
                       {tier.icon}
                     </span>
                   </div>
                   <div className="flex-grow min-w-0">
                     <div className="flex justify-between items-end mb-[0.25rem]">
                       <span className="table-data text-[var(--content-text)]">{tier.nome}</span>
-                      <span className="body-sm font-bold text-[var(--content-text-secondary)]">{tier.ativos} Ativos</span>
+                      <span className="body-sm font-bold text-[var(--content-text-secondary)]">{tier.ativos}</span>
                     </div>
                     <div className="w-full bg-[var(--content-hover)] h-[0.375rem] shape-sm overflow-hidden">
-                      <div className={`${tier.cor} h-full`} style={{ width: `${tier.percentual}%` }}></div>
+                      <div
+                        className={`h-full transition-all duration-1000 ${
+                          tier.nivel === 4 ? 'bg-[var(--md-sys-color-secondary)]' :
+                          tier.nivel === 3 ? 'bg-[var(--md-sys-color-primary-container)]' :
+                          'bg-[var(--content-border)]'
+                        }`}
+                        style={{ width: `${tier.percentual}%` }}
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -226,31 +196,29 @@ export default function UsuariosDashboard() {
           </div>
 
           {/* Tier Migration */}
-          <div className="md3-card p-[1rem] md:p-[1.25rem]">
-            <h4 className="headline-md text-[var(--content-text)] mb-[0.75rem]">
-              Migração de Tiers (24h)
-            </h4>
+          <div className="md3-card p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.6s_forwards]">
+            <h4 className="headline-md text-[var(--content-text)] mb-[0.75rem]">Migração de Tiers (24h)</h4>
             <div className="space-y-[0.625rem]">
-              <div className="flex items-center justify-between p-[0.75rem] bg-green-50 dark:bg-green-900/20 shape-md border border-green-200 dark:border-green-800">
+              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-green-500">
                 <div className="flex items-center gap-[0.625rem] min-w-0">
-                  <span className="material-symbols-outlined text-green-600 flex-shrink-0">arrow_upward</span>
+                  <span className="material-symbols-outlined text-green-500 flex-shrink-0">north_east</span>
                   <div className="min-w-0">
-                    <p className="body-sm font-bold text-green-700 dark:text-green-400">Promovidos para Elite</p>
-                    <p className="body-sm text-green-600 dark:text-green-500" style={{ fontSize: '10px' }}>4 jogadores atingiram meta GGR</p>
+                    <p className="body-sm font-bold text-[var(--content-text)]">Promovidos para Elite</p>
+                    <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>4 jogadores atingiram meta GGR</p>
                   </div>
                 </div>
-                <span className="headline-md font-bold text-green-600 flex-shrink-0 ml-[0.5rem]">+4</span>
+                <span className="headline-md font-bold text-green-500 flex-shrink-0 ml-[0.5rem]">+4</span>
               </div>
 
-              <div className="flex items-center justify-between p-[0.75rem] bg-red-50 dark:bg-red-900/20 shape-md border border-red-200 dark:border-red-800">
+              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-red-500">
                 <div className="flex items-center gap-[0.625rem] min-w-0">
-                  <span className="material-symbols-outlined text-red-600 flex-shrink-0">arrow_downward</span>
+                  <span className="material-symbols-outlined text-red-500 flex-shrink-0">south_east</span>
                   <div className="min-w-0">
-                    <p className="body-sm font-bold text-red-700 dark:text-red-400">Risco de Demoted (Black)</p>
-                    <p className="body-sm text-red-600 dark:text-red-500" style={{ fontSize: '10px' }}>12 jogadores inativos há &gt;15 dias</p>
+                    <p className="body-sm font-bold text-[var(--content-text)]">Risco de Demoted (Black)</p>
+                    <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>12 jogadores inativos há &gt;15 dias</p>
                   </div>
                 </div>
-                <span className="headline-md font-bold text-red-600 flex-shrink-0 ml-[0.5rem]">12</span>
+                <span className="headline-md font-bold text-red-500 flex-shrink-0 ml-[0.5rem]">12</span>
               </div>
             </div>
           </div>
@@ -258,12 +226,10 @@ export default function UsuariosDashboard() {
       </div>
 
       {/* Geographic Concentration */}
-      <div className="md3-card p-[1rem] md:p-[1.5rem]">
+      <div className="md3-card p-[1rem] md:p-[1.5rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.7s_forwards]">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-[1rem] mb-[1.5rem]">
           <div>
-            <h4 className="headline-md text-[var(--content-text)]">
-              Concentração por Localidade (VIPs)
-            </h4>
+            <h4 className="headline-md text-[var(--content-text)]">Concentração por Localidade (VIPs)</h4>
             <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]">
               Distribuição geográfica dos jogadores de alto valor no Brasil
             </p>
@@ -294,7 +260,7 @@ export default function UsuariosDashboard() {
                 </div>
                 <div className="w-full bg-[var(--content-hover)] h-[0.5rem] shape-sm overflow-hidden">
                   <div
-                    className="bg-[var(--md-sys-color-secondary)] h-full"
+                    className="bg-[var(--md-sys-color-secondary)] h-full transition-all duration-1000"
                     style={{ width: `${estado.percentual}%` }}
                   ></div>
                 </div>
@@ -305,22 +271,20 @@ export default function UsuariosDashboard() {
       </div>
 
       {/* Critical Users Table */}
-      <div className="md3-card overflow-hidden">
+      <div className="md3-card overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.8s_forwards]">
         <div className="p-[1rem] md:p-[1.25rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem]">
           <div>
-            <h4 className="headline-md text-[var(--content-text)]">
-              Detalhamento de Usuários Críticos
-            </h4>
+            <h4 className="headline-md text-[var(--content-text)]">Detalhamento de Usuários Críticos</h4>
             <p className="body-sm text-[var(--content-text-secondary)] mt-[0.25rem]">
               Monitoramento operacional profundo e histórico de ações
             </p>
           </div>
           <div className="flex gap-[0.5rem]">
             <button className="flex items-center gap-[0.375rem] px-[0.75rem] py-[0.375rem] border border-[var(--content-border)] label-caps shape-md hover:bg-[var(--content-hover)] transition-colors text-[var(--content-text)]">
-              <span className="material-symbols-outlined text-sm">filter_list</span> Filtros
+              <span className="material-symbols-outlined text-[14px]">filter_list</span> Filtros
             </button>
-            <button className="flex items-center gap-[0.375rem] px-[0.75rem] py-[0.375rem] bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] label-caps shape-md hover:opacity-90 transition-opacity">
-              <span className="material-symbols-outlined text-sm">download</span> CSV
+            <button className="md3-button-filled label-caps px-[0.75rem] py-[0.375rem] flex items-center gap-[0.375rem]">
+              <span className="material-symbols-outlined text-[14px]">download</span> CSV
             </button>
           </div>
         </div>
@@ -346,7 +310,7 @@ export default function UsuariosDashboard() {
                       <div className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>ID: {user.id}</div>
                     </td>
                     <td className="px-[1rem] py-[0.75rem]">
-                      <span className="bg-gradient-to-br from-amber-400 to-yellow-600 text-white label-caps px-[0.5rem] py-[0.125rem] shape-xs" style={{ fontSize: '10px' }}>
+                      <span className="bg-[var(--md-sys-color-secondary)] text-white label-caps px-[0.5rem] py-[0.125rem] shape-xs" style={{ fontSize: '10px' }}>
                         {user.tier}
                       </span>
                     </td>
@@ -354,9 +318,9 @@ export default function UsuariosDashboard() {
                     <td className="px-[1rem] py-[0.75rem] table-data text-[var(--content-text)]">{user.ticketMedio}</td>
                     <td className="px-[1rem] py-[0.75rem]">
                       <span className={`body-sm font-bold ${
-                        user.risco === 'saudavel' ? 'text-green-600' :
-                        user.risco === 'critico' ? 'text-[var(--content-badge-error-text)]' :
-                        'text-[var(--content-badge-warning-text)]'
+                        user.risco === 'saudavel' ? 'text-green-500' :
+                        user.risco === 'critico' ? 'text-red-500' :
+                        'text-amber-500'
                       }`}>
                         {user.risco === 'saudavel' ? 'Saudável' : user.risco === 'critico' ? 'Alerta Crítico' : 'Suspeito'}
                       </span>
@@ -364,7 +328,9 @@ export default function UsuariosDashboard() {
                     <td className="px-[1rem] py-[0.75rem] text-right">
                       <button className={`label-caps px-[0.75rem] py-[0.25rem] shape-md transition-colors ${
                         user.risco === 'critico'
-                          ? 'bg-[var(--content-badge-error-bg)] text-[var(--content-badge-error-text)] hover:opacity-80'
+                          ? 'bg-red-900/20 text-red-500 border border-red-800 hover:bg-red-900/30'
+                          : user.risco === 'suspeito'
+                          ? 'bg-amber-900/20 text-amber-500 border border-amber-800 hover:bg-amber-900/30'
                           : 'bg-[var(--content-hover)] text-[var(--content-text)] hover:bg-[var(--content-border)]'
                       }`} style={{ fontSize: '11px' }}>
                         {user.risco === 'critico' ? 'Suspender' : user.risco === 'suspeito' ? 'Investigar' : 'Perfil'}
@@ -383,9 +349,9 @@ export default function UsuariosDashboard() {
           </span>
           <div className="flex gap-[0.25rem]">
             <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text-secondary)] disabled:opacity-50" disabled>
-              <span className="material-symbols-outlined text-sm">chevron_left</span>
+              <span className="material-symbols-outlined text-[14px]">chevron_left</span>
             </button>
-            <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] label-caps" style={{ fontSize: '10px' }}>
+            <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md bg-[var(--md-sys-color-secondary)] text-white label-caps" style={{ fontSize: '10px' }}>
               1
             </button>
             <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text)] label-caps hover:bg-[var(--content-hover)]" style={{ fontSize: '10px' }}>
@@ -395,11 +361,28 @@ export default function UsuariosDashboard() {
               3
             </button>
             <button className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text-secondary)]">
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
+              <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             </button>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
