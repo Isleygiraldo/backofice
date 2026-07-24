@@ -1,5 +1,7 @@
 'use client';
 
+import { Button, Card, IconButton } from '@/app/_components/ui';
+
 export default function JogosAoVivoPage() {
   const jogosAoVivo = [
     { id: 6365, nome: 'Ru Yi Speed Baccarat', mesa: 'Mesa A1', dealer: 'Maria Silva', jogadores: 12, apostas: 'R$ 45.8k', genero: 'Baccarat', fornecedor: 'Playtech', status: 'online', thumb: 'https://via.placeholder.com/80x48/2c5530/fff?text=LIVE' },
@@ -26,35 +28,34 @@ export default function JogosAoVivoPage() {
           </p>
         </div>
         <div className="flex gap-[0.5rem]">
-          <button className="md3-button-outlined label-caps px-[0.75rem] py-[0.375rem] flex items-center gap-[0.375rem]">
-            <span className="material-symbols-outlined text-[16px]">refresh</span>
+          <Button variant="outlined" icon="refresh">
             Atualizar
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-[0.75rem]">
-        <div className="md3-card p-[0.875rem] border-l-4 border-l-green-500">
+        <Card className="p-[0.875rem] border-l-4 border-l-green-500">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Mesas Online</p>
           <p className="headline-lg text-green-600">4</p>
         </div>
-        <div className="md3-card p-[0.875rem] border-l-4 border-l-amber-500">
+        <Card className="p-[0.875rem] border-l-4 border-l-amber-500">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Em Pausa</p>
           <p className="headline-lg text-amber-500">1</p>
         </div>
-        <div className="md3-card p-[0.875rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
+        <Card className="p-[0.875rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Jogadores Ativos</p>
           <p className="headline-lg text-[var(--md-sys-color-secondary)]">67</p>
         </div>
-        <div className="md3-card p-[0.875rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
+        <Card className="p-[0.875rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Apostas em Jogo</p>
           <p className="headline-lg text-[var(--content-text)]">R$ 576k</p>
         </div>
       </div>
 
       {/* Main Table */}
-      <div className="md3-card overflow-hidden">
+      <Card className="overflow-hidden">
         <div className="p-[0.75rem] flex items-center justify-between bg-[var(--content-hover)] border-b border-[var(--content-border)]">
           <h3 className="headline-md text-[var(--content-text)]">Mesas em Operação</h3>
           <span className="body-sm text-[var(--content-text-secondary)]">
@@ -164,15 +165,9 @@ export default function JogosAoVivoPage() {
                   </td>
                   <td className="px-[1rem] py-[0.625rem] text-right">
                     <div className="flex justify-end gap-[0.25rem]">
-                      <button className="md3-icon-button" title="Monitorar">
-                        <span className="material-symbols-outlined text-[18px]">tv</span>
-                      </button>
-                      <button className="md3-icon-button" title="Histórico">
-                        <span className="material-symbols-outlined text-[18px]">history</span>
-                      </button>
-                      <button className="md3-icon-button" title="Configurações">
-                        <span className="material-symbols-outlined text-[18px]">settings</span>
-                      </button>
+                      <IconButton icon="tv" title="Monitorar" />
+                      <IconButton icon="history" title="Histórico" />
+                      <IconButton icon="settings" title="Configurações" />
                     </div>
                   </td>
                 </tr>
