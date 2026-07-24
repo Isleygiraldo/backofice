@@ -39,19 +39,19 @@ export default function JogosAoVivoPage() {
         <Card className="p-[0.875rem] border-l-4 border-l-green-500">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Mesas Online</p>
           <p className="headline-lg text-green-600">4</p>
-        </div>
+        </Card>
         <Card className="p-[0.875rem] border-l-4 border-l-amber-500">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Em Pausa</p>
           <p className="headline-lg text-amber-500">1</p>
-        </div>
+        </Card>
         <Card className="p-[0.875rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Jogadores Ativos</p>
           <p className="headline-lg text-[var(--md-sys-color-secondary)]">67</p>
-        </div>
+        </Card>
         <Card className="p-[0.875rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Apostas em Jogo</p>
           <p className="headline-lg text-[var(--content-text)]">R$ 576k</p>
-        </div>
+        </Card>
       </div>
 
       {/* Main Table */}
@@ -186,7 +186,7 @@ export default function JogosAoVivoPage() {
             Ver Histórico Completo
           </button>
         </div>
-      </div>
+      </Card>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-[0.75rem]">
