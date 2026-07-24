@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button, Input, Card, IconButton } from '@/app/_components/ui';
 import { Breadcrumb } from '@/app/_components/layout';
 
 export default function AutorizacoesPage() {
+  const router = useRouter();
   const [filtroNome, setFiltroNome] = useState('');
-  const [showCreateModal, setShowCreateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const autorizacoes = [
@@ -58,7 +59,7 @@ export default function AutorizacoesPage() {
           <Button
             variant="filled"
             icon="add"
-            onClick={() => setShowCreateModal(true)}
+            onClick={() => router.push('/configuracoes/autorizacoes/nova')}
           >
             Nova Autorização
           </Button>
@@ -210,37 +211,6 @@ export default function AutorizacoesPage() {
           </p>
         </div>
       </div>
-
-      {/* Create Modal */}
-      {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <Card className="w-full max-w-md p-[1.5rem]">
-            <div className="flex justify-between items-center mb-[1.5rem]">
-              <h3 className="headline-md text-[var(--content-text)]">Nova Autorização</h3>
-              <IconButton icon="close" onClick={() => setShowCreateModal(false)} />
-            </div>
-            <div className="space-y-[1rem]">
-              <Input label="Nome" placeholder="Ex: auth.admin" />
-              <div className="space-y-[0.25rem]">
-                <label className="label-caps text-[var(--content-text-secondary)]">
-                  Descrição
-                </label>
-                <textarea
-                  className="md3-input resize-none"
-                  placeholder="Descreva a finalidade desta autorização..."
-                  rows={4}
-                ></textarea>
-              </div>
-            </div>
-            <div className="flex justify-end gap-[0.75rem] mt-[2rem]">
-              <Button variant="outlined" onClick={() => setShowCreateModal(false)}>
-                Cancelar
-              </Button>
-              <Button variant="filled">Adicionar</Button>
-            </div>
-          </Card>
-        </div>
-      )}
 
       {/* Delete Modal */}
       {showDeleteModal && (
