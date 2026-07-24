@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
+import { Button, Card, IconButton, Input } from '@/app/_components/ui';
 
 export default function PerfilApostadorPage() {
   const params = useParams();
@@ -45,7 +46,7 @@ export default function PerfilApostadorPage() {
   return (
     <div className="p-[1rem] md:p-[1.5rem] space-y-[1rem] md:space-y-[1.5rem] max-w-[1400px] mx-auto">
       {/* Card Expansível do Usuário */}
-      <section className="md3-card overflow-hidden transition-all">
+      <Card className="overflow-hidden transition-all">
         <div
           className="p-[1rem] md:p-[1.5rem] flex flex-col sm:flex-row items-start sm:items-center gap-[1rem] sm:gap-[1.5rem] cursor-pointer hover:bg-[var(--content-hover)] transition-colors"
           onClick={() => setDetailsExpanded(!detailsExpanded)}
@@ -168,7 +169,7 @@ export default function PerfilApostadorPage() {
             </div>
           </div>
         )}
-      </section>
+      </Card>
 
       {/* Overview Financeiro */}
       <section className="space-y-[1rem] md:space-y-[1.5rem]">
@@ -177,37 +178,36 @@ export default function PerfilApostadorPage() {
             <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[20px] md:text-[24px]">analytics</span>
             <h2 className="headline-md text-[var(--content-text)]">Overview Financeiro</h2>
           </div>
-          <button className="w-full sm:w-auto md3-button-filled label-caps px-[1rem] py-[0.5rem] flex items-center justify-center gap-[0.5rem]">
-            <span className="material-symbols-outlined text-[18px]">add</span>
+          <Button variant="filled" icon="add" fullWidth className="sm:w-auto">
             Adicionar Crédito
-          </button>
+          </Button>
         </div>
 
         {/* Cards Financeiros */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1rem]">
-          <div className="md3-card p-[1rem] border-t-4 border-t-[var(--md-sys-color-primary-container)] relative overflow-hidden">
+          <Card className="p-[1rem] border-t-4 border-t-[var(--md-sys-color-primary-container)] relative overflow-hidden">
             <span className="material-symbols-outlined absolute -right-2 -bottom-2 text-[60px] text-[var(--md-sys-color-primary-container)] opacity-5">sports_soccer</span>
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Bônus Esportivo</p>
             <p className="headline-md text-[var(--content-text)]">{financeiro.bonusEsportivo}</p>
-          </div>
+          </Card>
 
-          <div className="md3-card p-[1rem] border-t-4 border-t-[var(--md-sys-color-primary-container)] relative overflow-hidden">
+          <Card className="p-[1rem] border-t-4 border-t-[var(--md-sys-color-primary-container)] relative overflow-hidden">
             <span className="material-symbols-outlined absolute -right-2 -bottom-2 text-[60px] text-[var(--md-sys-color-primary-container)] opacity-5">casino</span>
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Bônus Cassino</p>
             <p className="headline-md text-[var(--content-text)]">{financeiro.bonusCassino}</p>
-          </div>
+          </Card>
 
-          <div className="md3-card p-[1rem] border-t-4 border-t-green-500 relative overflow-hidden">
+          <Card className="p-[1rem] border-t-4 border-t-green-500 relative overflow-hidden">
             <span className="material-symbols-outlined absolute -right-2 -bottom-2 text-[60px] text-green-500 opacity-5">trending_up</span>
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">GGR (Lifetime)</p>
             <p className="headline-md text-green-500">{financeiro.ggr}</p>
-          </div>
+          </Card>
 
-          <div className="md3-card p-[1rem] border-t-4 border-t-[var(--md-sys-color-secondary)] relative overflow-hidden">
+          <Card className="p-[1rem] border-t-4 border-t-[var(--md-sys-color-secondary)] relative overflow-hidden">
             <span className="material-symbols-outlined absolute -right-2 -bottom-2 text-[60px] text-[var(--md-sys-color-secondary)] opacity-5">confirmation_number</span>
             <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">Net Cash</p>
             <p className="headline-md text-[var(--content-text)]">{financeiro.netCash}</p>
-          </div>
+          </Card>
         </div>
 
         {/* LTV Summary */}
@@ -232,7 +232,7 @@ export default function PerfilApostadorPage() {
 
       {/* Tabs e Tabela */}
       <section className="space-y-[1rem]">
-        <div className="md3-card overflow-hidden">
+        <Card className="overflow-hidden">
           {/* Tabs */}
           <div className="flex bg-[var(--content-bg)] border-b border-[var(--content-border)] overflow-x-auto scrollbar-hide">
             {['transacoes', 'apostas', 'cassino', 'bonus', 'kyc', 'logins'].map((tab) => (
@@ -296,15 +296,15 @@ export default function PerfilApostadorPage() {
               </table>
             </div>
           )}
-        </div>
+        </Card>
       </section>
 
       {/* Cards de Bônus */}
       <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[1.5rem]">
         {bonus.map((b, i) => (
-          <div
+          <Card
             key={i}
-            className={`md3-card p-[1.25rem] border-l-4 ${
+            className={`p-[1.25rem] border-l-4 ${
               b.status === 'ativo' ? 'border-l-[var(--md-sys-color-secondary)]' : 'border-l-green-500'
             } space-y-[0.75rem]`}
           >
@@ -336,17 +336,17 @@ export default function PerfilApostadorPage() {
               <span>Valor: {b.valor}</span>
               <span>{b.status === 'ativo' ? `Expira: ${b.expira}` : `Finalizado: ${b.finalizado}`}</span>
             </div>
-          </div>
+          </Card>
         ))}
 
-        <div className="md3-card p-[1.25rem] border border-dashed flex flex-col justify-center items-center text-center gap-[0.5rem] hover:bg-[var(--content-hover)] transition-colors cursor-pointer group">
+        <Card className="p-[1.25rem] border border-dashed flex flex-col justify-center items-center text-center gap-[0.5rem] hover:bg-[var(--content-hover)] transition-colors cursor-pointer group">
           <span className="material-symbols-outlined text-[var(--content-text-secondary)] group-hover:text-[var(--md-sys-color-secondary)] text-[32px]">
             add_circle
           </span>
           <p className="label-caps text-[var(--content-text-secondary)] group-hover:text-[var(--content-text)]">
             Atribuir novo bônus
           </p>
-        </div>
+        </Card>
       </section>
     </div>
   );
