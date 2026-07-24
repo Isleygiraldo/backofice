@@ -154,7 +154,7 @@ export default function UsuariosDashboard() {
               Ver Todos os Alertas
             </button>
           </div>
-        </div>
+        </Card>
 
         {/* Right: VIP Distribution & Migration */}
         <div className="lg:col-span-5 space-y-[1rem]">
@@ -214,7 +214,7 @@ export default function UsuariosDashboard() {
             </div>
           </Card>
         </div>
-      </Card>
+      </div>
 
       {/* Geographic Concentration */}
       <Card className="p-[1rem] md:p-[1.5rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.7s_forwards]">
