@@ -16,10 +16,10 @@ export default function UsuariosDashboard() {
   ];
 
   const vipTiers = [
-    { nome: 'Legend', icon: 'workspace_premium', ativos: 64, percentual: 2, nivel: 4 },
-    { nome: 'Elite', icon: 'military_tech', ativos: 82, percentual: 3, nivel: 3 },
-    { nome: 'Exclusive', icon: 'stars', ativos: 453, percentual: 16, nivel: 2 },
-    { nome: 'Black', icon: 'token', ativos: 2115, percentual: 78, nivel: 1 },
+    { nome: 'Legend', icon: 'workspace_premium', ativos: 64, percentual: 2 },
+    { nome: 'Elite', icon: 'military_tech', ativos: 82, percentual: 3 },
+    { nome: 'Exclusive', icon: 'stars', ativos: 453, percentual: 16 },
+    { nome: 'Black', icon: 'token', ativos: 2115, percentual: 78 },
   ];
 
   const estadosTop = [
@@ -52,9 +52,9 @@ export default function UsuariosDashboard() {
       {/* Top KPIs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[0.75rem] md:gap-[1rem]">
         {[
-          { label: 'Total de VIPs Ativos', value: vipStats.totalAtivos.toLocaleString('pt-BR'), icon: 'group', trend: '+5.2% vs mês anterior', trendUp: true, delay: 0 },
+          { label: 'Total de VIPs Ativos', value: vipStats.totalAtivos.toLocaleString('pt-BR'), icon: 'group', trend: '+5.2% vs mês anterior', delay: 0 },
           { label: 'VIPs em Risco (Critical)', value: vipStats.emRisco, icon: 'warning', trend: '8 pendentes de revisão', critical: true, delay: 100 },
-          { label: 'Crescimento High-Tiers', value: `${vipStats.crescimentoHighTier}%`, icon: 'trending_up', trend: 'Novas promoções ativas', accent: true, delay: 200 },
+          { label: 'Crescimento High-Tiers', value: `${vipStats.crescimentoHighTier}%`, icon: 'trending_up', trend: 'Novas promoções ativas', delay: 200 },
           { label: 'Churn Rate (VIPs)', value: `${vipStats.churnRate}%`, icon: 'analytics', trend: 'Abaixo da meta de 2.5%', delay: 300 },
         ].map((stat, i) => (
           <div
@@ -65,18 +65,15 @@ export default function UsuariosDashboard() {
             <div className="flex items-start justify-between mb-[0.75rem]">
               <p className="label-caps text-[var(--content-text-secondary)]">{stat.label}</p>
               <span className={`material-symbols-outlined text-[20px] ${
-                stat.critical ? 'text-red-500' : stat.accent ? 'text-[var(--md-sys-color-secondary)]' : 'text-[var(--content-text-secondary)]'
+                stat.critical ? 'text-red-500' : 'text-[var(--content-text-secondary)]'
               }`}>
                 {stat.icon}
               </span>
             </div>
-            <h3 className={`headline-lg ${stat.critical ? 'text-red-500' : stat.accent ? 'text-[var(--md-sys-color-secondary)]' : 'text-[var(--content-text)]'}`}>
+            <h3 className={`headline-lg ${stat.critical ? 'text-red-500' : 'text-[var(--content-text)]'}`}>
               {stat.value}
             </h3>
-            <div className={`mt-[0.5rem] flex items-center gap-[0.25rem] body-sm ${
-              stat.trendUp ? 'text-green-600' : 'text-[var(--content-text-secondary)]'
-            }`}>
-              {stat.trendUp && <span className="material-symbols-outlined text-[14px]">north_east</span>}
+            <div className="mt-[0.5rem] body-sm text-[var(--content-text-secondary)]">
               {stat.trend}
             </div>
           </div>
@@ -95,7 +92,7 @@ export default function UsuariosDashboard() {
               </p>
             </div>
             <span className="bg-red-900/20 text-red-500 label-caps px-[0.625rem] py-[0.25rem] shape-sm border border-red-800">
-              12 Ocorrências Hoje
+              12 Ocorrências
             </span>
           </div>
 
@@ -122,7 +119,6 @@ export default function UsuariosDashboard() {
                       <td className="px-[1rem] py-[0.75rem] text-center">
                         <span className={`inline-flex items-center justify-center w-[2rem] h-[2rem] rounded-full body-sm font-bold ${
                           alerta.tipo === 'critical' ? 'bg-red-900/20 text-red-500' :
-                          alerta.tipo === 'warning' ? 'bg-amber-900/20 text-amber-500' :
                           'bg-[var(--content-hover)] text-[var(--content-text-secondary)]'
                         }`}>
                           {alerta.score}
@@ -131,7 +127,6 @@ export default function UsuariosDashboard() {
                       <td className="px-[1rem] py-[0.75rem]">
                         <span className={`inline-block px-[0.5rem] py-[0.125rem] shape-xs label-caps border ${
                           alerta.tipo === 'critical' ? 'bg-red-900/20 text-red-500 border-red-800' :
-                          alerta.tipo === 'warning' ? 'bg-amber-900/20 text-amber-500 border-amber-800' :
                           'bg-[var(--content-hover)] text-[var(--content-text-secondary)] border-[var(--content-border)]'
                         }`} style={{ fontSize: '10px' }}>
                           {alerta.motivo}
@@ -152,7 +147,7 @@ export default function UsuariosDashboard() {
 
           <div className="p-[0.75rem] bg-[var(--content-hover)] border-t border-[var(--content-border)] text-center">
             <button className="label-caps text-[var(--md-sys-color-secondary)] hover:bg-[var(--md-sys-color-secondary)] hover:text-white px-[1rem] py-[0.375rem] shape-md transition-colors">
-              Ver Todos os Alertas de Risco
+              Ver Todos os Alertas
             </button>
           </div>
         </div>
@@ -165,11 +160,7 @@ export default function UsuariosDashboard() {
             <div className="space-y-[0.875rem]">
               {vipTiers.map((tier, i) => (
                 <div key={i} className="flex items-center gap-[0.75rem] group">
-                  <div className={`w-[2.25rem] h-[2.25rem] shape-md flex items-center justify-center flex-shrink-0 transition-all ${
-                    tier.nivel === 4 ? 'bg-[var(--md-sys-color-secondary)] text-white' :
-                    tier.nivel === 3 ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]' :
-                    'bg-[var(--content-hover)] text-[var(--content-text-secondary)]'
-                  } group-hover:scale-110`}>
+                  <div className="w-[2.25rem] h-[2.25rem] shape-md flex items-center justify-center flex-shrink-0 bg-[var(--content-hover)] text-[var(--content-text-secondary)] group-hover:bg-[var(--md-sys-color-secondary)] group-hover:text-white transition-all">
                     <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 1' }}>
                       {tier.icon}
                     </span>
@@ -181,11 +172,7 @@ export default function UsuariosDashboard() {
                     </div>
                     <div className="w-full bg-[var(--content-hover)] h-[0.375rem] shape-sm overflow-hidden">
                       <div
-                        className={`h-full transition-all duration-1000 ${
-                          tier.nivel === 4 ? 'bg-[var(--md-sys-color-secondary)]' :
-                          tier.nivel === 3 ? 'bg-[var(--md-sys-color-primary-container)]' :
-                          'bg-[var(--content-border)]'
-                        }`}
+                        className="h-full bg-[var(--md-sys-color-secondary)] transition-all duration-1000"
                         style={{ width: `${tier.percentual}%` }}
                       ></div>
                     </div>
@@ -199,22 +186,22 @@ export default function UsuariosDashboard() {
           <div className="md3-card p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.6s_forwards]">
             <h4 className="headline-md text-[var(--content-text)] mb-[0.75rem]">Migração de Tiers (24h)</h4>
             <div className="space-y-[0.625rem]">
-              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-green-500">
+              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-[var(--md-sys-color-secondary)]">
                 <div className="flex items-center gap-[0.625rem] min-w-0">
-                  <span className="material-symbols-outlined text-green-500 flex-shrink-0">north_east</span>
+                  <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] flex-shrink-0">north_east</span>
                   <div className="min-w-0">
                     <p className="body-sm font-bold text-[var(--content-text)]">Promovidos para Elite</p>
                     <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>4 jogadores atingiram meta GGR</p>
                   </div>
                 </div>
-                <span className="headline-md font-bold text-green-500 flex-shrink-0 ml-[0.5rem]">+4</span>
+                <span className="headline-md font-bold text-[var(--md-sys-color-secondary)] flex-shrink-0 ml-[0.5rem]">+4</span>
               </div>
 
               <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-red-500">
                 <div className="flex items-center gap-[0.625rem] min-w-0">
                   <span className="material-symbols-outlined text-red-500 flex-shrink-0">south_east</span>
                   <div className="min-w-0">
-                    <p className="body-sm font-bold text-[var(--content-text)]">Risco de Demoted (Black)</p>
+                    <p className="body-sm font-bold text-[var(--content-text)]">Risco de Demoted</p>
                     <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>12 jogadores inativos há &gt;15 dias</p>
                   </div>
                 </div>
@@ -310,17 +297,17 @@ export default function UsuariosDashboard() {
                       <div className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>ID: {user.id}</div>
                     </td>
                     <td className="px-[1rem] py-[0.75rem]">
-                      <span className="bg-[var(--md-sys-color-secondary)] text-white label-caps px-[0.5rem] py-[0.125rem] shape-xs" style={{ fontSize: '10px' }}>
+                      <span className="bg-[var(--content-hover)] text-[var(--content-text-secondary)] label-caps px-[0.5rem] py-[0.125rem] shape-xs border border-[var(--content-border)]" style={{ fontSize: '10px' }}>
                         {user.tier}
                       </span>
                     </td>
                     <td className="px-[1rem] py-[0.75rem] table-data font-bold text-[var(--content-text)]">{user.ggr}</td>
                     <td className="px-[1rem] py-[0.75rem] table-data text-[var(--content-text)]">{user.ticketMedio}</td>
                     <td className="px-[1rem] py-[0.75rem]">
-                      <span className={`body-sm font-bold ${
-                        user.risco === 'saudavel' ? 'text-green-500' :
-                        user.risco === 'critico' ? 'text-red-500' :
-                        'text-amber-500'
+                      <span className={`body-sm ${
+                        user.risco === 'saudavel' ? 'text-[var(--content-text-secondary)]' :
+                        user.risco === 'critico' ? 'text-red-500 font-bold' :
+                        'text-[var(--content-text-secondary)]'
                       }`}>
                         {user.risco === 'saudavel' ? 'Saudável' : user.risco === 'critico' ? 'Alerta Crítico' : 'Suspeito'}
                       </span>
@@ -329,9 +316,7 @@ export default function UsuariosDashboard() {
                       <button className={`label-caps px-[0.75rem] py-[0.25rem] shape-md transition-colors ${
                         user.risco === 'critico'
                           ? 'bg-red-900/20 text-red-500 border border-red-800 hover:bg-red-900/30'
-                          : user.risco === 'suspeito'
-                          ? 'bg-amber-900/20 text-amber-500 border border-amber-800 hover:bg-amber-900/30'
-                          : 'bg-[var(--content-hover)] text-[var(--content-text)] hover:bg-[var(--content-border)]'
+                          : 'bg-[var(--content-hover)] text-[var(--content-text-secondary)] hover:bg-[var(--content-border)]'
                       }`} style={{ fontSize: '11px' }}>
                         {user.risco === 'critico' ? 'Suspender' : user.risco === 'suspeito' ? 'Investigar' : 'Perfil'}
                       </button>
