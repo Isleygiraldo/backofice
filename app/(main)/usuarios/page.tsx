@@ -59,13 +59,15 @@ export default function UsuariosDashboard() {
         ].map((stat, i) => (
           <div
             key={i}
-            className="md3-card p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_forwards] hover:elevation-2 transition-all"
+            className="md3-card p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_forwards] hover:elevation-2 transition-all group"
             style={{ animationDelay: `${stat.delay}ms` }}
           >
             <div className="flex items-start justify-between mb-[0.75rem]">
               <p className="label-caps text-[var(--content-text-secondary)]">{stat.label}</p>
-              <span className={`material-symbols-outlined text-[20px] ${
-                stat.critical ? 'text-red-500' : 'text-[var(--content-text-secondary)]'
+              <span className={`material-symbols-outlined text-[20px] transition-all duration-300 ${
+                stat.critical
+                  ? 'text-red-500 animate-[pulse_2s_ease-in-out_infinite]'
+                  : 'text-[var(--content-text-secondary)] group-hover:text-[var(--md-sys-color-secondary)] group-hover:scale-110 group-hover:rotate-12'
               }`}>
                 {stat.icon}
               </span>
@@ -160,8 +162,8 @@ export default function UsuariosDashboard() {
             <div className="space-y-[0.875rem]">
               {vipTiers.map((tier, i) => (
                 <div key={i} className="flex items-center gap-[0.75rem] group">
-                  <div className="w-[2.25rem] h-[2.25rem] shape-md flex items-center justify-center flex-shrink-0 bg-[var(--content-hover)] text-[var(--content-text-secondary)] group-hover:bg-[var(--md-sys-color-secondary)] group-hover:text-white transition-all">
-                    <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '"FILL" 1' }}>
+                  <div className="w-[2.25rem] h-[2.25rem] shape-md flex items-center justify-center flex-shrink-0 bg-[var(--content-hover)] text-[var(--content-text-secondary)] group-hover:bg-[var(--md-sys-color-secondary)] group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <span className="material-symbols-outlined text-[18px] transition-transform" style={{ fontVariationSettings: '"FILL" 1' }}>
                       {tier.icon}
                     </span>
                   </div>
@@ -186,9 +188,9 @@ export default function UsuariosDashboard() {
           <div className="md3-card p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.6s_forwards]">
             <h4 className="headline-md text-[var(--content-text)] mb-[0.75rem]">Migração de Tiers (24h)</h4>
             <div className="space-y-[0.625rem]">
-              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-[var(--md-sys-color-secondary)]">
+              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-[var(--md-sys-color-secondary)] group hover:elevation-1 transition-all">
                 <div className="flex items-center gap-[0.625rem] min-w-0">
-                  <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] flex-shrink-0">north_east</span>
+                  <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] flex-shrink-0 transition-transform group-hover:scale-125 group-hover:-translate-y-1">north_east</span>
                   <div className="min-w-0">
                     <p className="body-sm font-bold text-[var(--content-text)]">Promovidos para Elite</p>
                     <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>4 jogadores atingiram meta GGR</p>
@@ -197,9 +199,9 @@ export default function UsuariosDashboard() {
                 <span className="headline-md font-bold text-[var(--md-sys-color-secondary)] flex-shrink-0 ml-[0.5rem]">+4</span>
               </div>
 
-              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-red-500">
+              <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-red-500 group hover:elevation-1 transition-all">
                 <div className="flex items-center gap-[0.625rem] min-w-0">
-                  <span className="material-symbols-outlined text-red-500 flex-shrink-0">south_east</span>
+                  <span className="material-symbols-outlined text-red-500 flex-shrink-0 transition-transform group-hover:scale-125 group-hover:translate-y-1">south_east</span>
                   <div className="min-w-0">
                     <p className="body-sm font-bold text-[var(--content-text)]">Risco de Demoted</p>
                     <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>12 jogadores inativos há &gt;15 dias</p>
@@ -267,11 +269,11 @@ export default function UsuariosDashboard() {
             </p>
           </div>
           <div className="flex gap-[0.5rem]">
-            <button className="flex items-center gap-[0.375rem] px-[0.75rem] py-[0.375rem] border border-[var(--content-border)] label-caps shape-md hover:bg-[var(--content-hover)] transition-colors text-[var(--content-text)]">
-              <span className="material-symbols-outlined text-[14px]">filter_list</span> Filtros
+            <button className="flex items-center gap-[0.375rem] px-[0.75rem] py-[0.375rem] border border-[var(--content-border)] label-caps shape-md hover:bg-[var(--content-hover)] transition-all text-[var(--content-text)] group">
+              <span className="material-symbols-outlined text-[14px] transition-transform group-hover:rotate-90">filter_list</span> Filtros
             </button>
-            <button className="md3-button-filled label-caps px-[0.75rem] py-[0.375rem] flex items-center gap-[0.375rem]">
-              <span className="material-symbols-outlined text-[14px]">download</span> CSV
+            <button className="md3-button-filled label-caps px-[0.75rem] py-[0.375rem] flex items-center gap-[0.375rem] group">
+              <span className="material-symbols-outlined text-[14px] transition-transform group-hover:translate-y-1">download</span> CSV
             </button>
           </div>
         </div>
