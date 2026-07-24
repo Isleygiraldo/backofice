@@ -36,7 +36,7 @@ export default function JogosPage() {
       </div>
 
       {/* Filter Section */}
-      <section className="Card p-[0.875rem]">
+      <Card className="p-[0.875rem]">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-[0.75rem] items-end">
           <div className="space-y-[0.25rem]">
             <label className="label-caps text-[var(--content-text-secondary)]">Nome</label>
@@ -108,10 +108,10 @@ export default function JogosPage() {
             <IconButton icon="refresh" />
           </div>
         </div>
-      </section>
+      </Card>
 
       {/* Main Table */}
-      <div className="Card overflow-hidden">
+      <Card className="overflow-hidden">
         <div className="p-[0.625rem] flex items-center justify-between bg-[var(--content-bg)]/50 border-b border-[var(--content-border)]">
           <span className="body-sm text-[var(--content-text-secondary)]">
             Exibindo <span className="font-bold text-[var(--content-text)]">1 - 5</span> de{' '}
@@ -285,7 +285,7 @@ export default function JogosPage() {
           </div>
           <div className="label-caps text-[var(--content-text-secondary)] italic">Page 1 / 140</div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

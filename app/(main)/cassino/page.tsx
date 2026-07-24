@@ -74,7 +74,7 @@ export default function CassinoDashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* Bônus */}
         <Card className="p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-amber-500">
@@ -107,7 +107,7 @@ export default function CassinoDashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* Saúde do Catálogo */}
         <Card className="p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-[var(--md-sys-color-primary)]">
@@ -145,11 +145,11 @@ export default function CassinoDashboard() {
               em manutenção
             </div>
           </div>
-        </div>
+        </Card>
       </section>
 
       {/* Main Chart Area */}
-      <section className="Card p-[1rem] md:p-[1.5rem]">
+      <Card className="p-[1rem] md:p-[1.5rem]">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[1rem] mb-[1.5rem]">
           <div>
             <h3 className="headline-md text-[var(--content-text)]">
@@ -203,7 +203,7 @@ export default function CassinoDashboard() {
           <span>28 OUT</span>
           <span className="hidden md:inline">30 OUT</span>
         </div>
-      </section>
+      </Card>
 
       {/* Rankings Section */}
       <section className="grid grid-cols-1 xl:grid-cols-2 gap-[1rem]">
@@ -264,7 +264,7 @@ export default function CassinoDashboard() {
               </tbody>
             </table>
           </div>
-        </div>
+        </Card>
 
         {/* Top Fornecedores */}
         <Card className="overflow-hidden">
@@ -306,7 +306,7 @@ export default function CassinoDashboard() {
               </tbody>
             </table>
           </div>
-        </div>
+        </Card>
       </section>
 
       {/* Distribution Panel & Risk */}
@@ -336,7 +336,7 @@ export default function CassinoDashboard() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
 
         {/* Freespins */}
         <Card className="p-[1.25rem] md:p-[1.5rem]">
@@ -374,7 +374,7 @@ export default function CassinoDashboard() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
 
         {/* Alertas de Risco */}
         <Card className="p-[1.25rem] md:p-[1.5rem] border border-[var(--content-badge-error-border)]">
@@ -417,7 +417,7 @@ export default function CassinoDashboard() {
               </p>
             </div>
           </div>
-        </div>
+        </Card>
       </section>
     </div>
   );
