@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Button, Input, Card, Tab } from '@/app/_components/ui';
 
 export default function NovoCargo() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('grupos');
   const [nomeCargo, setNomeCargo] = useState('');
   const [descricaoCargo, setDescricaoCargo] = useState('');
@@ -158,10 +161,10 @@ export default function NovoCargo() {
     <div className="p-[1rem] md:p-[1.5rem] space-y-[1rem] md:space-y-[1.5rem] max-w-[1600px] mx-auto">
       {/* Tabs */}
       <div className="flex bg-[var(--content-hover)] shape-lg p-[0.25rem] gap-[0.25rem] opacity-0 animate-[fadeIn_0.4s_ease-out_forwards] overflow-x-auto">
-        <button className={`md3-tab ${activeTab === 'autorizacoes' ? 'active' : ''}`} onClick={() => setActiveTab('autorizacoes')}>Autorizações</button>
-        <button className={`md3-tab ${activeTab === 'grupos' ? 'active' : ''}`} onClick={() => setActiveTab('grupos')}>Grupo de autorizações</button>
-        <button className={`md3-tab ${activeTab === 'otp' ? 'active' : ''}`} onClick={() => setActiveTab('otp')}>Gerenciamento OTP</button>
-        <button className={`md3-tab ${activeTab === 'apikey' ? 'active' : ''}`} onClick={() => setActiveTab('apikey')}>API Key</button>
+        <Tab active={activeTab === 'autorizacoes'} onClick={() => setActiveTab('autorizacoes')}>Autorizações</Tab>
+        <Tab active={activeTab === 'grupos'} onClick={() => setActiveTab('grupos')}>Grupo de autorizações</Tab>
+        <Tab active={activeTab === 'otp'} onClick={() => setActiveTab('otp')}>Gerenciamento OTP</Tab>
+        <Tab active={activeTab === 'apikey'} onClick={() => setActiveTab('apikey')}>API Key</Tab>
       </div>
 
       {/* Header */}
@@ -172,14 +175,13 @@ export default function NovoCargo() {
             Defina o nível de acesso e as ações permitidas para este perfil.
           </p>
         </div>
-        <button className="w-full sm:w-auto md3-button-filled flex items-center justify-center gap-[0.5rem]">
-          <span className="material-symbols-outlined text-[16px]">add_circle</span>
+        <Button variant="filled" icon="add_circle" fullWidth className="sm:w-auto">
           Criar Cargo
-        </button>
+        </Button>
       </div>
 
       {/* Form Card */}
-      <div className="md3-card p-[1.5rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.2s_forwards]">
+      <Card className="p-[1.5rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.2s_forwards]">
         <div className="flex items-center gap-[1rem] mb-[1.5rem]">
           <div className="w-[3rem] h-[3rem] shape-xl bg-[var(--md-sys-color-secondary)]/10 flex items-center justify-center text-[var(--md-sys-color-secondary)] flex-shrink-0">
             <span className="material-symbols-outlined text-[32px]">badge</span>
@@ -192,16 +194,12 @@ export default function NovoCargo() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[1rem]">
-          <div className="space-y-[0.25rem]">
-            <label className="label-caps text-[var(--content-text-secondary)]">Nome do Cargo</label>
-            <input
-              type="text"
-              className="md3-input"
-              placeholder="Ex: Analista de Compliance"
-              value={nomeCargo}
-              onChange={(e) => setNomeCargo(e.target.value)}
-            />
-          </div>
+          <Input
+            label="Nome do Cargo"
+            placeholder="Ex: Analista de Compliance"
+            value={nomeCargo}
+            onChange={(e) => setNomeCargo(e.target.value)}
+          />
           <div className="space-y-[0.25rem]">
             <label className="label-caps text-[var(--content-text-secondary)]">Descrição</label>
             <textarea
@@ -213,12 +211,12 @@ export default function NovoCargo() {
             ></textarea>
           </div>
         </div>
-      </div>
+      </Card>
 
       {/* Permissions Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.3s_forwards]">
         {categorias.map((cat, idx) => (
-          <div key={cat.key} className="md3-card p-[1.5rem] flex flex-col hover:elevation-2 transition-all">
+          <Card key={cat.key} className="p-[1.5rem] flex flex-col hover:elevation-2 transition-all">
             <div className="flex justify-between items-start mb-[1.5rem]">
               <div className="flex items-center gap-[0.75rem]">
                 <div className="w-[2.5rem] h-[2.5rem] shape-md bg-[var(--md-sys-color-secondary)]/10 flex items-center justify-center text-[var(--md-sys-color-secondary)] flex-shrink-0">
@@ -266,7 +264,7 @@ export default function NovoCargo() {
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
         ))}
       </div>
 
