@@ -309,6 +309,30 @@ body {
   color: var(--md-sys-color-secondary);
 }
 
+/* MD3 Component: Tab Button */
+.md3-tab {
+  padding: 0.5rem 1rem;
+  border-radius: var(--md-sys-shape-corner-medium);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: var(--content-text-secondary);
+}
+
+.md3-tab:hover {
+  background-color: var(--content-surface);
+}
+
+.md3-tab.active {
+  background-color: var(--md-sys-color-secondary);
+  color: white;
+}
+
 /* Hide scrollbar but keep functionality */
 .scrollbar-hide {
   -ms-overflow-style: none;

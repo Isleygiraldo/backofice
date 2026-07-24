@@ -164,29 +164,14 @@ export default function JogosAoVivoPage() {
                   </td>
                   <td className="px-[1rem] py-[0.625rem] text-right">
                     <div className="flex justify-end gap-[0.25rem]">
-                      <button
-                        className="p-[0.375rem] hover:bg-[var(--md-sys-color-secondary)]/20 hover:text-[var(--md-sys-color-secondary)] shape-xs transition-all"
-                        title="Monitorar"
-                      >
-                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
-                          tv
-                        </span>
+                      <button className="md3-icon-button" title="Monitorar">
+                        <span className="material-symbols-outlined text-[18px]">tv</span>
                       </button>
-                      <button
-                        className="p-[0.375rem] hover:bg-[var(--md-sys-color-secondary)]/20 hover:text-[var(--md-sys-color-secondary)] shape-xs transition-all"
-                        title="Histórico"
-                      >
-                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
-                          history
-                        </span>
+                      <button className="md3-icon-button" title="Histórico">
+                        <span className="material-symbols-outlined text-[18px]">history</span>
                       </button>
-                      <button
-                        className="p-[0.375rem] hover:bg-[var(--md-sys-color-secondary)]/20 hover:text-[var(--md-sys-color-secondary)] shape-xs transition-all"
-                        title="Configurações"
-                      >
-                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
-                          settings
-                        </span>
+                      <button className="md3-icon-button" title="Configurações">
+                        <span className="material-symbols-outlined text-[18px]">settings</span>
                       </button>
                     </div>
                   </td>

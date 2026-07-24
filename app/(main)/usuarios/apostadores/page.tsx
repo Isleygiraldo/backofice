@@ -136,7 +136,7 @@ export default function ApostadoresPage() {
             <input
               type="text"
               placeholder="Pesquisar..."
-              className="w-full h-[2rem] px-[2rem] shape-md bg-[var(--content-bg)] border border-[var(--content-border)] body-sm text-[var(--content-text)] placeholder:text-[var(--content-text-secondary)] focus:ring-1 focus:ring-[var(--md-sys-color-secondary)]"
+              className="md3-input h-[2rem] pl-[2rem]"
             />
             <span className="material-symbols-outlined absolute left-[0.5rem] top-1/2 -translate-y-1/2 text-[var(--content-text-secondary)] text-[18px]">
               search

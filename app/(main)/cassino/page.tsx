@@ -26,18 +26,10 @@ export default function CassinoDashboard() {
             </span>
           </div>
           <div className="flex bg-[var(--content-hover)] shape-lg p-[0.25rem] gap-[0.25rem]">
-            <button className="px-[0.75rem] md:px-[1rem] py-[0.375rem] label-caps shape-md bg-[var(--md-sys-color-secondary)] text-white">
-              Todos
-            </button>
-            <button className="px-[0.75rem] md:px-[1rem] py-[0.375rem] label-caps shape-md text-[var(--content-text-secondary)] hover:bg-[var(--content-surface)] transition-colors">
-              Jogos
-            </button>
-            <button className="px-[0.75rem] md:px-[1rem] py-[0.375rem] label-caps shape-md text-[var(--content-text-secondary)] hover:bg-[var(--content-surface)] transition-colors">
-              Ao Vivo
-            </button>
-            <button className="px-[0.75rem] md:px-[1rem] py-[0.375rem] label-caps shape-md text-[var(--content-text-secondary)] hover:bg-[var(--content-surface)] transition-colors">
-              Mesas
-            </button>
+            <button className="md3-tab active">Todos</button>
+            <button className="md3-tab">Jogos</button>
+            <button className="md3-tab">Ao Vivo</button>
+            <button className="md3-tab">Mesas</button>
           </div>
         </div>
       </section>
