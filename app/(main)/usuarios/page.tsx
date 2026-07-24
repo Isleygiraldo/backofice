@@ -1,5 +1,7 @@
 'use client';
 
+import { Card } from '@/app/_components/ui';
+
 export default function UsuariosDashboard() {
   const vipStats = {
     totalAtivos: 2714,
@@ -57,9 +59,9 @@ export default function UsuariosDashboard() {
           { label: 'Crescimento High-Tiers', value: `${vipStats.crescimentoHighTier}%`, icon: 'trending_up', trend: 'Novas promoções ativas', delay: 200 },
           { label: 'Churn Rate (VIPs)', value: `${vipStats.churnRate}%`, icon: 'analytics', trend: 'Abaixo da meta de 2.5%', delay: 300 },
         ].map((stat, i) => (
-          <div
+          <Card
             key={i}
-            className="md3-card p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_forwards] hover:elevation-2 transition-all group"
+            className="p-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_forwards] hover:elevation-2 transition-all group"
             style={{ animationDelay: `${stat.delay}ms` }}
           >
             <div className="flex items-start justify-between mb-[0.75rem]">
@@ -78,14 +80,14 @@ export default function UsuariosDashboard() {
             <div className="mt-[0.5rem] body-sm text-[var(--content-text-secondary)]">
               {stat.trend}
             </div>
-          </div>
+          </Card>
         ))}
       </div>
 
       {/* Main Content: Two Columns */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-[1rem] md:gap-[1.5rem]">
         {/* Left: Risk Alerts */}
-        <div className="lg:col-span-7 md3-card overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.4s_forwards]">
+        <Card className="lg:col-span-7 overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.4s_forwards]">
           <div className="p-[1rem] md:p-[1.25rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem] bg-[var(--content-hover)]">
             <div>
               <h4 className="headline-md text-[var(--content-text)]">Alertas de Risco & Segurança</h4>
@@ -157,7 +159,7 @@ export default function UsuariosDashboard() {
         {/* Right: VIP Distribution & Migration */}
         <div className="lg:col-span-5 space-y-[1rem]">
           {/* VIP Tiers */}
-          <div className="md3-card p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.5s_forwards]">
+          <Card className="p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.5s_forwards]">
             <h4 className="headline-md text-[var(--content-text)] mb-[1rem]">Distribuição VIP & Fidelidade</h4>
             <div className="space-y-[0.875rem]">
               {vipTiers.map((tier, i) => (
@@ -182,10 +184,10 @@ export default function UsuariosDashboard() {
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
 
           {/* Tier Migration */}
-          <div className="md3-card p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.6s_forwards]">
+          <Card className="p-[1rem] md:p-[1.25rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.6s_forwards]">
             <h4 className="headline-md text-[var(--content-text)] mb-[0.75rem]">Migração de Tiers (24h)</h4>
             <div className="space-y-[0.625rem]">
               <div className="flex items-center justify-between p-[0.75rem] bg-[var(--content-surface)] shape-md border-l-4 border-l-[var(--md-sys-color-secondary)] group hover:elevation-1 transition-all">
@@ -210,12 +212,12 @@ export default function UsuariosDashboard() {
                 <span className="headline-md font-bold text-red-500 flex-shrink-0 ml-[0.5rem]">12</span>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
-      </div>
+      </Card>
 
       {/* Geographic Concentration */}
-      <div className="md3-card p-[1rem] md:p-[1.5rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.7s_forwards]">
+      <Card className="p-[1rem] md:p-[1.5rem] opacity-0 animate-[slideUp_0.6s_ease-out_0.7s_forwards]">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-[1rem] mb-[1.5rem]">
           <div>
             <h4 className="headline-md text-[var(--content-text)]">Concentração por Localidade (VIPs)</h4>
@@ -257,10 +259,10 @@ export default function UsuariosDashboard() {
             </div>
           ))}
         </div>
-      </div>
+      </Card>
 
       {/* Critical Users Table */}
-      <div className="md3-card overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.8s_forwards]">
+      <Card className="overflow-hidden opacity-0 animate-[slideUp_0.6s_ease-out_0.8s_forwards]">
         <div className="p-[1rem] md:p-[1.25rem] border-b border-[var(--content-border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.75rem]">
           <div>
             <h4 className="headline-md text-[var(--content-text)]">Detalhamento de Usuários Críticos</h4>
@@ -352,7 +354,7 @@ export default function UsuariosDashboard() {
             </button>
           </div>
         </div>
-      </div>
+      </Card>
 
       <style jsx>{`
         @keyframes fadeIn {
