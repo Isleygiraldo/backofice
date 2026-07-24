@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Button, Input, Select, Card, IconButton } from '@/app/_components/ui';
 
 export default function JogosPage() {
   const [filtros, setFiltros] = useState({
@@ -29,14 +30,13 @@ export default function JogosPage() {
             Gerenciamento de todos os jogos do cassino
           </p>
         </div>
-        <button className="md3-button-filled label-caps px-[1rem] py-[0.5rem] flex items-center gap-[0.375rem]">
-          <span className="material-symbols-outlined text-[16px]">add</span>
+        <Button variant="filled" icon="add">
           Novo Jogo
-        </button>
+        </Button>
       </div>
 
       {/* Filter Section */}
-      <section className="md3-card p-[0.875rem]">
+      <section className="Card p-[0.875rem]">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-[0.75rem] items-end">
           <div className="space-y-[0.25rem]">
             <label className="label-caps text-[var(--content-text-secondary)]">Nome</label>
@@ -105,15 +105,13 @@ export default function JogosPage() {
               <span className="material-symbols-outlined text-[14px]">search</span>
               Pesquisar
             </button>
-            <button className="md3-icon-button">
-              <span className="material-symbols-outlined text-[18px]">refresh</span>
-            </button>
+            <IconButton icon="refresh" />
           </div>
         </div>
       </section>
 
       {/* Main Table */}
-      <div className="md3-card overflow-hidden">
+      <div className="Card overflow-hidden">
         <div className="p-[0.625rem] flex items-center justify-between bg-[var(--content-bg)]/50 border-b border-[var(--content-border)]">
           <span className="body-sm text-[var(--content-text-secondary)]">
             Exibindo <span className="font-bold text-[var(--content-text)]">1 - 5</span> de{' '}
@@ -243,15 +241,9 @@ export default function JogosPage() {
                   </td>
                   <td className="px-[1rem] py-[0.625rem] text-right">
                     <div className="flex justify-end gap-[0.125rem]">
-                      <button className="md3-icon-button" title="Visualizar">
-                        <span className="material-symbols-outlined text-[18px]">visibility</span>
-                      </button>
-                      <button className="md3-icon-button" title="Editar">
-                        <span className="material-symbols-outlined text-[18px]">edit</span>
-                      </button>
-                      <button className="md3-icon-button" title="Configurações">
-                        <span className="material-symbols-outlined text-[18px]">settings</span>
-                      </button>
+                      <IconButton icon="visibility" title="Visualizar" />
+                      <IconButton icon="edit" title="Editar" />
+                      <IconButton icon="settings" title="Configurações" />
                     </div>
                   </td>
                 </tr>

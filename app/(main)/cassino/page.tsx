@@ -1,5 +1,7 @@
 'use client';
 
+import { Card, Tab } from '@/app/_components/ui';
+
 export default function CassinoDashboard() {
   return (
     <div className="p-[1rem] md:p-[1.5rem] bg-[var(--content-bg)] flex-1 overflow-y-auto max-w-[1400px] mx-auto space-y-[1rem] md:space-y-[1.5rem]">
@@ -26,10 +28,10 @@ export default function CassinoDashboard() {
             </span>
           </div>
           <div className="flex bg-[var(--content-hover)] shape-lg p-[0.25rem] gap-[0.25rem]">
-            <button className="md3-tab active">Todos</button>
-            <button className="md3-tab">Jogos</button>
-            <button className="md3-tab">Ao Vivo</button>
-            <button className="md3-tab">Mesas</button>
+            <Tab active>Todos</Tab>
+            <Tab>Jogos</Tab>
+            <Tab>Ao Vivo</Tab>
+            <Tab>Mesas</Tab>
           </div>
         </div>
       </section>
@@ -37,7 +39,7 @@ export default function CassinoDashboard() {
       {/* KPI Cards Row */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-[1rem]">
         {/* Valores Reais */}
-        <div className="md3-card p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
+        <Card className="p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-[var(--md-sys-color-secondary)]">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[1rem] flex items-center gap-[0.5rem]">
             <span className="material-symbols-outlined text-[16px]">payments</span>
             Valores Reais
@@ -75,7 +77,7 @@ export default function CassinoDashboard() {
         </div>
 
         {/* Bônus */}
-        <div className="md3-card p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-amber-500">
+        <Card className="p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-amber-500">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[1rem] flex items-center gap-[0.5rem]">
             <span className="material-symbols-outlined text-[16px]">card_giftcard</span>
             Valores de Bônus
@@ -108,7 +110,7 @@ export default function CassinoDashboard() {
         </div>
 
         {/* Saúde do Catálogo */}
-        <div className="md3-card p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-[var(--md-sys-color-primary)]">
+        <Card className="p-[1.25rem] md:p-[1.5rem] border-l-4 border-l-[var(--md-sys-color-primary)]">
           <p className="label-caps text-[var(--content-text-secondary)] mb-[1rem] flex items-center gap-[0.5rem]">
             <span className="material-symbols-outlined text-[16px]">inventory_2</span>
             Saúde do Catálogo
@@ -147,7 +149,7 @@ export default function CassinoDashboard() {
       </section>
 
       {/* Main Chart Area */}
-      <section className="md3-card p-[1rem] md:p-[1.5rem]">
+      <section className="Card p-[1rem] md:p-[1.5rem]">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[1rem] mb-[1.5rem]">
           <div>
             <h3 className="headline-md text-[var(--content-text)]">
@@ -206,7 +208,7 @@ export default function CassinoDashboard() {
       {/* Rankings Section */}
       <section className="grid grid-cols-1 xl:grid-cols-2 gap-[1rem]">
         {/* Top Jogos por GGR */}
-        <div className="md3-card overflow-hidden">
+        <Card className="overflow-hidden">
           <div className="p-[1rem] md:p-[1.5rem] border-b border-[var(--content-border)] flex justify-between items-center">
             <h3 className="headline-md text-[var(--content-text)]">
               Top Jogos por GGR
@@ -265,7 +267,7 @@ export default function CassinoDashboard() {
         </div>
 
         {/* Top Fornecedores */}
-        <div className="md3-card overflow-hidden">
+        <Card className="overflow-hidden">
           <div className="p-[1rem] md:p-[1.5rem] border-b border-[var(--content-border)] flex justify-between items-center">
             <h3 className="headline-md text-[var(--content-text)]">
               Top Fornecedores por GGR
@@ -310,7 +312,7 @@ export default function CassinoDashboard() {
       {/* Distribution Panel & Risk */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1rem]">
         {/* GGR by Category */}
-        <div className="md3-card p-[1.25rem] md:p-[1.5rem]">
+        <Card className="p-[1.25rem] md:p-[1.5rem]">
           <h3 className="label-caps mb-[1.5rem] text-[var(--content-text-secondary)]">
             Distribuição por Categoria
           </h3>
@@ -337,7 +339,7 @@ export default function CassinoDashboard() {
         </div>
 
         {/* Freespins */}
-        <div className="md3-card p-[1.25rem] md:p-[1.5rem]">
+        <Card className="p-[1.25rem] md:p-[1.5rem]">
           <h3 className="label-caps mb-[1.5rem] text-[var(--content-text-secondary)]">
             Top Recebedores Freespins
           </h3>
@@ -375,7 +377,7 @@ export default function CassinoDashboard() {
         </div>
 
         {/* Alertas de Risco */}
-        <div className="md3-card p-[1.25rem] md:p-[1.5rem] border border-[var(--content-badge-error-border)]">
+        <Card className="p-[1.25rem] md:p-[1.5rem] border border-[var(--content-badge-error-border)]">
           <div className="flex items-center gap-[0.5rem] mb-[1.5rem]">
             <span className="material-symbols-outlined text-[var(--content-badge-error-text)]">
               warning
