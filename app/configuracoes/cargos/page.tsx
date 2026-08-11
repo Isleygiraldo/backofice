@@ -2,13 +2,12 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Input, Card, IconButton, Tab } from '@/app/_components/ui';
+import { Button, Input, Card, IconButton } from '@/app/_components/ui';
 import type { Cargo } from '@/app/_lib/types';
 
 export default function CargosPage() {
   const router = useRouter();
   const [filtroNome, setFiltroNome] = useState('');
-  const [activeTab, setActiveTab] = useState('grupos');
 
   const cargos: Cargo[] = [
     {
@@ -57,24 +56,8 @@ export default function CargosPage() {
 
   return (
     <div className="p-[1rem] md:p-[1.5rem] space-y-[1rem] md:space-y-[1.5rem] max-w-[1600px] mx-auto">
-      {/* Tabs */}
-      <div className="flex bg-[var(--content-hover)] shape-lg p-[0.25rem] gap-[0.25rem] opacity-0 animate-[fadeIn_0.4s_ease-out_forwards] overflow-x-auto">
-        <Tab active={activeTab === 'autorizacoes'} onClick={() => setActiveTab('autorizacoes')}>
-          Autorizações
-        </Tab>
-        <Tab active={activeTab === 'grupos'} onClick={() => setActiveTab('grupos')}>
-          Grupo de autorizações
-        </Tab>
-        <Tab active={activeTab === 'otp'} onClick={() => setActiveTab('otp')}>
-          Gerenciamento OTP
-        </Tab>
-        <Tab active={activeTab === 'apikey'} onClick={() => setActiveTab('apikey')}>
-          API Key
-        </Tab>
-      </div>
-
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-[0.75rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.1s_forwards]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-[0.75rem]">
         <div>
           <p className="body-md text-[var(--content-text-secondary)]">
             Gerenciamento de permissões e hierarquia do sistema
@@ -97,7 +80,7 @@ export default function CargosPage() {
       </div>
 
       {/* Filtros */}
-      <Card className="p-[1rem] flex flex-col sm:flex-row items-stretch sm:items-end gap-[0.75rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.2s_forwards]">
+      <Card className="p-[1rem] flex flex-col sm:flex-row items-stretch sm:items-end gap-[0.75rem]">
         <Input
           label="Filtrar por nome"
           placeholder="Ex: Administrador..."
@@ -109,7 +92,7 @@ export default function CargosPage() {
       </Card>
 
       {/* Tabela */}
-      <Card className="overflow-hidden opacity-0 animate-[slideUp_0.5s_ease-out_0.3s_forwards]">
+      <Card className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse min-w-[800px]">
             <thead>
@@ -180,7 +163,7 @@ export default function CargosPage() {
       </Card>
 
       {/* Info Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[1rem] opacity-0 animate-[slideUp_0.5s_ease-out_0.4s_forwards]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[1rem]">
         {/* Alert Card */}
         <div className="lg:col-span-2 bg-[var(--md-sys-color-secondary)] text-white p-[1.5rem] shape-xl relative overflow-hidden">
           <div className="relative z-10">
@@ -227,23 +210,6 @@ export default function CargosPage() {
           </div>
         </Card>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }
