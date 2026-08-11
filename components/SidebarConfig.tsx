@@ -87,10 +87,7 @@ const configSections: ConfigSection[] = [
         icon: 'ti-shield-lock',
         label: 'Segurança',
         children: [
-          { label: 'Login', href: '/configuracoes/seguranca' },
-          { label: 'Cadastro', href: '/configuracoes/seguranca/cadastro' },
-          { label: 'GSE', href: '/configuracoes/seguranca/gse' },
-          { label: 'KYC', href: '/configuracoes/seguranca/kyc' },
+          { label: 'Segurança', href: '/configuracoes/seguranca' },
         ],
       },
       {
