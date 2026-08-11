@@ -8,30 +8,46 @@ export default function Topbar() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="h-[46px] bg-[var(--md-sys-color-surface-container)] border-b border-[var(--md-sys-color-outline-variant)] flex items-center px-4 md:px-6 gap-2.5">
+    <div className="h-14 bg-[var(--content-surface)] border-b border-[var(--content-border)] flex items-center px-6 gap-4">
       <button
         onClick={toggleSidebar}
-        className="md:hidden p-1.5 rounded-md bg-[var(--md-sys-color-surface-container)] border border-[var(--md-sys-color-outline-variant)] text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.1)] hover:text-[var(--md-sys-color-on-surface)] transition-colors"
+        className="md:hidden p-2 rounded-lg hover:bg-[var(--content-hover)] transition-colors"
         aria-label="Menu"
       >
-        <i className="ti ti-menu-2 text-xl" />
+        <i className="ti ti-menu-2 text-xl text-[var(--content-text)]" />
       </button>
 
-      <div className="flex items-center gap-1.5 text-xs md:text-xs text-[var(--md-sys-color-on-surface-variant)] min-w-0 overflow-hidden">
-        <i className="ti ti-home text-[13px]" />
-        <span className="flex-shrink-0">›</span>
-        <span className="text-[var(--md-sys-color-on-surface)] truncate">Dashboard</span>
+      <div className="text-xl font-bold" style={{ color: '#6f5fea' }}>
+        PIX365
       </div>
 
-      {/* Theme toggle */}
-      <button
-        onClick={toggleTheme}
-        className="ml-auto p-1.5 rounded-full hover:bg-[rgba(202,196,208,0.08)] transition-colors"
-        aria-label={`Mudar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
-        title={`Tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
-      >
-        <i className={`ti ${theme === 'dark' ? 'ti-sun' : 'ti-moon'} text-lg text-[var(--md-sys-color-on-surface-variant)]`} />
-      </button>
+      <div className="ml-auto flex items-center gap-3">
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-lg hover:bg-[var(--content-hover)] transition-colors"
+          aria-label="Theme"
+        >
+          <i className={`ti ${theme === 'dark' ? 'ti-sun' : 'ti-moon'} text-xl text-[var(--content-text-secondary)]`} />
+        </button>
+
+        <button className="p-2 rounded-lg hover:bg-[var(--content-hover)] transition-colors relative">
+          <i className="ti ti-activity text-xl text-[var(--content-text-secondary)]" />
+        </button>
+
+        <button className="p-2 rounded-lg hover:bg-[var(--content-hover)] transition-colors relative">
+          <i className="ti ti-bell text-xl text-[var(--content-text-secondary)]" />
+        </button>
+
+        <div className="flex items-center gap-2 pl-3 border-l border-[var(--content-border)]">
+          <div className="w-8 h-8 rounded-full bg-[#6f5fea] flex items-center justify-center text-white text-sm font-medium">
+            DA
+          </div>
+          <div className="hidden md:block">
+            <div className="text-sm font-medium text-[var(--content-text)]">Davi</div>
+            <div className="text-xs text-[var(--content-text-secondary)]">Administrador</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

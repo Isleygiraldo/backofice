@@ -14,6 +14,7 @@ interface ConfigItem {
   icon: string;
   label: string;
   children: SubItem[];
+  admin?: boolean;
 }
 
 interface ConfigSection {
@@ -117,6 +118,15 @@ const configSections: ConfigSection[] = [
         children: [
           { label: 'Cargos', href: '/configuracoes/cargos' },
         ],
+        admin: true,
+      },
+      {
+        icon: 'ti-users',
+        label: 'Grupos',
+        children: [
+          { label: 'Grupos', href: '/usuarios/grupos' },
+        ],
+        admin: true,
       },
       {
         icon: 'ti-user-check',
@@ -124,6 +134,7 @@ const configSections: ConfigSection[] = [
         children: [
           { label: 'Operadores', href: '/configuracoes/operadores' },
         ],
+        admin: true,
       },
       {
         icon: 'ti-key',
@@ -131,6 +142,7 @@ const configSections: ConfigSection[] = [
         children: [
           { label: 'Autorizações', href: '/configuracoes/autorizacoes' },
         ],
+        admin: true,
       },
       {
         icon: 'ti-ban',
@@ -138,6 +150,7 @@ const configSections: ConfigSection[] = [
         children: [
           { label: 'Bloqueios', href: '/configuracoes/bloqueios' },
         ],
+        admin: true,
       },
     ],
   },
@@ -146,18 +159,14 @@ const configSections: ConfigSection[] = [
 export default function SidebarConfig() {
   const { isOpen, closeSidebar } = useSidebar();
   const pathname = usePathname();
-  const [openAccordions, setOpenAccordions] = useState<string[]>([]);
-  const [tabletActiveItem, setTabletActiveItem] = useState<ConfigItem | null>(null);
+  const [activePanel, setActivePanel] = useState<ConfigItem | null>(null);
 
-  const toggleAccordion = (label: string) => {
-    setOpenAccordions(prev =>
-      prev.includes(label) ? prev.filter(l => l !== label) : [...prev, label]
-    );
-  };
-
-  const handleTabletClick = (item: ConfigItem) => {
+  const handleItemClick = (item: ConfigItem) => {
     if (item.children.length > 1) {
-      setTabletActiveItem(tabletActiveItem?.label === item.label ? null : item);
+      setActivePanel(activePanel?.label === item.label ? null : item);
+    } else {
+      setActivePanel(null);
+      closeSidebar();
     }
   };
 
@@ -165,9 +174,7 @@ export default function SidebarConfig() {
     return item.children.some(child => pathname === child.href);
   };
 
-  const isExpanded = (item: ConfigItem) => {
-    return openAccordions.includes(item.label) || isItemActive(item);
-  };
+  const allItems = configSections.flatMap(section => section.items);
 
   return (
     <>
@@ -179,168 +186,128 @@ export default function SidebarConfig() {
         />
       )}
 
-      {/* Sidebar Configurações */}
+      {/* Sidebar principal - só ícones + label */}
       <nav
         className={`
           fixed md:sticky top-0 left-0 h-screen
-          w-[210px] bg-[var(--md-sys-color-surface)]
+          w-[75px] bg-[#1D1B20]
           flex flex-col overflow-y-auto overflow-x-hidden
           transition-all duration-200 ease-in-out
-          shadow-[1px_0_0_var(--md-sys-color-outline-variant)]
+          border-r border-[#2A2830]
           z-[100]
           ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-          md:w-14 lg:w-[210px]
         `}
       >
-        {/* Logo */}
-        <div className="px-4 py-5 border-b border-[var(--md-sys-color-outline-variant)] md:flex md:justify-center lg:block">
-          <div className="text-[15px] md:text-sm font-bold text-[var(--md-sys-color-primary)] tracking-tight">
-            BPX
-          </div>
-          <div className="text-[9px] text-[var(--md-sys-color-on-surface-variant)] uppercase tracking-[1.2px] mt-1 md:hidden lg:block">
-            Pix365 · Backoffice
-          </div>
+        {/* Voltar */}
+        <div className="w-full px-2 py-4 border-b border-[#2A2830]">
+          <Link
+            href="/"
+            onClick={() => {
+              setActivePanel(null);
+              closeSidebar();
+            }}
+            className="flex flex-col items-center gap-1 py-3 rounded-lg transition-all text-[#8B8792] hover:bg-[#252329] hover:text-white"
+          >
+            <i className="ti ti-arrow-left text-2xl" />
+            <span className="text-[9px] text-center leading-tight">Voltar</span>
+          </Link>
         </div>
 
-        {/* Back button */}
-        <Link
-          href="/"
-          onClick={closeSidebar}
-          className="flex items-center gap-2.5 px-4 h-9 border-b border-[var(--md-sys-color-outline-variant)] mb-2 text-xs font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all md:justify-center lg:justify-start"
-        >
-          <i className="ti ti-arrow-left text-base flex-shrink-0" />
-          <span className="md:hidden lg:inline">Backoffice</span>
-        </Link>
+        <div className="flex-1 flex flex-col items-center py-4 gap-2">
+          {allItems.map((item) => {
+            const hasMultiple = item.children.length > 1;
+            const singleHref = item.children.length === 1 ? item.children[0].href : null;
 
-        {/* Config sections with accordion */}
-        {configSections.map((section) => (
-          <div key={section.title} className="py-1">
-            <div className="text-[9px] font-semibold text-[var(--md-sys-color-on-surface-variant)] uppercase tracking-[0.8px] px-7 py-2 md:h-0 md:opacity-0 md:overflow-hidden lg:h-auto lg:opacity-100">
-              {section.title}
-            </div>
-            {section.items.map((item) => {
-              const isActive = isItemActive(item);
-              const hasMultipleChildren = item.children.length > 1;
-              const expanded = isExpanded(item);
-
-              return (
-                <div key={item.label}>
-                  {hasMultipleChildren ? (
-                    <div className="relative">
-                      <div className="group/parent">
-                        {/* Accordion header */}
-                        <button
-                          onClick={() => {
-                            toggleAccordion(item.label);
-                            handleTabletClick(item);
-                          }}
-                          className={`w-full flex items-center gap-2.5 h-9 my-0.5 rounded-full text-xs font-medium transition-all relative
-                            px-3 mx-2 md:w-10 md:h-10 md:mx-auto md:px-0 lg:w-auto lg:mx-2 lg:px-3
-                            md:justify-center lg:justify-start
-                            ${isActive || tabletActiveItem?.label === item.label
-                              ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]'
-                              : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
-                          }`}
-                        >
-                          <i className={`ti ${item.icon} text-base flex-shrink-0`} />
-                          <span className="md:hidden lg:inline flex-1 text-left">{item.label}</span>
-                          <i className={`ti ti-chevron-down text-xs transition-transform md:hidden lg:inline ${expanded ? 'rotate-180' : ''}`} />
-                        </button>
-                      </div>
-
-                      {/* Accordion content mobile + desktop */}
-                      {expanded && (
-                        <div className="ml-7 mr-2 border-l border-[var(--md-sys-color-outline-variant)] pl-2 my-1 md:hidden lg:block">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              onClick={closeSidebar}
-                              className={`flex items-center h-7 px-2 my-0.5 rounded-full text-xs transition-all ${
-                                pathname === child.href
-                                  ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] font-medium'
-                                  : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
-                              }`}
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    /* Link direto quando tem só 1 filho */
-                    <Link
-                      href={item.children[0].href}
-                      onClick={closeSidebar}
-                      className={`group flex items-center gap-2.5 h-9 my-0.5 rounded-full text-xs font-medium transition-all relative
-                        px-3 mx-2 md:w-10 md:h-10 md:mx-auto md:px-0 lg:w-auto lg:mx-2 lg:px-3
-                        md:justify-center lg:justify-start
-                        ${pathname === item.children[0].href
-                          ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]'
-                          : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
-                      }`}
-                    >
-                      <i className={`ti ${item.icon} text-base flex-shrink-0`} />
-                      <span className="md:hidden lg:inline">{item.label}</span>
-
-                      {/* Tooltip tablet */}
-                      <span className="hidden md:block lg:hidden absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface)] text-xs px-2.5 py-1.5 rounded-md border border-[var(--md-sys-color-outline-variant)] whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                        {item.label}
+            return (
+              <div key={item.label} className="w-full px-2">
+                {hasMultiple ? (
+                  <button
+                    onClick={() => handleItemClick(item)}
+                    className={`w-full flex flex-col items-center gap-1 py-3 rounded-lg transition-all relative ${
+                      activePanel?.label === item.label || isItemActive(item)
+                        ? 'bg-[#2A2830] text-white'
+                        : 'text-[#8B8792] hover:bg-[#252329] hover:text-white'
+                    }`}
+                  >
+                    <i className={`ti ${item.icon} text-2xl`} />
+                    <span className="text-[9px] text-center leading-tight px-1">{item.label}</span>
+                    {item.admin && (
+                      <span className="absolute -top-1 -right-1 bg-[#6f5fea] text-white text-[7px] px-1 py-0.5 rounded uppercase font-bold">
+                        ADM
                       </span>
-                    </Link>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        ))}
+                    )}
+                  </button>
+                ) : (
+                  <Link
+                    href={singleHref!}
+                    onClick={() => {
+                      setActivePanel(null);
+                      closeSidebar();
+                    }}
+                    className={`flex flex-col items-center gap-1 py-3 rounded-lg transition-all relative ${
+                      pathname === singleHref
+                        ? 'bg-[#2A2830] text-white'
+                        : 'text-[#8B8792] hover:bg-[#252329] hover:text-white'
+                    }`}
+                  >
+                    <i className={`ti ${item.icon} text-2xl`} />
+                    <span className="text-[9px] text-center leading-tight px-1">{item.label}</span>
+                    {item.admin && (
+                      <span className="absolute -top-1 -right-1 bg-[#6f5fea] text-white text-[7px] px-1 py-0.5 rounded uppercase font-bold">
+                        ADM
+                      </span>
+                    )}
+                  </Link>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </nav>
 
-      {/* Secondary sidebar tablet - subitens */}
-      {tabletActiveItem && (
+      {/* Painel lateral com subitens */}
+      {activePanel && activePanel.children.length > 1 && (
         <>
-          {/* Overlay para fechar */}
           <div
-            className="hidden md:block lg:hidden fixed inset-0 z-[98]"
-            onClick={() => setTabletActiveItem(null)}
+            className="fixed inset-0 z-[98]"
+            onClick={() => setActivePanel(null)}
           />
-
-          {/* Sidebar secundária */}
-          <nav className="hidden md:block lg:hidden fixed left-14 top-0 h-screen w-[200px] bg-[var(--md-sys-color-surface-container)] border-r border-[var(--md-sys-color-outline-variant)] shadow-lg z-[99] overflow-y-auto py-2">
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--md-sys-color-outline-variant)] mb-2">
-              <div className="flex items-center gap-2">
-                <i className={`ti ${tabletActiveItem.icon} text-base text-[var(--md-sys-color-primary)]`} />
-                <span className="text-sm font-medium text-[var(--md-sys-color-on-surface)]">{tabletActiveItem.label}</span>
+          <div className="fixed left-[75px] top-0 h-screen w-[240px] bg-[var(--content-surface)] border-r border-[var(--content-border)] shadow-xl z-[99] overflow-y-auto">
+            <div className="p-4 border-b border-[var(--content-border)] flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <i className={`ti ${activePanel.icon} text-xl`} style={{ color: '#6f5fea' }} />
+                <span className="font-medium text-[var(--content-text)] uppercase text-xs tracking-wide">
+                  {activePanel.label}
+                </span>
               </div>
               <button
-                onClick={() => setTabletActiveItem(null)}
-                className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-[rgba(202,196,208,0.08)] transition-colors"
+                onClick={() => setActivePanel(null)}
+                className="p-1 hover:bg-[var(--content-hover)] rounded transition-colors"
               >
-                <i className="ti ti-x text-sm text-[var(--md-sys-color-on-surface-variant)]" />
+                <i className="ti ti-chevron-left text-lg text-[var(--content-text-secondary)]" />
               </button>
             </div>
-
-            {/* Lista de subitens */}
-            {tabletActiveItem.children?.map(child => (
-              <Link
-                key={child.href}
-                href={child.href}
-                onClick={() => {
-                  setTabletActiveItem(null);
-                  closeSidebar();
-                }}
-                className={`flex items-center h-9 px-4 my-0.5 text-xs transition-all ${
-                  pathname === child.href
-                    ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] font-medium'
-                    : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
-                }`}
-              >
-                {child.label}
-              </Link>
-            ))}
-          </nav>
+            <div className="p-3 space-y-1">
+              {activePanel.children.map(child => (
+                <Link
+                  key={child.href}
+                  href={child.href}
+                  onClick={() => {
+                    setActivePanel(null);
+                    closeSidebar();
+                  }}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
+                    pathname === child.href
+                      ? 'bg-[#EEE9F6] text-[#6f5fea] font-medium'
+                      : 'text-[var(--content-text)] hover:bg-[var(--content-hover)]'
+                  }`}
+                >
+                  <i className={`ti ${pathname === child.href ? 'ti-circle-filled' : 'ti-file-text'} text-base`} />
+                  {child.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </>
       )}
     </>

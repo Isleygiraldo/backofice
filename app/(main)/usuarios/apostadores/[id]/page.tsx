@@ -51,9 +51,9 @@ export default function PerfilApostadorPage() {
           className="p-[1rem] md:p-[1.5rem] flex flex-col sm:flex-row items-start sm:items-center gap-[1rem] sm:gap-[1.5rem] cursor-pointer hover:bg-[var(--content-hover)] transition-colors"
           onClick={() => setDetailsExpanded(!detailsExpanded)}
         >
-          <div className="w-[4rem] h-[4rem] md:w-[5rem] md:h-[5rem] bg-[var(--md-sys-color-secondary)]/10 rounded-full flex items-center justify-center border-2 border-[var(--content-border)] flex-shrink-0">
-            <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[32px] md:text-[40px]" style={{ fontVariationSettings: '"FILL" 1' }}>
-              person
+          <div className="w-[4rem] h-[4rem] md:w-[5rem] md:h-[5rem] bg-[#6f5fea] rounded-full flex items-center justify-center flex-shrink-0">
+            <span className="text-white text-2xl md:text-3xl font-bold">
+              {apostador.nome.split(' ').map(n => n[0]).join('').slice(0, 2)}
             </span>
           </div>
 

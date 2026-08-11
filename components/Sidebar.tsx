@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useSidebar } from './SidebarContext';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import React from 'react';
 
 interface SubItem {
   label: string;
@@ -61,7 +62,6 @@ const navSections: NavSection[] = [
           { label: 'Dashboard', href: '/usuarios' },
           { label: 'Apostadores', href: '/usuarios/apostadores' },
           { label: 'Perfil', href: '/usuarios/perfil' },
-          { label: 'Grupos', href: '/usuarios/grupos' },
         ]
       },
       { icon: 'ti-affiliate', label: 'Afiliados', href: '/afiliados' },
@@ -107,22 +107,17 @@ const navSections: NavSection[] = [
   },
 ];
 
-
 export default function Sidebar() {
   const { isOpen, closeSidebar } = useSidebar();
   const pathname = usePathname();
-  const [openAccordions, setOpenAccordions] = useState<string[]>([]);
-  const [tabletActiveItem, setTabletActiveItem] = useState<NavItem | null>(null);
+  const [activePanel, setActivePanel] = useState<NavItem | null>(null);
 
-  const toggleAccordion = (label: string) => {
-    setOpenAccordions(prev =>
-      prev.includes(label) ? prev.filter(l => l !== label) : [...prev, label]
-    );
-  };
-
-  const handleTabletClick = (item: NavItem) => {
+  const handleItemClick = (item: NavItem) => {
     if (item.children) {
-      setTabletActiveItem(tabletActiveItem?.label === item.label ? null : item);
+      setActivePanel(item);
+    } else {
+      setActivePanel(null);
+      closeSidebar();
     }
   };
 
@@ -132,12 +127,15 @@ export default function Sidebar() {
     return false;
   };
 
-  const isExpanded = (item: NavItem) => {
-    if (!item.children) return false;
-    return openAccordions.includes(item.label) || isItemActive(item);
-  };
+  // Mantém o painel aberto se a rota atual pertence a um item com children
+  React.useEffect(() => {
+    const currentItem = allItems.find(item => isItemActive(item));
+    if (currentItem && currentItem.children) {
+      setActivePanel(currentItem);
+    }
+  }, [pathname]);
 
-  const isConfigActive = () => pathname.startsWith('/configuracoes');
+  const allItems = navSections.flatMap(section => section.items);
 
   return (
     <>
@@ -149,176 +147,125 @@ export default function Sidebar() {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar principal - só ícones + label */}
       <nav
         className={`
           fixed md:sticky top-0 left-0 h-screen
-          w-[210px] bg-[var(--md-sys-color-surface)]
+          w-[75px] bg-[#1D1B20]
           flex flex-col overflow-y-auto overflow-x-hidden
           transition-all duration-200 ease-in-out
-          shadow-[1px_0_0_var(--md-sys-color-outline-variant)]
+          border-r border-[#2A2830]
           z-[100]
           ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-          md:w-14 lg:w-[210px]
         `}
       >
-        {/* Logo */}
-        <div className="px-4 py-5 border-b border-[var(--md-sys-color-outline-variant)] md:flex md:justify-center lg:block">
-          <div className="text-[15px] md:text-sm font-bold text-[var(--md-sys-color-primary)] tracking-tight">
-            BPX
-          </div>
-          <div className="text-[9px] text-[var(--md-sys-color-on-surface-variant)] uppercase tracking-[1.2px] mt-1 md:hidden lg:block">
-            Pix365 · Backoffice
-          </div>
-        </div>
-
-        {/* Nav sections */}
-        {navSections.map((section) => (
-          <div key={section.title} className="py-3 md:py-2">
-            <div className="text-[9px] font-semibold text-[var(--md-sys-color-on-surface-variant)] uppercase tracking-[0.8px] px-7 pb-1 md:h-0 md:opacity-0 md:overflow-hidden lg:h-auto lg:opacity-100">
-              {section.title}
-            </div>
-            {section.items.map((item) => (
-              <div key={item.label}>
-                {/* Item com ou sem children */}
-                {item.children ? (
-                  <div className="relative">
-                    {/* Parent accordion */}
-                    <div className="group/parent">
-                      <button
-                        onClick={() => {
-                          toggleAccordion(item.label);
-                          handleTabletClick(item);
-                        }}
-                        className={`w-full flex items-center gap-2.5 h-9 my-0.5 rounded-full text-xs font-medium transition-all relative
-                          px-3 mx-2 md:w-10 md:h-10 md:mx-auto md:px-0 lg:w-auto lg:mx-2 lg:px-3
-                          md:justify-center lg:justify-start
-                          ${isItemActive(item) || tabletActiveItem?.label === item.label
-                            ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]'
-                            : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
-                        }`}
-                      >
-                        <i className={`ti ${item.icon} text-base flex-shrink-0`} />
-                        <span className="md:hidden lg:inline flex-1 text-left">{item.label}</span>
-                        <i className={`ti ti-chevron-down text-xs transition-transform md:hidden lg:inline ${isExpanded(item) ? 'rotate-180' : ''}`} />
-                      </button>
-                    </div>
-
-                    {/* Accordion body mobile + desktop */}
-                    {isExpanded(item) && (
-                      <div className="ml-7 mr-2 border-l border-[var(--md-sys-color-outline-variant)] pl-2 my-1 md:hidden lg:block">
-                        {item.children.map(child => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={closeSidebar}
-                            className={`flex items-center h-7 px-2 my-0.5 rounded-full text-xs transition-all ${
-                              pathname === child.href
-                                ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] font-medium'
-                                : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href!}
-                    onClick={closeSidebar}
-                    className={`group flex items-center gap-2.5 h-9 my-0.5 rounded-full text-xs font-medium transition-all relative
-                      px-3 mx-2 md:w-10 md:h-10 md:mx-auto md:px-0 lg:w-auto lg:mx-2 lg:px-3
-                      md:justify-center lg:justify-start
-                      ${pathname === item.href
-                        ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]'
-                        : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
-                    }`}
-                  >
-                    <i className={`ti ${item.icon} text-base flex-shrink-0`} />
-                    <span className="md:hidden lg:inline">{item.label}</span>
-
-                    {/* Tooltip tablet */}
-                    <span className="hidden md:block lg:hidden absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface)] text-xs px-2.5 py-1.5 rounded-md border border-[var(--md-sys-color-outline-variant)] whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                      {item.label}
-                    </span>
-                  </Link>
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
-
-        {/* Bottom config - link simples para página separada */}
-        <div className="mt-auto pb-2">
-          <div className="h-px bg-[var(--md-sys-color-outline-variant)] mx-4 my-2 md:mx-2" />
-
+        {/* Início */}
+        <div className="w-full px-2 py-4 border-b border-[#2A2830]">
           <Link
-            href="/configuracoes/plataforma"
-            onClick={closeSidebar}
-            className={`group flex items-center gap-2.5 px-3 h-9 mx-2 my-0.5 rounded-full text-xs font-medium transition-all md:justify-center md:px-0 lg:justify-start lg:px-3 relative ${
-              isConfigActive()
-                ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]'
-                : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
+            href="/"
+            onClick={() => {
+              setActivePanel(null);
+              closeSidebar();
+            }}
+            className={`flex flex-col items-center gap-1 py-3 rounded-lg transition-all ${
+              pathname === '/'
+                ? 'bg-[#2A2830] text-white'
+                : 'text-[#8B8792] hover:bg-[#252329] hover:text-white'
             }`}
           >
-            <i className="ti ti-settings text-base flex-shrink-0" />
-            <span className="md:hidden lg:inline">Configurações</span>
+            <i className="ti ti-home text-2xl" />
+            <span className="text-[9px] text-center leading-tight">Início</span>
+          </Link>
+        </div>
 
-            {/* Tooltip tablet */}
-            <span className="hidden md:block lg:hidden absolute left-14 bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface)] text-xs px-2.5 py-1.5 rounded-md border border-[var(--md-sys-color-outline-variant)] whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50">
-              Configurações
-            </span>
+        <div className="flex-1 flex flex-col items-center py-4 gap-2">
+          {allItems.map((item) => (
+            <div key={item.label} className="w-full px-2">
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  onClick={() => handleItemClick(item)}
+                  className={`flex flex-col items-center gap-1 py-3 rounded-lg transition-all ${
+                    pathname === item.href
+                      ? 'bg-[#2A2830] text-white'
+                      : 'text-[#8B8792] hover:bg-[#252329] hover:text-white'
+                  }`}
+                >
+                  <i className={`ti ${item.icon} text-2xl`} />
+                  <span className="text-[9px] text-center leading-tight">{item.label}</span>
+                </Link>
+              ) : (
+                <button
+                  onClick={() => handleItemClick(item)}
+                  className={`w-full flex flex-col items-center gap-1 py-3 rounded-lg transition-all ${
+                    activePanel?.label === item.label || isItemActive(item)
+                      ? 'bg-[#2A2830] text-white'
+                      : 'text-[#8B8792] hover:bg-[#252329] hover:text-white'
+                  }`}
+                >
+                  <i className={`ti ${item.icon} text-2xl`} />
+                  <span className="text-[9px] text-center leading-tight px-1">{item.label}</span>
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Configurações */}
+        <div className="w-full px-2 py-3 border-t border-[#2A2830]">
+          <Link
+            href="/configuracoes/plataforma"
+            onClick={() => {
+              setActivePanel(null);
+              closeSidebar();
+            }}
+            className={`flex flex-col items-center gap-1 py-3 rounded-lg transition-all ${
+              pathname.startsWith('/configuracoes')
+                ? 'bg-[#2A2830] text-white'
+                : 'text-[#8B8792] hover:bg-[#252329] hover:text-white'
+            }`}
+          >
+            <i className="ti ti-settings text-2xl" />
+            <span className="text-[9px] text-center leading-tight">Config</span>
           </Link>
         </div>
       </nav>
 
-      {/* Secondary sidebar tablet - subitens */}
-      {tabletActiveItem && (
-        <>
-          {/* Overlay para fechar */}
-          <div
-            className="hidden md:block lg:hidden fixed inset-0 z-[98]"
-            onClick={() => setTabletActiveItem(null)}
-          />
-
-          {/* Sidebar secundária */}
-          <nav className="hidden md:block lg:hidden fixed left-14 top-0 h-screen w-[200px] bg-[var(--md-sys-color-surface-container)] border-r border-[var(--md-sys-color-outline-variant)] shadow-lg z-[99] overflow-y-auto py-2">
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--md-sys-color-outline-variant)] mb-2">
-              <div className="flex items-center gap-2">
-                <i className={`ti ${tabletActiveItem.icon} text-base text-[var(--md-sys-color-primary)]`} />
-                <span className="text-sm font-medium text-[var(--md-sys-color-on-surface)]">{tabletActiveItem.label}</span>
-              </div>
-              <button
-                onClick={() => setTabletActiveItem(null)}
-                className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-[rgba(202,196,208,0.08)] transition-colors"
-              >
-                <i className="ti ti-x text-sm text-[var(--md-sys-color-on-surface-variant)]" />
-              </button>
+      {/* Painel lateral com subitens */}
+      {activePanel && activePanel.children && (
+        <div className="sticky top-0 left-0 h-screen w-[240px] bg-[var(--content-surface)] border-r border-[var(--content-border)] shadow-xl overflow-y-auto flex-shrink-0">
+          <div className="p-4 border-b border-[var(--content-border)] flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <i className={`ti ${activePanel.icon} text-xl`} style={{ color: '#6f5fea' }} />
+              <span className="font-medium text-[var(--content-text)] uppercase text-xs tracking-wide">
+                {activePanel.label}
+              </span>
             </div>
-
-            {/* Lista de subitens */}
-            {tabletActiveItem.children?.map(child => (
+            <button
+              onClick={() => setActivePanel(null)}
+              className="p-1 hover:bg-[var(--content-hover)] rounded transition-colors"
+            >
+              <i className="ti ti-chevron-left text-lg text-[var(--content-text-secondary)]" />
+            </button>
+          </div>
+          <div className="p-3 space-y-1">
+            {activePanel.children.map(child => (
               <Link
                 key={child.href}
                 href={child.href}
-                onClick={() => {
-                  setTabletActiveItem(null);
-                  closeSidebar();
-                }}
-                className={`flex items-center h-9 px-4 my-0.5 text-xs transition-all ${
+                onClick={closeSidebar}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
                   pathname === child.href
-                    ? 'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] font-medium'
-                    : 'text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)]'
+                    ? 'bg-[#EEE9F6] text-[#6f5fea] font-medium'
+                    : 'text-[var(--content-text)] hover:bg-[var(--content-hover)]'
                 }`}
               >
+                <i className={`ti ${pathname === child.href ? 'ti-circle-filled' : 'ti-file-text'} text-base`} />
                 {child.label}
               </Link>
             ))}
-          </nav>
-        </>
+          </div>
+        </div>
       )}
     </>
   );

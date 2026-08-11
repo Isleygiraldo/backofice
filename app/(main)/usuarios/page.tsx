@@ -170,15 +170,9 @@ export default function UsuariosDashboard() {
                     </span>
                   </div>
                   <div className="flex-grow min-w-0">
-                    <div className="flex justify-between items-end mb-[0.25rem]">
+                    <div className="flex justify-between items-end">
                       <span className="table-data text-[var(--content-text)]">{tier.nome}</span>
                       <span className="body-sm font-bold text-[var(--content-text-secondary)]">{tier.ativos}</span>
-                    </div>
-                    <div className="w-full bg-[var(--content-hover)] h-[0.375rem] shape-sm overflow-hidden">
-                      <div
-                        className="h-full bg-[var(--md-sys-color-secondary)] transition-all duration-1000"
-                        style={{ width: `${tier.percentual}%` }}
-                      ></div>
                     </div>
                   </div>
                 </div>
@@ -245,15 +239,9 @@ export default function UsuariosDashboard() {
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div className="flex-grow min-w-0">
-                <div className="flex justify-between body-sm font-bold mb-[0.25rem]">
+                <div className="flex justify-between body-sm font-bold">
                   <span className="text-[var(--content-text)]">{estado.estado}</span>
                   <span className="text-[var(--content-text-secondary)]">{estado.vips} VIPs</span>
-                </div>
-                <div className="w-full bg-[var(--content-hover)] h-[0.5rem] shape-sm overflow-hidden">
-                  <div
-                    className="bg-[var(--md-sys-color-secondary)] h-full transition-all duration-1000"
-                    style={{ width: `${estado.percentual}%` }}
-                  ></div>
                 </div>
               </div>
             </div>

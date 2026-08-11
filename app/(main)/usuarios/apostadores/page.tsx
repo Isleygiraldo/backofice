@@ -1,16 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { Button, Card, IconButton } from '@/app/_components/ui';
+import { Button, Card, IconButton, TablePagination } from '@/app/_components/ui';
 
 export default function ApostadoresPage() {
-  const stats = [
-    { label: 'Usuários Ativos', value: '1.240', trend: '+12%', icon: 'trending_up', trendUp: true },
-    { label: 'Novos Cadastros', value: '84', icon: 'calendar_today' },
-    { label: 'Volume Depósitos', value: 'R$ 452.900', icon: 'payments' },
-    { label: 'Integridade Rede', value: '98.2%', progress: 98 },
-  ];
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const recent = [
     { name: 'Isley Lopez', avatar: 'https://i.pravatar.cc/150?img=1' },
     { name: 'Maria Silva', avatar: 'https://i.pravatar.cc/150?img=2' },
@@ -59,6 +55,66 @@ export default function ApostadoresPage() {
       depositos: 'R$ 0,00',
       status: 'bloqueado',
     },
+    {
+      id: '9302',
+      name: 'João Pedro Almeida',
+      avatar: 'https://i.pravatar.cc/150?img=15',
+      cpf: '234.567.890-12',
+      email: 'joao.almeida@gmail.com',
+      cadastro: '15/07/2024',
+      depositos: 'R$ 8.750,00',
+      status: 'verificado',
+    },
+    {
+      id: '9403',
+      name: 'Fernanda Costa Lima',
+      avatar: 'https://i.pravatar.cc/150?img=16',
+      cpf: '345.678.901-23',
+      email: 'fernanda.lima@hotmail.com',
+      cadastro: '20/08/2024',
+      depositos: 'R$ 15.200,00',
+      status: 'verificado',
+    },
+    {
+      id: '9504',
+      name: 'Roberto Carlos Souza',
+      avatar: 'https://i.pravatar.cc/150?img=17',
+      cpf: '456.789.012-34',
+      email: 'roberto.souza@yahoo.com',
+      cadastro: '03/09/2024',
+      depositos: 'R$ 3.400,00',
+      status: 'pendente',
+    },
+    {
+      id: '9605',
+      name: 'Juliana Oliveira Pinto',
+      avatar: 'https://i.pravatar.cc/150?img=18',
+      cpf: '567.890.123-45',
+      email: 'juliana.pinto@email.com',
+      cadastro: '12/09/2024',
+      depositos: 'R$ 22.890,00',
+      status: 'verificado',
+    },
+    {
+      id: '9706',
+      name: 'Marcos Antonio Ribeiro',
+      avatar: 'https://i.pravatar.cc/150?img=19',
+      cpf: '678.901.234-56',
+      email: 'marcos.ribeiro@gmail.com',
+      cadastro: '25/09/2024',
+      depositos: 'R$ 6.120,00',
+      status: 'verificado',
+    },
+    {
+      id: '9807',
+      name: 'Patricia Mendes Silva',
+      avatar: 'https://i.pravatar.cc/150?img=20',
+      cpf: '789.012.345-67',
+      email: 'patricia.mendes@outlook.com',
+      cadastro: '05/10/2024',
+      depositos: 'R$ 1.850,00',
+      status: 'pendente',
+    },
   ];
 
   return (
@@ -73,42 +129,6 @@ export default function ApostadoresPage() {
         </Button>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[0.75rem]">
-        {stats.map((stat, i) => (
-          <Card key={i} className="p-[0.75rem] flex items-center justify-between">
-            <div>
-              <p className="label-caps text-[var(--content-text-secondary)] mb-[0.25rem]">
-                {stat.label}
-              </p>
-              <h3 className="headline-lg text-[var(--content-text)] leading-none">
-                {stat.value}
-              </h3>
-              {stat.trend && (
-                <div className={`flex items-center gap-[0.25rem] mt-[0.375rem] ${stat.trendUp ? 'text-emerald-600' : 'text-[var(--content-text-secondary)]'}`}>
-                  {stat.trendUp && (
-                    <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 400' }}>
-                      trending_up
-                    </span>
-                  )}
-                  <span className="label-caps" style={{ fontSize: '9px' }}>{stat.trend}</span>
-                </div>
-              )}
-              {stat.progress !== undefined && (
-                <div className="w-full bg-[var(--content-hover)] h-[0.375rem] shape-sm mt-[0.5rem] overflow-hidden">
-                  <div className="bg-[var(--md-sys-color-secondary)] h-full" style={{ width: `${stat.progress}%` }}></div>
-                </div>
-              )}
-            </div>
-            {stat.icon && (
-              <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] text-[32px]" style={{ fontVariationSettings: '"FILL" 0, "wght" 300' }}>
-                {stat.icon}
-              </span>
-            )}
-          </Card>
-        ))}
-      </div>
-
       {/* Recent Users Chips (Hidden on mobile) */}
       <div className="hidden md:flex items-center gap-[0.75rem] py-[0.25rem]">
         <span className="label-caps text-[var(--content-text-secondary)] flex-shrink-0">
@@ -118,10 +138,15 @@ export default function ApostadoresPage() {
           {recent.map((user, i) => (
             <div
               key={i}
-              className="flex items-center gap-[0.375rem] px-[0.5rem] py-[0.25rem] bg-[var(--content-surface)] border border-[var(--content-border)] shape-md hover:elevation-1 transition-all cursor-pointer"
+              className="group relative flex items-center gap-[0.375rem] px-[0.5rem] py-[0.25rem] bg-[var(--content-surface)] border border-[var(--content-border)] shape-md hover:elevation-1 transition-all cursor-pointer"
             >
-              <img src={user.avatar} alt={user.name} className="w-[1rem] h-[1rem] rounded-full object-cover" />
+              <div className="w-[1rem] h-[1rem] rounded-full bg-[#6f5fea] text-white flex items-center justify-center text-[9px] font-bold">
+                {user.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+              </div>
               <span className="body-sm text-[var(--content-text)] whitespace-nowrap">{user.name}</span>
+              <button className="opacity-0 group-hover:opacity-100 absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white flex items-center justify-center transition-opacity">
+                <i className="ti ti-x text-[10px]" />
+              </button>
             </div>
           ))}
         </div>
@@ -196,7 +221,7 @@ export default function ApostadoresPage() {
                   Depósitos
                 </th>
                 <th className="w-[10%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)] text-center">
-                  Status
+                  Status KYC
                 </th>
                 <th className="w-[2%] px-[1rem] py-[0.625rem] label-caps text-[var(--content-text-secondary)] text-center">
                   Ações
@@ -208,7 +233,9 @@ export default function ApostadoresPage() {
                 <tr key={user.id} className="hover:bg-[var(--content-hover)] transition-colors cursor-pointer group">
                   <td className="px-[1rem] py-[0.5rem]">
                     <Link href={`/usuarios/apostadores/${user.id}`} className="flex items-center gap-[0.5rem]">
-                      <img src={user.avatar} alt={user.name} className="w-[1.75rem] h-[1.75rem] rounded-full object-cover flex-shrink-0" />
+                      <div className="w-[1.75rem] h-[1.75rem] rounded-full bg-[#6f5fea] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">
+                        {user.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                      </div>
                       <div className="truncate">
                         <p className="table-data text-[var(--content-text)] truncate">
                           {user.name}
@@ -273,6 +300,14 @@ export default function ApostadoresPage() {
             </tbody>
           </table>
         </div>
+        <TablePagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(250 / itemsPerPage)}
+          itemsPerPage={itemsPerPage}
+          totalItems={250}
+          onPageChange={setCurrentPage}
+          onItemsPerPageChange={setItemsPerPage}
+        />
       </Card>
     </div>
   );
