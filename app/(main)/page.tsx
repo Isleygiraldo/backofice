@@ -3,17 +3,17 @@ export default function Dashboard() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-semibold text-[var(--content-text)] mb-1">Visão geral</h1>
-          <p className="text-sm text-[var(--content-text-secondary)]">Indicadores de cassino e esportes da plataforma.</p>
+          <h1 className="display-md text-[var(--content-text)] mb-1">Visão geral</h1>
+          <p className="body-md text-[var(--content-text-secondary)]">Indicadores de cassino e esportes da plataforma.</p>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--content-border)] hover:bg-[var(--content-hover)] transition-colors">
           <i className="ti ti-filter text-[var(--content-text)]" />
-          <span className="text-sm text-[var(--content-text)]">Filtrar</span>
+          <span className="body-md text-[var(--content-text)]">Filtrar</span>
         </button>
       </div>
 
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-[var(--content-text)] mb-4">Cassino</h2>
+        <h2 className="body-md font-semibold text-[var(--content-text)] mb-4">Cassino</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
             label="Apostas"
@@ -57,7 +57,7 @@ export default function Dashboard() {
       </div>
 
       <div>
-        <h2 className="text-sm font-semibold text-[var(--content-text)] mb-4">Esportes</h2>
+        <h2 className="body-md font-semibold text-[var(--content-text)] mb-4">Esportes</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
             label="Apostas"
@@ -111,12 +111,12 @@ function MetricCard({
   return (
     <div className="bg-[var(--content-surface)] border border-[var(--content-border)] rounded-xl p-4 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between mb-2">
-        <span className="text-xs text-[var(--content-text-secondary)]">{label}</span>
+        <span className="body-sm text-[var(--content-text-secondary)]">{label}</span>
         {icon}
       </div>
-      <div className="text-2xl font-semibold text-[var(--content-text)] mb-1">{value}</div>
+      <div className="display-md text-[var(--content-text)] mb-1">{value}</div>
       {change && (
-        <div className="text-xs text-[var(--content-text-secondary)]">{change}</div>
+        <div className="body-sm text-[var(--content-text-secondary)]">{change}</div>
       )}
     </div>
   );

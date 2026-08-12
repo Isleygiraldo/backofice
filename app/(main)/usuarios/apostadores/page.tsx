@@ -140,7 +140,7 @@ export default function ApostadoresPage() {
               key={i}
               className="group relative flex items-center gap-[0.375rem] px-[0.5rem] py-[0.25rem] bg-[var(--content-surface)] border border-[var(--content-border)] shape-md hover:elevation-1 transition-all cursor-pointer"
             >
-              <div className="w-[1rem] h-[1rem] rounded-full bg-[#6f5fea] text-white flex items-center justify-center text-[9px] font-bold">
+              <div className="w-[1rem] h-[1rem] rounded-full bg-[var(--md-sys-color-secondary)] text-white flex items-center justify-center text-[9px] font-bold">
                 {user.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
               </div>
               <span className="body-sm text-[var(--content-text)] whitespace-nowrap">{user.name}</span>
@@ -233,7 +233,7 @@ export default function ApostadoresPage() {
                 <tr key={user.id} className="hover:bg-[var(--content-hover)] transition-colors cursor-pointer group">
                   <td className="px-[1rem] py-[0.5rem]">
                     <Link href={`/usuarios/apostadores/${user.id}`} className="flex items-center gap-[0.5rem]">
-                      <div className="w-[1.75rem] h-[1.75rem] rounded-full bg-[#6f5fea] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">
+                      <div className="w-[1.75rem] h-[1.75rem] rounded-full bg-[var(--md-sys-color-secondary)] text-white flex items-center justify-center text-[11px] font-bold flex-shrink-0">
                         {user.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                       </div>
                       <div className="truncate">

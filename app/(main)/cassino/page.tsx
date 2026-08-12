@@ -20,7 +20,7 @@ export default function CassinoDashboard() {
             <span className="material-symbols-outlined text-[18px] mr-[0.5rem] text-[var(--md-sys-color-secondary)]">
               calendar_today
             </span>
-            <span className="body-md font-medium text-[var(--content-text)] flex-1">
+            <span className="label-lg text-[var(--content-text)] flex-1">
               Últimos 30 Dias
             </span>
             <span className="material-symbols-outlined text-[18px] ml-[0.5rem] text-[var(--content-text-secondary)]">
@@ -323,7 +323,7 @@ export default function CassinoDashboard() {
               { nome: 'Casino Live', percentual: 14 },
             ].map((cat, i) => (
               <div key={i} className="flex flex-col gap-[0.375rem]">
-                <div className="flex justify-between body-sm font-medium text-[var(--content-text)]">
+                <div className="flex justify-between label-md text-[var(--content-text)]">
                   <span>{cat.nome}</span>
                   <span>{cat.percentual}%</span>
                 </div>
@@ -357,7 +357,7 @@ export default function CassinoDashboard() {
                     ID
                   </div>
                   <div>
-                    <p className="body-sm font-bold text-[var(--content-text)]">
+                    <p className="label-caps text-[var(--content-text)]">
                       User #{user.id}
                     </p>
                     <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>
@@ -366,7 +366,7 @@ export default function CassinoDashboard() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="body-sm font-bold text-[var(--content-text)]">{user.spins}</p>
+                  <p className="label-caps text-[var(--content-text)]">{user.spins}</p>
                   <p className="body-sm text-green-600 font-bold" style={{ fontSize: '10px' }}>
                     {user.won}
                   </p>
@@ -389,7 +389,7 @@ export default function CassinoDashboard() {
           <div className="space-y-[0.75rem]">
             <div className="p-[0.75rem] bg-[var(--content-badge-error-bg)] border border-[var(--content-badge-error-border)] shape-md">
               <div className="flex justify-between items-start mb-[0.25rem]">
-                <p className="body-sm font-bold text-[var(--content-badge-error-text)]">
+                <p className="label-caps text-[var(--content-badge-error-text)]">
                   Anomalia de RTP
                 </p>
                 <span className="bg-[var(--content-badge-error-text)] text-white label-caps px-[0.375rem] py-[0.125rem] shape-xs font-bold" style={{ fontSize: '10px' }}>
@@ -405,7 +405,7 @@ export default function CassinoDashboard() {
             </div>
             <div className="p-[0.75rem] bg-[var(--content-badge-warning-bg)] border border-[var(--content-badge-warning-border)] shape-md">
               <div className="flex justify-between items-start mb-[0.25rem]">
-                <p className="body-sm font-bold text-[var(--content-badge-warning-text)]">
+                <p className="label-caps text-[var(--content-badge-warning-text)]">
                   Queda de Tráfego
                 </p>
                 <span className="bg-[var(--content-badge-warning-text)] text-white label-caps px-[0.375rem] py-[0.125rem] shape-xs font-bold" style={{ fontSize: '10px' }}>

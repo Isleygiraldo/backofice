@@ -167,7 +167,7 @@ export default function CMSPage() {
         onChange={onChange}
         className="sr-only peer"
       />
-      <div className="w-11 h-6 bg-[#4a5568] rounded-full peer peer-checked:bg-[#6f5fea] peer-focus:ring-2 peer-focus:ring-[#6f5fea]/50 transition-all">
+      <div className="w-11 h-6 bg-[#4a5568] rounded-full peer peer-checked:bg-[var(--md-sys-color-secondary)] peer-focus:ring-2 peer-focus:ring-[var(--md-sys-color-secondary)]/50 transition-all">
         <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${checked ? 'translate-x-5' : ''}`}></div>
       </div>
     </label>
@@ -192,7 +192,7 @@ export default function CMSPage() {
       case 'carousel':
         return (
           <div className="w-full h-24 bg-[var(--content-bg)] rounded border border-[var(--content-border)] mb-3 flex items-center justify-center overflow-hidden relative">
-            <div className="w-3/4 h-20 bg-gradient-to-br from-[#6f5fea]/40 to-[#1D1B20]/40 rounded-lg shadow-md flex items-center justify-center">
+            <div className="w-3/4 h-20 bg-gradient-to-br from-[var(--md-sys-color-secondary)]/40 to-[#1D1B20]/40 rounded-lg shadow-md flex items-center justify-center">
               <i className="ti ti-carousel-horizontal text-[var(--content-text-secondary)] text-3xl" />
             </div>
             <div className="absolute -left-4 w-12 h-16 bg-[var(--content-surface)]/40 rounded-lg blur-[2px]"></div>
@@ -213,7 +213,7 @@ export default function CMSPage() {
       case 'header':
         return (
           <div className="w-full h-12 bg-[var(--content-bg)] rounded border border-[var(--content-border)] mb-3 flex items-center px-3 justify-between overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#6f5fea]/10 to-transparent pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--md-sys-color-secondary)]/10 to-transparent pointer-events-none"></div>
             <div className="w-20 h-3 bg-[var(--content-text)]/20 rounded"></div>
             <div className="flex gap-2">
               <div className="w-4 h-4 rounded-full bg-[var(--content-text)]/20"></div>
@@ -224,7 +224,7 @@ export default function CMSPage() {
       case 'sidebar':
         return (
           <div className="w-full h-16 bg-[var(--content-bg)] rounded border border-[var(--content-border)] mb-3 flex p-2 gap-2">
-            <div className="w-1/3 h-full bg-[#6f5fea]/20 rounded border-l-2 border-[#6f5fea]"></div>
+            <div className="w-1/3 h-full bg-[var(--md-sys-color-secondary)]/20 rounded border-l-2 border-[var(--md-sys-color-secondary)]"></div>
             <div className="w-2/3 flex flex-col gap-1">
               <div className="w-full h-2 bg-[var(--content-text)]/20 rounded"></div>
               <div className="w-3/4 h-2 bg-[var(--content-text)]/10 rounded"></div>
@@ -235,8 +235,8 @@ export default function CMSPage() {
         return (
           <div className="w-full h-20 bg-[var(--content-bg)] rounded border border-[var(--content-border)] mb-3 p-3 flex flex-col justify-between">
             <div className="flex justify-between items-start">
-              <div className="w-12 h-12 rounded bg-[#6f5fea]/20 flex items-center justify-center">
-                <i className="ti ti-trophy text-[#6f5fea]" />
+              <div className="w-12 h-12 rounded bg-[var(--md-sys-color-secondary)]/20 flex items-center justify-center">
+                <i className="ti ti-trophy text-[var(--md-sys-color-secondary)]" />
               </div>
               <div className="w-16 h-3 bg-[var(--content-text)]/20 rounded"></div>
             </div>
@@ -248,7 +248,7 @@ export default function CMSPage() {
           <div className="w-full h-16 bg-[var(--content-bg)] rounded border border-[var(--content-border)] mb-3 p-2 flex flex-col gap-1">
             {[1, 2, 3].map(i => (
               <div key={i} className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#6f5fea]/40"></div>
+                <div className="w-2 h-2 rounded-full bg-[var(--md-sys-color-secondary)]/40"></div>
                 <div className="flex-1 h-2 bg-[var(--content-text)]/20 rounded"></div>
                 <div className="w-8 h-2 bg-[var(--content-text)]/10 rounded"></div>
               </div>
@@ -260,7 +260,7 @@ export default function CMSPage() {
           <div className="w-full h-12 bg-[var(--content-bg)] rounded border border-[var(--content-border)] mb-3 p-3 flex items-center gap-2">
             <i className="ti ti-search text-[var(--content-text-secondary)]" />
             <div className="flex-1 h-2 bg-[var(--content-text)]/10 rounded"></div>
-            <div className="w-16 h-6 bg-[#6f5fea]/20 rounded border border-[#6f5fea]/40"></div>
+            <div className="w-16 h-6 bg-[var(--md-sys-color-secondary)]/20 rounded border border-[var(--md-sys-color-secondary)]/40"></div>
           </div>
         );
       case 'footer':
@@ -290,10 +290,10 @@ export default function CMSPage() {
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h2 className="text-2xl font-semibold text-[var(--content-text)] mb-1">
+          <h2 className="display-md text-[var(--content-text)] mb-1">
             Componentes do site
           </h2>
-          <p className="text-sm text-[var(--content-text-secondary)]">
+          <p className="body-md text-[var(--content-text-secondary)]">
             Ative ou desative os componentes. Nada é enviado até clicar em "Salvar".
           </p>
         </div>
@@ -302,7 +302,7 @@ export default function CMSPage() {
             <i className="ti ti-eye text-lg" />
             Pré-visualizar
           </button>
-          <button className="flex items-center gap-2 px-6 py-2 bg-[#6f5fea] text-white rounded-lg hover:bg-[#5d4ed4] transition-colors font-medium">
+          <button className="flex items-center gap-2 px-6 py-2 bg-[var(--md-sys-color-secondary)] text-white rounded-lg hover:bg-[var(--md-sys-color-primary-container)] transition-colors font-medium">
             <i className="ti ti-device-floppy text-lg" />
             Salvar Alterações
           </button>
@@ -312,10 +312,10 @@ export default function CMSPage() {
       {/* Version Selector */}
       <Card className="p-6 max-w-4xl">
         <div className="flex items-center gap-2 mb-4">
-          <i className="ti ti-history text-[#6f5fea] text-xl" />
-          <h3 className="text-lg font-semibold text-[var(--content-text)]">Versão do site</h3>
+          <i className="ti ti-history text-[var(--md-sys-color-secondary)] text-xl" />
+          <h3 className="headline-md text-[var(--content-text)]">Versão do site</h3>
         </div>
-        <p className="text-sm text-[var(--content-text-secondary)] mb-4">
+        <p className="body-md text-[var(--content-text-secondary)] mb-4">
           Selecione uma versão para carregá-la no editor. As mudanças só vão ao ar quando você Salvar.
         </p>
         <div className="flex flex-col gap-3">
@@ -323,8 +323,8 @@ export default function CMSPage() {
             onClick={() => { setVersion('old'); setCategories(versionConfigs.old); }}
             className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
               version === 'old'
-                ? 'bg-[var(--content-surface)] border-2 border-[#6f5fea] shadow-[0_0_10px_rgba(111,95,234,0.2)]'
-                : 'bg-[var(--content-surface)] border-[var(--content-border)] hover:border-[#6f5fea]/30'
+                ? 'bg-[var(--content-surface)] border-2 border-[var(--md-sys-color-secondary)] shadow-[0_0_10px_rgba(111,95,234,0.2)]'
+                : 'bg-[var(--content-surface)] border-[var(--content-border)] hover:border-[var(--md-sys-color-secondary)]/30'
             }`}
           >
             <span className={`text-sm ${version === 'old' ? 'text-[var(--content-text)] font-semibold' : 'text-[var(--content-text)]'}`}>OLD</span>
@@ -336,8 +336,8 @@ export default function CMSPage() {
             onClick={() => { setVersion('superoba'); setCategories(versionConfigs.superoba); }}
             className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
               version === 'superoba'
-                ? 'bg-[var(--content-surface)] border-2 border-[#6f5fea] shadow-[0_0_10px_rgba(111,95,234,0.2)]'
-                : 'bg-[var(--content-surface)] border-[var(--content-border)] hover:border-[#6f5fea]/30'
+                ? 'bg-[var(--content-surface)] border-2 border-[var(--md-sys-color-secondary)] shadow-[0_0_10px_rgba(111,95,234,0.2)]'
+                : 'bg-[var(--content-surface)] border-[var(--content-border)] hover:border-[var(--md-sys-color-secondary)]/30'
             }`}
           >
             <span className={`text-sm ${version === 'superoba' ? 'text-[var(--content-text)] font-semibold' : 'text-[var(--content-text)]'}`}>SuperOba</span>
@@ -349,13 +349,13 @@ export default function CMSPage() {
             onClick={() => { setVersion('v3'); setCategories(versionConfigs.v3); }}
             className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
               version === 'v3'
-                ? 'bg-[var(--content-surface)] border-2 border-[#6f5fea] shadow-[0_0_10px_rgba(111,95,234,0.2)]'
-                : 'bg-[var(--content-surface)] border-[var(--content-border)] hover:border-[#6f5fea]/30'
+                ? 'bg-[var(--content-surface)] border-2 border-[var(--md-sys-color-secondary)] shadow-[0_0_10px_rgba(111,95,234,0.2)]'
+                : 'bg-[var(--content-surface)] border-[var(--content-border)] hover:border-[var(--md-sys-color-secondary)]/30'
             }`}
           >
             <span className={`text-sm ${version === 'v3' ? 'text-[var(--content-text)] font-semibold' : 'text-[var(--content-text)]'}`}>Nova versão V3</span>
             <div className="flex items-center gap-3">
-              <span className="bg-[#6f5fea]/20 text-[#6f5fea] px-2 py-1 rounded text-[10px] font-bold tracking-wider uppercase">
+              <span className="bg-[var(--md-sys-color-secondary)]/20 text-[var(--md-sys-color-secondary)] px-2 py-1 rounded text-[10px] font-bold tracking-wider uppercase">
                 CUSTOM
               </span>
               {version === 'v3' && (
@@ -389,11 +389,11 @@ export default function CMSPage() {
             <Card key={category.title} className="p-0 overflow-hidden flex flex-col w-[380px] flex-shrink-0 self-start">
               {/* Category Header */}
               <div className="p-4 border-b border-[var(--content-border)] bg-[var(--content-surface)] flex justify-between items-center sticky top-0 z-10">
-                <h3 className="text-base font-semibold text-[var(--content-text)] flex items-center gap-2">
+                <h3 className="headline-sm text-[var(--content-text)] flex items-center gap-2">
                   <i className="ti ti-chevron-down text-[var(--content-text-secondary)]" />
                   {category.title}
                 </h3>
-                <span className="text-xs text-[var(--content-text-secondary)]">
+                <span className="body-sm text-[var(--content-text-secondary)]">
                   {getActiveCount(category)} de {category.widgets.length} ativos
                 </span>
               </div>
@@ -407,8 +407,8 @@ export default function CMSPage() {
                     key={widget.id}
                     className={`bg-[var(--content-surface)] p-4 rounded-lg border transition-all flex items-start gap-4 ${
                       widget.active
-                        ? 'border-[#6f5fea]/50 shadow-[0_0_15px_rgba(111,95,234,0.1)]'
-                        : 'border-[var(--content-border)] opacity-70 hover:border-[#6f5fea]/30'
+                        ? 'border-[var(--md-sys-color-secondary)]/50 shadow-[0_0_15px_rgba(111,95,234,0.1)]'
+                        : 'border-[var(--content-border)] opacity-70 hover:border-[var(--md-sys-color-secondary)]/30'
                     }`}
                   >
                     <div className="cursor-grab text-[var(--content-text-secondary)] hover:text-[var(--content-text)] mt-1">
@@ -418,9 +418,9 @@ export default function CMSPage() {
                       <WidgetThumbnail type={widget.thumbnail} />
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <h4 className="text-sm font-bold text-[var(--content-text)]">{widget.name}</h4>
+                          <h4 className="body-md font-bold text-[var(--content-text)]">{widget.name}</h4>
                           {widget.description && (
-                            <p className="text-xs text-[var(--content-text-secondary)] mt-0.5">
+                            <p className="body-sm text-[var(--content-text-secondary)] mt-0.5">
                               {widget.description}
                             </p>
                           )}

@@ -73,13 +73,13 @@ export function TablePagination({
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 text-sm text-[var(--content-text)]">
+    <div className="flex items-center justify-between px-4 py-3 body-md text-[var(--content-text)]">
       <div className="flex items-center gap-2">
         <span className="text-[var(--content-text-secondary)]">Itens por página</span>
         <select
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target-value))}
-          className="px-3 py-1.5 border border-[var(--content-border)] rounded-lg bg-[var(--content-surface)] text-[var(--content-text)] focus:outline-none focus:ring-2 focus:ring-[#6f5fea]"
+          className="px-3 py-1.5 border border-[var(--content-border)] rounded-lg bg-[var(--content-surface)] text-[var(--content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-secondary)]"
         >
           <option value={10}>10</option>
           <option value={25}>25</option>

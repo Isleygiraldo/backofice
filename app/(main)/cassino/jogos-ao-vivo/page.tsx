@@ -182,7 +182,7 @@ export default function JogosAoVivoPage() {
             <span className="w-[0.5rem] h-[0.5rem] bg-green-500 rounded-full animate-pulse"></span>
             <span className="body-sm">Atualização automática ativa • Última: há 3s</span>
           </div>
-          <button className="body-sm font-bold text-[var(--md-sys-color-secondary)] hover:underline">
+          <button className="label-caps text-[var(--md-sys-color-secondary)] hover:underline">
             Ver Histórico Completo
           </button>
         </div>

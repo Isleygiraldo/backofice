@@ -51,7 +51,7 @@ export default function PerfilApostadorPage() {
           className="p-[1rem] md:p-[1.5rem] flex flex-col sm:flex-row items-start sm:items-center gap-[1rem] sm:gap-[1.5rem] cursor-pointer hover:bg-[var(--content-hover)] transition-colors"
           onClick={() => setDetailsExpanded(!detailsExpanded)}
         >
-          <div className="w-[4rem] h-[4rem] md:w-[5rem] md:h-[5rem] bg-[#6f5fea] rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="w-[4rem] h-[4rem] md:w-[5rem] md:h-[5rem] bg-[var(--md-sys-color-secondary)] rounded-full flex items-center justify-center flex-shrink-0">
             <span className="text-white text-2xl md:text-3xl font-bold">
               {apostador.nome.split(' ').map(n => n[0]).join('').slice(0, 2)}
             </span>
@@ -161,7 +161,7 @@ export default function PerfilApostadorPage() {
                     </span>
                   </div>
                 </div>
-                <button className="body-sm font-bold text-[var(--md-sys-color-secondary)] flex items-center gap-[0.25rem] hover:underline">
+                <button className="label-caps text-[var(--md-sys-color-secondary)] flex items-center gap-[0.25rem] hover:underline">
                   <span className="material-symbols-outlined text-[16px]">history</span>
                   Ver Histórico de Acessos
                 </button>

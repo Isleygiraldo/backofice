@@ -17,9 +17,11 @@ export default function Topbar() {
         <i className="ti ti-menu-2 text-xl text-[var(--content-text)]" />
       </button>
 
-      <div className="text-xl font-bold" style={{ color: '#6f5fea' }}>
-        PIX365
-      </div>
+      <img
+        src="/palpitefinal.svg"
+        alt="Palpite"
+        className="h-8"
+      />
 
       <div className="ml-auto flex items-center gap-3">
         <button
@@ -39,12 +41,12 @@ export default function Topbar() {
         </button>
 
         <div className="flex items-center gap-2 pl-3 border-l border-[var(--content-border)]">
-          <div className="w-8 h-8 rounded-full bg-[#6f5fea] flex items-center justify-center text-white text-sm font-medium">
+          <div className="w-8 h-8 rounded-full bg-[var(--md-sys-color-secondary)] flex items-center justify-center text-white body-md font-medium">
             DA
           </div>
           <div className="hidden md:block">
-            <div className="text-sm font-medium text-[var(--content-text)]">Davi</div>
-            <div className="text-xs text-[var(--content-text-secondary)]">Administrador</div>
+            <div className="body-md font-medium text-[var(--content-text)]">Davi</div>
+            <div className="body-sm text-[var(--content-text-secondary)]">Administrador</div>
           </div>
         </div>
       </div>

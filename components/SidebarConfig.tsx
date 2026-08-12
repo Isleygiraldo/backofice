@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useSidebar } from './SidebarContext';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SubItem {
   label: string;
@@ -30,45 +30,28 @@ const configSections: ConfigSection[] = [
         icon: 'ti-settings',
         label: 'Plataforma',
         children: [
+          { label: 'CMS', href: '/configuracoes/cms' },
+          { label: 'Social', href: '/configuracoes/social' },
+          { label: 'SEO', href: '/configuracoes/seo' },
+          { label: 'Branding', href: '/configuracoes/branding' },
           { label: 'Informações', href: '/configuracoes/plataforma' },
           { label: 'URL', href: '/configuracoes/plataforma/url' },
           { label: 'Provedores', href: '/configuracoes/plataforma/provedores' },
           { label: 'Permissões', href: '/configuracoes/plataforma/permissoes' },
           { label: 'Preferências', href: '/configuracoes/plataforma/preferencias' },
           { label: 'Código', href: '/configuracoes/plataforma/codigo' },
-          { label: 'SIGAP', href: '/configuracoes/plataforma/sigap' },
         ],
       },
+    ],
+  },
+  {
+    title: 'Aparência',
+    items: [
       {
         icon: 'ti-palette',
-        label: 'Branding',
+        label: 'Cores',
         children: [
-          { label: 'Marca', href: '/configuracoes/branding' },
-          { label: 'Logos', href: '/configuracoes/branding/logos' },
-          { label: 'Cores', href: '/configuracoes/branding/cores' },
-        ],
-      },
-      {
-        icon: 'ti-search',
-        label: 'SEO',
-        children: [
-          { label: 'Informações', href: '/configuracoes/seo' },
-          { label: 'Sitemap', href: '/configuracoes/seo/sitemap' },
-          { label: 'Código', href: '/configuracoes/seo/codigo' },
-        ],
-      },
-      {
-        icon: 'ti-share',
-        label: 'Social',
-        children: [
-          { label: 'Redes Sociais', href: '/configuracoes/social' },
-        ],
-      },
-      {
-        icon: 'ti-article',
-        label: 'CMS',
-        children: [
-          { label: 'Conteúdo', href: '/configuracoes/cms' },
+          { label: 'Cores', href: '/configuracoes/cores' },
         ],
       },
     ],
@@ -110,41 +93,13 @@ const configSections: ConfigSection[] = [
     title: 'Acesso',
     items: [
       {
-        icon: 'ti-briefcase',
-        label: 'Cargos',
+        icon: 'ti-shield-lock',
+        label: 'ADM',
         children: [
           { label: 'Cargos', href: '/configuracoes/cargos' },
-        ],
-        admin: true,
-      },
-      {
-        icon: 'ti-users',
-        label: 'Grupos',
-        children: [
           { label: 'Grupos', href: '/usuarios/grupos' },
-        ],
-        admin: true,
-      },
-      {
-        icon: 'ti-user-check',
-        label: 'Operadores',
-        children: [
           { label: 'Operadores', href: '/configuracoes/operadores' },
-        ],
-        admin: true,
-      },
-      {
-        icon: 'ti-key',
-        label: 'Autorizações',
-        children: [
           { label: 'Autorizações', href: '/configuracoes/autorizacoes' },
-        ],
-        admin: true,
-      },
-      {
-        icon: 'ti-ban',
-        label: 'Bloqueios',
-        children: [
           { label: 'Bloqueios', href: '/configuracoes/bloqueios' },
         ],
         admin: true,
@@ -172,6 +127,14 @@ export default function SidebarConfig() {
   };
 
   const allItems = configSections.flatMap(section => section.items);
+
+  // Auto-open panel based on current route
+  useEffect(() => {
+    const currentItem = allItems.find(item => isItemActive(item));
+    if (currentItem && currentItem.children.length > 1) {
+      setActivePanel(currentItem);
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -229,7 +192,7 @@ export default function SidebarConfig() {
                     <i className={`ti ${item.icon} text-2xl`} />
                     <span className="text-[9px] text-center leading-tight px-1">{item.label}</span>
                     {item.admin && (
-                      <span className="absolute -top-1 -right-1 bg-[#6f5fea] text-white text-[7px] px-1 py-0.5 rounded uppercase font-bold">
+                      <span className="absolute -top-1 -right-1 bg-[var(--md-sys-color-secondary)] text-white text-[7px] px-1 py-0.5 rounded uppercase font-bold">
                         ADM
                       </span>
                     )}
@@ -250,7 +213,7 @@ export default function SidebarConfig() {
                     <i className={`ti ${item.icon} text-2xl`} />
                     <span className="text-[9px] text-center leading-tight px-1">{item.label}</span>
                     {item.admin && (
-                      <span className="absolute -top-1 -right-1 bg-[#6f5fea] text-white text-[7px] px-1 py-0.5 rounded uppercase font-bold">
+                      <span className="absolute -top-1 -right-1 bg-[var(--md-sys-color-secondary)] text-white text-[7px] px-1 py-0.5 rounded uppercase font-bold">
                         ADM
                       </span>
                     )}
@@ -264,16 +227,11 @@ export default function SidebarConfig() {
 
       {/* Painel lateral com subitens */}
       {activePanel && activePanel.children.length > 1 && (
-        <>
-          <div
-            className="fixed inset-0 z-[98]"
-            onClick={() => setActivePanel(null)}
-          />
-          <div className="fixed left-[75px] top-0 h-screen w-[240px] bg-[var(--content-surface)] border-r border-[var(--content-border)] shadow-xl z-[99] overflow-y-auto">
+        <div className="sticky top-0 left-0 h-screen w-[240px] bg-[var(--content-surface)] border-r border-[var(--content-border)] shadow-xl z-[99] overflow-y-auto flex-shrink-0">
             <div className="p-4 border-b border-[var(--content-border)] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <i className={`ti ${activePanel.icon} text-xl`} style={{ color: '#6f5fea' }} />
-                <span className="font-medium text-[var(--content-text)] uppercase text-xs tracking-wide">
+                <i className={`ti ${activePanel.icon} text-xl text-[var(--md-sys-color-secondary)]`} />
+                <span className="font-medium text-[var(--content-text)] uppercase body-sm tracking-wide">
                   {activePanel.label}
                 </span>
               </div>
@@ -295,7 +253,7 @@ export default function SidebarConfig() {
                   }}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
                     pathname === child.href
-                      ? 'bg-[#EEE9F6] text-[#6f5fea] font-medium'
+                      ? 'bg-[var(--md-sys-color-secondary)]/10 text-[var(--md-sys-color-secondary)] font-medium'
                       : 'text-[var(--content-text)] hover:bg-[var(--content-hover)]'
                   }`}
                 >
@@ -304,8 +262,7 @@ export default function SidebarConfig() {
                 </Link>
               ))}
             </div>
-          </div>
-        </>
+        </div>
       )}
     </>
   );

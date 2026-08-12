@@ -109,7 +109,7 @@ export default function Sidebar() {
       >
         {/* Logo */}
         <div className="px-4 py-5 border-b border-[var(--md-sys-color-outline-variant)] md:flex md:justify-center lg:block">
-          <div className="text-[15px] md:text-sm font-bold text-[var(--md-sys-color-primary)] tracking-tight">
+          <div className="text-[15px] md:body-md font-bold text-[var(--md-sys-color-primary)] tracking-tight">
             BPX
           </div>
           <div className="text-[9px] text-[var(--md-sys-color-on-surface-variant)] uppercase tracking-[1.2px] mt-1 md:hidden lg:block">
@@ -128,13 +128,13 @@ export default function Sidebar() {
                 key={item.href}
                 href={item.href}
                 onClick={closeSidebar}
-                className="group flex items-center gap-2.5 px-3 h-9 mx-2 my-0.5 rounded-full text-xs font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all md:justify-center md:px-0 lg:justify-start lg:px-3 relative"
+                className="group flex items-center gap-2.5 px-3 h-9 mx-2 my-0.5 rounded-full body-sm font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all md:justify-center md:px-0 lg:justify-start lg:px-3 relative"
               >
                 <i className={`ti ${item.icon} text-base md:text-lg flex-shrink-0`} />
                 <span className="md:hidden lg:inline">{item.label}</span>
 
                 {/* Tooltip tablet */}
-                <span className="hidden md:block lg:hidden absolute left-14 bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface)] text-xs px-2.5 py-1.5 rounded-md border border-[var(--md-sys-color-outline-variant)] whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50">
+                <span className="hidden md:block lg:hidden absolute left-14 bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface)] body-sm px-2.5 py-1.5 rounded-md border border-[var(--md-sys-color-outline-variant)] whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50">
                   {item.label}
                 </span>
               </Link>
@@ -148,13 +148,13 @@ export default function Sidebar() {
           <Link
             href="/configuracoes"
             onClick={closeSidebar}
-            className="group flex items-center gap-2.5 px-3 h-9 mx-2 my-0.5 rounded-full text-xs font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all md:justify-center md:px-0 lg:justify-start lg:px-3 relative"
+            className="group flex items-center gap-2.5 px-3 h-9 mx-2 my-0.5 rounded-full body-sm font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all md:justify-center md:px-0 lg:justify-start lg:px-3 relative"
           >
             <i className="ti ti-settings text-base md:text-lg flex-shrink-0" />
             <span className="md:hidden lg:inline">Configurações</span>
 
             {/* Tooltip tablet */}
-            <span className="hidden md:block lg:hidden absolute left-14 bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface)] text-xs px-2.5 py-1.5 rounded-md border border-[var(--md-sys-color-outline-variant)] whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50">
+            <span className="hidden md:block lg:hidden absolute left-14 bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface)] body-sm px-2.5 py-1.5 rounded-md border border-[var(--md-sys-color-outline-variant)] whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50">
               Configurações
             </span>
           </Link>

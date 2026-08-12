@@ -50,7 +50,7 @@ export default function JogosPage() {
       key: 'rtp',
       label: 'RTP %',
       align: 'center' as const,
-      render: (value: number) => <span className="text-[#6f5fea] font-medium">{value}%</span>,
+      render: (value: number) => <span className="text-[var(--md-sys-color-secondary)] font-medium">{value}%</span>,
     },
     {
       key: 'hitRate',
@@ -96,14 +96,14 @@ export default function JogosPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-semibold text-[var(--content-text)]">Jogos</h2>
-          <p className="text-sm text-[var(--content-text-secondary)] mt-1">
+          <h2 className="display-md text-[var(--content-text)]">Jogos</h2>
+          <p className="body-md text-[var(--content-text-secondary)] mt-1">
             Gerenciamento de todos os jogos do cassino
           </p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-[#6f5fea] text-white rounded-lg hover:bg-[#5d4ed4] transition-colors">
+        <button className="flex items-center gap-2 px-4 py-2 bg-[var(--md-sys-color-secondary)] text-white rounded-lg hover:bg-[var(--md-sys-color-primary-container)] transition-colors">
           <i className="ti ti-plus text-lg" />
-          <span className="text-sm font-medium">Novo Jogo</span>
+          <span className="label-lg">Novo Jogo</span>
         </button>
       </div>
 
@@ -111,7 +111,7 @@ export default function JogosPage() {
       <Card className="p-4">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
           <div className="space-y-1">
-            <label className="text-xs font-medium text-[var(--content-text-secondary)]">Nome</label>
+            <label className="label-md text-[var(--content-text-secondary)]">Nome</label>
             <input
               type="text"
               className="md3-input"
@@ -121,7 +121,7 @@ export default function JogosPage() {
             />
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-medium text-[var(--content-text-secondary)]">Gênero</label>
+            <label className="label-md text-[var(--content-text-secondary)]">Gênero</label>
             <select
               className="md3-select"
               value={filtros.genero}
@@ -135,7 +135,7 @@ export default function JogosPage() {
             </select>
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-medium text-[var(--content-text-secondary)]">Fornecedor</label>
+            <label className="label-md text-[var(--content-text-secondary)]">Fornecedor</label>
             <select
               className="md3-select"
               value={filtros.fornecedor}
@@ -148,7 +148,7 @@ export default function JogosPage() {
             </select>
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-medium text-[var(--content-text-secondary)]">Status</label>
+            <label className="label-md text-[var(--content-text-secondary)]">Status</label>
             <select
               className="md3-select"
               value={filtros.status}
@@ -160,7 +160,7 @@ export default function JogosPage() {
             </select>
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-medium text-[var(--content-text-secondary)]">Volatilidade</label>
+            <label className="label-md text-[var(--content-text-secondary)]">Volatilidade</label>
             <select
               className="md3-select"
               value={filtros.volatilidade}
@@ -173,9 +173,9 @@ export default function JogosPage() {
             </select>
           </div>
           <div className="flex gap-2">
-            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#6f5fea] text-white rounded-lg hover:bg-[#5d4ed4] transition-colors">
+            <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[var(--md-sys-color-secondary)] text-white rounded-lg hover:bg-[var(--md-sys-color-primary-container)] transition-colors">
               <i className="ti ti-search text-lg" />
-              <span className="text-sm font-medium">Pesquisar</span>
+              <span className="label-lg">Pesquisar</span>
             </button>
             <button className="p-2 rounded-lg hover:bg-[var(--content-hover)] transition-colors">
               <i className="ti ti-refresh text-xl text-[var(--content-text)]" />

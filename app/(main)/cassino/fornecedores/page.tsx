@@ -7,7 +7,7 @@ export default function Fornecedores() {
 
   return (
     <div className="p-6 md:p-7">
-      <h1 className="text-sm font-medium text-[var(--content-text)] mb-3.5">Fornecedores</h1>
+      <h1 className="label-lg text-[var(--content-text)] mb-3.5">Fornecedores</h1>
 
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
@@ -23,11 +23,11 @@ export default function Fornecedores() {
           <tbody>
             {providers.map((p, i) => (
               <tr key={i} className="border-b border-[rgba(73,69,79,0.4)] hover:bg-[rgba(202,196,208,0.08)]">
-                <td className="text-xs font-medium text-[var(--content-text)] py-2 px-3">{p.nome}</td>
-                <td className="text-xs text-[var(--content-text)] py-2 px-3">{p.jogos}</td>
-                <td className="text-xs text-[var(--content-text)] py-2 px-3 tabular-nums">{p.rodadas}</td>
-                <td className="text-xs font-medium text-[var(--content-text)] py-2 px-3 tabular-nums">{p.ggr}</td>
-                <td className="text-xs text-[var(--content-text)] py-2 px-3">{p.part}</td>
+                <td className="label-md text-[var(--content-text)] py-2 px-3">{p.nome}</td>
+                <td className="body-sm text-[var(--content-text)] py-2 px-3">{p.jogos}</td>
+                <td className="body-sm text-[var(--content-text)] py-2 px-3 tabular-nums">{p.rodadas}</td>
+                <td className="label-md text-[var(--content-text)] py-2 px-3 tabular-nums">{p.ggr}</td>
+                <td className="body-sm text-[var(--content-text)] py-2 px-3">{p.part}</td>
               </tr>
             ))}
           </tbody>

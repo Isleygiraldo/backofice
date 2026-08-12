@@ -31,23 +31,27 @@ const navSections: NavSection[] = [
         icon: 'ti-device-gamepad-2',
         label: 'Cassino',
         children: [
-          { label: 'Dashboard', href: '/cassino' },
           { label: 'Jogos', href: '/cassino/jogos' },
           { label: 'Jogos ao vivo', href: '/cassino/jogos-ao-vivo' },
+          { label: 'Mesas ao vivo', href: '/cassino/mesas-ao-vivo' },
           { label: 'Fornecedores', href: '/cassino/fornecedores' },
           { label: 'Categorias', href: '/cassino/categorias' },
-          { label: 'Bônus', href: '/cassino/bonus' },
-          { label: 'Relatório', href: '/cassino/relatorio' },
+          { label: 'Categorias Fixas', href: '/cassino/categorias-fixas' },
         ]
       },
       {
         icon: 'ti-trophy',
         label: 'Esportes',
         children: [
-          { label: 'Dashboard', href: '/esportes' },
+          { label: 'Esportes', href: '/esportes' },
+          { label: 'Categorias', href: '/esportes/categorias' },
+          { label: 'Torneios', href: '/esportes/torneios' },
           { label: 'Eventos', href: '/esportes/eventos' },
+          { label: 'Competidores', href: '/esportes/competidores' },
+          { label: 'Populares', href: '/esportes/populares' },
           { label: 'Mercados', href: '/esportes/mercados' },
-          { label: 'Relatório', href: '/esportes/relatorio' },
+          { label: 'Grupos', href: '/esportes/grupos' },
+          { label: 'Favoritos', href: '/esportes/favoritos' },
         ]
       },
     ],
@@ -61,10 +65,10 @@ const navSections: NavSection[] = [
         children: [
           { label: 'Dashboard', href: '/usuarios' },
           { label: 'Apostadores', href: '/usuarios/apostadores' },
+          { label: 'Afiliados', href: '/afiliados' },
           { label: 'Perfil', href: '/usuarios/perfil' },
         ]
       },
-      { icon: 'ti-affiliate', label: 'Afiliados', href: '/afiliados' },
       {
         icon: 'ti-cash',
         label: 'Financeiro',
@@ -75,7 +79,6 @@ const navSections: NavSection[] = [
           { label: 'Transações', href: '/financeiro/transacoes' },
         ]
       },
-      { icon: 'ti-activity', label: 'Operação', href: '/operacao' },
     ],
   },
   {
@@ -95,8 +98,16 @@ const navSections: NavSection[] = [
   {
     title: 'Gestão',
     items: [
-      { icon: 'ti-radar', label: 'Monitoramento', href: '/monitoramento' },
-      { icon: 'ti-shield-check', label: 'Sistema & Compliance', href: '/sistema-compliance' },
+      {
+        icon: 'ti-gift',
+        label: 'Promoções',
+        children: [
+          { label: 'Bônus', href: '/promocoes/bonus' },
+          { label: 'Regras de afiliado', href: '/promocoes/regras-afiliado' },
+          { label: 'Regras de uso', href: '/promocoes/regras-uso' },
+          { label: 'Acionamentos', href: '/promocoes/acionamentos' },
+        ]
+      },
     ],
   },
   {
@@ -111,6 +122,8 @@ export default function Sidebar() {
   const { isOpen, closeSidebar } = useSidebar();
   const pathname = usePathname();
   const [activePanel, setActivePanel] = useState<NavItem | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   const handleItemClick = (item: NavItem) => {
     if (item.children) {
@@ -137,6 +150,72 @@ export default function Sidebar() {
 
   const allItems = navSections.flatMap(section => section.items);
 
+  // Gera lista de todos os links para busca (incluindo configurações)
+  const allLinks = React.useMemo(() => {
+    const links: Array<{ label: string; href: string; parent?: string }> = [];
+
+    // Links da sidebar principal
+    navSections.forEach(section => {
+      section.items.forEach(item => {
+        if (item.href) {
+          links.push({ label: item.label, href: item.href });
+        }
+        if (item.children) {
+          item.children.forEach(child => {
+            links.push({ label: child.label, href: child.href, parent: item.label });
+          });
+        }
+      });
+    });
+
+    // Links de configurações (importados do SidebarConfig)
+    const configLinks = [
+      // Plataforma
+      { label: 'Informações', href: '/configuracoes/plataforma', parent: 'Plataforma' },
+      { label: 'URL', href: '/configuracoes/plataforma/url', parent: 'Plataforma' },
+      { label: 'Provedores', href: '/configuracoes/plataforma/provedores', parent: 'Plataforma' },
+      { label: 'Permissões', href: '/configuracoes/plataforma/permissoes', parent: 'Plataforma' },
+      { label: 'Preferências', href: '/configuracoes/plataforma/preferencias', parent: 'Plataforma' },
+      { label: 'Código', href: '/configuracoes/plataforma/codigo', parent: 'Plataforma' },
+      { label: 'SIGAP', href: '/configuracoes/plataforma/sigap', parent: 'Plataforma' },
+      { label: 'Marca', href: '/configuracoes/branding', parent: 'Branding' },
+      { label: 'Logos', href: '/configuracoes/branding/logos', parent: 'Branding' },
+      { label: 'Cores', href: '/configuracoes/branding/cores', parent: 'Branding' },
+      { label: 'Informações', href: '/configuracoes/seo', parent: 'SEO' },
+      { label: 'Sitemap', href: '/configuracoes/seo/sitemap', parent: 'SEO' },
+      { label: 'Código', href: '/configuracoes/seo/codigo', parent: 'SEO' },
+      { label: 'Redes Sociais', href: '/configuracoes/social', parent: 'Social' },
+      { label: 'Conteúdo', href: '/configuracoes/cms', parent: 'CMS' },
+      // Sistema
+      { label: 'Analytics', href: '/configuracoes/analytics', parent: 'Analytics' },
+      { label: 'Login', href: '/configuracoes/seguranca', parent: 'Segurança' },
+      { label: 'Cadastro', href: '/configuracoes/seguranca/cadastro', parent: 'Segurança' },
+      { label: 'GSE', href: '/configuracoes/seguranca/gse', parent: 'Segurança' },
+      { label: 'KYC', href: '/configuracoes/seguranca/kyc', parent: 'Segurança' },
+      { label: 'Arquivo', href: '/configuracoes/arquivo', parent: 'Arquivo' },
+      { label: 'Geolocalização', href: '/configuracoes/geolocalizacao', parent: 'Geolocalização' },
+      // Acesso
+      { label: 'Cargos', href: '/configuracoes/cargos', parent: 'Cargos [ADM]' },
+      { label: 'Grupos', href: '/usuarios/grupos', parent: 'Grupos [ADM]' },
+      { label: 'Operadores', href: '/configuracoes/operadores', parent: 'Operadores [ADM]' },
+      { label: 'Autorizações', href: '/configuracoes/autorizacoes', parent: 'Autorizações [ADM]' },
+      { label: 'Bloqueios', href: '/configuracoes/bloqueios', parent: 'Bloqueios [ADM]' },
+    ];
+
+    links.push(...configLinks);
+    return links;
+  }, []);
+
+  // Filtra resultados da busca
+  const searchResults = React.useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const query = searchQuery.toLowerCase();
+    return allLinks.filter(link =>
+      link.label.toLowerCase().includes(query) ||
+      link.parent?.toLowerCase().includes(query)
+    ).slice(0, 8);
+  }, [searchQuery, allLinks]);
+
   return (
     <>
       {/* Overlay mobile */}
@@ -159,8 +238,19 @@ export default function Sidebar() {
           ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
       >
+        {/* Busca */}
+        <div className="w-full px-2 pt-4 pb-3 relative">
+          <button
+            onClick={() => setShowSearchResults(!showSearchResults)}
+            className="flex flex-col items-center gap-1 py-3 rounded-lg transition-all text-[#8B8792] hover:bg-[#252329] hover:text-white w-full"
+          >
+            <i className="ti ti-search text-2xl" />
+            <span className="text-[9px] text-center leading-tight">Buscar</span>
+          </button>
+        </div>
+
         {/* Início */}
-        <div className="w-full px-2 py-4 border-b border-[#2A2830]">
+        <div className="w-full px-2 pb-4">
           <Link
             href="/"
             onClick={() => {
@@ -177,6 +267,7 @@ export default function Sidebar() {
             <span className="text-[9px] text-center leading-tight">Início</span>
           </Link>
         </div>
+        <div className="border-b border-[#2A2830]"></div>
 
         <div className="flex-1 flex flex-col items-center py-4 gap-2">
           {allItems.map((item) => (
@@ -231,13 +322,75 @@ export default function Sidebar() {
         </div>
       </nav>
 
+      {/* Painel de busca */}
+      {showSearchResults && (
+        <div className="sticky top-0 left-0 h-screen w-[320px] bg-[var(--content-surface)] border-r border-[var(--content-border)] shadow-xl overflow-y-auto flex-shrink-0">
+          <div className="p-4 border-b border-[var(--content-border)] sticky top-0 bg-[var(--content-surface)] z-10">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-medium text-[var(--content-text)] body-md">Buscar Módulos</span>
+              <button
+                onClick={() => {
+                  setShowSearchResults(false);
+                  setSearchQuery('');
+                }}
+                className="p-1 hover:bg-[var(--content-hover)] rounded transition-colors"
+              >
+                <i className="ti ti-x text-lg text-[var(--content-text-secondary)]" />
+              </button>
+            </div>
+            <input
+              type="text"
+              placeholder="Digite para buscar..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-3 py-2 bg-[var(--content-bg)] border border-[var(--content-border)] rounded-lg body-md text-[var(--content-text)] placeholder:text-[var(--content-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-secondary)]"
+              autoFocus
+            />
+          </div>
+          <div className="p-3">
+            {searchQuery.trim() === '' ? (
+              <div className="text-center py-8 text-[var(--content-text-secondary)] body-md">
+                Digite para buscar módulos
+              </div>
+            ) : searchResults.length === 0 ? (
+              <div className="text-center py-8 text-[var(--content-text-secondary)] body-md">
+                Nenhum resultado encontrado
+              </div>
+            ) : (
+              <div className="space-y-1">
+                {searchResults.map((result, index) => (
+                  <Link
+                    key={index}
+                    href={result.href}
+                    onClick={() => {
+                      setShowSearchResults(false);
+                      setSearchQuery('');
+                      closeSidebar();
+                    }}
+                    className="flex flex-col gap-1 px-3 py-2.5 rounded-lg hover:bg-[var(--content-hover)] transition-all"
+                  >
+                    <span className="body-md text-[var(--content-text)] font-medium">{result.label}</span>
+                    {result.parent && (
+                      <span className="body-sm text-[var(--content-text-secondary)]">
+                        <i className="ti ti-folder body-sm mr-1" />
+                        {result.parent}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Painel lateral com subitens */}
-      {activePanel && activePanel.children && (
+      {!showSearchResults && activePanel && activePanel.children && (
         <div className="sticky top-0 left-0 h-screen w-[240px] bg-[var(--content-surface)] border-r border-[var(--content-border)] shadow-xl overflow-y-auto flex-shrink-0">
           <div className="p-4 border-b border-[var(--content-border)] flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <i className={`ti ${activePanel.icon} text-xl`} style={{ color: '#6f5fea' }} />
-              <span className="font-medium text-[var(--content-text)] uppercase text-xs tracking-wide">
+              <i className={`ti ${activePanel.icon} text-xl`} style={{ color: 'var(--md-sys-color-secondary)' }} />
+              <span className="font-medium text-[var(--content-text)] uppercase body-sm tracking-wide">
                 {activePanel.label}
               </span>
             </div>
@@ -256,7 +409,7 @@ export default function Sidebar() {
                 onClick={closeSidebar}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
                   pathname === child.href
-                    ? 'bg-[#EEE9F6] text-[#6f5fea] font-medium'
+                    ? 'bg-[#EEE9F6] text-[var(--md-sys-color-secondary)] font-medium'
                     : 'text-[var(--content-text)] hover:bg-[var(--content-hover)]'
                 }`}
               >

@@ -75,7 +75,7 @@ export default function Breadcrumbs() {
   if (breadcrumbs.length === 1) return null;
 
   return (
-    <nav className="flex items-center gap-2 text-sm text-[var(--content-text-secondary)] mb-3">
+    <nav className="flex items-center gap-2 body-md text-[var(--content-text-secondary)]">
       {breadcrumbs.map((crumb, index) => (
         <div key={crumb.href} className="flex items-center gap-2">
           {index === breadcrumbs.length - 1 ? (
@@ -84,11 +84,11 @@ export default function Breadcrumbs() {
             <>
               <Link
                 href={crumb.href}
-                className="hover:text-[#6f5fea] transition-colors"
+                className="hover:text-[var(--md-sys-color-secondary)] transition-colors"
               >
                 {crumb.label}
               </Link>
-              <i className="ti ti-chevron-right text-xs" />
+              <i className="ti ti-chevron-right body-sm" />
             </>
           )}
         </div>

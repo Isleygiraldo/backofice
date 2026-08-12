@@ -121,7 +121,7 @@ export default function UsuariosDashboard() {
                         </div>
                       </td>
                       <td className="px-[1rem] py-[0.75rem] text-center">
-                        <span className={`inline-flex items-center justify-center w-[2rem] h-[2rem] rounded-full body-sm font-bold ${
+                        <span className={`inline-flex items-center justify-center w-[2rem] h-[2rem] rounded-full label-caps ${
                           alerta.tipo === 'critical' ? 'bg-red-900/20 text-red-500' :
                           'bg-[var(--content-hover)] text-[var(--content-text-secondary)]'
                         }`}>
@@ -172,7 +172,7 @@ export default function UsuariosDashboard() {
                   <div className="flex-grow min-w-0">
                     <div className="flex justify-between items-end">
                       <span className="table-data text-[var(--content-text)]">{tier.nome}</span>
-                      <span className="body-sm font-bold text-[var(--content-text-secondary)]">{tier.ativos}</span>
+                      <span className="label-caps text-[var(--content-text-secondary)]">{tier.ativos}</span>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@ export default function UsuariosDashboard() {
                 <div className="flex items-center gap-[0.625rem] min-w-0">
                   <span className="material-symbols-outlined text-[var(--md-sys-color-secondary)] flex-shrink-0 transition-transform group-hover:scale-125 group-hover:-translate-y-1">north_east</span>
                   <div className="min-w-0">
-                    <p className="body-sm font-bold text-[var(--content-text)]">Promovidos para Elite</p>
+                    <p className="label-caps text-[var(--content-text)]">Promovidos para Elite</p>
                     <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>4 jogadores atingiram meta GGR</p>
                   </div>
                 </div>
@@ -199,7 +199,7 @@ export default function UsuariosDashboard() {
                 <div className="flex items-center gap-[0.625rem] min-w-0">
                   <span className="material-symbols-outlined text-red-500 flex-shrink-0 transition-transform group-hover:scale-125 group-hover:translate-y-1">south_east</span>
                   <div className="min-w-0">
-                    <p className="body-sm font-bold text-[var(--content-text)]">Risco de Demoted</p>
+                    <p className="label-caps text-[var(--content-text)]">Risco de Demoted</p>
                     <p className="body-sm text-[var(--content-text-secondary)]" style={{ fontSize: '10px' }}>12 jogadores inativos há &gt;15 dias</p>
                   </div>
                 </div>
@@ -239,7 +239,7 @@ export default function UsuariosDashboard() {
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div className="flex-grow min-w-0">
-                <div className="flex justify-between body-sm font-bold">
+                <div className="flex justify-between label-caps">
                   <span className="text-[var(--content-text)]">{estado.estado}</span>
                   <span className="text-[var(--content-text-secondary)]">{estado.vips} VIPs</span>
                 </div>

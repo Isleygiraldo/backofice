@@ -30,7 +30,7 @@ export default function IntNav({ groups, backButton }: IntNavProps) {
       {backButton && (
         <Link
           href={backButton.href}
-          className="hidden md:flex items-center gap-2.5 px-4 h-9 border-b border-[var(--md-sys-color-outline-variant)] mb-2 text-xs font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all"
+          className="hidden md:flex items-center gap-2.5 px-4 h-9 border-b border-[var(--md-sys-color-outline-variant)] mb-2 body-sm font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all"
         >
           <i className="ti ti-arrow-left text-base flex-shrink-0" />
           <span>{backButton.label}</span>

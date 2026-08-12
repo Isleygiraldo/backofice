@@ -248,7 +248,7 @@ export default function SigapDashboard() {
 
           <div className="mt-[2rem] md:mt-[3rem] text-center">
             <button className="label-caps text-[var(--content-text-secondary)] hover:text-[var(--md-sys-color-primary)] transition-colors flex items-center gap-[0.5rem] mx-auto">
-              <span className="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+              <span className="material-symbols-outlined body-md">keyboard_arrow_down</span>
               Carregar Eventos Anteriores
             </button>
           </div>
@@ -313,12 +313,12 @@ export default function SigapDashboard() {
         <Card className="p-[1.5rem] flex flex-col justify-center">
           <div className="flex items-center gap-[0.75rem] text-green-600 mb-[0.5rem]">
             <span className="w-[0.5rem] h-[0.5rem] bg-green-500 rounded-full animate-pulse"></span>
-            <span className="body-sm font-bold uppercase tracking-widest">
+            <span className="label-caps uppercase tracking-widest">
               API Conectada • Produção
             </span>
           </div>
           <p className="label-caps text-[var(--content-text-secondary)] mt-[0.5rem] flex items-center gap-[0.25rem]">
-            <span className="material-symbols-outlined text-sm align-middle">
+            <span className="material-symbols-outlined body-md align-middle">
               verified_user
             </span>
             SIGAP Secure Protocol v2.4.0
