@@ -96,7 +96,10 @@ export default function CoresPage() {
     <div className="p-[1rem] md:p-[1.5rem] space-y-[1rem] md:space-y-[1.5rem] max-w-[1600px] mx-auto">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-[0.75rem]">
-        <div>
+        <div className="flex items-center gap-[0.75rem]">
+          <span className="px-[0.75rem] py-[0.375rem] shape-md bg-[var(--md-sys-color-secondary)]/10 border border-[var(--md-sys-color-secondary)]/30">
+            <span className="label-caps text-[var(--md-sys-color-secondary)]">Backoffice</span>
+          </span>
           <p className="body-md text-[var(--content-text-secondary)]">
             Escolha uma paleta de cores para o sistema
           </p>

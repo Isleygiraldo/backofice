@@ -130,14 +130,14 @@ export default function JogosAoVivoPage() {
                   </td>
                   <td className="px-[1rem] py-[0.625rem]">
                     <div className="flex items-center gap-[0.5rem]">
-                      <div className="w-[1.5rem] h-[1.5rem] rounded-full bg-[var(--md-sys-color-primary-container)] flex items-center justify-center body-sm text-[var(--md-sys-color-on-primary-container)] font-bold">
+                      <div className="w-[1.5rem] h-[1.5rem] rounded-full bg-[var(--md-sys-color-secondary)]/10 flex items-center justify-center body-sm text-[var(--md-sys-color-secondary)] font-bold">
                         {jogo.dealer.charAt(0)}
                       </div>
                       <span className="table-data text-[var(--content-text)]">{jogo.dealer}</span>
                     </div>
                   </td>
                   <td className="px-[1rem] py-[0.625rem] text-center">
-                    <span className="table-data text-[var(--md-sys-color-secondary)] font-bold">
+                    <span className="table-data text-[var(--content-text)] font-bold">
                       {jogo.jogadores}
                     </span>
                   </td>
