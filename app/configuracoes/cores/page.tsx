@@ -179,7 +179,7 @@ export default function CoresPage() {
             <div className="flex flex-wrap gap-[1rem]">
               <Button variant="filled">Botão Primary</Button>
               <Button variant="outlined">Botão Outlined</Button>
-              <Button variant="text">Botão Text</Button>
+              
             </div>
           </div>
 

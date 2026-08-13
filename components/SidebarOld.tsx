@@ -126,7 +126,7 @@ export default function Sidebar() {
             {section.items.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={item.href || '/'}
                 onClick={closeSidebar}
                 className="group flex items-center gap-2.5 px-3 h-9 mx-2 my-0.5 rounded-full body-sm font-medium text-[var(--md-sys-color-on-surface-variant)] hover:bg-[rgba(202,196,208,0.08)] hover:text-[var(--md-sys-color-on-surface)] transition-all md:justify-center md:px-0 lg:justify-start lg:px-3 relative"
               >
