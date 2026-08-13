@@ -78,7 +78,7 @@ export function TablePagination({
         <span className="text-[var(--content-text-secondary)]">Itens por página</span>
         <select
           value={itemsPerPage}
-          onChange={(e) => onItemsPerPageChange(Number(e.target-value))}
+          onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
           className="px-3 py-1.5 border border-[var(--content-border)] rounded-lg bg-[var(--content-surface)] text-[var(--content-text)] focus:outline-none focus:ring-2 focus:ring-[var(--md-sys-color-secondary)]"
         >
           <option value={10}>10</option>
