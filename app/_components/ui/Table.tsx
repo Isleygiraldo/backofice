@@ -40,7 +40,7 @@ export default function Table<T = any>({ columns, data, className = '' }: TableP
                       col.align === 'center' ? 'text-center' : col.align === 'right' ? 'text-right' : 'text-left'
                     }`}
                   >
-                    {col.render ? col.render(row[col.key], row) : row[col.key]}
+                    {col.render ? col.render((row as any)[col.key], row) : (row as any)[col.key]}
                   </td>
                 ))}
               </tr>
