@@ -251,13 +251,13 @@ export default function SidebarConfig() {
                     setActivePanel(null);
                     closeSidebar();
                   }}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg body-md transition-all ${
                     pathname === child.href
                       ? 'bg-[var(--md-sys-color-secondary)]/10 text-[var(--md-sys-color-secondary)] font-medium'
                       : 'text-[var(--content-text)] hover:bg-[var(--content-hover)]'
                   }`}
                 >
-                  <i className={`ti ${pathname === child.href ? 'ti-circle-filled' : 'ti-file-text'} text-base`} />
+                  <i className={`ti ${pathname === child.href ? 'ti-circle-filled' : 'ti-file-text'} text-[16px]`} />
                   {child.label}
                 </Link>
               ))}
