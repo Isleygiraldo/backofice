@@ -157,6 +157,7 @@ const versionConfigs: Record<string, Category[]> = {
 export default function CMSPage() {
   const [version, setVersion] = useState('v3');
   const [categories, setCategories] = useState<Category[]>(versionConfigs.v3);
+  const [showInfo, setShowInfo] = useState(false);
 
   const Toggle = ({ id, checked, onChange }: { id: string; checked: boolean; onChange: () => void }) => (
     <label className="relative inline-flex items-center cursor-pointer">
@@ -168,7 +169,7 @@ export default function CMSPage() {
         className="sr-only peer"
       />
       <div className="w-11 h-6 bg-[#4a5568] rounded-full peer peer-checked:bg-[var(--md-sys-color-secondary)] peer-focus:ring-2 peer-focus:ring-[var(--md-sys-color-secondary)]/50 transition-all">
-        <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${checked ? 'translate-x-5' : ''}`}></div>
+        <div className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform ${checked ? 'translate-x-5' : ''}`}></div>
       </div>
     </label>
   );
@@ -289,13 +290,22 @@ export default function CMSPage() {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-start">
-        <div>
-          <h2 className="display-md text-[var(--content-text)] mb-1">
-            Componentes do site
-          </h2>
-          <p className="body-md text-[var(--content-text-secondary)]">
-            Ative ou desative os componentes. Nada é enviado até clicar em "Salvar".
-          </p>
+        <div className="flex items-start gap-2">
+          <div>
+            <h2 className="display-md text-[var(--content-text)] mb-1">
+              Componentes do site
+            </h2>
+            <p className="body-md text-[var(--content-text-secondary)]">
+              Ative ou desative os componentes. Nada é enviado até clicar em "Salvar".
+            </p>
+          </div>
+          <button
+            onClick={() => setShowInfo(true)}
+            className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--md-sys-color-primary)] hover:bg-[var(--content-hover)] transition-colors"
+            title="Mais informações"
+          >
+            <i className="ti ti-info-circle text-[18px]" />
+          </button>
         </div>
         <div className="flex gap-3">
           <button className="flex items-center gap-2 px-4 py-2 border border-[var(--content-border)] text-[var(--content-text)] rounded-lg hover:bg-[var(--content-hover)] transition-colors">
@@ -360,19 +370,19 @@ export default function CMSPage() {
               </span>
               {version === 'v3' && (
                 <span className="flex items-center gap-1 text-[10px] font-bold text-[var(--content-text-secondary)] uppercase">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#2ecc71]"></div> No ar
+                  <div className="w-2 h-2 rounded-full bg-[#2ecc71]"></div> No ar
                 </span>
               )}
               <div className="flex gap-1 ml-2">
                 <button
                   onClick={(e) => { e.stopPropagation(); }}
-                  className="p-1.5 rounded hover:bg-[var(--content-hover)] text-[var(--content-text-secondary)] hover:text-[var(--content-text)] transition-colors"
+                  className="p-2 rounded hover:bg-[var(--content-hover)] text-[var(--content-text-secondary)] hover:text-[var(--content-text)] transition-colors"
                 >
                   <i className="ti ti-edit text-base" />
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); }}
-                  className="p-1.5 rounded hover:bg-red-500/20 text-[var(--content-text-secondary)] hover:text-red-500 transition-colors"
+                  className="p-2 rounded hover:bg-red-500/20 text-[var(--content-text-secondary)] hover:text-red-500 transition-colors"
                 >
                   <i className="ti ti-trash text-base" />
                 </button>
@@ -420,11 +430,11 @@ export default function CMSPage() {
                         <div className="flex-1">
                           <h4 className="body-md font-bold text-[var(--content-text)]">{widget.name}</h4>
                           {widget.description && (
-                            <p className="body-sm text-[var(--content-text-secondary)] mt-0.5">
+                            <p className="body-sm text-[var(--content-text-secondary)] mt-1">
                               {widget.description}
                             </p>
                           )}
-                          <span className="inline-block mt-2 text-[10px] bg-[var(--content-hover)] text-[var(--content-text-secondary)] px-2 py-0.5 rounded uppercase tracking-wide">
+                          <span className="inline-block mt-2 text-[10px] bg-[var(--content-hover)] text-[var(--content-text-secondary)] px-2 py-1 rounded uppercase tracking-wide">
                             {widget.tag}
                           </span>
                         </div>
@@ -442,6 +452,266 @@ export default function CMSPage() {
           ))}
         </div>
       </div>
+
+      {/* Modal Informações - Guia do Usuário */}
+      {showInfo && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-[1rem]" onClick={() => setShowInfo(false)}>
+          <div className="w-full max-w-[900px] max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <Card className="p-[2rem]">
+              <div className="flex justify-between items-start mb-[2rem]">
+                <div className="flex items-center gap-3">
+                  <div className="w-[3rem] h-[3rem] shape-md bg-[var(--md-sys-color-primary)]/20 flex items-center justify-center">
+                    <i className="ti ti-book text-[var(--md-sys-color-primary)] text-[24px]" />
+                  </div>
+                  <div>
+                    <h3 className="headline-lg text-[var(--content-text)]">
+                      Guia: CMS / Componentes do Site
+                    </h3>
+                    <p className="body-sm text-[var(--content-text-secondary)]">
+                      Tudo que você pode fazer neste módulo
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowInfo(false)}
+                  className="w-[2rem] h-[2rem] flex items-center justify-center shape-md border border-[var(--content-border)] bg-[var(--content-surface)] text-[var(--content-text-secondary)] hover:bg-[var(--content-hover)] transition-colors"
+                >
+                  <i className="ti ti-x text-[18px]" />
+                </button>
+              </div>
+
+              <div className="space-y-[2rem]">
+                {/* O que é */}
+                <div>
+                  <h4 className="headline-sm text-[var(--content-text)] mb-2 flex items-center gap-2">
+                    <i className="ti ti-info-circle text-[var(--md-sys-color-primary)]" />
+                    O que é o CMS?
+                  </h4>
+                  <p className="body-md text-[var(--content-text-secondary)] pl-[2rem]">
+                    O CMS (Content Management System) permite ativar/desativar componentes visuais do site sem mexer em código. Controle banners, menus, rodapés, widgets e módulos de forma centralizada.
+                  </p>
+                </div>
+
+                {/* Divisor */}
+                <div className="h-[1px] bg-[var(--content-border)]" />
+
+                {/* Recursos Disponíveis */}
+                <div>
+                  <h4 className="headline-sm text-[var(--content-text)] mb-3 flex items-center gap-2">
+                    <i className="ti ti-tools text-[var(--md-sys-color-primary)]" />
+                    O que você pode fazer
+                  </h4>
+
+                  <div className="space-y-3 pl-[2rem]">
+                    {/* Versões */}
+                    <div className="border-l-4 border-[var(--md-sys-color-primary)] pl-3 py-1">
+                      <h5 className="label-md text-[var(--content-text)] mb-1">1. Alternar entre Versões do Site</h5>
+                      <ul className="space-y-1 body-sm text-[var(--content-text-secondary)]">
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>OLD:</strong> Versão legada do sistema</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>SuperOba:</strong> Template customizado para cliente específico</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Nova versão V3:</strong> Versão mais recente com componentes modernos</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Selecione a versão para carregar seus widgets no editor</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Ativar/Desativar */}
+                    <div className="border-l-4 border-[var(--md-sys-color-primary)] pl-3 py-1">
+                      <h5 className="label-md text-[var(--content-text)] mb-1">2. Ativar/Desativar Componentes</h5>
+                      <ul className="space-y-1 body-sm text-[var(--content-text-secondary)]">
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Toggle individual:</strong> Clique no switch ao lado de cada widget</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Preview visual:</strong> Cada widget tem miniatura (carousel, grid, header, footer, etc.)</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Tag de identificação:</strong> Ex: BANNER_V1, SEARCH_HOME, FOOTER_V1</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Mudanças só vão ao ar após clicar em "Salvar Alterações"</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Categorias */}
+                    <div className="border-l-4 border-[var(--md-sys-color-primary)] pl-3 py-1">
+                      <h5 className="label-md text-[var(--content-text)] mb-1">3. Organização por Categorias</h5>
+                      <ul className="space-y-1 body-sm text-[var(--content-text-secondary)]">
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Página inicial (Home):</strong> Banners, busca, jogos de cassino, eventos populares</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Cabeçalho:</strong> Header com login, saldo e menu principal</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Menu lateral:</strong> Sidebar com lista de esportes e navegação</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Rodapé:</strong> Footer padrão do site</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Contador mostra quantos widgets estão ativos em cada categoria</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Pré-visualizar */}
+                    <div className="border-l-4 border-[var(--md-sys-color-primary)] pl-3 py-1">
+                      <h5 className="label-md text-[var(--content-text)] mb-1">4. Pré-visualizar Mudanças</h5>
+                      <ul className="space-y-1 body-sm text-[var(--content-text-secondary)]">
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Clique em "Pré-visualizar" para ver como ficará antes de publicar</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Teste todas as páginas (Home, Cassino, Esportes) para verificar impacto</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Mudanças não afetam o site até você clicar em "Salvar Alterações"</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Salvar */}
+                    <div className="border-l-4 border-[var(--md-sys-color-primary)] pl-3 py-1">
+                      <h5 className="label-md text-[var(--content-text)] mb-1">5. Salvar e Publicar</h5>
+                      <ul className="space-y-1 body-sm text-[var(--content-text-secondary)]">
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span><strong>Salvar Alterações:</strong> Publica as mudanças no site ao vivo</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Todas as mudanças são aplicadas simultaneamente</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-[var(--md-sys-color-primary)]">•</span>
+                          <span>Recomenda-se fazer backup antes de grandes mudanças</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Divisor */}
+                <div className="h-[1px] bg-[var(--content-border)]" />
+
+                {/* Boas Práticas */}
+                <div>
+                  <h4 className="headline-sm text-[var(--content-text)] mb-3 flex items-center gap-2">
+                    <i className="ti ti-bulb text-[var(--md-sys-color-primary)]" />
+                    Boas Práticas
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-[2rem]">
+                    <div className="bg-[var(--content-hover)] p-3 shape-md border border-[var(--content-border)]">
+                      <div className="flex items-start gap-2">
+                        <i className="ti ti-circle-check text-[var(--md-sys-color-primary)] text-[20px] mt-[0.125rem]" />
+                        <div>
+                          <h5 className="label-sm text-[var(--content-text)] mb-1">Sempre pré-visualize</h5>
+                          <p className="body-sm text-[var(--content-text-secondary)]">Teste antes de publicar no ar</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--content-hover)] p-3 shape-md border border-[var(--content-border)]">
+                      <div className="flex items-start gap-2">
+                        <i className="ti ti-circle-check text-[var(--md-sys-color-primary)] text-[20px] mt-[0.125rem]" />
+                        <div>
+                          <h5 className="label-sm text-[var(--content-text)] mb-1">Faça mudanças graduais</h5>
+                          <p className="body-sm text-[var(--content-text-secondary)]">Evite desativar muitos widgets de uma vez</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--content-hover)] p-3 shape-md border border-[var(--content-border)]">
+                      <div className="flex items-start gap-2">
+                        <i className="ti ti-circle-check text-[var(--md-sys-color-primary)] text-[20px] mt-[0.125rem]" />
+                        <div>
+                          <h5 className="label-sm text-[var(--content-text)] mb-1">Monitore após publicar</h5>
+                          <p className="body-sm text-[var(--content-text-secondary)]">Verifique se tudo está funcionando no site</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--content-hover)] p-3 shape-md border border-[var(--content-border)]">
+                      <div className="flex items-start gap-2">
+                        <i className="ti ti-circle-check text-[var(--md-sys-color-primary)] text-[20px] mt-[0.125rem]" />
+                        <div>
+                          <h5 className="label-sm text-[var(--content-text)] mb-1">Documente mudanças</h5>
+                          <p className="body-sm text-[var(--content-text-secondary)]">Anote o que foi alterado e por quê</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Divisor */}
+                <div className="h-[1px] bg-[var(--content-border)]" />
+
+                {/* Fluxo Rápido */}
+                <div>
+                  <h4 className="headline-sm text-[var(--content-text)] mb-3 flex items-center gap-2">
+                    <i className="ti ti-route text-[var(--md-sys-color-primary)]" />
+                    Fluxo Rápido de Edição
+                  </h4>
+                  <div className="space-y-2 pl-[2rem]">
+                    <div className="flex items-center gap-3">
+                      <div className="w-[2rem] h-[2rem] shape-full bg-[var(--md-sys-color-primary)] text-white flex items-center justify-center label-sm font-bold">1</div>
+                      <span className="body-md text-[var(--content-text)]">Selecione a versão do site (OLD/SuperOba/V3)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[2rem] h-[2rem] shape-full bg-[var(--md-sys-color-primary)] text-white flex items-center justify-center label-sm font-bold">2</div>
+                      <span className="body-md text-[var(--content-text)]">Ative/desative os widgets desejados com o toggle</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[2rem] h-[2rem] shape-full bg-[var(--md-sys-color-primary)] text-white flex items-center justify-center label-sm font-bold">3</div>
+                      <span className="body-md text-[var(--content-text)]">Clique em "Pré-visualizar" para testar</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[2rem] h-[2rem] shape-full bg-[var(--md-sys-color-primary)] text-white flex items-center justify-center label-sm font-bold">4</div>
+                      <span className="body-md text-[var(--content-text)]">Se estiver OK, clique em "Salvar Alterações"</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[2rem] h-[2rem] shape-full bg-[var(--md-sys-color-primary)] text-white flex items-center justify-center label-sm font-bold">5</div>
+                      <span className="body-md text-[var(--content-text)]">Verifique o site ao vivo para confirmar!</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-[2rem] pt-[2rem] border-t border-[var(--content-border)] flex justify-end gap-3">
+                <button className="flex items-center gap-2 px-4 py-2 border border-[var(--content-border)] text-[var(--content-text)] rounded-lg hover:bg-[var(--content-hover)] transition-colors">
+                  <i className="ti ti-file text-[18px]" />
+                  Ver Documentação Completa
+                </button>
+                <button onClick={() => setShowInfo(false)} className="flex items-center gap-2 px-6 py-2 bg-[var(--md-sys-color-secondary)] text-white rounded-lg hover:bg-[var(--md-sys-color-primary-container)] transition-colors font-medium">
+                  Entendi
+                </button>
+              </div>
+            </Card>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
